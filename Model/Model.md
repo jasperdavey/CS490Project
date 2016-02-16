@@ -1,4 +1,4 @@
-### Model
+# Model
 
 ## Resources
 [Debugging AFS](http://ist.njit.edu/webhosting/debug.php)
