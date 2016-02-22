@@ -7,6 +7,9 @@ $ch = curl_init("https://cp4.njit.edu/cp/home/login");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, "user=$user&pass=$pass&uuid=0xACA021");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt ($ch, CURLOPT_REFERER, "https://www.njit.edu/cp/login.php");
 $result = curl_exec($ch);
 curl_close($ch);
 
