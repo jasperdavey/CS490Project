@@ -20,7 +20,7 @@ if ($valid) {
 	  
 
 
-$ch = curl_init("###"); //Jasper I need your php url
+$ch = curl_init("https://web.njit.edu/~jmd57/model.php"); //Jasper I need your php url
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, "user=$user&pass=$pass");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
