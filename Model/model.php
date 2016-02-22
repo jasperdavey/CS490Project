@@ -2,6 +2,7 @@
 	$id = $_POST['user_id'];
 	$password = $_POST['password'];
 	$status = 0;
+	$userObject = []
 
 	$user = mysql_connect('sql.njit.edu', 'jmd57','owypHuH4g');
 	if (!$user) {
@@ -33,9 +34,10 @@
 	while ($row = mysql_fetch_assoc($result)){
 		if( $row['_password'] != $password ) {$status = 304;}
 		else { $status = 200;}
+		$userObject = array( 'username' => $row['_username'] );
 	}
 
-	$status_array = array( 'status' => $status);
+	$status_array = array( 'status' => $status, 'user' => $userObject );
 
 	echo json_encode($status_array);
 
