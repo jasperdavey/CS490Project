@@ -38,3 +38,5 @@ else
 	printf "\n" >> logs.txt
 fi
 
+# Fix to an unknown bug
+rm 0
