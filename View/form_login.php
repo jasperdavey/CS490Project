@@ -2,6 +2,7 @@
 /* author: Totaram Ramrattan
   CS490-104-Semester Project
   2/25/16
+  form_login.php
 */
 
 function login(){
@@ -29,7 +30,7 @@ echo "</br>";
 $response1 = json_decode($response1,true);
 $response2 = json_decode($response2,true);
 
-// gets status from json object 
+// gets status from json object
 $status1 = $response1[status];
 $status2 = $response2[status];
 
