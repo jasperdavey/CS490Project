@@ -21,14 +21,33 @@ list($response1,$response2) = split(" ",$result,2);
 
 echo "</br>";
 
-echo $response2;
-echo strlen($response2)."</br>";
-
 $response1 = json_decode($response1,true);
 $response2 = json_decode($response2,true);
 
-echo $response1[status];
-echo $response2[status];
+$status1 = $response1[status];
+$status2 = $response2[status];
+
+echo '<p><span style="font-weight:bold;">NJIT Server: </span>';
+if ($status1 == "failed"){
+  echo "failed to login, incorrect username or password!"."</p>";
+}else{
+  echo "successfully logged in!"."</p>";
+}
+
+echo '<p><span style="font-weight:bold;">Project Database: </span>';
+
+switch($status2){
+  case 304:
+    echo "incorrect password!"."</p></br>";
+    break;
+  case 404:
+    echo "user not found!"."</p></br>";
+    break;
+  case 202:
+    echo "successfully logged in!"."</p></br>";
+    break;
+}
+
 }
 
 ?>
