@@ -2,7 +2,7 @@
 	$id = $_POST['user_id'];
 	$password = $_POST['password'];
 	$status = 0;
-	$userObject = []
+	$userObject = [];
 
 	$user = mysql_connect('sql.njit.edu', 'jmd57','owypHuH4g');
 	if (!$user) {
@@ -33,11 +33,24 @@
 	// If username found, check if password given is password on database
 	while ($row = mysql_fetch_assoc($result)){
 		if( $row['_password'] != $password ) {$status = 304;}
-		else { $status = 200;}
+		else { $status = 200; }
 		$userObject = array( 'username' => $row['_username'] );
 	}
 
 	$status_array = array( 'status' => $status, 'user' => $userObject );
+
+	$reponseURL =
+	"https://web.njit.edu/~aml35/login/reportingBackToFrontEnd.php";
+	$ch = curl_init();
+	curl_setopt( $ch, CURLOPT_URL, $responseURL );
+	curl_setopt( $ch, CURLOPT_POST, 1);
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $status_array );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+	curl_exec( $ch );
+	curl_close( $ch );
 
 	echo json_encode($status_array);
 
