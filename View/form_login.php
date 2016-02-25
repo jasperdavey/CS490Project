@@ -1,6 +1,6 @@
 <?php
 //Getting user and password and entering NJIT Server
-//$info = file_get_contents('php://input');
+$info = file_get_contents('php://input');
 session_start();
 $user = $_POST["ucid"];
 $pass = $_POST["pass"];
@@ -16,5 +16,6 @@ $result = curl_exec($ch);
 echo $result;
 
 curl_close($ch);
+echo "test";
 
 ?>
