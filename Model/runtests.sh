@@ -35,3 +35,6 @@ else
 	printf "\n" >> databaselogs.txt
 fi
 
+if [ -f 0 ]; then
+	rm 0
+fi

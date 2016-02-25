@@ -2,7 +2,7 @@ url="https://web.njit.edu/~jmd57/model.php"
 
 result=`curl --request POST $url --data "user_id=jmd57" --data "password=randompassword"`
 
-if [ `echo $result | grep "304"` ]; then
+if [ `echo $result | grep "200"` ]; then
 	echo "Error at status 304"
 	exit 1
 fi	
