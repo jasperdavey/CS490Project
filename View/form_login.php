@@ -1,4 +1,7 @@
 <?php
+/* author: Totaram Ramrattan
+  CS490-Project
+*/
 //Getting user and password and entering NJIT Server
 
 function login(){
@@ -43,7 +46,7 @@ switch($status2){
   case 404:
     echo "user not found!"."</p></br>";
     break;
-  case 202:
+  case 200:
     echo "successfully logged in!"."</p></br>";
     break;
 }
