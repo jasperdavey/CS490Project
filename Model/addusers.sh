@@ -1,3 +1,5 @@
+#!/bin/bash
+set -x
 read -p "Enter username: " username
 read -s -p "Enter password: " password
 
