@@ -16,8 +16,9 @@ for tests in `ls "${unit_tests_directory}"`; do
 	errorCode=0
 	echo "Test $counter: $tests"
 	chmod +x "${unit_tests_directory}"/"${tests}"
-	"${unit_tests_directory}"/"${tests}" | errorCode=$?
-	if [ $errorCode -eq $errorExitCode ]; then
+	"${unit_tests_directory}"/"${tests}"
+	errorCode=$?
+	if [ $errorCode -ne 0 ]; then
 		errorCounter=$(( errorCounter + 1 ))
 		error="Error at test: "${tests}""
 		currentDate=`date`

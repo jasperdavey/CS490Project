@@ -1,4 +1,6 @@
 <?php
+	# Created by Jasper Davey
+
 	$id = $_POST['user_id'];
 	$password = $_POST['password'];
 	$status = 0;
