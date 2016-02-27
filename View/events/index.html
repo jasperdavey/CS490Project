@@ -11,17 +11,17 @@
         <div id="events_logo">
             EVENTS!
         </div>
-        <form id="login_form" action="" method="POST">
+        <div id="login_form">
             <div id="input_area">
-            <input  type="text" name="user"></input>
-            <input  type="password" name="pass"></input>
+            <input  type="text" name="user" value="username" onfocus="clearText(this)" onblur="resetText(this)"></input>
+            <input  type="text" name="pass" value="password" onfocus="clearText(this)" onblur="resetText(this)"></input>
             </div>
-        </form>
-        <button id="login_button" onClick="sayHello()">Login</button>
+        </div>
+        <button id="login_button" onClick="login()">Login</button>
     </div>
 
     <div id="sign_up">
-        <a href="http://r25livepr1.njit.edu/calendar/">Join EVENTS! @ NJIT</a>
+        <a onmouseover="highlight(this)" onmouseout="unHighlight(this)" href="http://r25livepr1.njit.edu/calendar/">Join EVENTS! @ NJIT</a>
     </div>
     <div id="NJIT_logo">
         <a href="http://www.njit.edu/">
