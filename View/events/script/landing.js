@@ -1,9 +1,12 @@
 
 function login(){
-    var user = document.forms["login_form"]["user"].value;
-    var pass = document.forms["login_form"]["pass"].value;
-    document.forms["login_form"]["user"].value = "";
-    document.forms["login_form"]["pass"].value = "";
+    document.getElementById("user").value = "username";
+    document.getElementById("user").style.color = "grey";
+    document.getElementById("pass").value = "password";
+    document.getElementById("pass").style.color = "grey";
+    document.getElementById("pass").type = "text";
+
+
 }
 
 function clearText(input){
