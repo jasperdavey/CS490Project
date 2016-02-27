@@ -5,8 +5,6 @@ function login(){
     document.getElementById("pass").value = "password";
     document.getElementById("pass").style.color = "grey";
     document.getElementById("pass").type = "text";
-
-
 }
 
 function clearText(input){
