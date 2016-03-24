@@ -60,6 +60,7 @@ User
 - list of events
 - dictionary of tags : nice_value
 - friends list
+
 Event
 - Name
 - pics
