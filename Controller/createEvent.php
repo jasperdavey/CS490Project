@@ -1,9 +1,9 @@
 <?php
 /********MIDDLE END**************
 Project:  CS 490 - Group # 2    *
-FileName: createEvent.php	    *
-By:       Angelica Llerena		*
-Date:     March 15, 2016.		*
+FileName: createEvent.php	*
+By:       Angelica Llerena	*
+Date:     March 15, 2016.	*
 *********************************/
 
 //Getting the new event information to send Jasper
