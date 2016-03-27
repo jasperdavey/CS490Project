@@ -2,8 +2,8 @@
 /********MIDDLE END**************
 Project:  CS 490 - Group # 2    *
 FileName: recommendEvents.php	*
-By:       Angelica Llerena		*
-Date:     March 15, 2016.		*
+By:       Angelica Llerena	*
+Date:     March 15, 2016.	*
 *********************************/
 
 // Matching hastags from user to event's hastags.
