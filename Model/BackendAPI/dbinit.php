@@ -13,10 +13,10 @@
     }
 
     // create database
-    $sql = sprintf( "CREATE DATABASE '%s'", mysql_real_escape_string( $databaseName )  );
+    $sql = "CREATE DATABASE $NJITEventsApp";
     if ( !mysql_query( $sql, $connection ) )
     {
-        die( 'Could not create database' . mysql_error( ) );
+        die( 'Could not create database ' . mysql_error( ) );
     }
 
     // select database
