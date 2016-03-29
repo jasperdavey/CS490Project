@@ -28,3 +28,10 @@ All tests finished with 1 errors at Thu Feb 25 23:51:42 EST 2016
 
 All tests finished with 0 errors at Thu Feb 25 23:53:24 EST 2016
 
+Error at test: login.sh Fri Feb 26 17:27:34 EST 2016
+All tests finished with 1 errors at Fri Feb 26 17:27:34 EST 2016
+
+All tests finished with 0 errors at Fri Feb 26 17:38:48 EST 2016
+
+All tests finished with 0 errors at Fri Feb 26 17:52:18 EST 2016
+
