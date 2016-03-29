@@ -1,7 +1,7 @@
 <?php
 
     $databaseName = "NJITEventsApp";
-    $serverName = 'sql.njit.edu';
+    $serverName = 'sql1.njit.edu';
     $userName = 'jmd57';
     $password = 'owypHuH4g';
 
