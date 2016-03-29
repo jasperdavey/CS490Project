@@ -6,7 +6,7 @@
     $password = 'owypHuH4g';
 
     // create connection
-    $connection = mysql_connect( $serverName, $userName, $password );
+    $connection = mysql_connect( 'sql.njit.edu', 'jmd57', 'owypHuH4g' );
     if ( !$connection )
     {
         die(' Could not connect: ' . mysql_error( ) );
