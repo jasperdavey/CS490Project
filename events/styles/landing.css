@@ -60,7 +60,7 @@ input{
 div.login_box{
     width: 540px;
     height: 304px;
-    margin-top: 20%;
+    margin-top: 15%;
     margin-left: auto;
     margin-right: auto;
     background-color: #f1f1f1;
@@ -113,4 +113,16 @@ a:hover {
     padding-left: 140px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#tag_selector_view{
+    margin-top: 15%;
+    margin-left:auto;
+    margin-right: auto;
+    min-width: 500px;
+    max-width: 600px;
+    min-width: 400px;
+    min-height: 400px;
+    max-height: 500px;
+    background-color: grey;
 }
