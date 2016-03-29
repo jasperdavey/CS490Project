@@ -13,7 +13,7 @@
     }
 
     // create database
-    $sql = "CREATE DATABASE $NJITEventsApp";
+    $sql = "CREATE DATABASE $databaseName";
     if ( !mysql_query( $sql, $connection ) )
     {
         die( 'Could not create database ' . mysql_error( ) );
