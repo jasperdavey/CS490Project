@@ -1,6 +1,3 @@
-angular.module('eventsApp')
-.controller('dashboardCtrl', function($scope,$location){
-    $scope.doSomething = function(){
-        alert('working');
-    }
-});
+function loadSingUp(){
+  window.location = "https://web.njit.edu/~tr88/cs490project/events/views/signup.html"
+}

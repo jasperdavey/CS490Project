@@ -103,6 +103,10 @@ a:hover {
     color: red;
     margin-top: -80px;
 }
+
+#sign_up_link:hover{
+  cursor: pointer;
+}
 #NJIT_logo{
     width: 300px;
     height: 100px;

@@ -1,0 +1,39 @@
+div.sign_up_box{
+    width: 504px;
+    height: 440px;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f1f1f1;
+    font-family: "Gravitas One";
+    font-size: 14px;
+    font-style: italic;
+    line-height: 24px;
+    font-weight: bold;
+    color: #09C;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #999;
+    border: inset 1px solid #333;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+#join_button{
+    width: 175px;
+    display: block;
+    border: 1px solid #999;
+    height: 40px;
+    background-color:red;
+    font-size: 16pt;
+    font-weight: bold;
+    color: white;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;;
+}
