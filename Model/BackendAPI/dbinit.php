@@ -16,7 +16,7 @@
     $sql = sprintf( "CREATE DATABASE '%s'", mysql_real_escape_string( $databaseName )  );
     if ( !mysql_query( $sql, $connection ) )
     {
-        die( 'Could not create database' );
+        die( 'Could not create database' . mysql_error( ) );
     }
 
     // select database
