@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EVENTS!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <script src="scripts/controllers/dashboard.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+
+    <div>
+        <div id="login_box" class="login_box">
+            <div id="events_logo">EVENTS!</div>
+                  <form id="login_form">
+                      <div id="input_area">
+                      <input  type="text" id="ucid" method="POST" name="user" value="" placeholder="username"></input>
+                      <input  type="password" id="pass" name="" placeholder="password"></input>
+                      </div>
+                  </form>
+                  <button id="login_button" onClick="signIn()">Login</button>
+               </div>
+          <div id="sign_up">
+              <a href="http://r25livepr1.njit.edu/calendar/">Join EVENTS! @ NJIT</a>
+          </div>
+          <div id="NJIT_logo">
+              <a href="http://www.njit.edu/">
+                  <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
+              </a>
+          </div>
+    </div>
+
+    <div id="info_box" style="visibility:hidden;">
+      <div id="status1" style="width:200px; height:100px; background-color: white;">status1</div>
+      <br>
+      <div id="status2" style="width:200px; height:100px; background-color: white;">status2</div>
+  </div>
+</body>
+</html>
