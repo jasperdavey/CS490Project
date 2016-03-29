@@ -1,22 +1,15 @@
 <?php
 
-    $databaseName = "NJITEventsApp";
+    $databaseName = "jmd57";
     $serverName = 'sql1.njit.edu';
     $userName = 'jmd57';
     $password = 'owypHuH4g';
 
     // create connection
-    $connection = mysql_connect( 'sql.njit.edu', 'jmd57', 'owypHuH4g' );
+    $connection = mysql_connect( $serverName, $userName, $password );
     if ( !$connection )
     {
         die(' Could not connect: ' . mysql_error( ) );
-    }
-
-    // create database
-    $sql = "CREATE DATABASE NJITEventsApp";
-    if ( !mysql_query( $sql, $connection ) )
-    {
-        die( 'Could not create database ' . mysql_error( ) );
     }
 
     // select database
