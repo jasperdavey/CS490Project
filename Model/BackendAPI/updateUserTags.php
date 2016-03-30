@@ -22,6 +22,14 @@
 
     $tagNiceValue = 0;
     $id = 0;
+
+    // Case tags doesnt exist
+	if ( mysql_num_rows( $result ) == 0 )
+    {
+        $tagNiceValue = 1;
+		$id = $row[ 'id' ];
+	}
+
     while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
     {
         $tagNiceValue = $row[ 'nice' ] + 1;
