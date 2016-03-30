@@ -1,9 +1,18 @@
+
 <?php
+/*
+Author: Angelica Llerena
+Date: February 26, 2016.
+CS 490 Project - Log In
+*/
+
+header ("Access-Control-Allow-Origin:*");
+
 //Getting user and password and entering NJIT Server
 //session_start();
-$user = $_POST["ucid"];
-$pass = $_POST["pass"];
-
+$user = $info["user_id"];
+$pass = $info["pass"];
+/*
 global $json;
 $report = array();
 
@@ -22,13 +31,14 @@ $valid = (strpos($result,"loginok.html") !== false);
 if ($valid) {
 	$report['status'] = "success";
 	$json = json_encode($report);
-    echo "$json </br>";
+    echo "$json ";
+	//return $json;
 }else{
 	$report['status'] = "failed";
 	$json = json_encode($report);
-	echo "$json </br>";
+	echo "$json ";
 }
-
+*/
 
 //Sending user and password to Jasper.
 $data = "user_id=$user&password=$pass";

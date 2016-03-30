@@ -1,33 +1,35 @@
 <?php
 /********MIDDLE END**************
 Project:  CS 490 - Group # 2    *
-FileName: createEvent.php	*
-By:       Angelica Llerena	*
-Date:     March 15, 2016.	*
+FileName: createEvent.php	    *
+By:       Angelica Llerena		*
+Date:     March 15, 2016.		*
 *********************************/
 
 //Getting the new event information to send Jasper
-$title = $_POST['title'];
-$host = $_POST['host'];
-$description = $_POST['description'];
-$date = $_POST['date'];
-$time = $_POST['time'];
-$location = $_POST['location'];
-$rsvp = $_POST['rsvp'];
-$contactInfo = $_POST['cinfo'];
-$Htags = $_POST['tags'];
+$title = $info['event_title'];
+$host = $info['event_host'];
+$description = $info['event_description'];
+$date = $info['event_date'];
+$time = $info['event_time'];
+$location = $info['event_location'];
+$phone = $info['event_phone'];
+$email = $info['event_email'];
 
 //Sending info to Jasper
-$data = "title=$title&
-		 host=$host&
-		 description=$description&
-		 date=$date&
-		 time=$time&
-		 location=$location&
-		 rsvp=$rsvp&
-		 contactInfo=$contactInfo&
-		 Htags=$Htags";
+$dateAndTime="date=$date&time=$time";
 
+$data = "name=$title&
+		 host=$host&
+		 bio=$description&
+		 dateAndTime=$dateAndTime&
+		 location=$location&
+		 phone=$phone&
+		 email=$email";
+
+echo $data;	 
+		 
+/*
 //$J_url = "https://web.njit.edu/~jmd57/.......";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $J_url);
@@ -43,5 +45,5 @@ curl_close($ch);
 
 echo "$results";
 
-
+*/
 ?>
