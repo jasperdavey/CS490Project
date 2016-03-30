@@ -1,13 +1,14 @@
 <?php 
 /********MIDDLE END**************
 Project:  CS 490 - Group # 2    *
-FileName: SignUp.php		*
-By:       Angelica Llerena	*
-Date:     March 15, 2016.	*
+FileName: SignUp.php			*
+By:       Angelica Llerena		*
+Date:     March 15, 2016.		*
 *********************************/
 
 //Getting user's info...
 
+$cmd = $info['cmd'];
 $fname = $info['f_name'];
 $lname = $info['l_name'];
 //$midname = $info['m_name'];
@@ -32,8 +33,8 @@ $data = "firstname=$fname&
 		 minor=$minor&
 		 year=$year&
 		 Gdate=$Gdate";
-//echo $data;
-
+echo $data;
+/*
 //$J_url = "https://web.njit.edu/~jmd57/.......";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $J_url);
@@ -48,6 +49,6 @@ curl_close($ch);
 
 echo "$results";
 
-
+*/
 
 ?>
