@@ -12,14 +12,14 @@
       <a href="../index.html">
         <div id="events_logo">EVENTS!</div>
       </a>
-              <form id="login_form">
+              <form id="sign_up_form">
                   <div id="input_area">
                   <input  type="text" id="name" method="POST" name="name" value="" placeholder="name"></input>
-                  <input  type="text" id="ucid" method="POST" name="ucid" value="" placeholder="username"></input>
+                  <input  type="text" id="username" method="POST" name="ucid" value="" placeholder="username"></input>
                   <input  type="text" id="email" method="POST" name="email" value="" placeholder="email"></input>
-                  <input  type="password" id="pass" name="" placeholder="password"></input>
+                  <input  type="password" id="password" name="" placeholder="password"></input>
                   </div>
-                  <button id="join_button" onClick="signIn()">Join</button>
+                  <button id="join_button" onClick="signUp()">Join</button>
               </form>
     </div>
 
@@ -30,5 +30,9 @@
           </a>
       </div>
 </div>
+
+    <!-- load scripts -->
+    <script src="../scripts/controllers/login.js"></script>
+
   </body>
 </html>
