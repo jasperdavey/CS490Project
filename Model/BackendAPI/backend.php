@@ -21,6 +21,7 @@
     $json = $_POST['json'];
     $result = json_decode( $json, true );
 
+    echo "Will perform operations now";
     // Create User DONE
     if ( $result->command == 1 )
     {
