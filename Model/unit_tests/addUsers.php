@@ -28,6 +28,8 @@
     	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
     	$sendToCaller = curl_exec( $ch );
     	curl_close( $ch );
+
+        echo "$sendToCaller";
     }
 
  ?>

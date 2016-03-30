@@ -34,7 +34,7 @@
         $status_array = array( 'status' => $status, 'id' => $connection->insert_id );
         $status_json = json_encode( $status_array );
 
-        echo $status_json;
+        echo "$status_json";
     }
 
  ?>

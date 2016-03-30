@@ -4,7 +4,7 @@
     $userName = 'jmd57';
     $password = 'owypHuH4g';
 
-    echo "Welcome to the backend";
+    echo "Welcome to the backend\n";
     // create connection
     $connection = mysql_connect( $serverName, $userName, $password );
     if ( !$connection )
@@ -22,7 +22,6 @@
     $json = $_POST['json'];
     $result = json_decode( $json, true );
 
-    echo "Will perform operations now";
     // Create User DONE
     if ( $result->command == 1 )
     {
