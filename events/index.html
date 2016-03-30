@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="styles/landing.css">
     <link rel="stylesheet" href="styles/dashboard.css">
     <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-    <script src="scripts/controllers/dashboard.js"></script>
-    <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <!-- endbuild -->
   </head>
@@ -20,14 +18,14 @@
             <div id="events_logo">EVENTS!</div>
                   <form id="login_form">
                       <div id="input_area">
-                      <input  type="text" id="ucid" method="POST" name="user" value="" placeholder="username"></input>
-                      <input  type="password" id="pass" name="" placeholder="password"></input>
+                      <input  type="text" id="user_id" method="POST" name="user" value="" placeholder="username"></input>
+                      <input  type="password" id="pass" name="pass" placeholder="password"></input>
                       </div>
                   </form>
                   <button id="login_button" onClick="signIn()">Login</button>
                </div>
           <div id="sign_up">
-              <a id="sign_up_link" onClick="loadSingUp()"" >Join EVENTS! @ NJIT</a>
+              <a id="sign_up_link" onClick="loadSingUp()" >Join EVENTS! @ NJIT</a>
           </div>
           <div id="NJIT_logo">
               <a href="http://www.njit.edu/">
@@ -38,8 +36,6 @@
 
     <div id="info_box" style="visibility:hidden;">
       <div id="status1" style="width:200px; height:100px; background-color: white;">status1</div>
-      <br>
-      <div id="status2" style="width:200px; height:100px; background-color: white;">status2</div>
   </div>
 </body>
 </html>
