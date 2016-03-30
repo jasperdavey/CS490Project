@@ -19,12 +19,11 @@
     }
 
     // get JSON from POST
-    //$json = $_POST[ 'json' ];
-    $random = array( 'command' => 1 );
-    $json = json_encode( $random );
+    $json = $_POST[ 'json' ];
+    //$random = array( 'command' => 1 );
+    //$json = json_encode( $random );
     echo "$json";
     $result = json_decode( $json );
-    echo $result->command;
 
     // Create User DONE
     if ( $result->command == 1 )
