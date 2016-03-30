@@ -2,7 +2,7 @@
 
 
 
-    $url = "http://web.njit.edu/~jmd57/backend.php";
+    $url = "https://web.njit.edu/~jmd57/backend.php";
 
     $events = array( 'ACM', 'IEEE', 'NJIT Robotics Club', 'AlcHE' );
 
