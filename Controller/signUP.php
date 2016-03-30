@@ -8,32 +8,32 @@ Date:     March 15, 2016.	*
 
 //Getting user's info...
 
-$fname = _POST['fname'];
-$lname = _POST['lname'];
-$midname = _POST['midname'];
+$fname = $info['f_name'];
+$lname = $info['l_name'];
+//$midname = $info['m_name'];
+$Gname = $info['g_name'];
+$user_id = $info['user_id'];
+$pass = $info['pass'];
 
-$user_id = _POST['user_id'];
-$pass = _POST['pass'];
-
-$email = _POST['email'];
-$major = _POST['major'];
-$minor = _POST['minor'];
-$year = _POST['year'];
-$Gdate = _POST['Gdate'];
+$email = $info['email'];
+$major = $info['major'];
+$minor = $info['minor'];
+$year = $info['level'];
+$Gdate = $info['grad_date'];
 
 //Putting all info together to send to Jasper
 
-$data = "fname=$fname&
-		 lname=$lname&
-		 midname=$midname&
-		 user_id=$user&
+$data = "firstname=$fname&
+		 lastname=$lname&
+		 user_id=$user_id&
 		 password=$pass&
 		 email=$email&
 		 major=$major&
 		 minor=$minor&
 		 year=$year&
 		 Gdate=$Gdate";
-		 
+//echo $data;
+
 //$J_url = "https://web.njit.edu/~jmd57/.......";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $J_url);
@@ -47,5 +47,7 @@ $results = curl_exec($ch);
 curl_close($ch);
 
 echo "$results";
+
+
 
 ?>
