@@ -24,6 +24,7 @@
     // Create User DONE
     if ( $result->command == 1 )
     {
+        echo "Creating user";
         include 'createUser.php';
     }
     // Authenticate User DONE
