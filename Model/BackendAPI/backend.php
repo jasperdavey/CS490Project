@@ -19,7 +19,7 @@
     }
 
     // get JSON from POST
-    $json = $_POST['json'];
+    $json = $_POST[ 'json' ];
     $result = json_decode( $json, true );
 
     // Create User DONE
