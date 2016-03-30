@@ -4,6 +4,7 @@
     $userName = 'jmd57';
     $password = 'owypHuH4g';
 
+    echo "Welcome to the backend";
     // create connection
     $connection = mysql_connect( $serverName, $userName, $password );
     if ( !$connection )
