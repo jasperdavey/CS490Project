@@ -20,6 +20,7 @@
 
     // get JSON from POST
     $json = $_POST[ 'json' ];
+    echo "$json";
     $result = json_decode( $json, true );
     echo "$result";
 
