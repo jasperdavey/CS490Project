@@ -21,17 +21,17 @@
     $json = $_POST['json'];
     $result = json_decode( $json, true );
 
-    // Create User
+    // Create User DONE
     if ( $result->command == 1 )
     {
         include 'createUser.php';
     }
-    // Authenticate User
+    // Authenticate User DONE
     elseif ( $result->command == 2 )
     {
         include 'authenticateUser.php';
     }
-    // Create Event
+    // Create Event DONE
     elseif ( $result->command == 3 )
     {
         include 'createEvent.php';
@@ -46,10 +46,25 @@
     {
         include 'updateUserBio.php';
     }
-    // Update User tags
+    // Update User tags DONE
     elseif ( $result->command == 6 )
     {
         include 'updateUserTags.php';
+    }
+    // Update User friends
+    elseif ( $result->command == 7 )
+    {
+        include 'updateUserFriends';
+    }
+    // Query recommendations TO-DO
+    elseif ( $result->command == 8 )
+    {
+        include 'recommendations.php';
+    }
+    // Return all user info DONE
+    elseif ( $result->command == 9 )
+    {
+        include 'returnUserInfo.php';
     }
     else
     {

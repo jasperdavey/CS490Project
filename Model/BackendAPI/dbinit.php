@@ -27,8 +27,7 @@
                                  bio VARCHAR( 1000 ),
                                  image VARCHAR( 1000 ) NOT NULL,
                                  events VARCHAR( 10000 ),
-                                 friends VARCHAR( 10000 ),
-                                 tags VARCHAR( 10000 )
+                                 friends VARCHAR( 10000 )
     )";
 
     if ( !mysql_query( $sql, $connection ) )
@@ -44,8 +43,7 @@
                                   image VARCHAR( 1000 ) NOT NULL,
                                   bio VARCHAR( 1000 ) NOT NULL,
                                   dateAndTime VARCHAR( 1000 ) NOT NULL,
-                                  location VARCHAR( 1000 ) NOT NULL,
-                                  tags VARCHAR( 10000 )
+                                  location VARCHAR( 1000 ) NOT NULL
     )";
 
     if ( !mysql_query( $sql, $connection ) )
@@ -61,6 +59,19 @@
                                     event INT ( 6 ) NOT NULL,
                                     datePosted DATE NOT NULL,
                                     comment VARCHAR( 10000 ) NOT NULL
+    )";
+
+    if ( !mysql_query( $sql, $connection ) )
+    {
+        $message = 'Invalid query: ' . mysql_error() . "\n";
+		$message .= 'Whole query: ' . $sql;
+		die( $message );
+    }
+
+    $sql = "CREATE TABLE Tags( id INT( 6 ) NOT NULL,
+                               tag VARCHAR( 50 ) NOT NULL,
+                               nice INT( 6 ) NOT NULL,
+                               type INT( 1 ) NOT NULL
     )";
 
     if ( !mysql_query( $sql, $connection ) )

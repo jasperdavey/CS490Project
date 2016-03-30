@@ -9,7 +9,7 @@
     $result = mysql_query($sql, $connection);
 
 	// Debug query in case of error
-	if ( !result )
+	if ( !$result )
     {
 		$message = 'Invalid query: ' . mysql_error( ) . "\n";
 		$message .= 'Whole query: ' . $sql;
@@ -25,10 +25,12 @@
 	}
 
     // If username found, check if password given is password on database
-	while ( $row = mysql_fetch_assoc( $result ) )
+    $id = 0;
+    while ( $row = mysql_fetch_assoc( $result ) )
     {
 		if( $row[ 'password' ] != $result->password ) { $status = 304; }
 		else { $status = 200; }
+        $id = $row[ 'id' ];
 	}
 
     reportBack( );
@@ -36,7 +38,7 @@
     function reportBack( )
     {
         // Return Results
-        $status_array = array( 'status' => $status );
+        $status_array = array( 'status' => $status, 'id' => $id );
         $status_json = json_encode( $status_array );
 
         $reponseURL =
