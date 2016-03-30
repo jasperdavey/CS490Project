@@ -69,6 +69,7 @@
     else
     {
         // Error 404
+        echo "Nothing to do";
     }
 
     $connection->close();

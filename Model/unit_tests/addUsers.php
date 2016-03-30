@@ -6,7 +6,7 @@
 
     $events = array( 'ACM', 'IEEE', 'NJIT Robotics Club', 'AlcHE' );
 
-    $addUserArray = array( 'email' => 'jasperd92', 'password' => 'randompassword',
+    $addUserArray = array( 'command' => 1, 'email' => 'jasperd92', 'password' => 'randompassword',
                            'firstname' => 'Jasper', 'lastname' => 'Davey', 'bio' => 'I like CS',
                            'events' => $events
     );
@@ -26,8 +26,7 @@
     	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
     	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
     	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
-    	$result = curl_exec( $ch );
-        echo $result;
+    	$sendToCaller = curl_exec( $ch );
     	curl_close( $ch );
     }
 
