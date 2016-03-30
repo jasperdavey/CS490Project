@@ -19,7 +19,9 @@
     }
 
     // get JSON from POST
-    $json = $_POST[ 'json' ];
+    //$json = $_POST[ 'json' ];
+    $random = array( 'command' => 1 );
+    $json = json_encode( $random );
     echo "$json";
     $result = json_decode( $json );
     echo $result->command;
