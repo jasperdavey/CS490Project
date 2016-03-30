@@ -6,19 +6,13 @@
 */
 session_start();
 
-$user_id = $_SESSION['user_id'];
-$password = $_SESSION['password'];
-
 function login(){
-        if( !$_SESSION['logged_in'] ){
-
-            if( $_SESSION['user_id'] && $_SESSION['password']){
-                $_SESSION['logged_in']=true;
+        if( $_SESSION['logged_in'] != true ){
+                $_SESSION['logged_in'] = true;
                 echo "1";
             // authenticate($user_id,$password);
-            }
         }else{
-            echo "2";
+                echo "2";
         }
 }
 

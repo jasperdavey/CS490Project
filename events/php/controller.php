@@ -6,9 +6,6 @@ $user_id = $_POST['user_id'];
 $password= $_POST['pass'];
 $arg= $_POST['arg'];
 
-$_SESSION['user_id'] = $user_id;
-$_SESSION['password'] = $password;
-$_SESSION['logged_in'] = false;
 
 switch ( $arg ) {
     case 'login':

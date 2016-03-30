@@ -7,8 +7,6 @@ function resetFields(){
 
 // user login script
 function signIn() {
-
-    console.log('sign in');
     var sign_up_page ="views/signup.html";
     var user_id = document.forms["login_form"]["user_id"].value;
     var pass = document.forms["login_form"]["pass"].value;
@@ -17,8 +15,11 @@ function signIn() {
     var url = "php/controller.php";
     if ( (user_id.length > 0) &&  (pass.length > 0) ){
         resetFields();
-        if(makeRequest(url,params) == 1){
+        var response = makeRequest(url,params);
+        if( response == 1){
             window.location.href=sign_up_page;
+        }else{
+          console.log(response);
         }
     }
     else alert("please enter username & password!");
@@ -36,13 +37,6 @@ function signUp(){
     var email = document.forms['sign_up_form']['email'].value;
     var password = document.forms['sign_up_form']['password'].value;
 
-    var params = 'arg='+arg+'&'
-        +'f_name='+f_name+'&'
-        +'l_name='+l_name+'&'
-        +'user_id='+username+'&'
-        +'email='+email+'&'
-        +'pass='+password;
-
     console.log(params);
     var url = "../php/controller.php";
     console.log(makeRequest(url,params));
@@ -54,7 +48,6 @@ function signUp(){
 function makeRequest(url,params){
     var XM = new XMLHttpRequest();
     var response;
-    console.log(params);
     XM.onreadystatechange=function(){
         if (XM.readyState==4){
             if (XM.status==200){
