@@ -13,6 +13,8 @@
 
     $json_array = json_encode( $addUserArray );
 
+    echo "$json_array";
+
     requestBackend( );
 
     function requestBackend( )
@@ -20,7 +22,7 @@
         // Return Results
 
         $data = "json=$json_array";
-    	$ch = curl_init();
+    	$ch = curl_init( );
     	curl_setopt( $ch, CURLOPT_URL, $url );
     	curl_setopt( $ch, CURLOPT_POST, 1 );
     	curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
