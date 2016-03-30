@@ -5,14 +5,20 @@
   form_login.php
 */
 session_start();
-$logged_in = false;
+
 $user_id = $_SESSION['user_id'];
 $password = $_SESSION['password'];
 
 function login(){
-        if( $_SESSION['user_id'] && $_SESSION['password']){
-            $_SESSION['logged_in']=true;
-            //authenticate($user_id,$password);
+        if( !$_SESSION['logged_in'] ){
+
+            if( $_SESSION['user_id'] && $_SESSION['password']){
+                $_SESSION['logged_in']=true;
+                echo "1";
+            // authenticate($user_id,$password);
+            }
+        }else{
+            echo "2";
         }
 }
 
@@ -28,6 +34,12 @@ function authenticate($user_id, $password){
     $result = curl_exec($ch);
     curl_close($ch);
     echo $result;
+}
+
+function isLoggedIn(){
+    if( $_SESSION['logged_in'] == true ){
+        echo "1";
+    }
 }
 
 ?>
