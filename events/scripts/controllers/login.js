@@ -1,4 +1,11 @@
 //clear username and password fields
+//
+
+var sign_in_page = "events/index.html";
+var sign_up_page = "/events/views/signup.html";
+var tag_selection_page = "/events/views/tag_selection.html";
+
+
 function resetFields(){
     document.forms["login_form"]["user_id"].value = "" ;
     document.forms["login_form"]["pass"].value = "" ;
@@ -12,10 +19,9 @@ function signIn() {
     var pass = document.forms["login_form"]["pass"].value;
     var response;
     var params = "arg="+"login"+ "&user_id="+user_id + "&pass="+pass;
-    var url = "php/controller.php";
     if ( (user_id.length > 0) &&  (pass.length > 0) ){
         resetFields();
-        var response = makeRequest(url,params);
+        var response = makeRequest(params);
         if( response == 1){
             window.location.href=sign_up_page;
         }else{
@@ -25,6 +31,17 @@ function signIn() {
     else alert("please enter username & password!");
 }
 
+//login check
+function isLoggedIn(){
+  var arg = 'login_check';
+  var params = 'arg='+arg;
+  var response = makeRequest(params);
+  if(response == 1){
+    window.location.href=sign_up_page;
+  }else{
+    console.log("need to log in");
+  }
+}
 
 //sign up
 function signUp(){
@@ -37,15 +54,22 @@ function signUp(){
     var email = document.forms['sign_up_form']['email'].value;
     var password = document.forms['sign_up_form']['password'].value;
 
+    document.forms['sign_up_form'].reset();
+
+    var params = "arg="+arg
+      +"&"+"f_name="+f_name
+      +"&"+"l_name="+l_name
+      +"&"+"username="+username
+      +"&"+"email="+email
+      +"&"+"password="+password;
+
     console.log(params);
-    var url = "../php/controller.php";
-    console.log(makeRequest(url,params));
-    window.location.href=redirect_url;
 }
 
 // HTTP request
 
-function makeRequest(url,params){
+function makeRequest(params){
+    var url = "php/controller.php";
     var XM = new XMLHttpRequest();
     var response;
     XM.onreadystatechange=function(){

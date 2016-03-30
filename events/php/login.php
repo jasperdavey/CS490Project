@@ -7,12 +7,14 @@
 session_start();
 
 function login(){
-        if( $_SESSION['logged_in'] != true ){
+        if( $_SESSION['logged_in'] == false ){
                 $_SESSION['logged_in'] = true;
+                $_SESSION['user_id'] = $_POST['user_id'];
+                $_SESSION['password'] = $_POST['pass'];
                 echo "1";
             // authenticate($user_id,$password);
         }else{
-                echo "2";
+                echo $_SESSION['user_id'];
         }
 }
 
@@ -29,11 +31,4 @@ function authenticate($user_id, $password){
     curl_close($ch);
     echo $result;
 }
-
-function isLoggedIn(){
-    if( $_SESSION['logged_in'] == true ){
-        echo "1";
-    }
-}
-
 ?>
