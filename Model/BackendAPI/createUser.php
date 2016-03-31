@@ -27,12 +27,12 @@
 
     // Upload image
 
-    reportBack( $status, $connection );
+    reportBack( $status, $connection->insert_id );
 
-    function reportBack( $status, $connection )
+    function reportBack( $status, $id )
     {
         // Return Results
-        $status_array = array( 'status' => $status, 'id' => $connection->insert_id );
+        $status_array = array( 'status' => $status, 'id' => $id );
         $status_json = json_encode( $status_array );
 
         echo "$status_json";
