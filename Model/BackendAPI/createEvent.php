@@ -4,7 +4,7 @@
     $status = 200;
 
     echo "here";
-    /*
+
     $sql = sprintf( "INSERT INTO Events ( name, image, bio, dateAndTime, location )
             VALUES ( '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->bio ),
@@ -12,6 +12,7 @@
 
     );
 
+    /*
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error() . "\n";
@@ -54,5 +55,6 @@
 
         die( "$status_json" );
     }
+
     */
  ?>
