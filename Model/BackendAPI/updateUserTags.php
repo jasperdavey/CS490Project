@@ -51,7 +51,7 @@
         reportBack( $status );
     }
 
-    /*
+    // CUT
     $userTagsArray = array( );
 
     while ( ( $row = mysql_fetch_assoc( $userTags ) ) ){
@@ -67,7 +67,7 @@
 
     $status_array = array( 'status' => $status, 'tags' => $userTagsArray );
 
-    */
+    // CUT
 
     reportBack( $status );
 
