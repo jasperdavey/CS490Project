@@ -72,6 +72,7 @@
         while ( $row = mysql_fetch_array( $allEvents ) )
         {
             $eventsArray = array( $row[ 'name' ] );
+            echo "$row[ 'name' ]";
         }
     }
 
