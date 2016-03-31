@@ -19,7 +19,6 @@
         reportBack( $status );
     }
 
-    /*
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
     {
@@ -41,7 +40,6 @@
 
     // Upload image
 
-    */
     reportBack( $status );
 
 
