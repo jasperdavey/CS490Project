@@ -3,7 +3,7 @@
     // Output: status
 
     $status = 200;
-
+    echo "HERE";
     // get User's tags
     $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s'" AND tag = '%s', mysql_real_escape_string ( $result->id ),
                      mysql_real_escape_string( $result->tag )
