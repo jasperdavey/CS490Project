@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="/events/styles/landing.css">
     <link rel="stylesheet" href="/events/styles/dashboard.css">
+    <script src="/events/scripts/controllers/dashboard.js"></script>
   </head>
   <body>
 
@@ -13,9 +14,14 @@
               <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
           </a>
       </div>
-      <div id="menu_button"> <( ; </div>
+      <div id="menu_button" onmouseover="showMenu()"> <( ; </div>
     </div>
 
+    <div id="dashboard_drop_menu" onmouseout="hideMenu()">
+        <table id="menu_table">
+            <tr>NEW EVENT!</tr>
+        </table>
+    </div>
     <div id="top_row" >
       <div id="suggestion_box"></div>
       <div id="upcoming_box"></div>

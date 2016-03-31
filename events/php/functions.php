@@ -43,14 +43,14 @@ function authenticate($params){
 
 function getData($params){
   //angelica's
-  $ch = curl_init("https://web.njit.edu/~aml35/CS490/commandLine.php");
+  // $ch = curl_init("https://web.njit.edu/~aml35/CS490/commandLine.php");
 
   //jasper api
   // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
 
   //local test
   // $ch = curl_init("https://web.njit.edu/~tr88/php/test.php");
-  // $ch = curl_init("localhost/events/php/server_test.php");
+  $ch = curl_init("localhost/events/php/server_test.php");
   $headers = curl_getinfo($ch);
   $data = "json=".$params;
   curl_setopt($ch, CURLOPT_POST, 1);

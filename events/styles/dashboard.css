@@ -70,3 +70,19 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+#dashboard_drop_menu{
+    visibility: collapse;
+    position: absolute;
+    right:0;
+    width: 200px;
+    height: 300px;
+    background-color: green;
+}
+
+
+#menu_table > tr {
+    width: inherit;
+    background-color: white;
+
+}
