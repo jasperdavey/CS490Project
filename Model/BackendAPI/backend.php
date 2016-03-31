@@ -35,7 +35,6 @@
     // Create Event DONE
     elseif ( $result->command == 3 )
     {
-        echo "Creating event";
         include 'createEvent.php';
     }
     // Create Comment
