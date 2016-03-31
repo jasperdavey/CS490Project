@@ -20,7 +20,8 @@ $arg= $_POST['arg'];
 
     case 'sign_up':
           $_SESSION['new_user'] = true;
-
+            createUser();
+          break;
     case 'debug':
         echo "debug_php";
         break;

@@ -48,7 +48,7 @@ function isLoggedIn(){
 //sign up
 function signUp(){
     console.log('signing up');
-    var arg = 'debug';
+    var arg = 'sign_up';
     var redirect_url = "../views/tag_selection.html";
     var f_name = document.forms['sign_up_form']['f_name'].value;
     var l_name = document.forms['sign_up_form']['l_name'].value;
@@ -65,13 +65,16 @@ function signUp(){
       +"&"+"email="+email
       +"&"+"password="+password;
 
-    console.log(params);
+      console.log(params);
+      var response = makeRequest(params);
+      console.log("response: "+response);
+
 }
 
 // HTTP request
 
 function makeRequest(params){
-    var url = "php/controller.php";
+    var url = "/events/php/controller.php";
     var XM = new XMLHttpRequest();
     var response;
     XM.onreadystatechange=function(){
@@ -88,5 +91,10 @@ function makeRequest(params){
     XM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XM.send(params);
     return response;
+}
 
+//load sing up page
+
+function loadSignUp(){
+  window.location.href=sign_up_page;
 }
