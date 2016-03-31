@@ -7,7 +7,7 @@ Date:     March 15, 2016.		*
 *********************************/
 session_start();
 //Getting user and password and entering NJIT Server
-$info['username']= $_POST['username'];
+$info['email']= $_POST['email'];
 $info['password']=$_POST['password'];
 
 
@@ -30,7 +30,7 @@ $response = json_decode($DB_results);
 
 //handle $_SESSION...
 if ($response['status']==200){
-	$_SESSION['username']=$info['username'];
+	$_SESSION['email']=$info['email'];
 	echo $response['status'];
 }
 else{
