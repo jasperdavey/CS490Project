@@ -57,8 +57,8 @@
 
 
         $allEvents = mysql_query( $sql, $connection );
-    }
-        /*
+
+
         if ( !$allEvents )
         {
             $message = 'Invalid query: ' . mysql_error( ) . "\n";
@@ -67,6 +67,8 @@
             $status = 404;
             reportBack( $status, $blank = "NULL", $blank = "NULL", $blank = "NULL", $blank = "NULL" );
         }
+    }
+        /*
 
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
