@@ -70,8 +70,7 @@
 
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
-            $eventsArray = array( $row[ 'events' ] );
-            echo "$row[ 'events' ]";
+            $eventsArray = array( $row[ 'name' ] );
         }
     }
 
