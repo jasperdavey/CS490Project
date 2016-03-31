@@ -5,11 +5,13 @@
 
     // Should check if user already exists
 
+    $events = implode( ",", $result->events );
+
     $sql = sprintf( "INSERT INTO Users ( email, password, firstname, lastname, bio, image, events )
             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
             mysql_real_escape_string( $result->password ), mysql_real_escape_string( $result->firstname ),
             mysql_real_escape_string( $result->lastname ), mysql_real_escape_string( $result->bio ),
-            mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( json_decode( $result->events ) )
+            mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $events )
      );
 
     echo "$sql";
@@ -35,7 +37,7 @@
         $status_array = array( 'status' => $status, 'id' => $id );
         $status_json = json_encode( $status_array );
 
-        echo "$status_json";
+        die( "$status_json" );
     }
 
  ?>

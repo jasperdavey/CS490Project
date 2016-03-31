@@ -4,7 +4,7 @@
     $status = 200;
 
     $sql = sprintf( "INSERT INTO Events ( name, image, bio, dateAndTime, location )
-            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
+            VALUES ( '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $result->image ); mysql_real_escape_string( $result->bio ),
             mysql_real_escape_string( $result->dateAndTime ), mysql_real_escape_string( $result->location )
 
@@ -16,7 +16,7 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack( );
+        reportBack( $status );
     }
 
     // get Event's ID
@@ -31,7 +31,7 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack( );
+        reportBack( $status );
 	}
 
     // Save tags. Assuming nice values given = 0 at this point
@@ -49,31 +49,21 @@
     		$message .= 'Whole query: ' . $sql;
     		print( $message );
             $status = 404;
-            reportBack( );
+            reportBack( $status );
         }
     }
 
     // Upload image
 
-    reportBack( )
+    reportBack( $status )
 
-    function reportBack( )
+    function reportBack( $status )
     {
         // Return Results
         $status_array = array( 'status' => $status );
         $status_json = json_encode( $status_array );
 
-        $reponseURL =
-    	"https://web.njit.edu/~aml35/login/reportingBackToFrontEnd.php";
-    	$ch = curl_init();
-    	curl_setopt( $ch, CURLOPT_URL, $responseURL );
-    	curl_setopt( $ch, CURLOPT_POST, 1 );
-    	curl_setopt( $ch, CURLOPT_POSTFIELDS, $status_json );
-    	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-    	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
-    	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
-    	curl_exec( $ch );
-    	curl_close( $ch );
+        die( "$status_json" );
     }
 
  ?>

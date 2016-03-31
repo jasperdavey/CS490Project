@@ -15,13 +15,14 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status, $id="NULL" );
 	}
 
     // Case if given wrong username
 	if ( mysql_num_rows( $query ) == 0 )
     {
 		$status = 404;
+        reportBack( $status, $id="NULL" );
 	}
 
     // If username found, check if password given is password on database
@@ -41,7 +42,7 @@
         $status_array = array( 'status' => $status, 'id' => $id );
         $status_json = json_encode( $status_array );
 
-        echo "$status_json";
+        die( "$status_json" );
     }
 
  ?>
