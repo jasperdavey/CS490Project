@@ -32,12 +32,12 @@ function signIn() {
     if ( (email.length > 0) &&  (password.length > 0) ){
         resetFields();
         var response = makeRequest(params);
-        if( response != 200){
+            console.log("mid-response: "+response);
+        if( response == 200){
+            console.log("successfullly logged in!");
+        }else{
             console.log("login fail: "+response);
             window.location.href=sign_up_page;
-        }else{
-        //   console.log("successfully logged in");
-            // window.location.href=dashboard_page;
         }
     }
     else alert("please enter username & password!");
@@ -45,13 +45,14 @@ function signIn() {
 
 //login check
 function isLoggedIn(){
-  var arg = 'login_check';
-  var params = 'arg='+arg;
+  var command = 0;
+  var params = 'command='+command;
   var response = makeRequest(params);
-  if(response == 1){
-    window.location.href=sign_up_page;
+  if(response == 200 ){
+    console.log("your alreaday logged in..");
   }else{
     console.log("need to log in");
+    window.location.href=sign_up_page;
   }
 }
 
@@ -97,7 +98,6 @@ function makeEvent(){
       +"&"+"dateAndTime="+dateAndTime
       +"&"+"location="+location
       +"&"+"image="+image;
-    //  console.log(params)
     var response = makeRequest(params);
      console.log("response: "+response);
 }
