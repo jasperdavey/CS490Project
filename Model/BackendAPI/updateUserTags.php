@@ -11,8 +11,6 @@
                      mysql_real_escape_string( $result->tag )
     );
 
-
-
     $userTags = mysql_query( $sql, $connection );
 
     if ( !$userTags )
@@ -33,6 +31,12 @@
     {
         $tagNiceValue = 1;
 		$id = $row[ 'id' ];
+        $tag = $row[ 'tag' ];
+        $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
+                         VALUES ( '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $id ),
+                         mysql_real_escape_string( $tag ), mysql_real_escape_string( $tagNiceValue ),
+                         mysql_real_escape_string( 0 )
+        );
 	}
     else
     {
@@ -41,11 +45,11 @@
             $tagNiceValue = $row[ 'nice' ] + 1;
             $id = $row[ 'id' ];
         }
-    }
 
-    $sql = sprintf( "UPDATE Tags SET nice = '%s' WHERE id = '%s'",  mysql_real_escape_string( $tagNiceValue )
-                     mysql_real_escape_string( $id )
-    );
+        $sql = sprintf( "UPDATE Tags SET nice = '%s' WHERE id = '%s'",  mysql_real_escape_string( $tagNiceValue )
+                         mysql_real_escape_string( $id )
+        );
+    }
 
     if ( !mysql_query( $sql, $connection ) )
     {
