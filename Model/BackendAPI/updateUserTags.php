@@ -24,6 +24,7 @@
         reportBack( $status );
 	}
 
+    /*
     $tagNiceValue = 0;
     $id = 0;
 
@@ -53,7 +54,7 @@
         reportBack( $status );
     }
 
-    /*
+
     // CUT
     $userTagsArray = array( );
 
@@ -71,7 +72,7 @@
     $status_array = array( 'status' => $status, 'tags' => $userTagsArray );
 
     // CUT
-    */
+
 
     reportBack( $status );
 
@@ -83,5 +84,5 @@
 
         die( "$status_json" );
     }
-
+    */
  ?>
