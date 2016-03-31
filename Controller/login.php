@@ -5,7 +5,7 @@ FileName: SignUp.php			*
 By:       Angelica Llerena		*
 Date:     March 15, 2016.		*
 *********************************/
-session_start();
+//session_start();
 //Getting user and password and entering NJIT Server
 $info['email']= $_POST['email'];
 $info['password']=$_POST['password'];
@@ -26,16 +26,15 @@ $DB_results = curl_exec($ch);
 curl_close($ch);
 
 //echo "$DB_results";
-$response = json_decode($DB_results);
 
-//handle $_SESSION...
-if ($response['status']==200){
+$json = json_decode($DB_results,true);
+
+if($json['status']==200){
 	$_SESSION['email']=$info['email'];
-	echo $response['status'];
-}
-else{
+	echo $json['status'];
+}else{
 	session_destroy();
-	echo $response['status'];
+	echo $json['status'];
 }
 
 ?>
