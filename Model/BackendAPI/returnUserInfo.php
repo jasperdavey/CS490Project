@@ -18,7 +18,7 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status, $info = "NULL" );
     }
 
     // Query Tags
@@ -32,7 +32,7 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status, $info = "NULL" );
     }
 
     while ( $row = mysql_fetch_assoc( $tags ) )
@@ -50,11 +50,13 @@
         );
     }
 
+    reportBack( $status, $infoArray );
 
-    function reportBack( )
+
+    function reportBack( $status, $info )
     {
         // Return Results
-        $status_array = array( 'status' => $status, 'info' => $infoArray );
+        $status_array = array( 'status' => $status, 'info' => $info );
         $status_json = json_encode( $status_array );
 
         die( "$status_json" );
