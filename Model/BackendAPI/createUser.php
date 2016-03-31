@@ -23,11 +23,35 @@
         reportBack( $status, $connection = "NULL" );
     }
 
+    $id = mysql_insert_id( );
+
     // Add tags now?
+    if ( !empty( $result->tags ) )
+    {
+
+        // Save tags. Assuming nice values given = 0 at this point
+        foreach ( $result->tags as $tag => $nice )
+        {
+            $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
+                             VALUES ('%s', '%s', '%s', '%s' )", mysql_real_escape_string( $id ),
+                             mysql_real_escape_string( $tag ), mysql_real_escape_string( $nice ),
+                             mysql_real_escape_string( 0 )
+            );
+
+            if ( !mysql_query( $sql, $connection ) )
+            {
+                $message = 'Invalid query: ' . mysql_error() . "\n";
+        		$message .= 'Whole query: ' . $sql;
+        		print( $message );
+                $status = 404;
+                reportBack( $status );
+            }
+        }
+    }
 
     // Upload image
 
-    reportBack( $status, mysql_insert_id( ) );
+    reportBack( $status, $id );
 
     function reportBack( $status, $id )
     {
