@@ -2,7 +2,6 @@
 /* author: Totaram Ramrattan
   CS490-104-Semester Project
   2/25/16
-  form_login.php
 */
 function login(){
 
@@ -15,7 +14,9 @@ function login(){
                 $packet = array( 'command'=> $cmd,'username' => $user_id , 'password' => $pass );
                 $json_packet = json_encode($packet);
 
-                $response = authenticate($json_packet);
+                //TODO remove: set to true for testing
+                $response = 1;
+                //$response = authenticate($json_packet);
                 echo $response;
 
         }else{
@@ -42,10 +43,11 @@ function authenticate($params){
 
 function getData($params){
   //angelica's
-  // $ch = curl_init("https://web.njit.edu/~aml35/CS490/commandLine.php");
-  //my test php
+  $ch = curl_init("https://web.njit.edu/~aml35/CS490/commandLine.php");
+
   //jasper api
-  $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
+  // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
+
   //local test
   // $ch = curl_init("https://web.njit.edu/~tr88/php/test.php");
   // $ch = curl_init("localhost/events/php/server_test.php");

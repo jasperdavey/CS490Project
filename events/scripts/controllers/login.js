@@ -1,9 +1,13 @@
-//clear username and password fields
-//
+/*
+  author: Totaram Ramrattan
+  CS 490 Semseter Project EVENTS!
+  3/30/16
+*/
 
 var sign_in_page = "events/index.html";
 var sign_up_page = "/events/views/signup.html";
 var tag_selection_page = "/events/views/tag_selection.html";
+var dashboard_page = "/events/views/dashboard.html";
 
 
 function resetFields(){
@@ -24,10 +28,11 @@ function signIn() {
         resetFields();
         var response = makeRequest(params);
         if( response != 1){
-            console.log("login faile: "+response);
+            console.log("login fail: "+response);
             window.location.href=sign_up_page;
         }else{
           console.log("successfully logged in");
+            window.location.href=dashboard_page;
         }
     }
     else alert("please enter username & password!");
