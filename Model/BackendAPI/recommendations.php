@@ -27,7 +27,7 @@
     {
         $tagsArray = array( 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ] );
     }
-    /*
+
     // Query User Events
     $sql = sprintf( "SELECT * FROM Users where id = '%s'", mysql_real_escape_string( $result->id ) );
 
@@ -75,7 +75,7 @@
     //$tags = json_encode( $tagsArray );
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
-    */
+    
     reportBack( $status, $id="NULL", $tagsArray="NULL", $events="NULL", $eventsArray="NULL" );
 
 
