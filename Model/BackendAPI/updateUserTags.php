@@ -3,12 +3,10 @@
     // Output: status
 
     $status = 200;
-    echo "HERE";
-
 
     // get User's tags
-    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND tag = '%s'", mysql_real_escape_string ( $result->id ),
-                     mysql_real_escape_string( $result->tag )
+    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND tag = '%s'" and type = '%s', mysql_real_escape_string ( $result->id ),
+                     mysql_real_escape_string( $result->tag ), mysql_real_escape_string( 0 )
     );
 
     $userTags = mysql_query( $sql, $connection );
@@ -36,16 +34,16 @@
                          mysql_real_escape_string( 0 )
         );
 	}
-
     else
     {
+        echo "HERE";
         while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
         {
             $tagNiceValue = $row[ 'nice' ] + 1;
             $id = $row[ 'id' ];
         }
 
-        $sql = sprintf( "UPDATE Tags SET nice='%s' WHERE id='%s'", mysql_real_escape_string( $tagNiceValue ),
+        $sql = sprintf( "UPDATE Tags SET nice = '%s' WHERE id = '%s'", mysql_real_escape_string( $tagNiceValue ),
                          mysql_real_escape_string( $id )
         );
     }
