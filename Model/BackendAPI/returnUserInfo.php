@@ -36,14 +36,14 @@
         $status = 404;
         reportBack( $status, $info = "NULL" );
     }
-    /*
+
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
         $userTags = array_push( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
                                 'type' => $row[ 'type' ]
         );
     }
-
+    /*
     while ( $row = mysql_fetch_assoc( $userInfo ) )
     {
         $infoArray = array( 'id' => $row[ 'id' ], 'email' => $row[ 'email' ], 'firstname' => $row[ 'firstname' ],
