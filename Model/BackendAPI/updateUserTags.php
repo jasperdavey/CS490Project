@@ -46,13 +46,13 @@
             $tagNiceValue = $row[ 'nice' ] + 1;
             $id = $row[ 'id' ];
         }
-    }
-    /*
 
         $sql = sprintf( "UPDATE Tags SET nice = '%s' WHERE id = '%s'",  mysql_real_escape_string( $tagNiceValue )
                          mysql_real_escape_string( $id )
         );
     }
+
+    /*
 
     if ( !mysql_query( $sql, $connection ) )
     {
