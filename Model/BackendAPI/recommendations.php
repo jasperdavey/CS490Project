@@ -8,7 +8,7 @@
     $eventsArray = [ ];
 
     // Query User Tags
-    $sql = sprintf( "SELECT tag, nice FROM Tags WHERE id = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
+    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
                      mysql_real_escape_string( 0 )
     );
 
