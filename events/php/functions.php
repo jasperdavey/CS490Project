@@ -3,7 +3,6 @@
   CS490-104-Semester Project
   2/25/16
 */
-session_start();
 
 function login(){
     $info = file_get_contents('php://input');
@@ -50,7 +49,7 @@ function getRecommendedEvents(){
 
 function getData($params){
   //angelica's
-  // $ch = curl_init("https://web.njit.edu/~aml35/login/commandLine.php");
+  $ch = curl_init("https://web.njit.edu/~aml35/login/commandLine.php");
   //jasper api
   // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
   //local test

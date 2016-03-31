@@ -2,6 +2,7 @@
 session_start();
 include_once 'functions.php';
 
+$email = $_POST['email'];
 $username = $_POST['username'];
 $password= $_POST['password'];
 $command= $_POST['command'];
@@ -15,17 +16,17 @@ $command= $_POST['command'];
 
     case 1: // create user
         $_SESSION['new_user'] = true;
-            // createUser();
+            createUser();
         break;
 
     case 2: // login
         if(isset($email,$password)){
-            // login();
+            login();
         }
         break;
 
     case 3: // create event
-        // createEvent();
+        createEvent();
         break;
 
     case 4: // create comment

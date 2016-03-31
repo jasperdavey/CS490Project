@@ -123,12 +123,10 @@ function makeRequest(params){
     var response;
     XM.onreadystatechange=function(){
         if (XM.readyState==4){
-          console.log(params);
             if (XM.status==200){
                 response = XM.responseText;
             }
             else{
-                console.log(XM.status);
                 alert("An error has occured making the request")
             }
         }
