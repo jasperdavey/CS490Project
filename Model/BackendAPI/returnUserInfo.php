@@ -43,7 +43,7 @@
                                 'type' => $row[ 'type' ]
         );
     }
-    /*
+
     while ( $row = mysql_fetch_assoc( $userInfo ) )
     {
         $infoArray = array( 'id' => $row[ 'id' ], 'email' => $row[ 'email' ], 'firstname' => $row[ 'firstname' ],
@@ -52,9 +52,8 @@
         );
     }
 
-    */
 
-    reportBack( $status, $infoArray="TEST" );
+    reportBack( $status, $infoArray );
 
 
     function reportBack( $status, $info )
