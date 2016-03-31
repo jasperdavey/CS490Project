@@ -54,8 +54,6 @@
                          mysql_real_escape_string( $singleEvent ), mysql_real_escape_string( 1 )
         );
 
-
-
         $allEvents = mysql_query( $sql, $connection );
 
 
@@ -70,7 +68,7 @@
 
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
-            $eventsArray = array( $row[ 'name' ] );
+            $eventsArray = array_push( $row[ 'name' ] );
         }
     }
 
