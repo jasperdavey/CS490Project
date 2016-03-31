@@ -50,7 +50,7 @@
     // Query Events
     foreach ( $events as $singleEvent )
     {
-        $sql = sprintf( "SELECT * FROM Events INNER JOIN Tags ON Events.id = Tags.id WHERE Tags.tag = '%s' AND Tags.type = '%s'",
+        $sql = sprintf( "SELECT * FROM Events INNER JOIN Tags ON Events.id = Tags.id AND Tags.tag = '%s' AND Tags.type = '%s'",
                          mysql_real_escape_string( $singleEvent ), mysql_real_escape_string( 1 )
         );
 
