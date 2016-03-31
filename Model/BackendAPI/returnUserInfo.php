@@ -20,14 +20,14 @@
         $status = 404;
         reportBack( $status, $info = "NULL" );
     }
-    /*
+
     // Query Tags
     $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
                      mysql_real_escape_string( 0 )
     );
 
     $tags = mysql_query( $sql, $connection );
-
+    /*
     if ( !$tags )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
@@ -53,8 +53,7 @@
     }
 
     */
-    echo "$status";
-    //echo "$infoArray";
+
     reportBack( $status, $infoArray="TEST" );
 
 
