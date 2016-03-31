@@ -46,7 +46,7 @@
     {
         $events = explode( ",", $row[ 'events' ] );
     }
-    /*
+
     // Query Events
     foreach ( $events as $singleEvent )
     {
@@ -64,7 +64,7 @@
             $status = 404;
             reportBack( $status, $blank = "NULL", $blank = "NULL", $blank = "NULL", $blank = "NULL" );
         }
-
+        /*
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
             $eventsArray = array( $row[ 'allEvents' ] );
