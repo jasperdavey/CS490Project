@@ -52,8 +52,6 @@
         );
     }
 
-    /*
-
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
@@ -64,7 +62,7 @@
     }
 
 
-    // CUT
+    /*
     $userTagsArray = array( );
 
     while ( ( $row = mysql_fetch_assoc( $userTags ) ) ){
@@ -80,7 +78,7 @@
 
     $status_array = array( 'status' => $status, 'tags' => $userTagsArray );
 
-    // CUT
+    */
 
 
     reportBack( $status );
@@ -93,5 +91,5 @@
 
         die( "$status_json" );
     }
-    */
+
  ?>
