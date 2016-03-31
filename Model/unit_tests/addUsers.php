@@ -13,6 +13,8 @@
 
     $json_array = json_encode( $addUserArray );
 
+    echo "$json_array";
+
     requestBackend( );
 
     function requestBackend( )
