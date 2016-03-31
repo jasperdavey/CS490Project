@@ -25,7 +25,7 @@
     $id = 0;
 
     // Case tags doesnt exist
-	if ( mysql_num_rows( $result ) == 0 )
+	if ( mysql_num_rows( $userTags ) == 0 )
     {
         $tagNiceValue = 1;
         $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
