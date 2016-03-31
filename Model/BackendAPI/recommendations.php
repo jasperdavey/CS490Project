@@ -54,6 +54,8 @@
                          mysql_real_escape_string( $singleEvent ), mysql_real_escape_string( 1 )
         );
 
+    }
+        /*
         $allEvents = mysql_query( $sql, $connection );
 
         if ( !$allEvents )
@@ -64,7 +66,7 @@
             $status = 404;
             reportBack( $status, $blank = "NULL", $blank = "NULL", $blank = "NULL", $blank = "NULL" );
         }
-        /*
+
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
             $eventsArray = array( $row[ 'allEvents' ] );
