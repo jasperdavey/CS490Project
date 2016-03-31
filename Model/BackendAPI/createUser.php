@@ -27,7 +27,7 @@
 
     // Upload image
 
-    reportBack( $status, $connection->insert_id );
+    reportBack( $status, mysql_insert_id( ) );
 
     function reportBack( $status, $id )
     {
