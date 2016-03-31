@@ -20,15 +20,11 @@
 
     // get JSON from POST
     $json = $_POST[ 'json' ];
-    //$random = array( 'command' => 1 );
-    //$json = json_encode( $random );
-    echo $json;
     $result = json_decode( $json );
 
     // Create User DONE
     if ( $result->command == 1 )
     {
-        echo "Creating user";
         include 'createUser.php';
     }
     // Authenticate User DONE

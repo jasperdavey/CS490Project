@@ -55,7 +55,7 @@
 
     // Upload image
 
-    reportBack( );
+    reportBack( )
 
     function reportBack( )
     {
