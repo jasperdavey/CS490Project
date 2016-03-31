@@ -24,7 +24,7 @@
         reportBack( $status );
 	}
 
-    /*
+
     $tagNiceValue = 0;
     $id = 0;
 
@@ -34,7 +34,7 @@
         $tagNiceValue = 1;
 		$id = $row[ 'id' ];
 	}
-
+    /*
     while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
     {
         $tagNiceValue = $row[ 'nice' ] + 1;
