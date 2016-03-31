@@ -13,7 +13,7 @@
     );
 
     $tags = mysql_query( $sql, $connection );
-    /*
+
     if ( !$tags )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
@@ -27,9 +27,9 @@
     {
         $tagsArray = array( 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ] );
     }
-
+    /*
     // Query User Events
-    $sql = sprintf( "SELECT events FROM Users where id = '%s'", mysql_real_escape_string( $result->id ) );
+    $sql = sprintf( "SELECT * FROM Users where id = '%s'", mysql_real_escape_string( $result->id ) );
 
     $userEvents = mysql_query( $sql, $connection );
 
