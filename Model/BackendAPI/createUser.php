@@ -7,12 +7,11 @@
     echo $result->email;
 
     $sql = sprintf( "INSERT INTO Users ( email, password, firstname, lastname, bio, image, events, friends )
-            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", mysql_real_escape_string( $result->email ),
+            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
             mysql_real_escape_string( $result->password ), mysql_real_escape_string( $result->firstname ),
             mysql_real_escape_string( $result->lastname ), mysql_real_escape_string( $result->bio ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( "" ),
-            mysql_real_escape_string( "" )
-    );
+            mysql_real_escape_string( "" ) );
 
     echo "$sql";
 
