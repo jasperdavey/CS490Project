@@ -10,7 +10,7 @@
 
     );
 
-    if ( !mysql_query( $sql, $conn ) )
+    if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error() . "\n";
 		$message .= 'Whole query: ' . $sql;
@@ -42,7 +42,7 @@
     // Upload image
 
 
-    reportBack( $status )
+    reportBack( $status );
 
     function reportBack( $status )
     {
