@@ -11,6 +11,8 @@
                      mysql_real_escape_string( $result->tag )
     );
 
+    */
+
     $userTags = mysql_query( $sql, $connection );
 
     if ( !$userTags )
@@ -51,7 +53,7 @@
         reportBack( $status );
     }
 
-    // CUT
+    /*
     $userTagsArray = array( );
 
     while ( ( $row = mysql_fetch_assoc( $userTags ) ) ){
@@ -67,7 +69,7 @@
 
     $status_array = array( 'status' => $status, 'tags' => $userTagsArray );
 
-    // CUT
+    */
 
     reportBack( $status );
 
@@ -80,6 +82,6 @@
         die( "$status_json" );
     }
 
-    */
+
 
  ?>
