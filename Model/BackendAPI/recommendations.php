@@ -71,6 +71,7 @@
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
             $eventsArray = array( $row[ 'events' ] );
+            echo "$row[ 'events' ]";
         }
     }
 
@@ -79,7 +80,7 @@
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
 
-    reportBack( $status, $id, $tagsArray, $events, $eventsArray );
+    reportBack( $status, $result->id, $tagsArray, $events, $eventsArray );
 
 
     function reportBack( $status, $id, $tags, $events, $userEvents )
