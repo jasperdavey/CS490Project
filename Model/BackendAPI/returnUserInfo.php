@@ -39,7 +39,7 @@
 
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
-        $userTags = array_push( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
+        $userTags = array( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
                                 'type' => $row[ 'type' ]
         );
     }
