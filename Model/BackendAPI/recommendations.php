@@ -47,7 +47,6 @@
         $events = explode( ",", $row[ 'events' ] );
     }
 
-    echo "$events";
     // Query Events
     foreach ( $events as $singleEvent )
     {
