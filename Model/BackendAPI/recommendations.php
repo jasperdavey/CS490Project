@@ -54,10 +54,11 @@
                          mysql_real_escape_string( $singleEvent ), mysql_real_escape_string( 1 )
         );
 
+
+
+        $allEvents = mysql_query( $sql, $connection );
     }
         /*
-        $allEvents = mysql_query( $sql, $connection );
-
         if ( !$allEvents )
         {
             $message = 'Invalid query: ' . mysql_error( ) . "\n";
