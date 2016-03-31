@@ -50,6 +50,8 @@
         );
     }
 
+    echo "$status";
+    echo "$infoArray";
     reportBack( $status, $infoArray );
 
 
