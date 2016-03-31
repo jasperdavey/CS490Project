@@ -56,26 +56,6 @@
         reportBack( $status );
     }
 
-
-    /*
-    $userTagsArray = array( );
-
-    while ( ( $row = mysql_fetch_assoc( $userTags ) ) ){
-        if ( $row[ 'tag' ] == $result->tag )
-        {
-            $tags = array( $row[ 'tag' ] => ( $row[ 'nice' ] + 1 ) );
-        }
-        $tags = array( $row[ 'tag' ] => $row[ 'nice' ] );
-        array_push( $userTagsArray, $tags );
-    }
-
-    $json_tags = json_encode( $userTagsArray );
-
-    $status_array = array( 'status' => $status, 'tags' => $userTagsArray );
-
-    */
-
-
     reportBack( $status );
 
     function reportBack( $status )
