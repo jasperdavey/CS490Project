@@ -3,8 +3,6 @@
     $defaultImage = 'http://web.njit.edu/~jmd57/default.jpg';
     $status = 200;
 
-    reportBack( $status );
-
     $sql = sprintf( "INSERT INTO Events ( name, image, bio, dateAndTime, location )
             VALUES ( '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->bio ),
