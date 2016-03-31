@@ -38,6 +38,7 @@
                          mysql_real_escape_string( 0 )
         );
 	}
+    /*
     else
     {
         while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
@@ -60,7 +61,7 @@
         reportBack( $status );
     }
 
-    /*
+
     // CUT
     $userTagsArray = array( );
 
