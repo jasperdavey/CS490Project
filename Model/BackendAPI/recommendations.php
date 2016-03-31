@@ -50,9 +50,9 @@
     // Query Events
     foreach ( $events as $singleEvent )
     {
-
+        echo "$singleEvent";
         $sql = sprintf( "SELECT Events.id, Events.name, Events.bio, Events.dateAndTime, Events.location
-                         FROM Events INNER JOIN Tags ON Events.id = Tags.id 
+                         FROM Events INNER JOIN Tags ON Events.id = Tags.id
                          AND Events.name = '%s' AND Tags.type = '%s'", mysql_real_escape_string( $singleEvent ),
                          mysql_real_escape_string( 1 )
         );
