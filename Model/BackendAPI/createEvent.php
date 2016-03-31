@@ -2,7 +2,7 @@
 
     $defaultImage = 'http://web.njit.edu/~jmd57/default.jpg';
     $status = 200;
-
+    echo "here";
     $sql = sprintf( "INSERT INTO Events ( name, image, bio, dateAndTime, location )
             VALUES ( '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $defaultImage); mysql_real_escape_string( $result->bio ),
@@ -18,6 +18,7 @@
         $status = 404;
         reportBack( $status );
     }
+
 
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
@@ -39,7 +40,7 @@
     }
 
     // Upload image
-    echo "here";
+
 
     reportBack( $status )
 
