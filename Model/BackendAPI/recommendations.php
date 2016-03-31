@@ -46,7 +46,7 @@
     {
         $events = explode( ",", $row[ 'events' ] );
     }
-
+    /*
     // Query Events
     foreach ( $events as $singleEvent )
     {
@@ -70,12 +70,12 @@
             $eventsArray = array( $row[ 'allEvents' ] );
         }
     }
-
+    */
 
     //$tags = json_encode( $tagsArray );
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
-    
+
     reportBack( $status, $id="NULL", $tagsArray="NULL", $events="NULL", $eventsArray="NULL" );
 
 
