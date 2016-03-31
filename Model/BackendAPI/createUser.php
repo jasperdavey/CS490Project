@@ -6,7 +6,7 @@
     // Should check if user already exists
 
     $sql = sprintf( "INSERT INTO Users ( email, password, firstname, lastname, bio, image, events )
-            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
+            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
             mysql_real_escape_string( $result->password ), mysql_real_escape_string( $result->firstname ),
             mysql_real_escape_string( $result->lastname ), mysql_real_escape_string( $result->bio ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->events )
