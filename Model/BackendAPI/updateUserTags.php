@@ -34,12 +34,14 @@
         $tagNiceValue = 1;
 		$id = $row[ 'id' ];
 	}
-    /*
+
     while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
     {
         $tagNiceValue = $row[ 'nice' ] + 1;
         $id = $row[ 'id' ];
     }
+
+    /*
 
     $sql = sprintf( "UPDATE Users SET nice = '%s' WHERE id = '%s'",  mysql_real_escape_string( $tagNiceValue )
                      mysql_real_escape_string( $id )
