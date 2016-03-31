@@ -17,7 +17,7 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status );
 	}
 
     $tagNiceValue = 0;
@@ -46,7 +46,7 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status );
     }
 
     /*
@@ -67,7 +67,7 @@
 
     */
 
-    reportBack( );
+    reportBack( $status );
 
     function reportBack( )
     {
@@ -75,17 +75,7 @@
         $status_array = array( 'status' => $status );
         $status_json = json_encode( $status_array );
 
-        $reponseURL =
-    	"https://web.njit.edu/~aml35/login/reportingBackToFrontEnd.php";
-    	$ch = curl_init();
-    	curl_setopt( $ch, CURLOPT_URL, $responseURL );
-    	curl_setopt( $ch, CURLOPT_POST, 1 );
-    	curl_setopt( $ch, CURLOPT_POSTFIELDS, $status_json );
-    	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-    	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
-    	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
-    	curl_exec( $ch );
-    	curl_close( $ch );
+        die( "$status_json" );
     }
 
 
