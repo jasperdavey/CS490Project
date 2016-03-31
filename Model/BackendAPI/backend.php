@@ -22,7 +22,7 @@
     $json = $_POST[ 'json' ];
     //$random = array( 'command' => 1 );
     //$json = json_encode( $random );
-    echo "$json";
+    echo $json;
     $result = json_decode( $json );
 
     // Create User DONE
