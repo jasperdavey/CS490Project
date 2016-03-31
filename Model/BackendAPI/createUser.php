@@ -4,7 +4,7 @@
     $status = 200;
 
     // Should check if user already exists
-    echo $result->command;
+    echo $result->email;
 
     $sql = sprintf( "INSERT INTO Users ( email, password, firstname, lastname, bio, image, events, friends )
             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", mysql_real_escape_string( $result->email ),
