@@ -4,7 +4,6 @@
     $userName = 'jmd57';
     $password = 'owypHuH4g';
 
-    echo "Welcome to the backend\n";
     // create connection
     $connection = mysql_connect( $serverName, $userName, $password );
     if ( !$connection )
@@ -70,7 +69,7 @@
     else
     {
         // Error 404
-        echo "Nothing to do";
+        echo "Command not known";
     }
 
     $connection->close();
