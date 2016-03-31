@@ -1,52 +1,23 @@
-
 <?php
-/*
-Author: Angelica Llerena
-Date: February 26, 2016.
-CS 490 Project - Log In
-*/
-header ("Access-Control-Allow-Origin:*");
-
+/********MIDDLE END**************
+Project:  CS 490 - Group # 2    *
+FileName: SignUp.php			*
+By:       Angelica Llerena		*
+Date:     March 15, 2016.		*
+*********************************/
+session_start();
 //Getting user and password and entering NJIT Server
-//session_start();
-$cmd = $info['cmd'];
-$user = $info["user_id"];
-$pass = $info["pass"];
-/*
-global $json;
-$report = array();
+$info['username']= $_POST['username'];
+$info['password']=$_POST['password'];
 
-$ch = curl_init("https://cp4.njit.edu/cp/home/login");
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS,"user=$user&pass=$pass&uuid=0xACA021");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt ($ch, CURLOPT_REFERER, "https://www.njit.edu/cp/login.php");
-$result = curl_exec($ch);
-curl_close($ch);
-   
-
-$valid = (strpos($result,"loginok.html") !== false);
-if ($valid) {
-	$report['status'] = "success";
-	$json = json_encode($report);
-    echo "$json ";
-	//return $json;
-}else{
-	$report['status'] = "failed";
-	$json = json_encode($report);
-	echo "$json ";
-}
-*/
 
 //Sending user and password to Jasper.
-$data = "command=$cmd&user_id=$user&password=$pass";
+$data = json_encode($info);
 $J_url = "https://web.njit.edu/~jmd57/backend.php";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $J_url);
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "json=".$data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -54,9 +25,17 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 $DB_results = curl_exec($ch);
 curl_close($ch);
 
-echo "$DB_results";
+//echo "$DB_results";
+$response = json_decode($DB_results);
 
-
-
+//handle $_SESSION...
+if ($response['status']==200){
+	$_SESSION['username']=$info['username'];
+	echo $response['status'];
+}
+else{
+	session_destroy();
+	echo $response['status'];
+}
 
 ?>
