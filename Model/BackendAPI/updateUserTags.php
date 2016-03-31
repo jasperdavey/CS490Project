@@ -36,7 +36,6 @@
 	}
     else
     {
-        echo "HERE";
         while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
         {
             $tagNiceValue = $row[ 'nice' ] + 1;
