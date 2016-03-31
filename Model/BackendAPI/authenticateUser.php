@@ -6,10 +6,10 @@
                      mysql_real_escape_string( $result->email )
     );
 
-    $result = mysql_query($sql, $connection);
+    $query = mysql_query($sql, $connection);
 
 	// Debug query in case of error
-	if ( !$result )
+	if ( !$query )
     {
 		$message = 'Invalid query: ' . mysql_error( ) . "\n";
 		$message .= 'Whole query: ' . $sql;
@@ -19,14 +19,14 @@
 	}
 
     // Case if given wrong username
-	if ( mysql_num_rows( $result ) == 0 )
+	if ( mysql_num_rows( $query ) == 0 )
     {
 		$status = 404;
 	}
 
     // If username found, check if password given is password on database
     $id = 0;
-    while ( $row = mysql_fetch_assoc( $result ) )
+    while ( $row = mysql_fetch_assoc( $query ) )
     {
 		if( $row[ 'password' ] != $result->password ) { $status = 304; }
 		else { $status = 200; }
