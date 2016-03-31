@@ -12,7 +12,7 @@
 
     );
 
-    /*
+
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error() . "\n";
@@ -22,7 +22,7 @@
         reportBack( $status );
     }
 
-
+    /*
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
     {
