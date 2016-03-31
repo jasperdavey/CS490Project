@@ -44,8 +44,9 @@
 
     // Upload image
 
-
+    */
     reportBack( $status );
+
 
     function reportBack( $status )
     {
@@ -56,5 +57,5 @@
         die( "$status_json" );
     }
 
-    */
+
  ?>
