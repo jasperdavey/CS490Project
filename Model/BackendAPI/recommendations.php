@@ -13,7 +13,7 @@
     );
 
     $tags = mysql_query( $sql, $connection );
-
+    /*
     if ( !$tags )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
@@ -75,8 +75,8 @@
     //$tags = json_encode( $tagsArray );
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
-
-    eportBack( $status, $id, $tagsArray, $events, $eventsArray );
+    */
+    eportBack( $status, $id="NULL", $tagsArray="NULL", $events="NULL", $eventsArray="NULL" );
 
 
     function reportBack( $status, $id, $tags, $events, $userEvents )
