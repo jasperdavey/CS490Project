@@ -9,7 +9,7 @@
             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
             mysql_real_escape_string( $result->password ), mysql_real_escape_string( $result->firstname ),
             mysql_real_escape_string( $result->lastname ), mysql_real_escape_string( $result->bio ),
-            mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->events )
+            mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( json_decode( $result->events ) )
      );
 
     echo "$sql";
