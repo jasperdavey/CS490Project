@@ -71,7 +71,7 @@
 
         while ( $row = mysql_fetch_array( $allEvents ) )
         {
-            $eventsArray = array_push( $row[ 'name' ] );
+            $eventsArray = array( $row[ 'name' ] );
         }
     }
 
