@@ -14,8 +14,6 @@
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $events )
      );
 
-    echo "$sql";
-
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error() . "\n";

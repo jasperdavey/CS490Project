@@ -39,6 +39,7 @@
     }
 
     // Upload image
+    echo "here";
 
     reportBack( $status )
 
