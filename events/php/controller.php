@@ -1,22 +1,16 @@
 <?php
 session_start();
-include_once 'login.php';
+include_once 'functions.php';
 
 $user_id = $_POST['user_id'];
 $password= $_POST['pass'];
 $arg= $_POST['arg'];
 
 
-switch ( $arg ) {
+  switch ( $arg ) {
 
     case 'login_check':
-        if($_SESSION['logged_in'] == false){
-          // not logged in return 0
-          echo 0;
-        }else{
-          // logged in return 1
-          echo 1;
-        }
+        break;
 
     case 'login':
         if(isset($user_id,$password)){
@@ -34,5 +28,5 @@ switch ( $arg ) {
     default:
         # code...
         break;
-}
+      }
 ?>

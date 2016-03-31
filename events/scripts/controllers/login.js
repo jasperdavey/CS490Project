@@ -19,13 +19,15 @@ function signIn() {
     var pass = document.forms["login_form"]["pass"].value;
     var response;
     var params = "arg="+"login"+ "&user_id="+user_id + "&pass="+pass;
+    console.log("sending args: "+params);
     if ( (user_id.length > 0) &&  (pass.length > 0) ){
         resetFields();
         var response = makeRequest(params);
-        if( response == 1){
+        if( response != 1){
+            console.log("login faile: "+response);
             window.location.href=sign_up_page;
         }else{
-          console.log(response);
+          console.log("successfully logged in");
         }
     }
     else alert("please enter username & password!");
