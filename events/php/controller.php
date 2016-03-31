@@ -2,26 +2,35 @@
 session_start();
 include_once 'functions.php';
 
-$user_id = $_POST['user_id'];
-$password= $_POST['pass'];
-$arg= $_POST['arg'];
+$email = $_POST['email'];
+$username = $_POST['username'];
+$password= $_POST['password'];
+$command= $_POST['command'];
 
 
-  switch ( $arg ) {
+  switch ( $command ) {
 
-    case 'login_check':
+    case 0:
         break;
 
-    case 'login':
-        if(isset($user_id,$password)){
+    case 1:
+        $_SESSION['new_user'] = true;
+            createUser();
+        break;
+
+    case 2:
+        if(isset($email,$password)){
             login();
         }
         break;
 
-    case 'sign_up':
-          $_SESSION['new_user'] = true;
-            createUser();
-          break;
+    case 3:
+        createEvent();
+        break;
+
+    case 8:
+        getRecommendedEvents();
+        break;
     case 'debug':
         echo "debug_php";
         break;

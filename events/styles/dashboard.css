@@ -81,8 +81,7 @@
 }
 
 
-#menu_table > tr {
+#menu_table{
     width: inherit;
     background-color: white;
-
 }

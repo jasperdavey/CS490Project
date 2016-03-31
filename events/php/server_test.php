@@ -1,4 +1,4 @@
 <?php
-$request = $_POST['json'];
-echo $request;
+$info = file_get_contents('php://input');
+echo $info;
 ?>
