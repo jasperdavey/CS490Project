@@ -27,7 +27,7 @@
     );
 
     $tags = mysql_query( $sql, $connection );
-    /*
+
     if ( !$tags )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
@@ -36,7 +36,7 @@
         $status = 404;
         reportBack( $status, $info = "NULL" );
     }
-
+    /*
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
         $userTags = array_push( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
