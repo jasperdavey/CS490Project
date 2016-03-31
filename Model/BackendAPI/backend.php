@@ -25,11 +25,13 @@
     // Create User DONE
     if ( $result->command == 1 )
     {
+        echo "Creating User";
         include 'createUser.php';
     }
     // Authenticate User DONE
     elseif ( $result->command == 2 )
     {
+        echo "Authenticating User";
         include 'authenticateUser.php';
     }
     // Create Event DONE
