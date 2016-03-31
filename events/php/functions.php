@@ -3,7 +3,7 @@
   CS490-104-Semester Project
   2/25/16
 */
-
+session_start();
 
 function login(){
     $info = file_get_contents('php://input');
@@ -17,11 +17,11 @@ function login(){
 }
 
 
-fucntion loggedInCheck(){
-    if($_SESSION['logged_in'] ==true ){
-        echo 200;
+function loggedInCheck(){
+    if($_SESSION['logged_in'] == true ){
+        echo '200';
     }else{
-        echo 404;
+        echo '404';
     }
 }
 
@@ -50,15 +50,13 @@ function getRecommendedEvents(){
 
 function getData($params){
   //angelica's
-  $ch = curl_init("https://web.njit.edu/~aml35/login/commandLine.php");
+  // $ch = curl_init("https://web.njit.edu/~aml35/login/commandLine.php");
   //jasper api
   // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
   //local test
   // $ch = curl_init("https://web.njit.edu/~tr88/php/test.php");
-  // $ch = curl_init("localhost/events/php/server_test.php");
-
+  $ch = curl_init("localhost/events/php/server_test.php");
   $headers = curl_getinfo($ch);
-  $data = "json=".$params;
   curl_setopt($ch, CURLOPT_POST, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

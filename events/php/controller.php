@@ -2,7 +2,6 @@
 session_start();
 include_once 'functions.php';
 
-$email = $_POST['email'];
 $username = $_POST['username'];
 $password= $_POST['password'];
 $command= $_POST['command'];
@@ -16,17 +15,17 @@ $command= $_POST['command'];
 
     case 1: // create user
         $_SESSION['new_user'] = true;
-            createUser();
+            // createUser();
         break;
 
     case 2: // login
         if(isset($email,$password)){
-            login();
+            // login();
         }
         break;
 
     case 3: // create event
-        createEvent();
+        // createEvent();
         break;
 
     case 4: // create comment
@@ -40,7 +39,7 @@ $command= $_POST['command'];
         break;
 
     case 8: // get recommended events
-        getRecommendedEvents();
+        // getRecommendedEvents();
         break;
 
     case 9: // return all user info
@@ -49,7 +48,6 @@ $command= $_POST['command'];
         echo "debug_php";
         break;
     default:
-        echo "case not recognized, command: ".$command;
         break;
 
       }

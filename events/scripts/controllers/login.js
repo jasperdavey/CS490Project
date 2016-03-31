@@ -4,15 +4,15 @@
   3/30/16
 */
 
-var sign_in_page = "events/index.html";
+var sign_in_page = "/events/index.html";
 var sign_up_page = "/events/views/signup.html";
 var tag_selection_page = "/events/views/tag_selection.html";
 var dashboard_page = "/events/views/dashboard.html";
 
 //codes
 
-var loggedIn = 200;
-var loginFail = 404;
+var success = 200;
+var fail = 404;
 
 function resetFields(){
     document.forms["login_form"]["email"].value = "" ;
@@ -37,7 +37,9 @@ function signIn() {
             console.log("successfullly logged in!");
         }else{
             console.log("login fail: "+response);
-            window.location.href=sign_up_page;
+            if(window.location.href != sign_up_page){
+                window.location.href=sign_up_page;
+            }
         }
     }
     else alert("please enter username & password!");
@@ -46,13 +48,16 @@ function signIn() {
 //login check
 function isLoggedIn(){
   var command = 0;
-  var params = 'command='+command;
+  var params = 'command=' + command;
   var response = makeRequest(params);
   if(response == 200 ){
     console.log("your alreaday logged in..");
   }else{
     console.log("need to log in");
-    window.location.href=sign_up_page;
+    pathname = window.location.pathname;
+    if( pathname != sign_in_page){
+        window.location.href=sign_in_page;
+    }
   }
 }
 
@@ -118,10 +123,12 @@ function makeRequest(params){
     var response;
     XM.onreadystatechange=function(){
         if (XM.readyState==4){
+          console.log(params);
             if (XM.status==200){
                 response = XM.responseText;
             }
             else{
+                console.log(XM.status);
                 alert("An error has occured making the request")
             }
         }
