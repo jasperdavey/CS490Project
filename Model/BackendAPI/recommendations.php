@@ -67,15 +67,13 @@
             $status = 404;
             reportBack( $status, $blank = "NULL", $blank = "NULL", $blank = "NULL", $blank = "NULL" );
         }
-    }
-        /*
 
         while ( $row = mysql_fetch_assoc( $allEvents ) )
         {
-            $eventsArray = array( $row[ 'allEvents' ] );
+            $eventsArray = array( $row[ 'events' ] );
         }
     }
-    */
+
 
     //$tags = json_encode( $tagsArray );
     //$events = json_encode( $events );
