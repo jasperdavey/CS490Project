@@ -38,7 +38,7 @@
                          mysql_real_escape_string( 0 )
         );
 	}
-    /*
+
     else
     {
         while ( ( $row = mysql_fetch_assoc( $userTags ) ) )
@@ -51,7 +51,7 @@
                          mysql_real_escape_string( $id )
         );
     }
-
+    /*
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
