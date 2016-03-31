@@ -79,7 +79,7 @@
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
 
-    reportBack( $status, $id="NULL", $tagsArray="NULL", $events="NULL", $eventsArray="NULL" );
+    reportBack( $status, $id, $tagsArray, $events, $eventsArray );
 
 
     function reportBack( $status, $id, $tags, $events, $userEvents )
