@@ -5,7 +5,7 @@
 
     $sql = sprintf( "INSERT INTO Events ( name, image, bio, dateAndTime, location )
             VALUES ( '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
-            mysql_real_escape_string( $result->image ); mysql_real_escape_string( $result->bio ),
+            mysql_real_escape_string( $defaultImage); mysql_real_escape_string( $result->bio ),
             mysql_real_escape_string( $result->dateAndTime ), mysql_real_escape_string( $result->location )
 
     );
@@ -19,26 +19,11 @@
         reportBack( $status );
     }
 
-    // get Event's ID
-    $sql = sprintf( "SELECT id FROM Events WHERE name = '%s' AND dateAndTime = '%s'",
-                     mysql_real_escape_string( $result->name ), mysql_real_escape_string( $result->dateAndTime) );
-
-    $eventID = mysql_query( $sql, $connection );
-
-    if ( !$eventID )
-    {
-		$message = 'Invalid query: ' . mysql_error( ) . "\n";
-		$message .= 'Whole query: ' . $sql;
-		print( $message );
-        $status = 404;
-        reportBack( $status );
-	}
-
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
     {
         $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
-                         VALUES ('%s', '%s', '%s', '%s' )", mysql_real_escape_string( $eventID ),
+                         VALUES ('%s', '%s', '%s', '%s' )", mysql_real_escape_string( mysql_insert_id( ) ),
                          mysql_real_escape_string( $tag ), mysql_real_escape_string( $nice ),
                          mysql_real_escape_string( 1 )
         );
