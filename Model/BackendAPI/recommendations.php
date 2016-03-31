@@ -76,7 +76,7 @@
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
     */
-    eportBack( $status, $id="NULL", $tagsArray="NULL", $events="NULL", $eventsArray="NULL" );
+    reportBack( $status, $id="NULL", $tagsArray="NULL", $events="NULL", $eventsArray="NULL" );
 
 
     function reportBack( $status, $id, $tags, $events, $userEvents )
