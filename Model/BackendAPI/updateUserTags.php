@@ -69,7 +69,7 @@
 
     reportBack( $status );
 
-    function reportBack( )
+    function reportBack( $status )
     {
         // Return Results
         $status_array = array( 'status' => $status );
@@ -77,6 +77,5 @@
 
         die( "$status_json" );
     }
-
 
  ?>
