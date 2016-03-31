@@ -20,16 +20,16 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        //reportBack( );
+        reportBack( $status, $connection = "NULL" );
     }
 
     // Add tags now?
 
     // Upload image
 
-    reportBack( );
+    reportBack( $status, $connection );
 
-    function reportBack( )
+    function reportBack( $status, $connection )
     {
         // Return Results
         $status_array = array( 'status' => $status, 'id' => $connection->insert_id );
