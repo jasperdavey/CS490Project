@@ -10,6 +10,9 @@ $command= $_POST['command'];
 
   switch ( $command ) {
 
+    case -1:
+        logOut();
+          break;
     case 0:
         loggedInCheck();
         break;

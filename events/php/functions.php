@@ -17,6 +17,15 @@ function login(){
     echo $status;
 }
 
+function logOut(){
+    $_SESSION['logged_in']=false;
+    if( $_SESSION['logged_in']== false){
+      echo 200;
+    }else{
+      echo 404;
+    }
+}
+
 
 function loggedInCheck(){
     if($_SESSION['logged_in'] == true ){

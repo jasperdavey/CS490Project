@@ -117,6 +117,19 @@ function getRecommendedEvents(){
     console.log("response: "+response);
 }
 
+
+function signOut(){
+  var command = -1;
+  var params = "command="+command;
+  var response = makeRequest(params);
+  if( response == 200){
+    window.location.href=sign_in_page;
+  }else{
+    alert('failed to log out');
+  }
+
+}
+
 // HTTP request
 function makeRequest(params){
     var url = "/events/php/controller.php";
@@ -136,10 +149,4 @@ function makeRequest(params){
     XM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XM.send(params);
     return response;
-}
-
-//load sing up page
-
-function loadSignUp(){
-  window.location.href=sign_up_page;
 }
