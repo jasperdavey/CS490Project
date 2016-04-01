@@ -17,7 +17,6 @@
 .dashboard_menu{
   visibility: collapse;
   margin-top: 5px;
-  background-color: white;
   position: absolute;
   right: 0;
   height: 400px;
@@ -26,15 +25,33 @@
 
 .dashboard_menu #close_menu{
   right: 0;
-  background-color: white;
+  color: white;
   position: absolute;
-  margin: 5px;
   width: 35px;
   height: 35px;
   line-height: 35px;
   text-align: center;
-  font-size: 24pt;
-  font-weight: 100;}
+  font-size: 26pt;
+}
+
+.dashboard_menu ul{
+  margin-top: 50px;
+  padding-left: 0;
+}
+
+.dashboard_menu li{
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #B22222;
+  width: 200px;
+  height: inherit;
+  line-height: 35px;
+  text-align: center;
+  font-size: 16pt;
+  margin-bottom: 5px;
+}
+
+
 
 #dash_board_logo{
   position: absolute;
