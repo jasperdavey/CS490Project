@@ -7,12 +7,14 @@
 function login(){
     $info = file_get_contents('php://input');
     $response = authenticate($info);
-    if( $response == 200 ){
+    $jsonObject = json_decode($response,true);
+    $status = $jsonObject["status"];
+    if( $status == 200 ){
         $_SESSION['logged_in']=true;
     }else{
         $_SESSION['logged_in']=false;
     }
-    echo $response;
+    echo $status;
 }
 
 
@@ -54,7 +56,7 @@ function getData($params){
   // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
   //local test
   // $ch = curl_init("https://web.njit.edu/~tr88/php/test.php");
-  $ch = curl_init("localhost/events/php/server_test.php");
+  // $ch = curl_init("localhost/events/php/server_test.php");
   $headers = curl_getinfo($ch);
   curl_setopt($ch, CURLOPT_POST, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
