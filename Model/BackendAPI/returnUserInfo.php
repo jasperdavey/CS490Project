@@ -18,11 +18,13 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status, $info = "NULL" );
     }
 
     // Query Tags
-    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s'", mysql_real_escape_string( $result->id ) );
+    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
+                     mysql_real_escape_string( 0 )
+    );
 
     $tags = mysql_query( $sql, $connection );
 
@@ -32,12 +34,12 @@
 		$message .= 'Whole query: ' . $sql;
 		print( $message );
         $status = 404;
-        reportBack();
+        reportBack( $status, $info = "NULL" );
     }
 
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
-        $userTags = array_push( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
+        $userTags = array( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
                                 'type' => $row[ 'type' ]
         );
     }
@@ -51,22 +53,15 @@
     }
 
 
-    function reportBack( )
+    reportBack( $status, $infoArray );
+
+
+    function reportBack( $status, $info )
     {
         // Return Results
-        $status_array = array( 'status' => $status, 'info' => $infoArray );
+        $status_array = array( 'status' => $status, 'info' => $info );
         $status_json = json_encode( $status_array );
 
-        $reponseURL =
-    	"https://web.njit.edu/~aml35/login/reportingBackToFrontEnd.php";
-    	$ch = curl_init();
-    	curl_setopt( $ch, CURLOPT_URL, $responseURL );
-    	curl_setopt( $ch, CURLOPT_POST, 1 );
-    	curl_setopt( $ch, CURLOPT_POSTFIELDS, $status_json );
-    	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-    	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
-    	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
-    	curl_exec( $ch );
-    	curl_close( $ch );
+        die( "$status_json" );
     }
  ?>

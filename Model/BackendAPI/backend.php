@@ -1,5 +1,5 @@
 <?php
-    $databaseName = "NJITEventsApp";
+    $databaseName = "jmd57";
     $serverName = 'sql.njit.edu';
     $userName = 'jmd57';
     $password = 'owypHuH4g';
@@ -18,8 +18,8 @@
     }
 
     // get JSON from POST
-    $json = $_POST['json'];
-    $result = json_decode( $json, true );
+    $json = $_POST[ 'json' ];
+    $result = json_decode( $json );
 
     // Create User DONE
     if ( $result->command == 1 )
@@ -56,7 +56,7 @@
     {
         include 'updateUserFriends';
     }
-    // Query recommendations TO-DO
+    // Query recommendations DONE
     elseif ( $result->command == 8 )
     {
         include 'recommendations.php';
@@ -69,6 +69,7 @@
     else
     {
         // Error 404
+        echo '{"status":404,"message":"Command not known"}';
     }
 
     $connection->close();

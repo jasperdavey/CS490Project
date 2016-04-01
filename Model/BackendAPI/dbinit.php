@@ -22,6 +22,7 @@
     $sql = "CREATE TABLE Users ( id INT( 6 ) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                                  email VARCHAR( 50 ) NOT NULL,
                                  password VARCHAR( 50 ) NOT NULL,
+                                 username VARCHAR( 50 ) NOT NULL,
                                  firstname VARCHAR( 50 ) NOT NULL,
                                  lastname VARCHAR( 50 ) NOT NULL,
                                  bio VARCHAR( 1000 ),
