@@ -69,7 +69,7 @@
 
         while ( $row = mysql_fetch_array( $allEvents ) )
         {
-            $eventsArray = array( $row[ 'name' ] );
+            $eventsArray = array_push( $eventsArray, $row[ 'name' ] );
             break;
         }
     }
