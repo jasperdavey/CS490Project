@@ -71,7 +71,7 @@
         {
             $eventsArray = array( $row[ 'name' ] );
             echo $row[ 'name' ];
-            break;
+            //break;
         }
     }
 
