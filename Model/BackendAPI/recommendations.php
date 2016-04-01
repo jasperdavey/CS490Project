@@ -43,6 +43,7 @@
 
     while ( $row = mysql_fetch_assoc( $userEvents ) )
     {
+        echo $row['events'];
         $events = explode( ",", $row[ 'events' ] );
     }
 
@@ -71,7 +72,7 @@
         {
             $eventsArray = array( $row[ 'name' ] );
             echo $row[ 'name' ];
-            //break;
+            break;
         }
     }
 
