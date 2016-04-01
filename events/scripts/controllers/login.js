@@ -53,6 +53,10 @@ function isLoggedIn(){
   var response = makeRequest(params);
   if(response == 200 ){
     console.log("your alreaday logged in..");
+    if(window.location.pathname == dashboard_page){
+      console.log("init dashboard");
+      initDashBoard();
+    }
   }else{
     console.log("need to log in");
     pathname = window.location.pathname;
@@ -128,6 +132,22 @@ function signOut(){
     alert('failed to log out');
   }
 
+}
+
+
+//get userinfo
+function getUserInfo(){
+  var command = 9;
+  var params = "command="+command;
+  var response = makeRequest(params);
+  console.log("getting user info");
+  console.log(response);
+
+}
+
+
+function initDashBoard(){
+  getUserInfo();
 }
 
 // HTTP request

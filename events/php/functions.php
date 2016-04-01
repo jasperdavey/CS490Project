@@ -11,8 +11,10 @@ function login(){
     $status = $jsonObject["status"];
     if( $status == 200 ){
         $_SESSION['logged_in']=true;
+        $_SESSION['id']=$jsonObject["id"];
     }else{
         $_SESSION['logged_in']=false;
+        $_SESSION['id']=null;
     }
     echo $status;
 }
@@ -60,8 +62,14 @@ function getRecommendedEvents(){
 
 function getUserInfo(){
   $info = file_get_contents ('php://input');
-  $response = getData($info);
-  echo $response;
+
+  if ( $_SESSION[id] != null ){
+    $user_id = $_SESSION['id'];
+    $response = getData($info);
+    echo $response;
+  }else{
+    echo "can't get user info";
+  }
 }
 
 function getData($params){
