@@ -40,6 +40,11 @@ function loggedInCheck(){
 function createUser(){
     $info = file_get_contents('php://input');
     $response = getData($info);
+    $data = json_decode($response,true);
+    if( $data['status'] == 200 ){
+      $_SESSION['id']=$data['id'];
+      $_SESSION['logged_in'] = true;
+    }
     echo $response;
 }
 
@@ -56,12 +61,15 @@ function authenticate($params){
 function getRecommendedEvents(){
     $info = file_get_contents('php://input');
     if($_SESSION['id'] != null ){
-      echo "id: ".$_SESSION['id'];
-      $response = getData($info);
+      $response = getData($info."&id=".$_SESSION['id']);
       echo $response;
     }else{
       echo "failed to get recommended events";
     }
+}
+
+function getAllEvents(){
+
 }
 
 
@@ -69,8 +77,7 @@ function getUserInfo(){
   $info = file_get_contents ('php://input');
 
   if ( $_SESSION[id] != null ){
-    $user_id = $_SESSION['id'];
-    $response = getData($info);
+    $response = getData($info."&id=".$_SESSION['id']);
     echo $response;
   }else{
     echo "can't get user info";

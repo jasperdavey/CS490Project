@@ -90,34 +90,22 @@ function signUp(){
       var response = makeRequest(params);
       console.log("response: "+response);
 
+      var data = JSON.parse(response);
+      if(data.status == 200 ){
+        window.location.href=dashboard_page;
+      }else{
+        alert("failed to creater new user account");
+      }
 }
 
-// create event
-function makeEvent(){
-
-    var name = document.forms['event_create_form']['name'].value;
-    var image = document.forms['event_create_form']['image'].value;;
-    var bio = document.forms['event_create_form']['bio'].value;
-    var dateAndTime = document.forms['event_create_form']['dateAndTime'].value;;
-    var location = document.forms['event_create_form']['location'].value;
-    var command = 3;
-
-    var params = "command="+command
-      +"&"+"name="+name
-      +"&"+"bio="+bio
-      +"&"+"dateAndTime="+dateAndTime
-      +"&"+"location="+location
-      +"&"+"image="+image;
-    var response = makeRequest(params);
-     console.log("response: "+response);
-}
 
 
 function getRecommendedEvents(){
     var command = 8;
     var params = "command="+command;
     var response = makeRequest(params);
-    console.log("recommended evernts: "+response);
+    console.log("recommended events: "+response);
+    return response;
 }
 
 
@@ -141,13 +129,22 @@ function getUserInfo(){
   var response = makeRequest(params);
   console.log("getting user info");
   console.log(response);
-
+  return response;
 }
 
 
 function initDashBoard(){
-  getUserInfo();
-  getRecommendedEvents();
+  var userinfo =getUserInfo();
+  var events = getRecommendedEvents();
+  document.getElementById("recommendEvents").innerHTML = events;
+  document.getElementById("myEvents").innerHTML = userinfo;
+
+}
+
+//load signup
+
+function loadSignUp(){
+  window.location.href=sign_up_page;
 }
 
 // HTTP request
