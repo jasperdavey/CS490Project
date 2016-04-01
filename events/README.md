@@ -7,7 +7,7 @@ login   2  command,email,password -yes
 createEvent 3 command,name,location,dateAndTime,bio,image
 getRecommendedEvents 8 command,id
 displayUserInfo 9 command,id
-
+getAllEents 10
 
 
 

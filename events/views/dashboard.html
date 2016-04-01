@@ -1,36 +1,25 @@
 <!doctype html>
 <html>
   <head>
-     <script src="/events/scripts/controllers/login.js"</script>
      <script src="/events/scripts/controllers/dashboard.js"></script>
+     <script src="/events/scripts/controllers/login.js"></script>
+     <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/events/styles/landing.css">
     <link rel="stylesheet" href="/events/styles/dashboard.css">
+
   </head>
   <body onload="isLoggedIn()">
-    <div id="dashboard_header">
-      <div id="dash_board_logo">EVENTS! @</div>
-      <div id="NJIT_logo">
-          <a href="http://www.njit.edu/">
-              <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
-          </a>
+    <div id="dasboard_cotainer" class="dashboard_container">
+      <div id="dashboard_header">
+        <div id="dash_board_logo">EVENTS!</div>
       </div>
-      <div id="menu_button" onmouseover="showMenu()"> <( ; </div>
-    </div>
 
-    <div id="dashboard_drop_menu" onmouseout="hideMenu()">
-        <table id="menu_table">
-            <tr>NEW EVENT!</tr>
-        </table>
-    </div>
-    <div id="top_row" >
-      <div id="suggestion_box"></div>
-      <div id="upcoming_box"></div>
-    </div>
+      <div id="dashboard_menu" class="dashboard_menu">
+          <button id="close_menu" onclick="closeDashMenu()">X</button>
+      </div>
 
-    <div id="bottom_row" >
-      <div id="suggestion_box"></div>
-      <div id="upcoming_box"></div>
-    </div>
+      <div id="dashboard_menu_button" class="menu_button" onclick="showDashMenu()"></div>
+
   </body>
 
 </html>

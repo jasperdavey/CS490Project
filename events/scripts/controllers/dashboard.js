@@ -1,9 +1,9 @@
-function showMenu(){
-    var x = document.getElementById('dashboard_drop_menu');
+function showDashMenu(){
+    var x = document.getElementById('dashboard_menu');
     x.style.visibility="visible";
 }
 
-function hideMenu(){
-    var x = document.getElementById('dashboard_drop_menu');
+function closeDashMenu(){
+    var x = document.getElementById('dashboard_menu');
     x.style.visibility="collapse";
 }
