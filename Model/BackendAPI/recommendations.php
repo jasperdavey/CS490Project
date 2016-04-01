@@ -73,10 +73,6 @@
         }
     }
 
-    //$tags = json_encode( $tagsArray );
-    //$events = json_encode( $events );
-    //$eventsArray = json_encode( $eventsArray );
-
     reportBack( $status, $result->id, $tagsArray, $events, $eventsArray );
 
 
