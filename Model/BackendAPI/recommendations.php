@@ -4,7 +4,7 @@
     $status = 200;
     $tagsArray = [ ];
     $events = [ ];
-    $eventsArray = [ ];
+    $eventsArray = array( );
 
     // Query User Tags
     $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
@@ -69,7 +69,7 @@
 
         while ( $row = mysql_fetch_array( $allEvents ) )
         {
-            $eventsArray = array_push( $eventsArray, $row[ 'name' ] );
+            $eventsArray = $row[ 'name' ];
             break;
         }
     }
