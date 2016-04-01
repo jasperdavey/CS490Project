@@ -48,6 +48,7 @@
     }
 
     // Query Events
+    $count = 0;
     foreach ( $events as $singleEvent )
     {
         echo "$singleEvent";
@@ -68,15 +69,15 @@
             $status = 404;
             reportBack( $status, $blank = "NULL", $blank = "NULL", $blank = "NULL", $blank = "NULL" );
         }
-
+        $count = $count + 1;
         while ( $row = mysql_fetch_array( $allEvents ) )
         {
             $eventsArray = array( $row[ 'name' ] );
-            echo $row[ 'name' ];
+            break;
         }
     }
 
-
+    echo "$count";
     //$tags = json_encode( $tagsArray );
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
