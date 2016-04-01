@@ -69,7 +69,7 @@
     else
     {
         // Error 404
-        echo '{"status":"404","message":"Command not known"}';
+        echo '{"status":404,"message":"Command not known"}';
     }
 
     $connection->close();
