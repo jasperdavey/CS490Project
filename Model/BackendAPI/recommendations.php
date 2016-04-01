@@ -1,7 +1,6 @@
 <?php
 
     // Query
-
     $status = 200;
     $tagsArray = [ ];
     $events = [ ];
@@ -51,7 +50,7 @@
     $count = 0;
     foreach ( $events as $singleEvent )
     {
-        echo "$singleEvent";
+
         $sql = sprintf( "SELECT Events.id, Events.name, Events.bio, Events.dateAndTime, Events.location
                          FROM Events INNER JOIN Tags ON Events.id = Tags.id
                          WHERE Events.name = '%s' AND Tags.type = '%s'", mysql_real_escape_string( $singleEvent ),
@@ -59,7 +58,6 @@
         );
 
         $allEvents = mysql_query( $sql, $connection );
-
 
         if ( !$allEvents )
         {
@@ -78,6 +76,7 @@
     }
 
     echo "$count";
+
     //$tags = json_encode( $tagsArray );
     //$events = json_encode( $events );
     //$eventsArray = json_encode( $eventsArray );
