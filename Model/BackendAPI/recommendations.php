@@ -50,8 +50,6 @@
     // Query Events
     foreach ( $events as $singleEvent )
     {
-        echo "$singleEvent";
-        echo "111";
         $sql = sprintf( "SELECT Events.id, Events.name, Events.bio, Events.dateAndTime, Events.location
                          FROM Events INNER JOIN Tags ON Events.id = Tags.id
                          WHERE Events.name = '%s' AND Tags.type = '%s'", mysql_real_escape_string( $singleEvent ),
@@ -72,7 +70,6 @@
         while ( $row = mysql_fetch_array( $allEvents ) )
         {
             $eventsArray = array( $row[ 'name' ] );
-            echo $row[ 'name' ];
             break;
         }
     }
