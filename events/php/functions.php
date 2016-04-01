@@ -11,7 +11,7 @@ function login(){
     $status = $jsonObject["status"];
     if( $status == 200 ){
         $_SESSION['logged_in']=true;
-        $_SESSION['id']=$jsonObject["id"];
+        $_SESSION['id']=$jsonObject['id'];
     }else{
         $_SESSION['logged_in']=false;
         $_SESSION['id']=null;
@@ -55,8 +55,13 @@ function authenticate($params){
 
 function getRecommendedEvents(){
     $info = file_get_contents('php://input');
-    $response = getData($info);
-    echo $response;
+    if($_SESSION['id'] != null ){
+      echo "id: ".$_SESSION['id'];
+      $response = getData($info);
+      echo $response;
+    }else{
+      echo "failed to get recommended events";
+    }
 }
 
 

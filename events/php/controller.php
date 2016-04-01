@@ -43,7 +43,7 @@ $command= $_POST['command'];
         break;
 
     case 8: // get recommended events
-        // getRecommendedEvents();
+        getRecommendedEvents();
         break;
 
     case 9: // return all user info

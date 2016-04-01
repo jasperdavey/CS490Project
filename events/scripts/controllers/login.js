@@ -115,10 +115,9 @@ function makeEvent(){
 
 function getRecommendedEvents(){
     var command = 8;
-    var name = "testUser";
-    var params = "command="+command+"&"+"username="+name;
+    var params = "command="+command;
     var response = makeRequest(params);
-    console.log("response: "+response);
+    console.log("recommended evernts: "+response);
 }
 
 
@@ -148,6 +147,7 @@ function getUserInfo(){
 
 function initDashBoard(){
   getUserInfo();
+  getRecommendedEvents();
 }
 
 // HTTP request
