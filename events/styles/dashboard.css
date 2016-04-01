@@ -121,3 +121,20 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.createEvent_container{
+  background-color: #8B0000;
+  position: absolute;
+  z-index: 100;
+  top:200px;
+  left: 256px;
+  width: 512px;
+  height: 460px;
+}
+
+.form_button_wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  height: 35px;
+}
