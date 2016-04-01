@@ -123,6 +123,7 @@
 }
 
 .createEvent_container{
+  visibility: collapse;
   background-color: #8B0000;
   position: absolute;
   z-index: 100;

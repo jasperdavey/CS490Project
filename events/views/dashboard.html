@@ -17,7 +17,7 @@
       <div id="dashboard_menu" class="dashboard_menu">
           <div id="close_menu" onclick="closeDashMenu()">X</div>
           <ul>
-            <li>Create Event</li>
+            <li onclick="initCreateEvent()">Create Event</li>
             <li>Sign out</li>
           <ul>
       </div>
@@ -32,7 +32,7 @@
           style="border:solid 1px #777" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
       </div>
 
-      <div id="createEvent" class="createEvent_container">
+      <div id="createEventForm" class="createEvent_container">
         <div class="sign_up_box">
             <form>
               <div id="input_area">
@@ -44,8 +44,8 @@
               </div>
             </form>
             <div class = "form_button_wrapper">
-              <button id="close_event" class="form_buttons" style="float:left" onClick="cancelEventEntry()">cancel</button>
-              <button id="save_event" class="form_buttons" style="float:right" onClick="saveEvent()">create</button>
+              <button id="close_event" class="form_buttons" style="float:left" onClick="cancelEventEntry(this)">cancel</button>
+              <button id="save_event" class="form_buttons" style="float:right" onClick="saveEvent(this)">create</button>
             </div>
         </div>
       </div>
