@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
   <head>
+     <script src="/events/scripts/controllers/login.js"</script>
+     <script src="/events/scripts/controllers/dashboard.js"></script>
     <link rel="stylesheet" href="/events/styles/landing.css">
     <link rel="stylesheet" href="/events/styles/dashboard.css">
-    <script src="/events/scripts/controllers/dashboard.js"></script>
   </head>
-  <body>
-
+  <body onload="isLoggedIn()">
     <div id="dashboard_header">
       <div id="dash_board_logo">EVENTS! @</div>
       <div id="NJIT_logo">
@@ -31,7 +31,6 @@
       <div id="suggestion_box"></div>
       <div id="upcoming_box"></div>
     </div>
-
   </body>
 
 </html>

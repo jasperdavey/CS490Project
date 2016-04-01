@@ -35,6 +35,7 @@ function signIn() {
             console.log("mid-response: "+response);
         if( response == 200){
             console.log("successfullly logged in!");
+            window.location.href=dashboard_page;
         }else{
             console.log("login fail: "+response);
             if(window.location.href != sign_up_page){
