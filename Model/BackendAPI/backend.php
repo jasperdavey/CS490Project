@@ -56,7 +56,7 @@
     {
         include 'updateUserFriends';
     }
-    // Query recommendations TO-DO
+    // Query recommendations DONE
     elseif ( $result->command == 8 )
     {
         include 'recommendations.php';
