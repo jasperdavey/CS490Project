@@ -1,9 +1,16 @@
 body{
     margin: 0;
     background-color: #000033;
+    width: 100%;
+}
 
-    min-width: 760px;
-    min-height: 960px;
+.login_container{
+  position: relative;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 548px;
+  height: 768px;
 }
 
 input{
@@ -47,7 +54,7 @@ input{
 
 #sign_up{
     width: 500px;
-    height: 60px;
+    height: 30px;
     padding-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -58,9 +65,9 @@ input{
 
 }
 div.login_box{
-    width: 540px;
+    position: inherit;
+    width: 512px;
     height: 284px;
-    margin-top: 15%;
     margin-left: auto;
     margin-right: auto;
     background-color: #f1f1f1;
@@ -80,12 +87,6 @@ div.login_box{
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
-#login_form{
-    width: 100%;
-    height: 65%;
-    margin-top: 50px;
-}
-
 a{
     text-decoration: none;
     font-family: "Gravitas One";
@@ -95,34 +96,23 @@ a:hover {
     color: yellow;
 }
 
-#events_logo{
-    font-weight: 400;
-    font-style: normal;
-    font-family: "Gravitas One";
-    font-size: 64px;
-    color: red;
-    margin-top: -80px;
+.login_events_logo{
+  padding-left: 10px;
+   font-weight: 400;
+   font-style: normal;
+   font-family: "Gravitas One";
+   font-size: 64px;
+   color: red;
 }
 
 #sign_up_link:hover{
   cursor: pointer;
 }
-#NJIT_logo{
+
+.login_njit_logo{
     width: 300px;
     height: 100px;
-    padding-left: 140px;
+    padding-left: 100px;
     margin-left: auto;
     margin-right: auto;
-}
-
-#tag_selector_view{
-    margin-top: 15%;
-    margin-left:auto;
-    margin-right: auto;
-    min-width: 500px;
-    max-width: 600px;
-    min-width: 400px;
-    min-height: 400px;
-    max-height: 500px;
-    background-color: grey;
 }

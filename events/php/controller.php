@@ -44,6 +44,7 @@ $command= $_POST['command'];
         break;
 
     case 9: // return all user info
+        getUserInfo();
         break;
     case 'debug':
         echo "debug_php";
