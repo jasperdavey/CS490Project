@@ -4,10 +4,10 @@
   3/30/16
 */
 
-var sign_in_page = "/events/index.html";
-var sign_up_page = "/events/views/signup.html";
-var tag_selection_page = "/events/views/tag_selection.html";
-var dashboard_page = "/events/views/dashboard.html";
+var sign_in_page = "/~tr88/events/index.html";
+var sign_up_page = "/~tr88/events/views/signup.html";
+var tag_selection_page = "/~tr88/events/views/tag_selection.html";
+var dashboard_page = "/~tr88/events/views/dashboard.html";
 
 //codes
 
@@ -22,7 +22,7 @@ function resetFields(){
 
 // user login script
 function signIn() {
-    var sign_up_page ="views/signup.html";
+    var sign_up_page ="/~tr88/events/views/signup.html";
     var email = document.forms["login_form"]["email"].value;
     var password = document.forms["login_form"]["password"].value;
     var response;
@@ -70,7 +70,7 @@ function isLoggedIn(){
 function signUp(){
     console.log('signing up');
     var command = 1;
-    var redirect_url = "../views/tag_selection.html";
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
     var firstname = document.forms['sign_up_form']['firstname'].value;
     var lastname = document.forms['sign_up_form']['lastname'].value;
     var username = document.forms['sign_up_form']['username'].value;
@@ -149,7 +149,7 @@ function loadSignUp(){
 
 // HTTP request
 function makeRequest(params){
-    var url = "/events/php/controller.php";
+    var url = "/~tr88/events/php/controller.php";
     var XM = new XMLHttpRequest();
     var response;
     XM.onreadystatechange=function(){
