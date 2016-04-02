@@ -22,6 +22,12 @@ Please use this directory to store unit tests that use all 3 abstrations of the 
 4. Users can link events to personal calendar
 
 ###Front
+####Need these
+-a list of all tags in the database; 
+-when returning events: I need all information about the event. 
+-must be able to modify events 
+-need to be able to friend another user (add to friends list)
+-must be able to request a list of all user in the database : (this can just return the username and id);
 - landing page
 - login page
 - signup page
