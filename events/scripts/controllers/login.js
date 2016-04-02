@@ -134,10 +134,22 @@ function getUserInfo(){
 
 
 function initDashBoard(){
-  var userinfo =getUserInfo();
-  var events = getRecommendedEvents();
-  document.getElementById("recommendEvents").innerHTML = events;
-  document.getElementById("myEvents").innerHTML = userinfo;
+  // get userInfo
+  var userInfo = JSON.parse(getUserInfo()).info;
+  var events = JSON.parse(getRecommendedEvents()).events;
+
+  //parse userInfo into diffent fields
+  var firstname = userInfo.firstname;
+  var lastname = userInfo.lastname;
+  var bio = userInfo.bio;
+  var image = userInfo.image;
+  var userEvents = userInfo.events;
+  var friends = userInfo.friends;
+  var userTags = userInfo.tags;
+
+  // populate dom with fields
+  document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
+  document.getElementById("recommendEvents").innerHTML = events.length;
 
 }
 

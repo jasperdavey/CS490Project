@@ -13,6 +13,16 @@
     background-color: red;
 }
 
+.dashboard_theme_username{
+    float: right;
+    text-align: right;
+    margin-right: 65px;
+    line-height: 45px;
+    font-size: 18pt;
+    width: 300px;
+    height: 65px;
+    color: white;
+}
 
 .dashboard_menu{
   z-index: 100000;
@@ -99,11 +109,12 @@
 
 
 .menu_button{
-  margin:10px;
-  float: right;
-  width: 45px;
-  height: 45px;
-  background-image: url("/~tr88/events/images/menu_icon.png");
+    position: absolute;
+    right: 0;
+    margin:10px;
+    width: 45px;
+    height: 45px;
+    background-image:url("/~tr88/events/images/menu_icon.png");
 }
 
 #NJIT_logo{
