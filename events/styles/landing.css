@@ -18,7 +18,7 @@ input{
     display: block;
     border: 1px solid #999;
     padding: 5px;
-    height: 40px;
+    height: 35px;
     font-size: 24pt;
     font-weight: 100;
     font-family: "Gravitas One";
@@ -32,7 +32,6 @@ input{
 #input_area{
     display: relative;
     width: 375px;
-    padding-top: 10%;
     margin: auto;
 }
 
@@ -42,6 +41,7 @@ input{
     border: 1px solid #999;
     height: 40px;
     background-color:red;
+    color: white;
     font-size: 16pt;
     font-weight: bold;
     -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
@@ -55,7 +55,6 @@ input{
 #sign_up{
     width: 500px;
     height: 30px;
-    padding-top: 10px;
     margin-left: auto;
     margin-right: auto;
     text-align: right;
@@ -64,7 +63,7 @@ input{
     font-family: "Gravitas One";
 
 }
-div.login_box{
+.login_box{
     position: inherit;
     width: 512px;
     height: 284px;
@@ -85,6 +84,10 @@ div.login_box{
     -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login_box form{
+  margin-top: 60px;
 }
 
 a{
