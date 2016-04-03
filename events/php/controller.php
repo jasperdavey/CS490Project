@@ -26,10 +26,10 @@ $command= $_POST['command'];
 
     case 1: // create user
 
-        if( $_SESSION['organization']){
+        if( isset($_SESSION['organization']) ){
             // createOrgAccount();
         }else{
-          createUser();
+            // createUser();
         }
         break;
 

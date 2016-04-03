@@ -82,7 +82,7 @@ function indiSignUp(){
         return;
     }
 
-    document.forms['sign_up_form'].reset();
+    document.forms['sign_up_form_indi'].reset();
 
 
     var params = "command="+command;
@@ -96,12 +96,6 @@ function indiSignUp(){
       var response = makeRequest(params);
       console.log("response: "+response);
 
-      var data = JSON.parse(response);
-      if(data.status == 200 ){
-        window.location.href=profile_creation;
-      }else{
-        alert("failed to creater new user account");
-      }
 }
 
 //sign up
@@ -191,7 +185,7 @@ function initDashBoard(){
 
   // populate dom with fields
   document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
-  document.getElementById("recommendEvents").innerHTML = events.length;
+  document.getElementById("events_list").innerHTML = events.length;
 
 }
 

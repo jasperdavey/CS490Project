@@ -30,11 +30,15 @@ function logOut(){
 
 
 function loggedInCheck(){
+    /*
     if($_SESSION['logged_in'] == true ){
         echo '200';
     }else{
         echo '404';
     }
+    */
+    //TODO set back to check
+    echo '200';
 }
 
 function createUser(){

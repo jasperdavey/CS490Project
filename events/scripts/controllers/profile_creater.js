@@ -68,6 +68,7 @@ function confirmUserBio(node){
 //send user info to back end
 function setUserInfo(){
     var userBio = document.getElementById('user_bio').value;
+
     if( userTags.size <= 0){
         alert("please select atleast 1 tag");
         return;
@@ -77,8 +78,21 @@ function setUserInfo(){
             return;
         }
     }
-    console.log(userBio);
-    userTags.forEach(function(value){
-        console.log(value);
-    })
+    var hashTags = JSON.stringify({'tags':Array.from(userTags),'bio':userBio});
+    console.log(hashTags);
+    console.log('tags: '+JSON.parse(hashTags).tags);
+    console.log('bio: '+JSON.parse(hashTags).bio);
+    window.location.href=dashboard_page;
+}
+
+function replacer(){
+    tags = userTags.entries();
+    values='';
+    for (i=0; i < tags.size; i++){
+        tags+=values[i];
+        if( i < tags.size -1 ){
+            tags+=' ,';
+        }
+    }
+    return values;
 }
