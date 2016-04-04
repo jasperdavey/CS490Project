@@ -1,0 +1,28 @@
+DASHBOARD:
+  - "Google Calendar" change the letters to white instead of black. The black makes it hard to read with the red background.
+  - Recommended | Friends | All 
+      - I guess I have to implement the algorithm to have events being recommended by friends 
+        since we already have an algorithm for RecommendedEvents and to show all events.
+  
+PROFILE - CREATION:
+  - I love it.
+  - If we add fields to createUser.php as major, year_user_is_in, or organizations_user_belongs_to, then we could recommmend friends which
+    have the same fields (major, year_user_is_in, or organizations_user_belongs_to)  
+    to the user as part of the process of creating the user's profile.
+  - Having friends recommendations as well, will make easy to recommend events according to the user's list of friends.
+    
+  
+CREATE USER:
+  - How are you defining the user type as $_POST['type'] or how? I need to add this to my code to handle
+    organizations and individuals.
+    
+FRIENDS:
+  - How are we handling user's friends?
+  - If the user is going to add friends to his profile, we can add a search bar for friends. 
+    Where the user will be able to search by firstname, lastname or email.
+    It will show all users in the user_table with the name, lastname or email that matches the search.
+    If you like this idea or have a better idea, let me know to implement it. 
+    
+    
+NOTE: 
+ -  I will work on my code this thursday, please let me know before hand to know what I have to implement. 
