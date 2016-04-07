@@ -22,6 +22,8 @@ function login(){
 function logOut(){
     $_SESSION['logged_in']=false;
     if( $_SESSION['logged_in']== false){
+      session_unset();
+      session_destroy();
       echo 200;
     }else{
       echo 404;

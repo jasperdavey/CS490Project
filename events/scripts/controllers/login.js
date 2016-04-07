@@ -186,6 +186,7 @@ function initDashBoard(){
   // populate dom with fields
   document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
   document.getElementById("events_list").innerHTML = events.length;
+  document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
 
 }
 
