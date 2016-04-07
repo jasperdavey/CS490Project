@@ -13,6 +13,17 @@
     background-color: red;
 }
 
+.dashboard_theme_username{
+    position: absolute;
+    text-align: right;
+    right: 50px;
+    margin-right: 65px;
+    line-height: 45px;
+    font-size: 18pt;
+    width: 300px;
+    height: 65px;
+    color: white;
+}
 
 .dashboard_menu{
   z-index: 100000;
@@ -33,6 +44,7 @@
   line-height: 35px;
   text-align: center;
   font-size: 26pt;
+  cursor: pointer;
 }
 
 .dashboard_menu ul{
@@ -99,13 +111,14 @@
 
 
 .menu_button{
-  margin:10px;
-  float: right;
-  width: 45px;
-  height: 45px;
-  background-image: url("/events/images/menu_icon.png");
+    position: absolute;
+    right: 0;
+    margin:10px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-image:url("/~tr88/events/images/menu_icon.png");
 }
-
 #NJIT_logo{
     padding-top: 45px;
     padding-left: 350px;
@@ -122,20 +135,141 @@
   margin-right: auto;
 }
 
-.createEvent_container{
-  visibility: collapse;
+.create_event_container{
+  visibility: collapse;;
   background-color: #8B0000;
   position: absolute;
   z-index: 100;
-  top:200px;
-  left: 256px;
-  width: 512px;
-  height: 460px;
+  top:40px;
+  left: 150px;
+  width: 75%;
+  height: 100%;
+}
+
+.create_event_container #form_container{
+    position: absolute;
+    left: 10px;
+    width: 50%;
+}
+
+.create_event_container #tags_container{
+    position: absolute;
+    right: 10px;
+    width: 40%;
+    height: 97%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.create_event_container input{
+    width: 375px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 35px;
+    font-size: 24pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.create_event_container textarea{
+    width: 375px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 85px;
+    font-size: 16pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.create_event_container #event_creation_header{
+    color: white;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 18pt;
+    width: auto;
+}
+
+.event_date{
+    width: 175px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 45px;
+    font-size: 16pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+#upload_button{
+    margin-left: 70px;
+    width: 80px;
+    height: 20px;
 }
 
 .form_button_wrapper{
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   width: 250px;
   height: 35px;
+}
+
+.events_list_container{
+    position: absolute;
+    margin-top: 10px;
+    width: inherit;
+    height: 300px;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.events_list_container :first-child{
+    margin-left: 10px;
+}
+
+.events_list_container :last-child{
+    margin-right: 10px;
+}
+.event_list_view{
+    display: inline-block;
+    margin-right: 5px;
+    width: 300px;
+    height: 300px;;
+    background-color: red;
+}
+
+.sub_header{
+    position: absolute;
+    height: 45px;
+    width: 100%;
+}
+
+.profile_image{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-color:white;
+    float: right;
+    margin-right: 65px;
+    margin-top: 5px;
 }

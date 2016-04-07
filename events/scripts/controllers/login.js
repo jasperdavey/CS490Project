@@ -4,10 +4,10 @@
   3/30/16
 */
 
-var sign_in_page = "/events/index.html";
-var sign_up_page = "/events/views/signup.html";
-var tag_selection_page = "/events/views/tag_selection.html";
-var dashboard_page = "/events/views/dashboard.html";
+var sign_in_page = "/~tr88/events/index.html";
+var sign_up_page = "/~tr88/events/views/signup.html";
+var profile_creation = "/~tr88/events/views/profile_creation.html";
+var dashboard_page = "/~tr88/events/views/dashboard.html";
 
 //codes
 
@@ -22,7 +22,6 @@ function resetFields(){
 
 // user login script
 function signIn() {
-    var sign_up_page ="views/signup.html";
     var email = document.forms["login_form"]["email"].value;
     var password = document.forms["login_form"]["password"].value;
     var response;
@@ -67,19 +66,26 @@ function isLoggedIn(){
 }
 
 //sign up
-function signUp(){
+function indiSignUp(){
     console.log('signing up');
-    var command = 1;
-    var redirect_url = "../views/tag_selection.html";
-    var firstname = document.forms['sign_up_form']['firstname'].value;
-    var lastname = document.forms['sign_up_form']['lastname'].value;
-    var username = document.forms['sign_up_form']['username'].value;
-    var email = document.forms['sign_up_form']['email'].value;
-    var password = document.forms['sign_up_form']['password'].value;
+    var command = 0.1;
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
+    var firstname = document.forms['sign_up_form_indi']['firstname'].value;
+    var lastname = document.forms['sign_up_form_indi']['lastname'].value;
+    var username = document.forms['sign_up_form_indi']['username'].value;
+    var email = document.forms['sign_up_form_indi']['email'].value;
+    var password = document.forms['sign_up_form_indi']['password'].value;
 
-    document.forms['sign_up_form'].reset();
+    //form verification
+    if( !(firstname && lastname && username && email && password) ){
+        alert('please fill in all fields');
+        return;
+    }
 
-    var params = "command="+command
+    document.forms['sign_up_form_indi'].reset();
+
+
+    var params = "command="+command;
       +"&"+"firstname="+firstname
       +"&"+"lastname="+lastname
       +"&"+"username="+username
@@ -90,12 +96,42 @@ function signUp(){
       var response = makeRequest(params);
       console.log("response: "+response);
 
-      var data = JSON.parse(response);
-      if(data.status == 200 ){
-        window.location.href=dashboard_page;
-      }else{
-        alert("failed to creater new user account");
-      }
+}
+
+//sign up
+function orgSignUp(){
+    console.log('signing up');
+    var command = 0.1;
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
+    var organization = document.forms['sign_up_form_org']['organization_name'].value;
+    var email = document.forms['sign_up_form_org']['email'].value;
+    var password = document.forms['sign_up_form_org']['password'].value;
+
+    //form verification
+    if( !( organization && email && password) ){
+        alert('please fill in all fields');
+        return;
+    }
+
+    document.forms['sign_up_form_org'].reset();
+
+
+    var params = "command="+command
+      +"&"+"organization="+organization
+      +"&"+"email="+email
+      +"&"+"password="+password;
+
+      console.log(params);
+      window.location.href=profile_creation;
+      // var response = makeRequest(params);
+      // console.log("response: "+response);
+      //
+      // var data = JSON.parse(response);
+      // if(data.status == 200 ){
+      //   window.location.href=profile_creation;
+      // }else{
+      //   alert("failed to creater new user account");
+      // }
 }
 
 
@@ -134,10 +170,23 @@ function getUserInfo(){
 
 
 function initDashBoard(){
-  var userinfo =getUserInfo();
-  var events = getRecommendedEvents();
-  document.getElementById("recommendEvents").innerHTML = events;
-  document.getElementById("myEvents").innerHTML = userinfo;
+  // get userInfo
+  var userInfo = JSON.parse(getUserInfo()).info;
+  var events = JSON.parse(getRecommendedEvents()).events;
+
+  //parse userInfo into diffent fields
+  var firstname = userInfo.firstname;
+  var lastname = userInfo.lastname;
+  var bio = userInfo.bio;
+  var image = userInfo.image;
+  var userEvents = userInfo.events;
+  var friends = userInfo.friends;
+  var userTags = userInfo.tags;
+
+  // populate dom with fields
+  document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
+  document.getElementById("events_list").innerHTML = events.length;
+  document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
 
 }
 
@@ -147,9 +196,28 @@ function loadSignUp(){
   window.location.href=sign_up_page;
 }
 
+//group selection handler
+function changeSingUpForm(button){
+  var userType = button.innerHTML;
+  var individualSignUpForm = document.getElementById("individual_sign_up_form");
+  var organizationSignUpForm = document.getElementById("organization_sign_up_form");
+  if( userType == 'Individual'){
+      organizationSignUpForm.style.visibility = 'collapse';
+      button.style.backgroundColor='red';
+      individualSignUpForm.style.visibility = 'visible';
+      document.getElementById("org_button").style='grey';
+  }else{
+    organizationSignUpForm.style.visibility = 'visible';
+    button.style.backgroundColor='red';
+    individualSignUpForm.style.visibility = 'collapse';
+    document.getElementById("indi_button").style.backgroundColor='grey';
+  }
+
+}
+
 // HTTP request
 function makeRequest(params){
-    var url = "/events/php/controller.php";
+    var url = "/~tr88/events/php/controller.php";
     var XM = new XMLHttpRequest();
     var response;
     XM.onreadystatechange=function(){

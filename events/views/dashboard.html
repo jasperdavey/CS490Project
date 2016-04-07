@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
   <head>
-     <script src="/events/scripts/controllers/dashboard.js"></script>
-     <script src="/events/scripts/controllers/login.js"></script>
+     <script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
+     <script src="/~tr88/events/scripts/controllers/login.js"></script>
      <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/events/styles/landing.css">
-    <link rel="stylesheet" href="/events/styles/dashboard.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/dashboard.css">
 
   </head>
   <body onload="isLoggedIn()">
@@ -13,7 +13,11 @@
       <div id="dashboard_header">
         <div id="dash_board_logo">EVENTS! @ NJIT</div>
       </div>
-      <div id="dashboard_menu_button" class="menu_button" onclick="showDashMenu()"></div>
+      <div class="sub_header">
+        <div id="username" class="dashboard_theme_username"></div>
+        <div id="profile_header_image" class="profile_image"></div>
+        <div id="dashboard_menu_button" class="menu_button" onclick="showDashMenu()"></div>
+      </div>
       <div id="dashboard_menu" class="dashboard_menu">
           <div id="close_menu" onclick="closeDashMenu()">X</div>
           <ul>
@@ -22,7 +26,34 @@
           <ul>
       </div>
 
-      <div id="recommendEvents" class="recommendEvents_container"></div>
+      <div id="recommendEvents" class="recommendEvents_container">
+          <div id="events_bar" class="events_bar">
+              <button>Recommended</button><button>Friends</button><button>all</button>
+          </div>
+            <div id="events_list" class="events_list_container">
+                <!--TODO create javascript to autopopulate-->
+                <div id="event" class="event_list_view">
+                    <h1>Title</h1>
+                    <span> <h2>date</h2> <h2>time</h2> </span>
+                    <p>description</p>
+                </div>
+                <div id="event" class="event_list_view">
+                    <h1>Title</h1>
+                    <span> <h2>date</h2> <h2>time</h2> </span>
+                    <p>description</p>
+                </div>
+                <div id="event" class="event_list_view">
+                    <h1>Title</h1>
+                    <span> <h2>date</h2> <h2>time</h2> </span>
+                    <p>description</p>
+                </div>
+                <div id="event" class="event_list_view">
+                    <h1>Title</h1>
+                    <span> <h2>date</h2> <h2>time</h2> </span>
+                    <p>description</p>
+                </div>
+            </div>
+      </div>
 
       <div id="myEvents" class="myEvents_container"></div>
 
@@ -32,22 +63,45 @@
           style="border:solid 1px #777" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
       </div>
 
-      <div id="createEventForm" class="createEvent_container">
-        <div class="sign_up_box">
+<!--fixed create event form, only displays when user wants to create an event -->
+      <div id="createEventForm" class="create_event_container">
+        <div class="event_creation_form">
+            <div id="form_container">
+            <div id="event_creation_header">Event Creation Form</div>
             <form id="event_create_form">
               <div id="input_area">
                 <input  type="text" id="name" method="POST" name="name" value="" placeholder="event name"></input>
-                <input  type="text" id="bio" method="POST" name="bio" value="" placeholder="about event"></input>
-                <input  type="text" id="dateAndTime" method="POST" name="dateAndTime" value="" placeholder="date and time"></input>
+                <textarea  type="text" id="bio" method="POST" name="bio" value="" placeholder="about event"></textarea>
+                <div id="event_creation_header">starts</div>
+                <input  type="date" id="start_date" method="POST" name="start_date" value="" placeholder="date"></input>
+                <input type="time" id="start_time" name="start_time"></input>
+                <div id="event_creation_header">ends</div>
+                <input  type="date" id="end_date" method="POST" name="end_date" value="" placeholder="date"></input>
+                <input type="time" id="end_time" name="end_time"></input>
                 <input  type="text" id="location" method="POST" name="location" value="" placeholder="location"></input>
-                <input  type="text" id="image" name="" placeholder="image url"></input>
+                <input  type="file" id="image" name="image" placeholder="image url"></input>
               </div>
             </form>
             <div class = "form_button_wrapper">
               <button id="close_event" class="form_buttons" style="float:left" onClick="cancelEventEntry(this)">cancel</button>
-              <button id="save_event" class="form_buttons" style="float:right" onClick="saveEvent(this)">create</button>
+              <button id="save_event" class="form_buttons" style="float:right" onClick="makeEvent()">create</button>
             </div>
         </div>
+
+        <div id="tags_container">
+            <div class="container_wrapper">
+              <div id="tag" class="profile_creater_container">
+                <h1>Let's make finding EVENTS! EASY.</h1>
+                <h2>Select some #tags that matches event type!</h2>
+                <h4>selected tags: (at least 1)</h4>
+                <div id="hashtags" class="hashtags">
+                <div id="selected_tags" class="selected_tags"></div>
+                <h4>tag selection:</h4>
+                <div id="tag_selection" class="tag_selection"></div>
+              </div>
+            </div>
+        </div>
+    </div>
       </div>
 
 

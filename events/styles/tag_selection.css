@@ -1,0 +1,46 @@
+.container_wrapper{
+  width: 512px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile_creater_container{
+    position: absolute;
+    padding: 20px;
+    margin-top: 20px;
+    width: 512px;
+    background-color: white;
+    right: auto;
+    left: auto;
+}
+
+.profile_creater_container textarea{
+  line-height: 35px;
+  max-width: 512px;
+  max-height: 200px;
+  word-wrap: break-word;
+  height: 200px;
+  width: 100%;
+}
+
+.hashtags textarea{
+  background-color:white;
+  max-height: 65px;
+}
+
+.profile_creater_container button{
+  float: right;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.selected_tags{
+  margin-bottom: 10px;
+  width: inherit;
+  height: 100px;
+}
+
+.tag_selection{
+  width: 512px;
+  height: 200px;
+}

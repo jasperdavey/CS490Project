@@ -2,28 +2,39 @@
 session_start();
 include_once 'functions.php';
 
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password= $_POST['password'];
 $command= $_POST['command'];
-
 
   switch ( $command ) {
 
     case -1:
         logOut();
           break;
+
     case 0:
         loggedInCheck();
         break;
 
-    case 1: // create user
+    case 0.1: // init new user
         $_SESSION['new_user'] = true;
-            createUser();
+        $_SESSION['firstname'] = $_POST['firstname'];
+        $_SESSION['lastname'] = $_POST['lastname'];
+        $_SESSION['organization'] = $_POST['organization'];
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+        break;
+
+    case 1: // create user
+
+        if( isset($_SESSION['organization']) ){
+            // createOrgAccount();
+        }else{
+            // createUser();
+        }
         break;
 
     case 2: // login
-        if(isset($email,$password)){
+        if(isset($_POST['email'],$_POST['password'])){
             login();
         }
         break;

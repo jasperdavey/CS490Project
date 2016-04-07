@@ -22,6 +22,8 @@ function login(){
 function logOut(){
     $_SESSION['logged_in']=false;
     if( $_SESSION['logged_in']== false){
+      session_unset();
+      session_destroy();
       echo 200;
     }else{
       echo 404;
@@ -30,11 +32,15 @@ function logOut(){
 
 
 function loggedInCheck(){
+    /*
     if($_SESSION['logged_in'] == true ){
         echo '200';
     }else{
         echo '404';
     }
+    */
+    //TODO set back to check
+    echo '200';
 }
 
 function createUser(){
