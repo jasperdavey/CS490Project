@@ -1,61 +1,74 @@
-var selectCount=0;
-var bio= null;
-var userTags;
+//sign up
+function indiSignUp(){
+    console.log('signing up');
+    var command = 0.1;
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
+    var firstname = document.forms['sign_up_form_indi']['firstname'].value;
+    var lastname = document.forms['sign_up_form_indi']['lastname'].value;
+    var username = document.forms['sign_up_form_indi']['username'].value;
+    var email = document.forms['sign_up_form_indi']['email'].value;
+    var password = document.forms['sign_up_form_indi']['password'].value;
 
-function displayHashTags(){
-  selectCount = 0;
-  userTags = new Set([]);
-  var container = document.getElementById("tag_selection");
-  var tags = ['computer science', 'hackaton', 'robotics', 'ieee', 'baseball', 'canoe','test','test'];
-  var tag;
-  for(var i=0; i < tags.length; i++){
-      tag = document.createElement("button");
-      tag.style.width="100px";
-      tag.style.height="35px";
-      tag.style.float="left"
-      tag.innerHTML = '#'+tags[i];
-      tag.onclick = function(){addHashTag(container,this);};
-      container.appendChild(tag);
-  }
-
-}
-
-
-function addHashTag(parent,tag){
-  console.log('adding tag: '+tag.innerHTML);
-  var container = document.getElementById('selected_tags');
-  var tagName = tag.innerHTML;
-  var newTag = document.createElement("button");
-  newTag.style.width="100px";
-  newTag.style.height="35px";
-  newTag.style.float="left"
-  newTag.innerHTML = tagName;
-  newTag.onclick = function(){removeThySelf(container,newTag);};
-  container.appendChild(newTag);
-  userTags.add(tagName);
-  parent.removeChild(tag);
-}
-
-function removeThySelf(parent,child){
-    var selection_tags = document.getElementById("tag_selection");
-
-    if( confirmDelete(child)){
-
-        parent.removeChild(child);
-        userTags.delete(child.innerHTML);
-        console.log(userTags.size);
+    //form verification
+    if( !(firstname && lastname && username && email && password) ){
+        alert('please fill in all fields');
+        return;
     }
+
+    document.forms['sign_up_form_indi'].reset();
+
+
+    var params = "command="+command;
+      +"&"+"firstname="+firstname
+      +"&"+"lastname="+lastname
+      +"&"+"username="+username
+      +"&"+"email="+email
+      +"&"+"password="+password;
+
+      console.log(params);
+      var response = makeRequest(params);
+      console.log("response: "+response);
+
 }
 
-function confirmDelete(node){
-    var yes;
-    var tag = node.innerHTML;
-    if( confirm('remove ' +tag+' ?') == true ){
-        return true;
-    }else{
-        return false;
+//sign up
+function orgSignUp(){
+    console.log('signing up');
+    var command = 0.1;
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
+    var organization = document.forms['sign_up_form_org']['organization_name'].value;
+    var email = document.forms['sign_up_form_org']['email'].value;
+    var password = document.forms['sign_up_form_org']['password'].value;
+
+    //form verification
+    if( !( organization && email && password) ){
+        alert('please fill in all fields');
+        return;
     }
+
+    document.forms['sign_up_form_org'].reset();
+
+
+    var params = "command="+command
+      +"&"+"organization="+organization
+      +"&"+"email="+email
+      +"&"+"password="+password;
+
+      console.log(params);
+      window.location.href=profile_creation;
+      // var response = makeRequest(params);
+      // console.log("response: "+response);
+      //
+      // var data = JSON.parse(response);
+      // if(data.status == 200 ){
+      //   window.location.href=profile_creation;
+      // }else{
+      //   alert("failed to creater new user account");
+      // }
 }
+
+
+
 
 function confirmUserBio(node){
     if( confirm('leave bio empty?') == true ){

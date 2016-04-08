@@ -35,12 +35,18 @@
   height: 40px;
 }
 .selected_tags{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: nowrap;
   margin-bottom: 10px;
   width: inherit;
   height: 100px;
 }
 
 .tag_selection{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: nowrap;
   width: 512px;
   height: 200px;
 }

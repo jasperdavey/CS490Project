@@ -1,3 +1,25 @@
+function initDashBoard(){
+  // get userInfo
+  var userInfo = JSON.parse(getUserInfo()).info;
+  var events = JSON.parse(getRecommendedEvents()).events;
+
+  //parse userInfo into diffent fields
+  var firstname = userInfo.firstname;
+  var lastname = userInfo.lastname;
+  var bio = userInfo.bio;
+  var image = userInfo.image;
+  var userEvents = userInfo.events;
+  var friends = userInfo.friends;
+  var userTags = userInfo.tags;
+
+  // populate dom with fields
+  document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
+  document.getElementById("events_list").innerHTML = events.length;
+  document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
+
+}
+
+
 function showDashMenu(){
     var x = document.getElementById('dashboard_menu');
     var y = document.getElementById('dashboard_menu_button');

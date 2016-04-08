@@ -126,15 +126,6 @@
 }
 
 
-#top_row{
-  overflow: hidden;
-  width: 840px;
-  height: 300px;
-  margin-top: 35px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .create_event_container{
   visibility: collapse;;
   background-color: #8B0000;
@@ -156,9 +147,9 @@
     position: absolute;
     right: 10px;
     width: 40%;
-    height: 97%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    height: 94%;
+    margin: 10px;
+    padding: 10px;
     background-color: white;
 }
 
@@ -176,6 +167,29 @@
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
     color: grey;
+}
+
+.create_event_container #image_upload_container{
+  width: 100%;
+  height: 16px;
+}
+
+.create_event_container #image{
+  margin-top: -35px;
+  width: 85%;
+  float: right;
+  height: 16px;
+  background-color: white;
+  font-size: 12pt;
+}
+
+.create_event_container #image_label{
+  width: 25%;
+  line-height: 16px;
+  font-size: 12pt;
+  color: white;
+  height: 16px;
+  float: left;
 }
 
 .create_event_container textarea{
@@ -253,7 +267,7 @@
     display: inline-block;
     margin-right: 5px;
     width: 300px;
-    height: 300px;;
+    height: 280px;;
     background-color: red;
 }
 

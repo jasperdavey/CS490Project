@@ -65,84 +65,6 @@ function isLoggedIn(){
   }
 }
 
-//sign up
-function indiSignUp(){
-    console.log('signing up');
-    var command = 0.1;
-    var redirect_url = "/~tr88/events/views/tag_selection.html";
-    var firstname = document.forms['sign_up_form_indi']['firstname'].value;
-    var lastname = document.forms['sign_up_form_indi']['lastname'].value;
-    var username = document.forms['sign_up_form_indi']['username'].value;
-    var email = document.forms['sign_up_form_indi']['email'].value;
-    var password = document.forms['sign_up_form_indi']['password'].value;
-
-    //form verification
-    if( !(firstname && lastname && username && email && password) ){
-        alert('please fill in all fields');
-        return;
-    }
-
-    document.forms['sign_up_form_indi'].reset();
-
-
-    var params = "command="+command;
-      +"&"+"firstname="+firstname
-      +"&"+"lastname="+lastname
-      +"&"+"username="+username
-      +"&"+"email="+email
-      +"&"+"password="+password;
-
-      console.log(params);
-      var response = makeRequest(params);
-      console.log("response: "+response);
-
-}
-
-//sign up
-function orgSignUp(){
-    console.log('signing up');
-    var command = 0.1;
-    var redirect_url = "/~tr88/events/views/tag_selection.html";
-    var organization = document.forms['sign_up_form_org']['organization_name'].value;
-    var email = document.forms['sign_up_form_org']['email'].value;
-    var password = document.forms['sign_up_form_org']['password'].value;
-
-    //form verification
-    if( !( organization && email && password) ){
-        alert('please fill in all fields');
-        return;
-    }
-
-    document.forms['sign_up_form_org'].reset();
-
-
-    var params = "command="+command
-      +"&"+"organization="+organization
-      +"&"+"email="+email
-      +"&"+"password="+password;
-
-      console.log(params);
-      window.location.href=profile_creation;
-      // var response = makeRequest(params);
-      // console.log("response: "+response);
-      //
-      // var data = JSON.parse(response);
-      // if(data.status == 200 ){
-      //   window.location.href=profile_creation;
-      // }else{
-      //   alert("failed to creater new user account");
-      // }
-}
-
-
-
-function getRecommendedEvents(){
-    var command = 8;
-    var params = "command="+command;
-    var response = makeRequest(params);
-    console.log("recommended events: "+response);
-    return response;
-}
 
 
 function signOut(){
@@ -157,41 +79,7 @@ function signOut(){
 
 }
 
-
-//get userinfo
-function getUserInfo(){
-  var command = 9;
-  var params = "command="+command;
-  var response = makeRequest(params);
-  console.log("getting user info");
-  console.log(response);
-  return response;
-}
-
-
-function initDashBoard(){
-  // get userInfo
-  var userInfo = JSON.parse(getUserInfo()).info;
-  var events = JSON.parse(getRecommendedEvents()).events;
-
-  //parse userInfo into diffent fields
-  var firstname = userInfo.firstname;
-  var lastname = userInfo.lastname;
-  var bio = userInfo.bio;
-  var image = userInfo.image;
-  var userEvents = userInfo.events;
-  var friends = userInfo.friends;
-  var userTags = userInfo.tags;
-
-  // populate dom with fields
-  document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
-  document.getElementById("events_list").innerHTML = events.length;
-  document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
-
-}
-
 //load signup
-
 function loadSignUp(){
   window.location.href=sign_up_page;
 }
@@ -213,25 +101,4 @@ function changeSingUpForm(button){
     document.getElementById("indi_button").style.backgroundColor='grey';
   }
 
-}
-
-// HTTP request
-function makeRequest(params){
-    var url = "/~tr88/events/php/controller.php";
-    var XM = new XMLHttpRequest();
-    var response;
-    XM.onreadystatechange=function(){
-        if (XM.readyState==4){
-            if (XM.status==200){
-                response = XM.responseText;
-            }
-            else{
-                alert("An error has occured making the request")
-            }
-        }
-    }
-    XM.open("POST",url,false);
-    XM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    XM.send(params);
-    return response;
 }

@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
   <head>
-     <script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
-     <script src="/~tr88/events/scripts/controllers/login.js"></script>
-     <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <script src="/~tr88/events/scripts/controllers/common.js"></script>
+    <script src="/~tr88/events/scripts/controllers/login.js"></script>
+    <script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
     <link rel="stylesheet" href="/~tr88/events/styles/dashboard.css">
 
@@ -79,7 +80,10 @@
                 <input  type="date" id="end_date" method="POST" name="end_date" value="" placeholder="date"></input>
                 <input type="time" id="end_time" name="end_time"></input>
                 <input  type="text" id="location" method="POST" name="location" value="" placeholder="location"></input>
-                <input  type="file" id="image" name="image" placeholder="image url"></input>
+                <div id="image_upload_container">
+                  <p id="image_label">image: </p>
+                  <input  type="file" id="image" name="image" placeholder="image url"></input>
+                </div>
               </div>
             </form>
             <div class = "form_button_wrapper">
