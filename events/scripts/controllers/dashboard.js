@@ -1,3 +1,5 @@
+var hashTagHanlder = null;
+
 function initDashBoard(){
   // get userInfo
   var userInfo = JSON.parse(getUserInfo()).info;
@@ -37,7 +39,10 @@ function closeDashMenu(){
 function initCreateEvent(){
    var view = document.getElementById("createEventForm");
    view.style.visibility = "visible";
+   clearTags();
    closeDashMenu();
+   hashTagHanlder = new HashTagHanlder();
+   hashTagHanlder.displayHashTags();
 }
 
 function cancelEventEntry(){
@@ -56,6 +61,18 @@ function saveEvent(){
   }
 }
 
+// clear all tags from previous instance of create event 
+function clearTags(){
+  var selectedContainer = document.getElementById("selected_tags");
+  var selectionContainer = document.getElementById("tag_selection");
+  while (selectionContainer.hasChildNodes()) {
+    selectionContainer.removeChild(selectionContainer.lastChild);
+  }
+  while (selectedContainer.hasChildNodes()) {
+    selectedContainer.removeChild(selectedContainer.lastChild);
+  }
+}
+
 
 // create event
 function makeEvent(){
@@ -70,12 +87,15 @@ function makeEvent(){
     var location = document.forms['event_create_form']['location'].value;
     var command = 3;
 
+    var tags = hashTagHanlder.getUserTags();
+    var jsonTags = JSON.stringify({'tags': tags});
     var params = "command="+command
       +"&"+"name="+name
       +"&"+"bio="+bio
       +"&"+'startDateTime='+startDate+' '+startTime+':00'
       +"&"+'endDateTime='+endDate+' '+endTime+':00'
       +"&"+"location="+location
+      +"&"+"tags="+jsonTags
       +"&"+"image="+image;
 
     console.log(params);

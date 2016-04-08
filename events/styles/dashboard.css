@@ -153,6 +153,25 @@
     background-color: white;
 }
 
+
+
+.selected_tags{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  width: inherit;
+  height: 100px;
+}
+
+.tag_selection{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: inherit;
+  height: 200px;
+}
+
 .create_event_container input{
     width: 375px;
     display: block;
