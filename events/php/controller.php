@@ -63,6 +63,9 @@ $command= $_POST['command'];
     case 'debug':
         echo "debug_php";
         break;
+    case 20:
+        getTags();
+        break;
     default:
         break;
 

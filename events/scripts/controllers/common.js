@@ -1,9 +1,8 @@
 // HTTP request
 
-
 function makeRequest(params){
-    var url = "/~tr88/events/php/controller.php";
     var XM = new XMLHttpRequest();
+    var url = "/~tr88/events/php/controller.php";
     var response;
     XM.onreadystatechange=function(){
         if (XM.readyState==4){
@@ -46,10 +45,10 @@ var userTags;
 
 function displayHashTags(){
   selectCount = 0;
-  console.log('test');
   userTags = new Set([]);
+  getTags();
   var container = document.getElementById('tag_selection');
-  var tags = ['computer science', 'hackaton', 'robotics', 'ieee', 'baseball', 'canoe','test','test','computer science', 'hackaton', 'robotics', 'ieee', 'baseball', 'canoe','test','test'];
+  var tags = getTags();
   var tag;
   for(var i=0; i < tags.length; i++){
       tag = document.createElement("button");
@@ -57,7 +56,7 @@ function displayHashTags(){
       tag.style.height="35px";
       tag.style.float="left"
       tag.style.fontSize="8pt";
-      tag.innerHTML = '#'+tags[i];
+      tag.innerHTML = tags[i];
       tag.onclick = function(){addHashTag(container,this);};
       container.appendChild(tag);
   }
@@ -103,5 +102,12 @@ function confirmDelete(node){
 function getTags(){
   var command = 20;
   var params = 'command='+command;
-
+  var response = makeRequest(params);
+  var tags = null;
+  try{
+      tags = JSON.parse(response).tags;
+  }catch(err){
+      console.log('failed to get tags');
+  }
+  return tags;
 }
