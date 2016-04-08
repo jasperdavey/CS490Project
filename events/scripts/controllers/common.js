@@ -14,9 +14,11 @@ function makeRequest(params){
             }
         }
     }
-    XM.open("POST",url,false);
-    XM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    XM.send(params);
+
+      XM.open("POST",url,false);
+      XM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      XM.send(params);
+
     return response;
 }
 
