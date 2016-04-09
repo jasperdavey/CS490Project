@@ -1,7 +1,13 @@
 //sign up
+var hashTagHanlder = null;
+
+function initHashTagHandler(){
+    hashTagHanlder = new HashTagHanlder();
+    hashTagHanlder.displayHashTags();
+}
 function indiSignUp(){
     console.log('signing up');
-    var command = 0.1;
+    var command = 1;
     var redirect_url = "/~tr88/events/views/tag_selection.html";
     var firstname = document.forms['sign_up_form_indi']['firstname'].value;
     var lastname = document.forms['sign_up_form_indi']['lastname'].value;
@@ -17,17 +23,17 @@ function indiSignUp(){
 
     document.forms['sign_up_form_indi'].reset();
 
+    var formData = new FormData();
 
-    var params = "command="+command;
-      +"&"+"firstname="+firstname
-      +"&"+"lastname="+lastname
-      +"&"+"username="+username
-      +"&"+"email="+email
-      +"&"+"password="+password;
+    formData.append('command',command);
+    formData.append('firstname',firstname);
+    formData.append('lastname',lastname);
+    formData.append('username',username);
+    formData.append('email',email);
+    formData.append('password',password);
 
-      console.log(params);
-      var response = makeRequest(params);
-      console.log("response: "+response);
+    var response = makeRequest(formData);
+    console.log("response: "+response);
 
 }
 
@@ -81,7 +87,7 @@ function confirmUserBio(node){
 //send user info to back end
 function setUserInfo(){
     var userBio = document.getElementById('user_bio').value;
-
+    var userTags = hashTagHanlder.getUserTags();
     if( userTags.size <= 0){
         alert("please select atleast 1 tag");
         return;

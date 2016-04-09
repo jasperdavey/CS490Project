@@ -38,9 +38,8 @@ function buildParams(){
     return $params;
 }
 
-function login(){
-    $info = file_get_contents('php://input');
-    $response = authenticate($info);
+function login($params){
+    $response = getData($params);
     $jsonObject = json_decode($response,true);
     $status = $jsonObject["status"];
     if( $status == 200 ){
@@ -77,9 +76,8 @@ function loggedInCheck(){
     echo '200';
 }
 
-function createUser(){
-    $info = file_get_contents('php://input');
-    $response = getData($info);
+function createUser($params){
+    $response = getData($params);
     $data = json_decode($response,true);
     if( $data['status'] == 200 ){
       $_SESSION['id']=$data['id'];
@@ -94,14 +92,10 @@ function createEvent(){
     echo $response;
 }
 
-function authenticate($params){
-      return getData($params);
-}
 
-function getRecommendedEvents(){
-    $info = file_get_contents('php://input');
+function getRecommendedEvents($params){
     if($_SESSION['id'] != null ){
-      $response = getData($info."&id=".$_SESSION['id']);
+      $response = getData($params."&id=".$_SESSION['id']);
       echo $response;
     }else{
       echo "failed to get recommended events";
@@ -113,11 +107,10 @@ function getAllEvents(){
 }
 
 
-function getUserInfo(){
-  $info = file_get_contents ('php://input');
+function getUserInfo($params){
 
   if ( $_SESSION[id] != null ){
-    $response = getData($info."&id=".$_SESSION['id']);
+    $response = getData($params."&id=".$_SESSION['id']);
     echo $response;
   }else{
     echo "can't get user info";

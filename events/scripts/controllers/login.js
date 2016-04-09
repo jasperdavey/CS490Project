@@ -27,10 +27,14 @@ function signIn() {
     var response;
     var command = 2;
     var params = "command="+command+ "&email="+email + "&password="+password;
-    console.log("sending args: "+params);
+    var formData = new FormData;
+    formData.append('command',command);
+    formData.append('email',email);
+    formData.append('password',password);
+
     if ( (email.length > 0) &&  (password.length > 0) ){
         resetFields();
-        var response = makeRequest(params);
+        var response = makeRequest(formData);
             console.log("mid-response: "+response);
         if( response == 200){
             console.log("successfullly logged in!");

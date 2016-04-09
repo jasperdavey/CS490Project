@@ -3,6 +3,7 @@ session_start();
 include_once 'functions.php';
 
 $command= $_POST['command'];
+$params = buildParams();
 
   switch ( $command ) {
 
@@ -14,7 +15,7 @@ $command= $_POST['command'];
         loggedInCheck();
         break;
 
-    case 0.1: // init new user
+    case 1: // create user
         $_SESSION['new_user'] = true;
         $_SESSION['firstname'] = $_POST['firstname'];
         $_SESSION['lastname'] = $_POST['lastname'];
@@ -22,20 +23,17 @@ $command= $_POST['command'];
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['password'] = $_POST['password'];
-        break;
-
-    case 1: // create user
 
         if( isset($_SESSION['organization']) ){
             // createOrgAccount();
         }else{
-            // createUser();
+            createUser($params);
         }
         break;
 
     case 2: // login
         if(isset($_POST['email'],$_POST['password'])){
-            login();
+            login($params);
         }
         break;
 
@@ -55,11 +53,11 @@ $command= $_POST['command'];
         break;
 
     case 8: // get recommended events
-        getRecommendedEvents();
+        getRecommendedEvents($params);
         break;
 
     case 9: // return all user info
-        getUserInfo();
+        getUserInfo($params);
         break;
     case 'debug':
         echo "debug_php";

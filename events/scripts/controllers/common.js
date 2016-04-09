@@ -14,9 +14,7 @@ function makeRequest(params){
             }
         }
     }
-
       XM.open("POST",url,false);
-      XM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       XM.send(params);
 
     return response;
@@ -25,8 +23,10 @@ function makeRequest(params){
 //get userinfo
 function getUserInfo(){
   var command = 9;
-  var params = "command="+command;
-  var response = makeRequest(params);
+  // var params = "command="+command;
+  var formData = new FormData();
+  formData.append('command',command);
+  var response = makeRequest( formData );
   console.log("getting user info");
   console.log(response);
   return response;
@@ -35,25 +35,27 @@ function getUserInfo(){
 
 function getRecommendedEvents(){
     var command = 8;
-    var params = "command="+command;
-    var response = makeRequest(params);
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest(formData);
     console.log("recommended events: "+response);
     return response;
 }
-
-
 
 
 function HashTagHanlder(){
   var selectCount=0;
   var bio= null;
   var userTags = new Set([]);
+  var tags = [];
 
   this.getTags = function(){
     var command = 20;
-    var params = 'command='+command;
-    var response = makeRequest(params);
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest(formData);
     try{
+        console.log(response);
         tags = JSON.parse(response).tags;
     }catch(err){
         console.log('failed to get tags');
@@ -64,8 +66,10 @@ function HashTagHanlder(){
   this.displayHashTags = function(){
     selectCount = 0;
     var container = document.getElementById('tag_selection');
-    var tags = null;
-    tags = this.getTags();
+    var tags = this.getTags();
+    if(!tags){
+        tags = [];
+    }
     var tag;
     for(var i=0; i < tags.length; i++){
         tag = document.createElement("button");
