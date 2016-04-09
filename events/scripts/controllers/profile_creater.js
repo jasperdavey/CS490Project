@@ -13,13 +13,25 @@ function initSignUpFormHanlder(){
   var noSpecialChar = new RegExp("^[a-zA-Z][a-zA-Z_.0-9]+$");
   var minLength = /[a-zA-Z0-9~!@#$%^&*()+=-]{6,}/;
   var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  var valid = false;
   document.getElementById('sign_up_form_indi').oninput = function( form ){
-    var e =  form.srcElement;
-    var id = form.srcElement.id;
-    var valid = false;
+      var e =  form.srcElement;
+      var id = form.srcElement.id;
+      validateForm(e,id);
+  }
+
+  document.getElementById('sign_up_form_org').oninput = function( form ){
+      var e =  form.srcElement;
+      var id = form.srcElement.id;
+      validateForm(e,id);
+  }
+
+  function validateForm(e, id){
     switch (id) {
       case 'lastname':
       case 'firstname':
+      case 'organization_name':
         valid = alpa.test(e.value);
         if( !valid ){
           e.style.backgroundColor ='red';
@@ -39,6 +51,7 @@ function initSignUpFormHanlder(){
       }
         break;
       case 'email':
+      case 'org_email':
       valid = emailRegEx.test(e.value);
       if( !valid ){
         e.style.backgroundColor ='red';
@@ -50,6 +63,9 @@ function initSignUpFormHanlder(){
       break;
       case 'email_match':
       email = document.getElementById('email').value;
+      if(!email){
+        email = document.getElementById('org_email').value;
+      }
        if ( email != e.value){
          e.style.backgroundColor ='red';
        }else{
@@ -58,6 +74,7 @@ function initSignUpFormHanlder(){
        }
        break;
        case 'password':
+       case 'org_password':
        valid = minLength.test(e.value);
        if ( !valid ){
          e.style.backgroundColor ='red';
@@ -66,8 +83,11 @@ function initSignUpFormHanlder(){
          e.style.color = 'white';
        }
        break;
-       case 'password_match':
+      case 'password_match':
       password = document.getElementById('password').value;
+      if (!password){
+        password = document.getElementById('org_password').value;
+      }
       if ( password != e.value){
         e.style.backgroundColor ='red';
       }else{
@@ -75,9 +95,7 @@ function initSignUpFormHanlder(){
         e.style.color = 'white';
       }
       break;
-
       default:
-
     }
   }
 }
@@ -93,7 +111,7 @@ function indiSignUp(){
     var password = document.forms['sign_up_form_indi']['password'].value;
 
     //form verification
-    if( !(firstname && lastname && username && email && password) ){
+    if( !( firstname && lastname && username && email && password ) ){
         alert('please fill in all fields');
         return;
     }
