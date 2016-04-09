@@ -21,83 +21,83 @@ function initSignUpFormHanlder(){
       validateForm(e,id);
   }
 
-  document.getElementById('sign_up_form_org').oninput = function( form ){
-      var e =  form.srcElement;
-      var id = form.srcElement.id;
-      validateForm(e,id);
-  }
+    document.getElementById('sign_up_form_org').oninput = function( form ){
+        var e =  form.srcElement;
+        var id = form.srcElement.id;
+        validateForm(e,id);
+      }
 
-  function validateForm(e, id){
-    switch (id) {
-      case 'lastname':
-      case 'firstname':
-      case 'organization_name':
-        valid = alpa.test(e.value);
+    function validateForm(e, id){
+      switch (id) {
+        case 'lastname':
+        case 'firstname':
+        case 'organization_name':
+          valid = alpa.test(e.value);
+          if( !valid ){
+            e.style.backgroundColor ='red';
+          }else{
+            e.style.backgroundColor ='green';
+            e.style.color = 'white';
+          }
+          console.log(valid);
+          break;
+        case 'username':
+        valid = noSpecialChar.test(e.value);
         if( !valid ){
           e.style.backgroundColor ='red';
         }else{
           e.style.backgroundColor ='green';
           e.style.color = 'white';
         }
-        console.log(valid);
+          break;
+        case 'email':
+        case 'org_email':
+        valid = emailRegEx.test(e.value);
+        if( !valid ){
+          e.style.backgroundColor ='red';
+        }else{
+          e.style.backgroundColor ='green';
+          e.style.color = 'white';
+          email = e.value;
+        }
         break;
-      case 'username':
-      valid = noSpecialChar.test(e.value);
-      if( !valid ){
-        e.style.backgroundColor ='red';
-      }else{
-        e.style.backgroundColor ='green';
-        e.style.color = 'white';
-      }
+        case 'email_match':
+        email = document.getElementById('email').value;
+        if(!email){
+          email = document.getElementById('org_email').value;
+        }
+         if ( email != e.value){
+           e.style.backgroundColor ='red';
+         }else{
+           e.style.backgroundColor ='green';
+           e.style.color = 'white';
+         }
+         break;
+         case 'password':
+         case 'org_password':
+         valid = minLength.test(e.value);
+         if ( !valid ){
+           e.style.backgroundColor ='red';
+         }else{
+           e.style.backgroundColor ='green';
+           e.style.color = 'white';
+         }
+         break;
+        case 'password_match':
+        password = document.getElementById('password').value;
+        if (!password){
+          password = document.getElementById('org_password').value;
+        }
+        if ( password != e.value){
+          e.style.backgroundColor ='red';
+        }else{
+          e.style.backgroundColor ='green';
+          e.style.color = 'white';
+        }
         break;
-      case 'email':
-      case 'org_email':
-      valid = emailRegEx.test(e.value);
-      if( !valid ){
-        e.style.backgroundColor ='red';
-      }else{
-        e.style.backgroundColor ='green';
-        e.style.color = 'white';
-        email = e.value;
+        default:
       }
-      break;
-      case 'email_match':
-      email = document.getElementById('email').value;
-      if(!email){
-        email = document.getElementById('org_email').value;
-      }
-       if ( email != e.value){
-         e.style.backgroundColor ='red';
-       }else{
-         e.style.backgroundColor ='green';
-         e.style.color = 'white';
-       }
-       break;
-       case 'password':
-       case 'org_password':
-       valid = minLength.test(e.value);
-       if ( !valid ){
-         e.style.backgroundColor ='red';
-       }else{
-         e.style.backgroundColor ='green';
-         e.style.color = 'white';
-       }
-       break;
-      case 'password_match':
-      password = document.getElementById('password').value;
-      if (!password){
-        password = document.getElementById('org_password').value;
-      }
-      if ( password != e.value){
-        e.style.backgroundColor ='red';
-      }else{
-        e.style.backgroundColor ='green';
-        e.style.color = 'white';
-      }
-      break;
-      default:
     }
-  }
 }
 
 function indiSignUp(){
@@ -128,15 +128,13 @@ function indiSignUp(){
     formData.append('password',password);
 
     var response = makeRequest(formData);
-    try{
-        var jsonObject = JSON.parse(response);
-        if(jsonObject.status == 200 ){
-            window.locaiton.href='/~tr88/events/profile_creation.html';
-        }
-    }catch(err){
-        console.log('failed to parse response');
-    }
     console.log("response: "+response);
+
+    if( response == 200 ){
+      window.location.href='/~tr88/events/views/profile_creation.html';
+    }else{
+      console.log('failed to save info');
+    }
 }
 
 //sign up
@@ -145,8 +143,8 @@ function orgSignUp(){
     var command = 0.1;
     var redirect_url = "/~tr88/events/views/tag_selection.html";
     var organization = document.forms['sign_up_form_org']['organization_name'].value;
-    var email = document.forms['sign_up_form_org']['email'].value;
-    var password = document.forms['sign_up_form_org']['password'].value;
+    var email = document.forms['sign_up_form_org']['org_email'].value;
+    var password = document.forms['sign_up_form_org']['org_password'].value;
 
     //form verification
     if( !( organization && email && password) ){
@@ -156,23 +154,25 @@ function orgSignUp(){
 
     document.forms['sign_up_form_org'].reset();
 
+    // var params = "command="+command
+    //   +"&"+"organization="+organization
+    //   +"&"+"email="+email
+    //   +"&"+"password="+password;
 
-    var params = "command="+command
-      +"&"+"organization="+organization
-      +"&"+"email="+email
-      +"&"+"password="+password;
+    var formData = new FormData();
+    formData.append('command',command);
+    formData.append('organization',organization);
+    formData.append('email',email);
+    formData.append('password',password);
 
-      console.log(params);
+    var response = makeRequest(formData);
+    console.log("response: "+response);
+
+    if(response == 200 ){
       window.location.href=profile_creation;
-      // var response = makeRequest(params);
-      // console.log("response: "+response);
-      //
-      // var data = JSON.parse(response);
-      // if(data.status == 200 ){
-      //   window.location.href=profile_creation;
-      // }else{
-      //   alert("failed to creater new user account");
-      // }
+    }else{
+      alert("failed to save info");
+    }
 }
 
 
@@ -186,10 +186,11 @@ function confirmUserBio(node){
     }
 }
 //TODO
-//send user info to back end
+//creat new user
 function setUserInfo(){
     var userBio = document.getElementById('user_bio').value;
     var userTags = hashTagHanlder.getUserTags();
+
     if( userTags.size <= 0){
         alert("please select atleast 1 tag");
         return;
@@ -199,11 +200,16 @@ function setUserInfo(){
             return;
         }
     }
-    var hashTags = JSON.stringify({'tags':Array.from(userTags),'bio':userBio});
-    console.log(hashTags);
-    console.log('tags: '+JSON.parse(hashTags).tags);
-    console.log('bio: '+JSON.parse(hashTags).bio);
-    window.location.href=dashboard_page;
+    var userInfo = JSON.stringify({'tags':Array.from(userTags),'bio':userBio});
+    var formData = new FormData();
+    formData.append('command',2);
+    formData.append('user_info',userInfo)
+    console.log(userInfo);
+    var response = makeRequest(formData);
+    console.log(response);
+    // console.log('tags: '+JSON.parse(hashTags).tags);
+    // console.log('bio: '+JSON.parse(hashTags).bio);
+    // window.location.href=dashboard_page;
 }
 
 function replacer(){

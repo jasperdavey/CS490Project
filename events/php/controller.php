@@ -23,12 +23,18 @@ $params = buildParams();
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['password'] = $_POST['password'];
+        echo 200;
         break;
     case 2:
         if( isset($_SESSION['organization']) ){
             // createOrgAccount();
+            $params = $params.'&username='.$_SESSION['organization'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
+            echo $params;
         }else{
-            createUser($params);
+            $params = $params.'&firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].
+            '&username='.$_SESSION['username'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
+            echo $params;
+            // createUser($params);
         }
         break;
 
