@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<form id="upload_form" action="" method="POST">
+  <input type="file" id="fileselect" name= "fileselect[]" </input>
+  <button type="submit" >Upload</button>
+</form>
+
+<script type="text/javascript">
+  var frm = document.getElementById("upload_form");
+  frm.onsubmit = function(ev){
+    ev.preventDefault();
+    console.log('prevent default action');
+    var formData = new FormData();
+    var fileSelect = document.getElementById('fileselect');
+    var files = fileSelect.files;
+    var file = files[0];
+    console.log('file name:'+file.name);
+    var cmd = 3;
+
+    formData.append('command',cmd);
+    formData.append('image',file,file.name);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','/~tr88/events/php/image_uploader.php',true);
+    xhr.onload = function () {
+      console.log('starting upload');
+      if (xhr.status === 200) {
+      // File(s) uploaded.
+      console.log('file uploaded');
+      var response = xhr.responseText;
+      console.log('response: '+response);
+    } else {
+      alert('An error occurred!');
+    }
+    }
+    xhr.send(formData);
+
+  }
+</script>
+
+</body>
+</html>
