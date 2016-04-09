@@ -7,7 +7,7 @@ function initHashTagHandler(){
 }
 function indiSignUp(){
     console.log('signing up');
-    var command = 1;
+    var command = .1;
     var redirect_url = "/~tr88/events/views/tag_selection.html";
     var firstname = document.forms['sign_up_form_indi']['firstname'].value;
     var lastname = document.forms['sign_up_form_indi']['lastname'].value;
@@ -33,8 +33,15 @@ function indiSignUp(){
     formData.append('password',password);
 
     var response = makeRequest(formData);
+    try{
+        var jsonObject = JSON.parse(response);
+        if(jsonObject.status == 200 ){
+            window.locaiton.href='/~tr88/events/profile_creation.html';
+        }
+    }catch(err){
+        console.log('failed to parse response');
+    }
     console.log("response: "+response);
-
 }
 
 //sign up

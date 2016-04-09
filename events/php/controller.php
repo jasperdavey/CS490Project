@@ -15,7 +15,7 @@ $params = buildParams();
         loggedInCheck();
         break;
 
-    case 1: // create user
+    case .1: // create user
         $_SESSION['new_user'] = true;
         $_SESSION['firstname'] = $_POST['firstname'];
         $_SESSION['lastname'] = $_POST['lastname'];
@@ -23,7 +23,8 @@ $params = buildParams();
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['password'] = $_POST['password'];
-
+        break;
+    case 2:
         if( isset($_SESSION['organization']) ){
             // createOrgAccount();
         }else{
