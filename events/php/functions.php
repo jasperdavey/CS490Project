@@ -24,6 +24,19 @@ function getData($params){
   echo $result;
 }
 
+function buildParams(){
+    $params= '';
+    $size = count($_POST);
+    $tracker = 0;
+    foreach ($_POST as $key => $value){
+        $params = $params.$key.'='.$value;
+        if( $tracker < $size-1){
+            $params = $params.'&';
+        }
+        $tracker+=1;
+    }
+    return $params;
+}
 
 function login(){
     $info = file_get_contents('php://input');

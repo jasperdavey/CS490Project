@@ -21,8 +21,8 @@
     var file = files[0];
     console.log('file name:'+file.name);
     var cmd = 3;
-
     formData.append('command',cmd);
+    formData.append('test','test');
     formData.append('image',file,file.name);
 
     var xhr = new XMLHttpRequest();
