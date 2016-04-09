@@ -5,6 +5,83 @@ function initHashTagHandler(){
     hashTagHanlder = new HashTagHanlder();
     hashTagHanlder.displayHashTags();
 }
+
+function initSignUpFormHanlder(){
+  var email = null;
+  var password = null;
+  var alpa = /(^[a-zA-Z]{2,})$/;
+  var noSpecialChar = new RegExp("^[a-zA-Z][a-zA-Z_.0-9]+$");
+  var minLength = /[a-zA-Z0-9~!@#$%^&*()+=-]{6,}/;
+  var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  document.getElementById('sign_up_form_indi').oninput = function( form ){
+    var e =  form.srcElement;
+    var id = form.srcElement.id;
+    var valid = false;
+    switch (id) {
+      case 'lastname':
+      case 'firstname':
+        valid = alpa.test(e.value);
+        if( !valid ){
+          e.style.backgroundColor ='red';
+        }else{
+          e.style.backgroundColor ='green';
+          e.style.color = 'white';
+        }
+        console.log(valid);
+        break;
+      case 'username':
+      valid = noSpecialChar.test(e.value);
+      if( !valid ){
+        e.style.backgroundColor ='red';
+      }else{
+        e.style.backgroundColor ='green';
+        e.style.color = 'white';
+      }
+        break;
+      case 'email':
+      valid = emailRegEx.test(e.value);
+      if( !valid ){
+        e.style.backgroundColor ='red';
+      }else{
+        e.style.backgroundColor ='green';
+        e.style.color = 'white';
+        email = e.value;
+      }
+      break;
+      case 'email_match':
+      email = document.getElementById('email').value;
+       if ( email != e.value){
+         e.style.backgroundColor ='red';
+       }else{
+         e.style.backgroundColor ='green';
+         e.style.color = 'white';
+       }
+       break;
+       case 'password':
+       valid = minLength.test(e.value);
+       if ( !valid ){
+         e.style.backgroundColor ='red';
+       }else{
+         e.style.backgroundColor ='green';
+         e.style.color = 'white';
+       }
+       break;
+       case 'password_match':
+      password = document.getElementById('password').value;
+      if ( password != e.value){
+        e.style.backgroundColor ='red';
+      }else{
+        e.style.backgroundColor ='green';
+        e.style.color = 'white';
+      }
+      break;
+
+      default:
+
+    }
+  }
+}
+
 function indiSignUp(){
     console.log('signing up');
     var command = .1;
