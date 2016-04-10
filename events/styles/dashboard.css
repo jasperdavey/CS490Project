@@ -26,7 +26,7 @@
 }
 
 .dashboard_menu{
-  z-index: 100000;
+  z-index: 1000;
   visibility: collapse;
   margin-top: 5px;
   position: absolute;
@@ -48,8 +48,10 @@
 }
 
 .dashboard_menu ul{
+  height: auto;
+  position: relative;
   margin-top: 50px;
-  padding-left: 0;
+  padding: 0px;
 }
 
 .dashboard_menu li{
@@ -62,6 +64,7 @@
   line-height: 35px;
   text-align: center;
   font-size: 16pt;
+  margin-top: 0px;
   margin-bottom: 5px;
 }
 
@@ -112,11 +115,13 @@
 
 .menu_button{
     position: absolute;
-    right: 0;
-    margin:10px;
+    top:2px;
+    right: 10px;
     width: 45px;
     height: 45px;
     cursor: pointer;
+    background-size: auto;
+    background-repeat: no-repeat;
     background-image:url("/~tr88/events/images/menu_icon.png");
 }
 #NJIT_logo{
@@ -127,10 +132,10 @@
 
 
 .create_event_container{
-  visibility: collapse;;
+  visibility: collapse;
+  z-index: 10000;
   background-color: #8B0000;
   position: absolute;
-  z-index: 100;
   top:40px;
   left: 150px;
   width: 75%;
@@ -267,6 +272,7 @@
 }
 
 .events_list_container{
+
     position: absolute;
     margin-top: 10px;
     width: inherit;
@@ -291,6 +297,7 @@
 }
 
 .sub_header{
+    z-index: 1001;
     position: absolute;
     height: 45px;
     width: 100%;
@@ -300,9 +307,26 @@
     display: inline-block;
     width: 40px;
     height: 40px;
-    background-size: contain;
-    background-color:white;
+    background-color: white;
+    background-image: 'url(/~tr88/events/images/default_user.jpg)';
     float: right;
     margin-right: 65px;
     margin-top: 5px;
+    cursor: pointer;
+}
+
+.profile_container{
+  visibility: collapse;
+  top: 100px;
+  z-index: 1000000;
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  background-color: white;
+}
+
+.profile_container #profile_close_icon{
+  float: right;
+  margin: 5px;
+  cursor: pointer;
 }

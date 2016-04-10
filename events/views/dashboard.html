@@ -4,25 +4,28 @@
     <script src="/~tr88/events/scripts/controllers/common.js"></script>
     <script src="/~tr88/events/scripts/controllers/login.js"></script>
     <script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
+    <script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
     <link rel="stylesheet" href="/~tr88/events/styles/dashboard.css">
 
   </head>
   <body onload="initDashBoard()">
+
     <div id="dasboard_cotainer" class="dashboard_container">
+
       <div id="dashboard_header">
         <div id="dash_board_logo">EVENTS! @ NJIT</div>
       </div>
       <div class="sub_header">
         <div id="username" class="dashboard_theme_username"></div>
-        <div id="profile_header_image" class="profile_image"></div>
+        <img id="profile_header_image" class="profile_image" src="/~tr88/events/images/default_user.jpg" onclick="showProfileView()"></img>
         <div id="dashboard_menu_button" class="menu_button" onclick="showDashMenu()"></div>
       </div>
       <div id="dashboard_menu" class="dashboard_menu">
-          <div id="close_menu" onclick="closeDashMenu()">X</div>
           <ul>
             <li onclick="initCreateEvent()">Create Event</li>
+            <li onclick="showProfileView()">Edit Profile</li>
             <li onclick="signOut()">Sign out</li>
           <ul>
       </div>
@@ -92,22 +95,29 @@
             </div>
         </div>
 
-        <div id="tags_container">
-            <div class="container_wrapper">
-              <div id="tag" class="profile_creater_container">
-                <h1>Let's make finding EVENTS! EASY.</h1>
-                <h2>Select some #tags that matches event type!</h2>
-                <h4>selected tags: (at least 1)</h4>
-                <div id="hashtags" class="hashtags">
-                <div id="selected_tags" class="selected_tags"></div>
-                <h4>tag selection:</h4>
-                <div id="tag_selection" class="tag_selection"></div>
+          <div id="tags_container">
+              <div class="container_wrapper">
+                <div id="tag" class="profile_creater_container">
+                  <h1>Let's make finding EVENTS! EASY.</h1>
+                  <h2>Select some #tags that matches event type!</h2>
+                  <h4>selected tags: (at least 1)</h4>
+                  <div id="hashtags" class="hashtags">
+                  <div id="selected_tags" class="selected_tags"></div>
+                  <h4>tag selection:</h4>
+                  <div id="tag_selection" class="tag_selection"></div>
+                </div>
               </div>
-            </div>
+          </div>
         </div>
-    </div>
       </div>
+    </div>
 
+    <!-- user profile edit view  -->
+    <div id="profile_container" class="profile_container">
+      <img id="profile_close_icon" class="profile_close_icon" src="/~tr88/events/images/x_icon_red.png" onclick="closeProfileView(this.parentNode)"></img>
+    </div>
+
+</div>
 
   </body>
 

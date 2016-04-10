@@ -23,17 +23,21 @@ function initDashBoard(){
 
 
 function showDashMenu(){
+
     var x = document.getElementById('dashboard_menu');
     var y = document.getElementById('dashboard_menu_button');
-    y.style.visibility="collapse";
-    x.style.visibility="visible";
+
+    if(x.style.visibility == 'visible'){
+      y.style.backgroundImage='url(/~tr88/events/images/menu_icon.png)';
+      x.style.visibility="collapse";
+    }else{
+      y.style.backgroundImage='url(/~tr88/events/images/x_icon.png)'
+      x.style.visibility="visible";
+    }
 }
 
 function closeDashMenu(){
-    var x = document.getElementById('dashboard_menu');
-    x.style.visibility="collapse";
-    var y = document.getElementById('dashboard_menu_button');
-    y.style.visibility="visible";
+    showDashMenu();
 }
 
 function initCreateEvent(){
