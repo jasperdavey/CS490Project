@@ -4,6 +4,7 @@
   margin-right: auto;
 }
 
+
 .profile_creater_container{
     position: absolute;
     padding: 20px;
@@ -23,10 +24,6 @@
   width: 100%;
 }
 
-.hashtags textarea{
-  background-color:white;
-  max-height: 65px;
-}
 
 .profile_creater_container button{
   float: right;
@@ -43,10 +40,36 @@
   height: 100px;
 }
 
+.hashtags{
+    width: inherit;
+}
 .tag_selection{
   overflow-y: scroll;
   overflow-x: hidden;
   white-space: nowrap;
   width: 512px;
   height: 200px;
+}
+
+.custom_tag_container{
+    width: 100%;
+    height: 25px;
+}
+
+.custom_tag_container input{
+    float: left;
+    height: inherit;
+    width: 150px;
+    font-size: 12pt;
+    line-height: inherit;
+    padding: 0px;
+    padding-left: 5px;
+}
+
+.custom_tag_container button{
+    float: left;
+    margin-top: 0px;
+    padding: 5px;
+    height: inherit;
+    width: 80px;
 }
