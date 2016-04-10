@@ -202,11 +202,14 @@ function setUserInfo(){
     }
     var userInfo = JSON.stringify({'tags':Array.from(userTags),'bio':userBio});
     var formData = new FormData();
-    formData.append('command',2);
+    formData.append('command',1);
     formData.append('user_info',userInfo)
     console.log(userInfo);
     var response = makeRequest(formData);
     console.log(response);
+    if( response == 200 ){
+      window.location.href=dashboard_page;
+    }
     // console.log('tags: '+JSON.parse(hashTags).tags);
     // console.log('bio: '+JSON.parse(hashTags).bio);
     // window.location.href=dashboard_page;

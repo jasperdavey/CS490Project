@@ -2,8 +2,12 @@
 session_start();
 include_once 'functions.php';
 
+
 $command= $_POST['command'];
 $params = buildParams();
+
+//set up testing output file
+
 
   switch ( $command ) {
 
@@ -25,17 +29,24 @@ $params = buildParams();
         $_SESSION['password'] = $_POST['password'];
         echo 200;
         break;
-    case 2:
+    case 1:
         if( isset($_SESSION['organization']) ){
-            // createOrgAccount();
             $params = $params.'&username='.$_SESSION['organization'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
-            echo $params;
+            write("case 1-creating organization:\n".$params);
+            //TODO remove test case
+            echo 200; // testing only
+            // createOrgAccount();
+
         }else{
             $params = $params.'&firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].
             '&username='.$_SESSION['username'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
-            echo $params;
+            write("case 1-creating single user:\n".$params);
+            //TODO remove test
+            echo 200;  // testing only
             // createUser($params);
+
         }
+
         break;
 
     case 2: // login

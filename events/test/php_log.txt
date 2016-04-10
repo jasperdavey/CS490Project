@@ -1,0 +1,3 @@
+2016-04-10 10:26:31
+case 1-creating single user:
+command=1&user_info={"tags":["#ComputerScience","#Electrical"],"bio":"test"}&firstname=Totaram&lastname=Ramrattan&username=tr88&email=tr88@njit.edu&password=pass123
