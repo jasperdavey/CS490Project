@@ -128,6 +128,7 @@ function getTags(){
 
 // write debug output to file do not echo
       function write($string){
+        if($debug == false) return;
         $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt','w');
         if( !$handle ){
           echo 'failed to open log for writing';

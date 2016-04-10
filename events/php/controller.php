@@ -5,7 +5,7 @@ include_once 'functions.php';
 
 $command= $_POST['command'];
 $params = buildParams();
-
+$debug = false;
 //set up testing output file
 
 
