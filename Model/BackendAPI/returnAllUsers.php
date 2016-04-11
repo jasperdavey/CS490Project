@@ -1,4 +1,5 @@
 <?php
+    // Input: none
     $status = 200;
     $userIDs = [ ];
 
