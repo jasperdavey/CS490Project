@@ -5,7 +5,7 @@
     $status = 200;
     $friendlist = [ ];
     $pendingFriendRequests = [ ];
-
+    
     // Get user information
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->targetID ) );
     $user = mysql_query( $sql, $connection );
@@ -50,7 +50,7 @@
             reportBack( $status );
     	}
     }
-    
+
     reportBack( $status );
     function reportBack( $status )
     {

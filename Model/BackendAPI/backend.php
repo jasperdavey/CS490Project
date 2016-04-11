@@ -95,7 +95,6 @@
     }
     elseif ( $result->command = 15 )
     {
-        echo "HERE";
         include 'acceptFriendRequest.php';
     }
     else

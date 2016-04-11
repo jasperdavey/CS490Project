@@ -3,11 +3,12 @@
     // Input initiatorID, targetID
     // This scripts assumes user in pendingFriendRequests
     $status = 200;
+    /*
     $friendlist = [ ];
     $pendingFriendRequests = [ ];
     $templist = [ ];
     $initiatorIDFriendList = [ ];
-    /*
+
     // get targetID information
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->targetID ) );
 
