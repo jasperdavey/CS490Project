@@ -93,9 +93,14 @@
     {
         include 'removeUserTag.php';
     }
+    // Accept friend request
     elseif ( $result->command == 15 )
     {
         include 'acceptFriendRequest.php';
+    }
+    elseif ( $result->command = 16 )
+    {
+        include 'returnAllUsers.php';
     }
     else
     {
