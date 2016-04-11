@@ -31,7 +31,7 @@
 
     // Add initiatorID to targetID's friendlist
     array_push( $friendlist, $result->initiatorID );
-
+    /*
     // Remove initiatorID from pendingFriendRequests
     foreach ( $pendingFriendRequests as $singleFriend )
     {
@@ -40,7 +40,7 @@
             array_push( $templist, $singleFriend );
         }
     }
-    /*
+
     // Update targetID
     $sql = sprintf( "UPDATE Users SET friends = '%s', pendingFriendRequests = '%s' WHERE id = '%s'",
                      mysql_real_escape_string( implode( $templist ) ), mysql_real_escape_string( implode( $pendingFriendRequests ) ),
