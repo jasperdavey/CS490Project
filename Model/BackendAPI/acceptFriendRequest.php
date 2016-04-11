@@ -7,7 +7,7 @@
     $pendingFriendRequests = [ ];
     $templist = [ ];
     $initiatorIDFriendList = [ ];
-
+    /*
     // get targetID information
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->targetID ) );
 
@@ -31,7 +31,7 @@
 
     // Add initiatorID to targetID's friendlist
     array_push( $friendlist, $result->initiatorID );
-    /*
+
     // Remove initiatorID from pendingFriendRequests
     foreach ( $pendingFriendRequests as $singleFriend )
     {
