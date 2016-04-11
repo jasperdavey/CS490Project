@@ -26,7 +26,7 @@
         $friendlist = explode( ",", $row[ 'friends' ] );
         $pendingFriendRequests = explode( ",", $row[ 'pendingFriendRequests' ] );
     }
-
+    /*
     // Check if initiatorID already has requested this person
     if ( in_array( $result->initiatorID, $friendlist, true ) || in_array( $result->initiatorID, $pendingFriendRequests, true ) )
     {
@@ -51,7 +51,7 @@
             reportBack( $status );
     	}
     }
-
+    */
     reportBack( $status );
     function reportBack( $status )
     {
