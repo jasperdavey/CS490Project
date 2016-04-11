@@ -8,7 +8,7 @@
 
     // Get user information
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->targetID ) );
-
+    echo "$sql";
     $user = mysql_query( $sql, $connection );
 
     if ( !$user )
