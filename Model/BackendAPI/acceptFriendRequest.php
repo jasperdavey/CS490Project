@@ -40,7 +40,7 @@
             array_push( $templist, $singleFriend );
         }
     }
-
+    /*
     // Update targetID
     $sql = sprintf( "UPDATE Users SET friends = '%s', pendingFriendRequests = '%s' WHERE id = '%s'",
                      mysql_real_escape_string( implode( $templist ) ), mysql_real_escape_string( implode( $pendingFriendRequests ) ),
@@ -93,7 +93,7 @@
         $status = 404;
         reportBack( $status );
     }
-
+    */
     reportBack( $status );
     function reportBack( $status )
     {
