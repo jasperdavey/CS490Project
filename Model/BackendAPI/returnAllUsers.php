@@ -17,7 +17,7 @@
 
     while ( $row = mysql_fetch_assoc( $allUsers ) )
     {
-        $userIDs = explode( ",", $row[ 'id' ] );
+        array_push( $userIDs, explode( ",", $row[ 'id' ] ) );
     }
 
     reportBack( $status, $userIDs );
