@@ -53,7 +53,7 @@
     {
         include 'updateUserTags.php';
     }
-    // Add User friends
+    // Add User friends DONE
     elseif ( $result->command == 7 )
     {
         include 'addUserFriends.php';
@@ -84,14 +84,19 @@
         include 'search.php';
     }
     // Return all events friends are going to
-    elseif ( $results->command == 13 )
+    elseif ( $result->command == 13 )
     {
         include 'returnAllFriendsEvents.php';
     }
     // Remove a user tag
-    elseif ( $results->command = 14 )
+    elseif ( $result->command = 14 )
     {
         include 'removeUserTag.php';
+    }
+    elseif ( $result->command = 15 )
+    {
+        echo "HERE";
+        include 'acceptFriendRequest.php';
     }
     else
     {
