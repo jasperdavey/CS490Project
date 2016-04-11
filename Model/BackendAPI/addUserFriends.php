@@ -5,7 +5,7 @@
     $status = 200;
     $friendlist = [ ];
     $pendingFriendRequests = [ ];
-    
+
     // Get user information
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->targetID ) );
     $user = mysql_query( $sql, $connection );
@@ -27,7 +27,7 @@
     }
 
     // Check if initiatorID already has requested this person
-    if ( in_array( $result->initiatorID, $friendlist, true ) || in_array( $result->initiatorID, $pendingFriendRequests, true ) )
+    if ( in_array( $result->initiatorID, $friendlist ) || in_array( $result->initiatorID, $pendingFriendRequests ) )
     {
         $status = 304;
         reportBack( $status );
