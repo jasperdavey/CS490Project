@@ -5,10 +5,9 @@
     $status = 200;
     $friendlist = [ ];
     $pendingFriendRequests = [ ];
-
+    /*
     // Get user information
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->targetID ) );
-    echo "$sql";
     $user = mysql_query( $sql, $connection );
 
     if ( !$user )
@@ -19,7 +18,7 @@
         $status = 404;
         reportBack( $status );
 	}
-    /*
+
     // Explode User's friendlist
     while ( $row = mysql_fetch_assoc( $user ) )
     {
