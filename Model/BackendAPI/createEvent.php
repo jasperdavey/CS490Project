@@ -4,10 +4,11 @@
     $defaultImage = 'http://web.njit.edu/~jmd57/default.jpg';
     $status = 200;
 
-    $sql = sprintf( "INSERT INTO Events ( name, image, bio, dateAndTime, location )
-            VALUES ( '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
+    $sql = sprintf( "INSERT INTO Events ( name, image, bio, startDateTime, endDataTime, location, owner )
+            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->bio ),
-            mysql_real_escape_string( $result->dateAndTime ), mysql_real_escape_string( $result->location )
+            mysql_real_escape_string( $result->startDateTime ), mysql_real_escape_string( $result->endDataTime )
+            mysql_real_escape_string( $result->location ), mysql_real_escape_string( $result->owner )
 
     );
 

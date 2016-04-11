@@ -53,10 +53,10 @@
     {
         include 'updateUserTags.php';
     }
-    // Update User friends
+    // Add User friends
     elseif ( $result->command == 7 )
     {
-        include 'updateUserFriends.php';
+        include 'addUserFriends.php';
     }
     // Query recommendations DONE
     elseif ( $result->command == 8 )
