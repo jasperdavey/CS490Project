@@ -22,7 +22,6 @@
     // get JSON from POST
     $json = $_POST[ 'json' ];
     $result = json_decode( $json );
-    echo "$result->command";
 
     // Create User DONE
     if ( $result->command == 1 )
@@ -90,11 +89,11 @@
         include 'returnAllFriendsEvents.php';
     }
     // Remove a user tag
-    elseif ( $result->command = 14 )
+    elseif ( $result->command == 14 )
     {
         include 'removeUserTag.php';
     }
-    elseif ( $result->command = 15 )
+    elseif ( $result->command == 15 )
     {
         include 'acceptFriendRequest.php';
     }

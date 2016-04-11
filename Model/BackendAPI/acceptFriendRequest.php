@@ -3,7 +3,7 @@
     // Input initiatorID, targetID
     // This scripts assumes user in pendingFriendRequests
     $status = 200;
-    /*
+
     $friendlist = [ ];
     $pendingFriendRequests = [ ];
     $templist = [ ];
@@ -94,7 +94,7 @@
         $status = 404;
         reportBack( $status );
     }
-    */
+
     reportBack( $status );
     function reportBack( $status )
     {
