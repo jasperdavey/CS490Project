@@ -19,14 +19,14 @@
         $status = 404;
         reportBack( $status );
 	}
-
+    /*
     // Explode User's friendlist
     while ( $row = mysql_fetch_assoc( $user ) )
     {
         $friendlist = explode( ",", $row[ 'friends' ] );
         $pendingFriendRequests = explode( ",", $row[ 'pendingFriendRequests' ] );
     }
-    /*
+
     // Check if initiatorID already has requested this person
     if ( in_array( $result->initiatorID, $friendlist, true ) || in_array( $result->initiatorID, $pendingFriendRequests, true ) )
     {
