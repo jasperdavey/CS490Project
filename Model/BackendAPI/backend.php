@@ -1,4 +1,6 @@
 <?php
+    // Author: Jasper Davey
+
     $databaseName = "jmd57";
     $serverName = 'sql.njit.edu';
     $userName = 'jmd57';
@@ -54,7 +56,7 @@
     // Update User friends
     elseif ( $result->command == 7 )
     {
-        include 'updateUserFriends';
+        include 'updateUserFriends.php';
     }
     // Query recommendations DONE
     elseif ( $result->command == 8 )
@@ -65,6 +67,31 @@
     elseif ( $result->command == 9 )
     {
         include 'returnUserInfo.php';
+    }
+    // Add user to event
+    elseif ( $result->command == 10 )
+    {
+        include 'updateUserEvents.php';
+    }
+    // Return all tags ( Needs to be per populated )
+    elseif ( $result->command == 11 )
+     {
+        include 'returnAllTags.php';
+    }
+    // Return search results
+    elseif ( $result->command == 12 )
+    {
+        include 'search.php';
+    }
+    // Return all events friends are going to
+    elseif ( $results->command == 13 )
+    {
+        include 'returnAllFriendsEvents.php';
+    }
+    // Remove a user tag
+    elseif ( $results->command = 14 )
+    {
+        include 'removeUserTag.php';
     }
     else
     {

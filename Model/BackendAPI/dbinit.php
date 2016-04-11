@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
 
     $databaseName = "jmd57";
     $serverName = 'sql1.njit.edu';
@@ -23,12 +24,14 @@
                                  email VARCHAR( 50 ) NOT NULL,
                                  password VARCHAR( 50 ) NOT NULL,
                                  username VARCHAR( 50 ) NOT NULL,
-                                 firstname VARCHAR( 50 ) NOT NULL,
-                                 lastname VARCHAR( 50 ) NOT NULL,
+                                 firstname VARCHAR( 50 ),
+                                 lastname VARCHAR( 50 ),
                                  bio VARCHAR( 1000 ),
                                  image VARCHAR( 1000 ) NOT NULL,
                                  events VARCHAR( 10000 ),
-                                 friends VARCHAR( 10000 )
+                                 friends VARCHAR( 10000 ),
+                                 pendingFriendRequests VARCHAR( 10000 ),
+                                 createdEvents VARCHAR( 10000 )
     )";
 
     if ( !mysql_query( $sql, $connection ) )
@@ -41,10 +44,13 @@
     // create Events table
     $sql = "CREATE TABLE Events ( id INT( 6 ) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                                   name VARCHAR( 50 ) NOT NULL,
+                                  owner VARCHAR( 1000 ) NOT NULL,
                                   image VARCHAR( 1000 ) NOT NULL,
                                   bio VARCHAR( 1000 ) NOT NULL,
-                                  dateAndTime VARCHAR( 1000 ) NOT NULL,
-                                  location VARCHAR( 1000 ) NOT NULL
+                                  startDateTime DATETIME NOT NULL,
+                                  endDataTime DATETIME NOT NULL,
+                                  location VARCHAR( 1000 ) NOT NULL,
+                                  attendees VARCHAR( 10000 )
     )";
 
     if ( !mysql_query( $sql, $connection ) )

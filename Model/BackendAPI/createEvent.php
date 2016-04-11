@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
 
     $defaultImage = 'http://web.njit.edu/~jmd57/default.jpg';
     $status = 200;

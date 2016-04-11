@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
 
     $defaultImage = 'http://web.njit.edu/~jmd57/default.jpg';
     $status = 200;
@@ -31,11 +32,11 @@
     {
 
         // Save tags. Assuming nice values given = 0 at this point
-        foreach ( $result->tags as $tag => $nice )
+        foreach ( $result->tags as $tag )
         {
             $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
                              VALUES ('%s', '%s', '%s', '%s' )", mysql_real_escape_string( $id ),
-                             mysql_real_escape_string( $tag ), mysql_real_escape_string( $nice ),
+                             mysql_real_escape_string( $tag ), mysql_real_escape_string( 0 ),
                              mysql_real_escape_string( 0 )
             );
 

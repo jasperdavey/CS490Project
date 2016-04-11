@@ -23,7 +23,7 @@
 	// Debug query in case of error
 	if (!result) {
 		$message = 'Invalid query: ' . mysql_error() . "\n";
-		$message .= 'Whole query: ' . $query;
+		$message .= 'Whole query: ' . $sql;
 		die($message);
 	}
 

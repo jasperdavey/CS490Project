@@ -1,5 +1,6 @@
 <?php
 
+    // Author: Jasper Davey
     // Input: id
     // Output: status, info
 
@@ -46,7 +47,8 @@
 
     while ( $row = mysql_fetch_assoc( $userInfo ) )
     {
-        $infoArray = array( 'id' => $row[ 'id' ], 'email' => $row[ 'email' ], 'firstname' => $row[ 'firstname' ],
+        $infoArray = array( 'id' => $row[ 'id' ], 'email' => $row[ 'email' ], 'username' => $row[ 'username' ],
+                            'firstname' => $row[ 'firstname' ],
                             'lastname' => $row[ 'lastname' ], 'bio' => $row[ 'bio' ], 'image' => $row[ 'image' ],
                             'events' => $row[ 'events' ], 'friends' => $row[ 'friends' ], 'tags' => $userTags
         );
