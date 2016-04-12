@@ -5,6 +5,28 @@
     $status = 200;
 
     // Should check if user already exists
+    $sql = sprintf( "SELECT * FROM Users WHERE email = '%s'",
+                     mysql_real_escape_string( $result->email )
+    );
+
+    $query = mysql_query($sql, $connection);
+
+    // Debug query in case of error
+    if ( !$query )
+    {
+        $message = 'Invalid query: ' . mysql_error( ) . "\n";
+        $message .= 'Whole query: ' . $sql;
+        print( $message );
+        $status = 404;
+        reportBack( $status, $id="NULL" );
+    }
+
+    // Case if given wrong username
+    if ( mysql_num_rows( $query ) == 0 )
+    {
+        $status = 404;
+        reportBack( $status, $id="NULL" );
+    }
 
     $events = implode( ",", $result->events );
 
