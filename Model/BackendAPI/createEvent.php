@@ -40,7 +40,7 @@
             reportBack( $status );
         }
     }
-
+    /*
     // Update event creator
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->owner ) );
 
@@ -74,7 +74,7 @@
         $status = 404;
         reportBack( $status );
     }
-
+    */
     // Upload image
 
     reportBack( $status );
