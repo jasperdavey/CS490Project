@@ -48,7 +48,7 @@
                                   image VARCHAR( 1000 ) NOT NULL,
                                   bio VARCHAR( 1000 ) NOT NULL,
                                   startDateTime DATETIME NOT NULL,
-                                  endDataTime DATETIME NOT NULL,
+                                  endDateTime DATETIME NOT NULL,
                                   location VARCHAR( 1000 ) NOT NULL,
                                   attendees VARCHAR( 10000 )
     )";
