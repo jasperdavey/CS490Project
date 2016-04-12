@@ -20,7 +20,7 @@
         $status = 404;
         reportBack( $status );
     }
-
+    /*
     $id = mysql_insert_id( );
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
@@ -40,7 +40,7 @@
             reportBack( $status );
         }
     }
-    /*
+
     // Update event creator
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->owner ) );
 
