@@ -20,7 +20,7 @@
         $status = 404;
         reportBack( $status );
     }
-    /*
+
     $id = mysql_insert_id( );
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
@@ -74,7 +74,7 @@
         $status = 404;
         reportBack( $status );
     }
-    */
+    
     // Upload image
 
     reportBack( $status );
