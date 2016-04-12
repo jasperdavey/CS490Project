@@ -74,7 +74,7 @@
         $status = 404;
         reportBack( $status );
     }
-    
+
     // Upload image
 
     reportBack( $status );
