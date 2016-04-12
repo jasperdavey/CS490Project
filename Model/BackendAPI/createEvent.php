@@ -3,13 +3,13 @@
 
     $defaultImage = 'http://web.njit.edu/~jmd57/default.jpg';
     $status = 200;
+    $eventsList = [ ];
 
-    $sql = sprintf( "INSERT INTO Events ( name, image, bio, startDateTime, endDataTime, location, owner )
+    $sql = sprintf( "INSERT INTO Events ( name, image, bio, startDateTime, endDateTime, location, owner )
             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->bio ),
-            mysql_real_escape_string( $result->startDateTime ), mysql_real_escape_string( $result->endDataTime )
+            mysql_real_escape_string( $result->startDateTime ), mysql_real_escape_string( $result->endDateTime )
             mysql_real_escape_string( $result->location ), mysql_real_escape_string( $result->owner )
-
     );
 
     if ( !mysql_query( $sql, $connection ) )
@@ -41,11 +41,43 @@
         }
     }
 
+    // Update event creator
+    $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->owner ) );
+
+    $user = mysql_query( $sql, $connection );
+
+    if ( !$user )
+    {
+        $message = 'Invalid query: ' . mysql_error() . "\n";
+        $message .= 'Whole query: ' . $sql;
+        print( $message );
+        $status = 404;
+        reportBack( $status );
+    }
+
+    while ( $row = mysql_fetch_assoc( $user ) )
+    {
+        $eventsList = explode( ",", $row[ 'createdEvents' ] );
+    }
+
+    array_push( $eventsList, $id );
+
+    $sql = sprintf( "UPDATE Users SET createdEvents = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $eventsList ) ),
+                     mysql_real_escape_string( $result->owner )
+    );
+
+    while ( !mysql_query( $sql, $connection ) )
+    {
+        $message = 'Invalid query: ' . mysql_error() . "\n";
+        $message .= 'Whole query: ' . $sql;
+        print( $message );
+        $status = 404;
+        reportBack( $status );
+    }
+
     // Upload image
 
     reportBack( $status );
-
-
     function reportBack( $status )
     {
         // Return Results
