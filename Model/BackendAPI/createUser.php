@@ -22,7 +22,7 @@
     }
 
     // Case if given wrong username
-    if ( mysql_num_rows( $query ) == 0 )
+    if ( mysql_num_rows( $query ) != 0 )
     {
         $status = 404;
         reportBack( $status, $id="NULL" );
