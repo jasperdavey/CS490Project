@@ -8,7 +8,7 @@
     $sql = sprintf( "INSERT INTO Events ( name, image, bio, startDateTime, endDateTime, location, owner )
             VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->name ),
             mysql_real_escape_string( $defaultImage ), mysql_real_escape_string( $result->bio ),
-            mysql_real_escape_string( $result->startDateTime ), mysql_real_escape_string( $result->endDateTime )
+            mysql_real_escape_string( $result->startDateTime ), mysql_real_escape_string( $result->endDateTime ),
             mysql_real_escape_string( $result->location ), mysql_real_escape_string( $result->owner )
     );
 
