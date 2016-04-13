@@ -56,7 +56,7 @@
     // Add User friends DONE
     elseif ( $result->command == 7 )
     {
-        include 'addUserFriends.php';
+        include 'createFriendRequest.php';
     }
     // Query recommendations DONE
     elseif ( $result->command == 8 )
