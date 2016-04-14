@@ -1,7 +1,7 @@
 <?php
     $status = 200;
 
-    $sql = sprintf( "UPDATE Events SET name = '%s' WHERE id = '%s'", mysql_real_escape_string( $result->name ),
+    $sql = sprintf( "UPDATE Events SET endDateTime = '%s' WHERE id = '%s'", mysql_real_escape_string( $result->endDateTime ),
                      mysql_real_escape_string( $result->id )
     );
 

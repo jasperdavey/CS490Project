@@ -1,15 +1,15 @@
 <?php
     $status = 200;
 
-    $sql = sprintf( "UPDATE Events SET name = '%s' WHERE id = '%s'", mysql_real_escape_string( $result->name ),
-                     mysql_real_escape_string( $result->id )
+    $sql = sprintf( "DELETE FROM Tags WHERE id = '%s' AND type = '%s' AND tag = '%s'", mysql_real_escape_string( $result->event ),
+                     mysql_real_escape_string( 1 ), mysql_real_escape_string( $result->tag )
     );
 
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
-		$message .= 'Whole query: ' . $sql;
-		print( $message );
+        $message .= 'Whole query: ' . $sql;
+        print( $message );
         $status = 404;
         reportBack( $status );
     }
@@ -23,7 +23,6 @@
 
         die( "$status_json" );
     }
-
 
 
  ?>
