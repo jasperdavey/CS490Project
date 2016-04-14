@@ -76,7 +76,7 @@
     }
 
     $sql = "CREATE TABLE Tags( id INT( 6 ) NOT NULL,
-                               tag VARCHAR( 50 ) NOT NULL,
+                               tag VARCHAR( 50 ) NOT NULL PRIMARY KEY,
                                nice INT( 6 ) NOT NULL,
                                type INT( 1 ) NOT NULL
     )";
