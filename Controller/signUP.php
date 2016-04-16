@@ -6,16 +6,51 @@ By:       Angelica Llerena		*
 Date:     March 15, 2016.		*
 *********************************/
 
-//Getting user's info...
 $info['firstname'] = $_POST['firstname'];
+if (!isset($info['firstname'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter your firstname";
+	$json = json_encode($error); die($json);
+}
 $info['lastname'] = $_POST['lastname'];
+if (!isset($info['lastname'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter your lastname";
+	$json = json_encode($error); die($json);
+}
 $info['username'] = $_POST['username'];
+if (!isset($info['username'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter your username";
+	$json = json_encode($error); die($json);
+}
 $info['password'] = $_POST['password'];
+if (!isset($info['password'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter your password";
+	$json = json_encode($error); die($json);
+}
 $info['email'] = $_POST['email'];
+if (!isset($info['email'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter your email";
+	$json = json_encode($error); die($json);
+}
+
+
+//Getting other user's info...
+
+$info['bio'] = $_POST['bio'];
+$info['image'] = $_POST['image'];
+$info['events'] = $_POST['events'];
+$info['friends'] = $_POST['friends'];
+$info['pendingFriendRequests'] = $_POST['pendingFriendRequests'];
+$info['createdEvents'] = $_POST['createdEvents'];
+
 
 //Putting all info together to send to Jasper
 $data = json_encode($info);
-
+//echo $data;
 //Sending to Jasper's url...
 $J_url = "https://web.njit.edu/~jmd57/backend.php";
 $ch = curl_init();
@@ -33,16 +68,11 @@ $json = json_decode($DB_results, true);
 
 //handle $_SESSION...
 if ($json['status']==200){
-	$_SESSION['firstname']=$info['firstname'];
-	$_SESSION['lastname']=$info['lastname'];
-	$_SESSION['username']=$info['username'];
-	$_SESSION['password']=$info['password'];
-	$_SESSION['email']=$info['email'];
-	echo $json['status'];
+	echo $DB_results;
 }
 else{
 	session_destroy();
-	echo $json['status'];
+	echo $DB_results;
 }
 
 ?>
