@@ -1,7 +1,7 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: updateUserTag.php		    	*
+FileName: updateEventLocation.php		    *
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
@@ -11,21 +11,21 @@ Date:     April 10, 2016.					*
 
 
 $info['id'] = $_POST['id'];
-$info['tag']= $_POST['tag'];
+$info['location']= $_POST['location'];
 
 $response = array();
 
 
 if(!isset($info['id']) || empty($info['id'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: user id empty.";
+	$response['message'] = "Error: event id empty.";
 	
 	$json = json_encode($response);
 	die($json);
 }
-elseif(!isset($info['tag']) || empty($info['tag'])){
+elseif(!isset($info['location']) || empty($info['location'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: tag empty.";
+	$response['message'] = "Error: location empty.";
 	
 	$json = json_encode($response);
 	die($json);

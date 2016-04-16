@@ -1,7 +1,7 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: updateUserTag.php		    	*
+FileName: updateUserPassword.php		    	*
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
@@ -11,7 +11,7 @@ Date:     April 10, 2016.					*
 
 
 $info['id'] = $_POST['id'];
-$info['tag']= $_POST['tag'];
+$info['password']= $_POST['password'];
 
 $response = array();
 
@@ -23,9 +23,9 @@ if(!isset($info['id']) || empty($info['id'])){
 	$json = json_encode($response);
 	die($json);
 }
-elseif(!isset($info['tag']) || empty($info['tag'])){
+elseif(!isset($info['password']) || empty($info['password'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: tag empty.";
+	$response['message'] = "Error: password empty.";
 	
 	$json = json_encode($response);
 	die($json);

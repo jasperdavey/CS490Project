@@ -1,7 +1,7 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: updateUserTag.php		    	*
+FileName: updateUserFirstname.php		   	*
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
@@ -11,7 +11,7 @@ Date:     April 10, 2016.					*
 
 
 $info['id'] = $_POST['id'];
-$info['tag']= $_POST['tag'];
+$info['firstname']= $_POST['firstname'];
 
 $response = array();
 
@@ -23,9 +23,9 @@ if(!isset($info['id']) || empty($info['id'])){
 	$json = json_encode($response);
 	die($json);
 }
-elseif(!isset($info['tag']) || empty($info['tag'])){
+elseif(!isset($info['firstname']) || empty($info['firstname'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: tag empty.";
+	$response['message'] = "Error: firstname empty.";
 	
 	$json = json_encode($response);
 	die($json);

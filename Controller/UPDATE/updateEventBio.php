@@ -18,14 +18,14 @@ $response = array();
 
 if(!isset($info['id']) || empty($info['id'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: user id empty.";
+	$response['message'] = "Error: event id empty.";
 	
 	$json = json_encode($response);
 	die($json);
 }
 elseif(!isset($info['bio']) || empty($info['bio'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: targetID empty.";
+	$response['message'] = "Error: bio empty.";
 	
 	$json = json_encode($response);
 	die($json);
