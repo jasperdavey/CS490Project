@@ -9,9 +9,42 @@ Date:     March 15, 2016.		*
 //Getting the new event information to send Jasper
 $info['name']=$_POST['name'];
 $info['bio']=$_POST['bio'];
-$info['dateAndTime']=$_POST['dateAndTime'];
+$info['startDateTime']=$_POST['startDateTime'];
+$info['endDateTime']=$_POST['endDateTime'];
 $info['location']=$_POST['location'];
 $info['image']=$_POST['image'];
+$info['owner']=$_POST['owner'];
+
+//CHECKING FOR MISSING FIELDS
+if(empty($info['name'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter Event name";
+	$json = json_encode($error); die($json);
+}
+
+if(empty($info['startDateTime'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter Event start Date and Time";
+	$json = json_encode($error); die($json);
+}
+
+if(empty($info['endDateTime'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter Event end Date and Time";
+	$json = json_encode($error); die($json);
+}
+
+if(empty($info['location'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter Event location";
+	$json = json_encode($error); die($json);
+}
+
+if(empty($info['owner'])){
+	$error['status'] = 404;
+	$error['Error'] = "Please enter Event owner";
+	$json = json_encode($error); die($json);
+}
 
 //Sending info to Jasper
 $data = json_encode($info);
@@ -34,9 +67,11 @@ $json = json_decode($DB_results,true);
 if($json['status']==200){
 	$_SESSION['name']=$info['name'];
 	$_SESSION['bio']=$info['bio'];
-	$_SESSION['dateAndTime']=$info['dateAndTime'];
+	$_SESSION['startDateTime']=$info['startDateTime'];
+	$_SESSION['endDateTime']=$info['endDateTime'];
 	$_SESSION['location']=$info['location'];
 	$_SESSION['image']=$info['image'];
+	$_SESSION['owner']=$info['owner'];
 	echo $json['status'];
 }else{
 	session_destroy();
