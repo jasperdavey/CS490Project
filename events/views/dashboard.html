@@ -8,7 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
     <link rel="stylesheet" href="/~tr88/events/styles/dashboard.css">
-
+    <link rel="stylesheet" href="/~tr88/events/styles/profile_view.css">
   </head>
   <body onload="initDashBoard()">
 
@@ -112,13 +112,40 @@
       </div>
     </div>
 
+
+
+
     <!-- user profile edit view  -->
     <div id="profile_container" class="profile_container">
-      <img id="profile_close_icon" class="profile_close_icon" src="/~tr88/events/images/x_icon_red.png" onclick="closeProfileView(this.parentNode)"></img>
-    </div>
+      <img id="profile_close_icon" class="profile_close_icon" src="/~tr88/events/images/x_icon_red.png"
+           onclick="closeProfileView(this.parentNode)"></img>
+      <div id="profile_info_contianer" class="profile_info_container">
+        <img  class="profile_image_full" src="/~tr88/events/images/default_user.jpg" ></img>
+        <div class="user_info">
+            <table>
+              <tr>
+                <td id="name">name:</td>
+              </tr>
+              <tr>
+                <td id="username">username: </td>
+              </tr>
+              <tr>
+                <td id="email">email: </td>
+              </tr>
+              <tr>
+                <td id="password">password: update </td>
+              </tr>
+            </table>
+          </div>
+      </div>
+      <div id="bio"></div>
+  </div>
 
+
+
+
+<!-- end dashboard container   -->
 </div>
-
   </body>
 
 </html>

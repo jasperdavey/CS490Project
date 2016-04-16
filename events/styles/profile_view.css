@@ -1,0 +1,68 @@
+
+.profile_image{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    background-image: 'url(/~tr88/events/images/default_user.jpg)';
+    float: right;
+    margin-right: 65px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.profile_container{
+  visibility: collapse;
+  position: absolute;
+  top: 100px;
+  z-index: 1000000;
+  width: inherit;
+  height: inherit;
+  background-color: white;
+}
+
+.profile_container #profile_close_icon{
+  float: right;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
+.profile_info_container{
+  margin-top: 45px;
+  width: inherit;
+  height: 120px;
+  overflow: hidden;
+}
+
+.profile_info_container .user_info{
+  display: inline-block;
+  width: 300px;
+  left: 120px;
+  height: inherit;
+}
+.profile_image_full{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.profile_info_container .user_info table{
+  padding: 5px;
+}
+
+.profile_info_container .user_info table td{
+  font-size: 14pt;
+}
+
+.profile_container h1{
+  font-size: 14pt;
+  margin: 0px;
+}
+.profile_container #bio{
+  width: 90%;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: red;
+}

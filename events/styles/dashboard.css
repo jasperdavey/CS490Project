@@ -302,31 +302,3 @@
     height: 45px;
     width: 100%;
 }
-
-.profile_image{
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    background-image: 'url(/~tr88/events/images/default_user.jpg)';
-    float: right;
-    margin-right: 65px;
-    margin-top: 5px;
-    cursor: pointer;
-}
-
-.profile_container{
-  visibility: collapse;
-  top: 100px;
-  z-index: 1000000;
-  position: absolute;
-  width: 100%;
-  height: inherit;
-  background-color: white;
-}
-
-.profile_container #profile_close_icon{
-  float: right;
-  margin: 5px;
-  cursor: pointer;
-}
