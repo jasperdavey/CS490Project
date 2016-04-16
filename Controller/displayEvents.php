@@ -13,10 +13,10 @@ $userName = 'jmd57';
 $password = 'owypHuH4g';
 
 // create connection
-$connection = mysql_connect( $serverName, $userName, $password );
+$connection = mysql_connect( $serverName, $userName, $password);
 if ( !$connection )
 {
-    die(' Could not connect: ' . mysql_error( ) );
+    die(' Could not connect: ' . mysql_error() );
 }
 
 // select database
@@ -25,21 +25,23 @@ if ( !mysql_select_db( $databaseName, $connection ) )
     die( 'Could not select database' );
 }
 
-$sql = "SELESCT * FROM Events;";
+$sql = "SELECT * FROM Events;";
 
-$db_table_events = mysql_query($connection,$sql);
+$db_table_events = mysql_query($sql,$connection);
 if (!$db_table_events){echo "DB Error: could not query the database"; exit;}
-	
+
 while($row = mysql_fetch_assoc($db_table_events)){
-	$table_events['name'] = $row['name'];
-	$table_events['dateAndTime'] = $row['dateAndTime'];
-	$table_events['location']= $row['location'];
-	$table_events['image']=$row['image'];
-	$table_events['bio'] = $row['bio'];
+	$table_events['Events'][$row['id']]['name'] = $row['name'];
+	$table_events['Events'][$row['id']]['startDateTime'] = $row['startDateTime'];
+	$table_events['Events'][$row['id']]['endDateTime'] = $row['endDateTime'];
+	$table_events['Events'][$row['id']]['location']= $row['location'];
+	$table_events['Events'][$row['id']]['image']=$row['image'];
+	$table_events['Events'][$row['id']]['bio'] = $row['bio'];
+	$table_events['Events'][$row['id']]['owner']=$row['owner'];
 	
 }
 
 $response = json_encode($table_events);
-echo "json=".$response;
+echo $response;
 
 ?>
