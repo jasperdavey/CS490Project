@@ -57,10 +57,10 @@ elseif($cmd==16){include 'displayUsers.php';}		//DONE
 //MIDDLE - ONLY
 elseif($cmd==11){include 'displayTags.php';}		//DONE
 elseif($cmd==12){include 'search.php';}				//DONE
-elseif($cmd==13){include 'futureEventsWithFriends.php';}	//DONE
+elseif($cmd==13){include 'futureEventsWithFriends.php';}	//NEED TESTING
 elseif($cmd==24){include 'displayEvents.php';}		//DONE
 elseif($cmd==25){include 'futureEvents.php';}		//DONE
-elseif($cmd==26){include 'userPastEvents.php';}		//TO-DO...
+//elseif($cmd==26){include 'userPastEvents.php';}		//TO-DO...
 else{echo"Error: 404";}
 
 ?>
