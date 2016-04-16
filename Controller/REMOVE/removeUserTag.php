@@ -1,24 +1,24 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: removeEventTag.php		    	*
+FileName: removeUserTag.php		     		*
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
 
-//Input: event, tag
+//Input: id, tag
 //Output: DB_results
 
 
-$info['event'] = $_POST['event'];
+$info['id'] = $_POST['id'];
 $info['tag']= $_POST['tag'];
 
 $response = array();
 
 
-if(!isset($info['event']) || empty($info['event'])){
+if(!isset($info['id']) || empty($info['id'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: event empty.";
+	$response['message'] = "Error: user id empty.";
 	
 	$json = json_encode($response);
 	die($json);

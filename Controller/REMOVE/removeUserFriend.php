@@ -1,31 +1,32 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: removeEventTag.php		    	*
+FileName: removeUserFriend.php	    	*
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
 
-//Input: event, tag
+//Input: initiatorID, targetID
 //Output: DB_results
 
 
-$info['event'] = $_POST['event'];
-$info['tag']= $_POST['tag'];
+$info['initiatorID'] = $_POST['initiatorID'];
+$info['targetID']= $_POST['targetID'];
+
 
 $response = array();
 
 
-if(!isset($info['event']) || empty($info['event'])){
+if(!isset($info['initiatorID']) || empty($info['initiatorID'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: event empty.";
+	$response['message'] = "Error: initiatorID empty.";
 	
 	$json = json_encode($response);
 	die($json);
 }
-elseif(!isset($info['tag']) || empty($info['tag'])){
+elseif(!isset($info['targetID']) || empty($info['targetID'])){
 	$response['status'] = 404;
-	$response['message'] = "Error: tag empty.";
+	$response['message'] = "Error: targetID empty.";
 	
 	$json = json_encode($response);
 	die($json);
