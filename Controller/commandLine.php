@@ -36,7 +36,7 @@ elseif($cmd==5){include 'updateUserBio.php';}		//need testing
 //elseif($cmd==##){include 'updateUserPassword';}		//need testing
 elseif($cmd==6){include 'updateUserTag.php';}		//need testing
 //elseif($cmd==##){include 'updateUserUsername.php';}		//need testing
-//elseif($cmd==10){include 'updateUserEvents.php';}	//no in jasper's files
+
 
 
 
