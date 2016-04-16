@@ -9,6 +9,10 @@ var sign_up_page = "/~tr88/events/views/signup.html";
 var profile_creation = "/~tr88/events/views/profile_creation.html";
 var dashboard_page = "/~tr88/events/views/dashboard.html";
 
+var SIGN_OUT_ = -1;
+var IS_LOGGED_IN_ = 0;
+var SIGNUP_ = 1;
+var LOGIN_ = 2;
 //codes
 
 var success = 200;
@@ -25,7 +29,7 @@ function signIn() {
     var email = document.forms["login_form"]["email"].value;
     var password = document.forms["login_form"]["password"].value;
     var response;
-    var command = 2;
+    var command = LOGIN_;
     var params = "command="+command+ "&email="+email + "&password="+password;
     var formData = new FormData;
     formData.append('command',command);
@@ -51,7 +55,7 @@ function signIn() {
 
 //login check
 function isLoggedIn(){
-  var command = 0;
+  var command = IS_LOGGED_IN_;
   var params = 'command=' + command;
   var response = makeRequest(params);
   if(response == 200 ){
@@ -72,9 +76,10 @@ function isLoggedIn(){
 
 
 function signOut(){
-  var command = -1;
-  var params = "command="+command;
-  var response = makeRequest(params);
+  var command = SIGN_OUT_;
+  var formData = new FormData();
+  formData.append('command',SIGN_OUT_);
+  var response = makeRequest(formData);
   if( response == 200){
     window.location.href=sign_in_page;
   }else{

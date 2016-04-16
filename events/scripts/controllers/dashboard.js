@@ -2,8 +2,21 @@ var hashTagHanlder = null;
 
 function initDashBoard(){
   // get userInfo
-  var userInfo = JSON.parse(getUserInfo()).info;
-  var events = JSON.parse(getRecommendedEvents()).events;
+  var userInfo = null;
+  var events = null;
+
+  try {
+    userInfo = JSON.parse(getUserInfo()).info;
+  } catch (e) {
+    console.log('failed to get user info');
+  }
+
+  try{
+    events = JSON.parse(getRecommendedEvents()).events;
+  }catch(e){
+    console.log('failed to get events');
+    events = [];
+  }
 
   //parse userInfo into diffent fields
   var firstname = userInfo.firstname;
@@ -15,7 +28,7 @@ function initDashBoard(){
   var userTags = userInfo.tags;
 
   // populate dom with fields
-  document.getElementById("username").innerHTML = userInfo.firstname+" "+lastname;
+  document.getElementById("username").innerHTML = firstname+" "+lastname;
   document.getElementById("events_list").innerHTML = events.length;
   document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
 

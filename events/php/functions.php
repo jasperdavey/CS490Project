@@ -5,9 +5,10 @@
 */
 
 //make request to middle
-function getData($params){
+function makeRequest($params){
   //angelica's
-  $ch = curl_init("https://web.njit.edu/~aml35/login/commandLine.php");
+  $url = "https://web.njit.edu/~aml35/login/commandLine.php";
+  $ch = curl_init($url);
   //jasper api
   // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
   //local test
@@ -18,10 +19,12 @@ function getData($params){
   curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  myLog("curl request: url:".$url.", params: ".$params,false);
   $result = curl_exec($ch);
   curl_close($ch);
+  myLog("curl response: ".$result,false);
   return $result;
-  echo $result;
+
 }
 
 function buildParams(){
@@ -39,7 +42,7 @@ function buildParams(){
 }
 
 function login($params){
-    $response = getData($params);
+    $response = makeRequest($params);
     $jsonObject = json_decode($response,true);
     $status = $jsonObject["status"];
     if( $status == 200 ){
@@ -49,11 +52,13 @@ function login($params){
         $_SESSION['logged_in']=false;
         $_SESSION['id']=null;
     }
+    myLog("login response: ".$response,false);
     echo $status;
 }
 
 function logOut(){
     $_SESSION['logged_in']=false;
+
     if( $_SESSION['logged_in']== false){
       session_unset();
       session_destroy();
@@ -77,7 +82,7 @@ function loggedInCheck(){
 }
 
 function createUser($params){
-    $response = getData($params);
+    $response = makeRequest($params);
     $data = json_decode($response,true);
     if( $data['status'] == 200 ){
       $_SESSION['id']=$data['id'];
@@ -88,17 +93,18 @@ function createUser($params){
 
 function createEvent(){
     $info = file_get_contents('php://input');
-    $response = getData($info);
+    $response = makeRequest($info);
     echo $response;
 }
 
 
 function getRecommendedEvents($params){
     if($_SESSION['id'] != null ){
-      $response = getData($params."&id=".$_SESSION['id']);
+      myLog("getting recommend events withd id: ".$_SESSION['id'],false);
+      $response = makeRequest($params."&id=".$_SESSION['id']);
       echo $response;
     }else{
-      echo "failed to get recommended events";
+      myLog("failed to get recommended events, params".$params,false);
     }
 }
 
@@ -109,27 +115,30 @@ function getAllEvents(){
 
 function getUserInfo($params){
 
-  if ( $_SESSION[id] != null ){
-    $response = getData($params."&id=".$_SESSION['id']);
+  if ( $_SESSION['id'] != null ){
+    $response = makeRequest($params."&id=".$_SESSION['id']);
     echo $response;
   }else{
     echo "can't get user info";
   }
 }
 
-// get all tags
-function getTags(){
-    $cmd = 20;
-    $params = 'command='.$cmd;
-    $response =  getData($params);
-    echo $response;
-}
+// // get all tags
+// function getTags(){
+//     $response =  makeRequest($params);
+//     echo $response;
+// }
 
 
 // write debug output to file do not echo
-      function write($string){
+      function myLog($string,$clear){
+        global $debug;
         if($debug == false) return;
-        $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt','w');
+        $mode = 'a';
+        if(!$clear){
+          $mode='w';
+        }
+        $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt',$mode);
         if( !$handle ){
           echo 'failed to open log for writing';
         }

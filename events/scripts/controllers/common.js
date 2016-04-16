@@ -1,4 +1,14 @@
 // HTTP request
+//commands
+
+var SIGNUP_ =1;
+var LOGIN_ = 2;
+var CREATE_EVENT_ = 3;
+var RECOMMENDED_EVENTS_ = 8;
+var USER_INFO_ = 9;
+var TAGS_ = 11;
+var ALL_EVENTS_ = 24;
+var FUTURE_EVENTS_ = 25;
 
 function makeRequest(params){
     var XM = new XMLHttpRequest();
@@ -16,32 +26,46 @@ function makeRequest(params){
     }
       XM.open("POST",url,false);
       XM.send(params);
-
     return response;
 }
 
 //get userinfo
 function getUserInfo(){
-  var command = 9;
-  // var params = "command="+command;
+  var command = USER_INFO_;
   var formData = new FormData();
   formData.append('command',command);
   var response = makeRequest( formData );
-  console.log("getting user info");
   console.log(response);
   return response;
 }
 
 
 function getRecommendedEvents(){
-    var command = 8;
+    var command = RECOMMENDED_EVENTS_;
     var formData = new FormData();
     formData.append('command',command);
     var response = makeRequest(formData);
     console.log("recommended events: "+response);
+    //populate div with events
     return response;
 }
 
+function getFutureEvents(){
+  var command = FUTURE_EVENTS_;
+  var formData = new FormData();
+  formData.append('command',command);
+  var response = makeRequest(formData);
+  console.log("future events: "+response);
+  //display events
+  var events = null;
+  try{
+    events = JSON.parse(response);
+    events = events.Events;
+  }catch(e){
+    console.log('failed to get future events');
+  }
+  return response;
+}
 
 function HashTagHanlder(){
   var selectCount=0;
@@ -50,7 +74,7 @@ function HashTagHanlder(){
   var tags = [];
 
   this.getTags = function(){
-    var command = 20;
+    var command = TAGS_;
     var formData = new FormData();
     formData.append('command',command);
     var response = makeRequest(formData);

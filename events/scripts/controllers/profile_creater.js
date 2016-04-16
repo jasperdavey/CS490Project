@@ -102,7 +102,7 @@ function initSignUpFormHanlder(){
 
 function indiSignUp(){
     console.log('signing up');
-    var command = .1;
+    var command = 0.1;
     var redirect_url = "/~tr88/events/views/tag_selection.html";
     var firstname = document.forms['sign_up_form_indi']['firstname'].value;
     var lastname = document.forms['sign_up_form_indi']['lastname'].value;
@@ -154,11 +154,6 @@ function orgSignUp(){
 
     document.forms['sign_up_form_org'].reset();
 
-    // var params = "command="+command
-    //   +"&"+"organization="+organization
-    //   +"&"+"email="+email
-    //   +"&"+"password="+password;
-
     var formData = new FormData();
     formData.append('command',command);
     formData.append('organization',organization);
@@ -206,9 +201,10 @@ function setUserInfo(){
     formData.append('user_info',userInfo)
     console.log(userInfo);
     var response = makeRequest(formData);
-    console.log(response);
     if( response == 200 ){
       window.location.href=dashboard_page;
+    }else{
+      console.log(response);
     }
     // console.log('tags: '+JSON.parse(hashTags).tags);
     // console.log('bio: '+JSON.parse(hashTags).bio);
