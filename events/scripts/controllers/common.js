@@ -7,6 +7,7 @@ var CREATE_EVENT_ = 3;
 var RECOMMENDED_EVENTS_ = 8;
 var USER_INFO_ = 9;
 var TAGS_ = 11;
+var SEARCH_ = 12;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 25;
 
@@ -154,5 +155,18 @@ function HashTagHanlder(){
 
   }
 
+}
+
+function doSearch(){
+    var input_field = document.getElementById('search_value');
+    var input = input_field.value;
+    console.log(input);
+    var formData = new FormData();
+    formData.append('command',SEARCH_);
+    formData.append('type','events');
+    formData.append('text',input);
+    var response = makeRequest(formData);
+    console.log(response);
+    input_field.value = "";
 
 }

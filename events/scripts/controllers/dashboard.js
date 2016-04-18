@@ -19,9 +19,6 @@ function initDashBoard(){
   } catch (e) {
     console.log('failed to get user info');
   }
-  finally{
-      
-  }
 
   try{
     events = JSON.parse(getRecommendedEvents()).events;

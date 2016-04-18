@@ -99,6 +99,10 @@ $params = buildParams();
         myLog("case 11 - get all tags called,params: ".$params,false);
         echo makeRequest($params);
         break;
+    case 12:
+        myLog("case 12 - makeing a search request: ".$params,false);
+        echo makeRequest($params);
+        break;
     case 25:
         myLog("case 25- get all future events,parms:".$params,false);
         echo makeRequest($params);
@@ -107,7 +111,7 @@ $params = buildParams();
         echo "debug_php";
         break;
     default:
-        echo '{"status":"command not regonized"}';
+        echo 'internal error: command not found';
         break;
 
       }
