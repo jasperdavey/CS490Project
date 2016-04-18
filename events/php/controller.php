@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$debug = true;
+$debug = false;
 include_once 'functions.php';
 
 $command = null;
@@ -66,7 +66,7 @@ $params = buildParams();
         break;
 
     case 2: // login
-        myLog("case 2 -executing login(), params: ".$params);
+        myLog("case 2 -executing login(), params: ".$params,false);
         if(isset($_POST['email'],$_POST['password'])){
             login($params);
         }

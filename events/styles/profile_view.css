@@ -59,10 +59,18 @@
   font-size: 14pt;
   margin: 0px;
 }
-.profile_container #bio{
+.profile_container #profile_tags{
   width: 90%;
   height: 100px;
   margin-left: auto;
   margin-right: auto;
   background-color: red;
+}
+
+.profile_container #bio{
+    padding: 10px;
+    width: 50%;
+    height: 120px;
+    float: right;
+    margin-right: 50px;
 }

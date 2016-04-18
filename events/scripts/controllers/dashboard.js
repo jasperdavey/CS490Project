@@ -2,21 +2,25 @@ var hashTagHanlder = null;
 
 function initDashBoard(){
   // get userInfo
-  var userInfo = null;
-  var events = null;
-  var firstname = null;
-  var lastname = null;
-  var bio = null;
-  var image = null;
-  var userEvents = null;
-  var friends = null;
-  var friendRequests = null;
-  var userTags = null;
+  // var userInfo = null;
+  // var events = null;
+  // var firstname = null;
+  // var lastname = null;
+  // var username = null;
+  // var bio = null;
+  // var image = null;
+  // var userEvents = null;
+  // var friends = null;
+  // var friendRequests = null;
+  // var userTags = null;
 
   try {
-    userInfo = JSON.parse(getUserInfo()).info;
+    userInfo = JSON.parse(getUserInfo()).info[0];
   } catch (e) {
     console.log('failed to get user info');
+  }
+  finally{
+      
   }
 
   try{
@@ -28,18 +32,26 @@ function initDashBoard(){
 
   //parse userInfo into diffent fields
   if( userInfo != null ){
-   firstname = userInfo.firstname;
-   lastname = userInfo.lastname;
-   bio = userInfo.bio;
-   image = userInfo.image;
-   userEvents = userInfo.events;
-   friends = userInfo.friends;
-   userTags = userInfo.tags;
+   // firstname = userInfo.firstname;
+   // lastname = userInfo.lastname;
+   // bio = userInfo.bio;
+   // image = userInfo.image;
+   // userEvents = userInfo.events;
+   // friends = userInfo.friends;
+   // userTags = userInfo.tags;
+ }else{
+     console.log("userInfo null");
  }
 
   // populate dom with fields
-  document.getElementById("username").innerHTML = firstname+" "+lastname;
+  document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+  document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+  document.getElementById("profile_username").innerHTML = userInfo.username;
+  document.getElementById("profile_email").innerHTML = userInfo.email;
+  document.getElementById("profile_bio").innerHTML = userInfo.bio;
+  document.getElementById("profile_tags").innerHTML = userInfo.tags;
   document.getElementById("events_list").innerHTML = events.length;
+
   document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
 
 }
