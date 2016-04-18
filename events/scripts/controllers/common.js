@@ -11,6 +11,11 @@ var SEARCH_ = 12;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 25;
 
+var USER_ID_ = null;
+
+//test data
+var test_event_future = '{"events":[{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"}]}';
+
 function makeRequest(params){
     var XM = new XMLHttpRequest();
     var url = "/~tr88/events/php/controller.php";
@@ -157,7 +162,9 @@ function HashTagHanlder(){
 
 }
 
-function doSearch(){
+function doSearch(container){
+    console.log('container: '+container);
+    var container = document.getElementById(container);
     var input_field = document.getElementById('search_value');
     var input = input_field.value;
     console.log(input);
@@ -169,4 +176,36 @@ function doSearch(){
     console.log(response);
     input_field.value = "";
 
+    //test
+    events = JSON.parse(test_event_future).events;
+    console.log('events length: '+events.length);
+    showEvents(events,container);
+
 }
+
+
+function showEvents(events, container){
+    var template = document.getElementById("event_list_view_template");
+    template = template.cloneNode(true);
+    container.innerHTML="";
+    template.style.visibility='visible';
+    var childNodes = template.children;
+    //set title
+    childNodes[0].innerHTML=events[0].name;
+    childNodes[1].innerHTML=events[0].bio;
+    childNodes[2].children[0].innerHTML=events[0].startDateTime;
+    childNodes[3].children[0].innerHTML=events[0].endDateTime;
+
+    for( var i =0; i < childNodes.length; i++){
+        console.log(childNodes[i].id);
+    }
+    for (var i=1; i < events.length; i++ ){
+        //create event view
+        var e = template.cloneNode(true);
+        container.appendChild(e);
+    }
+}
+
+/*
+test_event = '{"events":[{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"}]}';
+*/

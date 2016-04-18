@@ -2,7 +2,7 @@ var hashTagHanlder = null;
 
 function initDashBoard(){
   // get userInfo
-  // var userInfo = null;
+  var userInfo = null;
   // var events = null;
   // var firstname = null;
   // var lastname = null;
