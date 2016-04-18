@@ -4,6 +4,14 @@ function initDashBoard(){
   // get userInfo
   var userInfo = null;
   var events = null;
+  var firstname = null;
+  var lastname = null;
+  var bio = null;
+  var image = null;
+  var userEvents = null;
+  var friends = null;
+  var friendRequests = null;
+  var userTags = null;
 
   try {
     userInfo = JSON.parse(getUserInfo()).info;
@@ -19,13 +27,15 @@ function initDashBoard(){
   }
 
   //parse userInfo into diffent fields
-  var firstname = userInfo.firstname;
-  var lastname = userInfo.lastname;
-  var bio = userInfo.bio;
-  var image = userInfo.image;
-  var userEvents = userInfo.events;
-  var friends = userInfo.friends;
-  var userTags = userInfo.tags;
+  if( userInfo != null ){
+   firstname = userInfo.firstname;
+   lastname = userInfo.lastname;
+   bio = userInfo.bio;
+   image = userInfo.image;
+   userEvents = userInfo.events;
+   friends = userInfo.friends;
+   userTags = userInfo.tags;
+ }
 
   // populate dom with fields
   document.getElementById("username").innerHTML = firstname+" "+lastname;
