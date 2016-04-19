@@ -33,7 +33,7 @@ elseif($cmd==5){include 'updateUserBio.php';}		//DONE
 elseif($cmd==21){include 'updateUserEmail.php';}		//DONE
 elseif($cmd==17){include 'updateUserFirstname.php';}		//DONE
 elseif($cmd==18){include 'updateUserLastname.php';}		//DONE
-elseif($cmd==19){include 'updateUserPassword';}		//DONE
+elseif($cmd==19){include 'updateUserPassword.php';}		//DONE
 elseif($cmd==6){include 'updateUserTag.php';}		//DONE
 elseif($cmd==20){include 'updateUserUsername.php';}		//DONE
 
