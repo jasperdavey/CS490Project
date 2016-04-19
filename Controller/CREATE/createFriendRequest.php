@@ -1,50 +1,69 @@
 <?php
-/********MIDDLE END**************************
-Project:  CS 490 - Group # 2    			*
-FileName: createFriendRequest.php	    	*
-By:       Angelica Llerena					*
-Date:     April 10, 2016.					*
-*********************************************/
+/********MIDDLE END**********************
+Project:  CS 490 - Group # 2    		*
+FileName: createFriendRequest.php	    *
+By:       Angelica Llerena				*
+Date:     April 15, 2016.				*
+*****************************************/
 
 //Input: initiatorID, targetID
-//Output: DB_results
+//Output: 200 if successful, 304 if already pending and 404 if an error ocurred
 
-$response = array();
+$initiatorID = $_POST['initiatorID'];
+$targetID = $_POST['targetID'];
 
+$friends = array();
+$pendingFriendRequests = array();
 
-if(!isset($_POST['initiatorID']) || empty($_POST['initiatorID'])){
-	$response['status'] = 404;
-	$response['message'] = "Error: initiatorID empty.";
-	
-	$json = json_encode($response);
-	die($json);
-}
-elseif(!isset($_POST['targetID']) || empty($_POST['targetID'])){
-	$response['status'] = 404;
-	$response['message'] = "Error: targetID empty.";
-	
-	$json = json_encode($response);
-	die($json);
-}
-else{
-	$info['initiatorID'] = $_POST['initiatorID'];
-	$info['targetID']= $_POST['targetID'];
-	
-	$data = json_encode($info);
-	
-	//Sending to Jasper's url...
-	$J_url = "https://web.njit.edu/~jmd57/backend.php";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $J_url);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, "json=".$data);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+//checking any fields are missing
+if (empty($initiatorID) || empty($targetID)){$data['status'] = 404; $data = json_encode($data); die($data);}
 
-	$DB_results = curl_exec($ch);
-	curl_close($ch);
+//DB information
+$databaseName = "jmd57";
+$serverName = 'sql.njit.edu';
+$userName = 'jmd57';
+$password = 'owypHuH4g';
+
+// create connection
+$connection = mysql_connect( $serverName, $userName, $password);
+if ( !$connection )
+{
+    die(' Could not connect: ' . mysql_error() );
 }
 
-die($DB_results);
+// select database
+if ( !mysql_select_db( $databaseName, $connection ) )
+{
+    die( 'Could not select database' );
+}
+
+$sql = "SELECT * FROM Users where id = '".$targetID."';";
+
+$db_table_users = mysql_query($sql,$connection);
+if (!$db_table_users){echo "DB Error: could not query the database"; exit;}
+
+while($row = mysql_fetch_assoc($db_table_users)){
+	$friends = explode(",", $row['friends']);
+	$pendingFriendRequests = explode(",", $row['pendingFriendRequests']);
+	
+	if (in_array($initiatorID, $friends)|| in_array($initiatorID, $pendingFriendRequests)){
+		$data['status'] = 304; 
+		$data = json_encode($data); 
+		die($data);
+	}else{
+		
+		$pendingFriendRequests[] = $initiatorID;
+		
+		$query = "Update Users set pendingFriendRequests = '".$pendingFriendRequests."' where id = '".$targetID."';";
+		$db_table_users = mysql_query($sql,$connection);
+		if (!$db_table_users){echo "DB Error: could not query the database"; exit;}
+		
+		
+		$data['status'] = 200; 
+		$data = json_encode($data); 
+		die($data);
+	}
+}
+
+
 ?>
