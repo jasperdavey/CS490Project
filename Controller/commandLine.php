@@ -21,7 +21,7 @@ elseif($cmd==2){include 'login.php';}				//DONE
 //CREATE...
 elseif($cmd==3){include 'createEvent.php';}			//DONE
 //elseif($cmd==4){include 'createComment.php';}		//TO-DO....
-//elseif($cmd==7){include 'createFriendRequest.php';}	//need testing 
+elseif($cmd==7){include 'createFriendRequest.php';}	//DONE
 
 //UPDATES...
 elseif($cmd==27){include 'updateEventBio.php';}		//DONE
@@ -43,7 +43,7 @@ elseif($cmd==20){include 'updateUserUsername.php';}		//DONE
 //REMOVE....
 //elseif($cmd==14){include 'removeUserTag.php';}		//need testing
 //elseif($cmd==##){include 'removeEventTag.php';}		//need testing
-//elseif($cmd==##){include 'removeUserEvent.php';}		//need testing
+elseif($cmd==30){include 'removeUserEvent.php';}		//need testing
 //elseif($cmd==##){include 'removeUserFriend.php';}		//need testing
 
 
