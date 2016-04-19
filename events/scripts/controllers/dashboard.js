@@ -267,13 +267,16 @@ function listUpcomingEvents(date) {
     appendPre('Upcoming events:');
 
     if (events.length > 0) {
+        var pre = document.getElementById('my_upcoming_events');
+        pre.innerHTML="";
       for (i = 0; i < events.length; i++) {
         var event = events[i];
+        console.log(event);
         var when = event.start.dateTime;
         if (!when) {
           when = event.start.date;
         }
-        appendPre(event.summary + ' (' + when + ')')
+        appendPre(event.summary + ' (' + event.location + ')')
       }
     } else {
       appendPre('No upcoming events found.');
