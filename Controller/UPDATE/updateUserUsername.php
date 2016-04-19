@@ -32,21 +32,43 @@ elseif(!isset($info['username']) || empty($info['username'])){
 }
 else{
 	
-	$data = json_encode($info);
-	
-	//Sending to Jasper's url...
-	$J_url = "https://web.njit.edu/~jmd57/backend.php";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $J_url);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, "json=".$data);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	$databaseName = "jmd57";
+	$serverName = 'sql.njit.edu';
+	$userName = 'jmd57';
+	$password = 'owypHuH4g';
 
-	$DB_results = curl_exec($ch);
-	curl_close($ch);
+	// create connection
+	$connection = mysql_connect( $serverName, $userName, $password);
+	if ( !$connection )
+	{
+		die(' Could not connect: ' . mysql_error() );
+	}
+
+	// select database
+	if ( !mysql_select_db( $databaseName, $connection ) )
+	{
+		die( 'Could not select database' );
+	}
+
+	$query = mysql_query("UPDATE Users SET username = '".$info['username']."' WHERE id = '".$info['id']."';", $connection);
+	if(!$query){$data['status'] = 404; $data = json_encode($data); die($data);}
+	else{$data['status'] = 200; $data = json_encode($data); die($data);}
+	
+	// $data = json_encode($info);
+	
+	// //Sending to Jasper's url...
+	// $J_url = "https://web.njit.edu/~jmd57/backend.php";
+	// $ch = curl_init();
+	// curl_setopt($ch, CURLOPT_URL, $J_url);
+	// curl_setopt($ch, CURLOPT_POST, 1);
+	// curl_setopt($ch, CURLOPT_POSTFIELDS, "json=".$data);
+	// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+	// $DB_results = curl_exec($ch);
+	// curl_close($ch);
 }
 
-die($DB_results);
+//die($DB_results);
 ?>
