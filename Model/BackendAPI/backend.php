@@ -61,7 +61,7 @@
     // Query recommendations DONE
     elseif ( $result->command == 8 )
     {
-        include 'recommendations.php';
+        include 'returnRecommendations.php';
     }
     // Return all user info DONE
     elseif ( $result->command == 9 )
