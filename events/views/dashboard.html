@@ -1,10 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <script src="/~tr88/events/scripts/controllers/common.js"></script>
-    <script src="/~tr88/events/scripts/controllers/login.js"></script>
-    <script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
-    <script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
     <link rel="stylesheet" href="/~tr88/events/styles/dashboard.css">
@@ -32,7 +28,7 @@
           <ul>
       </div>
 
-      <div id="recommendEvents" class="recommendEvents_container">
+      <div id="recommendEvents" class="events_container">
           <div id="events_bar" class="events_bar">
               <button onclick="getRecommendedEvents()">Recommended</button><button>Friends</button><button onclick="getFutureEvents('events_list_container')">all</button>
           </div>
@@ -47,18 +43,15 @@
             </div>
       </div>
 
-      <div id="myEvents" class="myEvents_container">
-        <button onclick="populateWithMyEvents('myEvents')">My Events</button>
-        <button onclick="populateWithGoingTo('myEvents')">Going</button>
-        <button onclick="populateWithWentTo('myEvents')">Went</button>
+      <div id="myEvents" class="my_events_container">
+        <div id="events_bar" class="events_bar">
+          <button onclick="populateWithMyEvents('myEvents')">My Events</button>
+          <button onclick="populateWithGoingTo('myEvents')">Going</button>
+          <button onclick="populateWithWentTo('myEvents')">Went</button>
+        </div>
       </div>
 
-      <div id="myCalendar" class="myCalendar_container">
-          <iframe src="https://calendar.google.com/calendar/embed?height=500&amp;wkst=1&amp;bgcolor=%23cc0000&amp;
-          src=ph93ib3k417ulj4cu8a9mvj07o%40group.calendar.google.com&amp;color=%23875509&amp;ctz=America%2FNew_York"
-          style="border:solid 1px #777" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-      </div>
-
+      <div id="my_upcoming_events"class="myCalendar"></div>
 <!--fixed create event form, only displays when user wants to create an event -->
       <div id="createEventForm" class="create_event_container">
         <div class="event_creation_form">
@@ -142,6 +135,15 @@
 
 <!-- end dashboard container   -->
 </div>
+<!-- scripts  -->
+<script src="https://apis.google.com/js/client.js?onload=checkAuth">
+<script src="/~tr88/events/scripts/controllers/googlecalendar.js"></script>
+<script src="/~tr88/events/scripts/controllers/common.js"></script>
+<script src="/~tr88/events/scripts/controllers/login.js"></script>
+<script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
+<script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
+
+<!-- end scripts -->
   </body>
 
 </html>
