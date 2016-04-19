@@ -88,6 +88,17 @@
   background-color: white;
 }
 
+.myEvents_container :first-child{
+  margin-left: 5px;
+}
+
+.myEvents_container button{
+  width: 100px;
+  height: 20px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
 .myCalendar_container{
   display: inline-block;
   top: 40px;
@@ -307,7 +318,7 @@ button{
 }
 .events_bar button{
     width: 100px;
-    height: inherit;
+    height: 20px;
     margin-top: 5px;
     margin-right: 5px;
 }

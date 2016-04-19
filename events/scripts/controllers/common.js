@@ -174,17 +174,22 @@ function doSearch(container){
     console.log(input);
     var formData = new FormData();
     formData.append('command',SEARCH_);
-    formData.append('type','events');
-    formData.append('text',input);
+    formData.append('searchType','events');
+    formData.append('searchText',input);
     var response = makeRequest(formData);
     console.log(response);
     input_field.value = "";
 
     //test
-    events = JSON.parse(test_event_future).events;
+    try{
+      events = JSON.parse(response).results;
+      if(events.length > 0){
+        showEvents(events,container);
+      }
+    }catch(E){
+      console.log('failed to get search results');
+    }
     console.log('events length: '+events.length);
-    showEvents(events,container);
-
 }
 
 function loadFutureEvents(){
