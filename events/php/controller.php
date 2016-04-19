@@ -21,7 +21,7 @@ $params = buildParams();
   switch ( $command ) {
 
     case -1:
-        myLog("case -1: logOut():params: ".$params);
+        myLog("case -1: logOut():params: ".$params,false);
         logOut();
           break;
 

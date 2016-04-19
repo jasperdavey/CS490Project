@@ -1,5 +1,16 @@
 var hashTagHanlder = null;
 
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+function showDateValue(date){
+    console.log('date value: '+date.value);
+    listUpcomingEvents(date.value);
+}
+
 function initDashBoard(){
   // get userInfo
   var userInfo = null;
@@ -13,6 +24,8 @@ function initDashBoard(){
   // var friends = null;
   // var friendRequests = null;
   // var userTags = null;
+  document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
+
 
   try {
     userInfo = JSON.parse(getUserInfo()).info[0];
@@ -234,10 +247,15 @@ function loadCalendarApi() {
  * the authorized user's calendar. If no events are found an
  * appropriate message is printed.
  */
-function listUpcomingEvents() {
+function listUpcomingEvents(date) {
+  if(date == null){
+      date = (new Date().toISOString());
+  }else{
+      date = (new Date(date.split('-').join(',')).toISOString());
+  }
   var request = gapi.client.calendar.events.list({
     'calendarId': 'primary',
-    'timeMin': (new Date()).toISOString(),
+    'timeMin': date,
     'showDeleted': false,
     'singleEvents': true,
     'maxResults': 10,

@@ -80,6 +80,7 @@ function signOut(){
   var formData = new FormData();
   formData.append('command',SIGN_OUT_);
   var response = makeRequest(formData);
+  console.log('signout response: '+response);
   if( response == 200){
     window.location.href=sign_in_page;
   }else{

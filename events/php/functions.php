@@ -57,28 +57,28 @@ function login($params){
 }
 
 function logOut(){
-    $_SESSION['logged_in']=false;
 
-    if( $_SESSION['logged_in']== false){
+    if( $_SESSION['logged_in']== true){
       session_unset();
       session_destroy();
+      $_SESSION['logged_in']=false;
       echo 200;
     }else{
-      echo 404;
+      echo 200;
     }
 }
 
 
 function loggedInCheck(){
-    /*
+
     if($_SESSION['logged_in'] == true ){
         echo '200';
     }else{
         echo '404';
     }
-    */
-    //TODO set back to check
-    echo '200';
+
+    // //TODO set back to check
+    // echo '200';
 }
 
 function createUser($params){
