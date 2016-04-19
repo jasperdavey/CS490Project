@@ -98,9 +98,17 @@
     {
         include 'acceptFriendRequest.php';
     }
-    elseif ( $result->command = 16 )
+    elseif ( $result->command == 16 )
     {
         include 'returnAllUsers.php';
+    }
+    elseif ( $result->command == 17 )
+    {
+        include 'updateEventTags.php';
+    }
+    elseif ( $result->command == 18 )
+    {
+        include 'removeEventTag.php';
     }
     else
     {
