@@ -56,21 +56,25 @@ function getRecommendedEvents(){
     return response;
 }
 
-function getFutureEvents(){
-  var command = FUTURE_EVENTS_;
-  var formData = new FormData();
-  formData.append('command',command);
-  var response = makeRequest(formData);
-  console.log("future events: "+response);
-  //display events
-  var events = null;
-  try{
-    events = JSON.parse(response);
-    events = events.Events;
-  }catch(e){
-    console.log('failed to get future events');
-  }
-  return response;
+function getFutureEvents(container){
+    var container = document.getElementById(container);
+
+    var command = FUTURE_EVENTS_;
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest(formData);
+    console.log("future events: "+response);
+    //display events
+    var events = null;
+    try{
+        events = JSON.parse(response);
+        events = events.events;
+    }catch(e){
+        console.log('failed to get future events');
+    }
+
+    showEvents(events,container);
+    return response;
 }
 
 function HashTagHanlder(){
@@ -183,25 +187,36 @@ function doSearch(container){
 
 }
 
+function loadFutureEvents(){
+
+}
 
 function showEvents(events, container){
-    var template = document.getElementById("event_list_view_template");
+    var template = document.getElementById("event_0");
     template = template.cloneNode(true);
     container.innerHTML="";
     template.style.visibility='visible';
-    var childNodes = template.children;
-    //set title
-    childNodes[0].innerHTML=events[0].name;
-    childNodes[1].innerHTML=events[0].bio;
-    childNodes[2].children[0].innerHTML=events[0].startDateTime;
-    childNodes[3].children[0].innerHTML=events[0].endDateTime;
-
-    for( var i =0; i < childNodes.length; i++){
-        console.log(childNodes[i].id);
-    }
-    for (var i=1; i < events.length; i++ ){
+    // var childNodes = template.children;
+    // childNodes[0].innerHTML=events[0].name;
+    // childNodes[1].innerHTML=events[0].bio;
+    // childNodes[2].children[0].innerHTML=events[0].startDateTime;
+    // childNodes[3].children[0].innerHTML=events[0].endDateTime;
+    //
+    // for( var i =0; i < childNodes.length; i++){
+    //     console.log(childNodes[i].id);
+    // }
+    for (var i=0; i < events.length; i++ ){
         //create event view
         var e = template.cloneNode(true);
+        var childNodes = e.children;
+        childNodes[0].innerHTML=events[i].name;
+        childNodes[1].innerHTML=events[i].bio;
+        childNodes[2].children[0].innerHTML=events[i].startDateTime;
+        childNodes[3].children[0].innerHTML=events[i].endDateTime;
+        e.id='event_'+i;
+        e.onclick = function(){
+            alert(this.id);
+        };
         container.appendChild(e);
     }
 }

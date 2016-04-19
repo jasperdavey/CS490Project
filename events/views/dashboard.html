@@ -34,11 +34,11 @@
 
       <div id="recommendEvents" class="recommendEvents_container">
           <div id="events_bar" class="events_bar">
-              <button onclick="getRecommendedEvents()">Recommended</button><button>Friends</button><button onclick="getFutureEvents()">all</button>
+              <button onclick="getRecommendedEvents()">Recommended</button><button>Friends</button><button onclick="getFutureEvents('events_list_container')">all</button>
           </div>
             <div id="events_list_container" class="events_list_container">
                 <!--TODO create javascript to autopopulate-->
-                <div id="event_list_view_template" class="event_list_view">
+                <div id="event_0" class="event_list_view">
                     <h1 id="event_title"></h1>
                     <p id="event_description"></p>
                     <h2 id="start_time_header">starts: <span id="event_startDateTime"></span></h2>

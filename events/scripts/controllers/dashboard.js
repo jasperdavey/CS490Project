@@ -23,7 +23,7 @@ function initDashBoard(){
   try{
     events = JSON.parse(getRecommendedEvents()).events;
   }catch(e){
-    console.log('failed to get events');
+    console.log('failed to get recommended events');
     events = [];
   }
 
@@ -47,7 +47,6 @@ function initDashBoard(){
   document.getElementById("profile_email").innerHTML = userInfo.email;
   document.getElementById("profile_bio").innerHTML = userInfo.bio;
   document.getElementById("profile_tags").innerHTML = userInfo.tags;
-  document.getElementById("events_list").innerHTML = events.length;
 
   document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
 
