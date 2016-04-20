@@ -1,7 +1,7 @@
 <?php
     $status = 200;
 
-    $sql = sprintf( "DELETE FROM Tags WHERE id = '%s' AND type = '%s' AND tag = '%s'", mysql_real_escape_string( $result->event ),
+    $sql = sprintf( "DELETE FROM Tags WHERE owner = '%s' AND type = '%s' AND tag = '%s'", mysql_real_escape_string( $result->event ),
                      mysql_real_escape_string( 1 ), mysql_real_escape_string( $result->tag )
     );
 

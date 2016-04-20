@@ -75,10 +75,12 @@
 		die( $message );
     }
 
-    $sql = "CREATE TABLE Tags( id INT( 6 ) NOT NULL,
-                               tag VARCHAR( 50 ) NOT NULL PRIMARY KEY,
+    $sql = "CREATE TABLE Tags( id INT( 6 ) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                               owner INT( 6 ) NOT NULL,
+                               tag VARCHAR( 50 ) NOT NULL,
                                nice INT( 6 ) NOT NULL,
-                               type INT( 1 ) NOT NULL
+                               type INT( 1 ) NOT NULL,
+                               CONSTRAINT
     )";
 
     if ( !mysql_query( $sql, $connection ) )

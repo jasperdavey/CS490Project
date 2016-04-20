@@ -6,7 +6,7 @@
     $status = 200;
 
     // get User's tags
-    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND tag = '%s' and type = '%s'", mysql_real_escape_string ( $result->id ),
+    $sql = sprintf( "SELECT * FROM Tags WHERE owner = '%s' AND tag = '%s' and type = '%s'", mysql_real_escape_string ( $result->owner ),
                      mysql_real_escape_string( $result->tag ), mysql_real_escape_string( 1 )
     );
 
@@ -29,10 +29,10 @@
 	if ( mysql_num_rows( $eventTags ) == 0 )
     {
         $tagNiceValue = 1;
-        $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
-                         VALUES ( '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->id ),
+        $sql = sprintf( "INSERT INTO Tags ( owner, tag, nice, type )
+                         VALUES ( '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->owner ),
                          mysql_real_escape_string( $result->tag ), mysql_real_escape_string( $tagNiceValue ),
-                         mysql_real_escape_string( 0 )
+                         mysql_real_escape_string( 1 )
         );
 	}
     else

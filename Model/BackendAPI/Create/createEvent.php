@@ -25,7 +25,7 @@
     // Save tags. Assuming nice values given = 0 at this point
     foreach ( $result->tags as $tag => $nice )
     {
-        $sql = sprintf( "INSERT INTO Tags ( id, tag, nice, type )
+        $sql = sprintf( "INSERT INTO Tags ( owner, tag, nice, type )
                          VALUES ('%s', '%s', '%s', '%s' )", mysql_real_escape_string( $id ),
                          mysql_real_escape_string( $tag ), mysql_real_escape_string( $nice ),
                          mysql_real_escape_string( 1 )

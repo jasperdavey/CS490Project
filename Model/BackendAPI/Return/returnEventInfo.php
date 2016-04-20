@@ -16,7 +16,7 @@
     }
 
     // Query Tags
-    $sql = sprintf( "SELECT * FROM Tags WHERE id = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
+    $sql = sprintf( "SELECT * FROM Tags WHERE owner = '%s' AND type = '%s'", mysql_real_escape_string( $result->id ),
                      mysql_real_escape_string( 1 )
     );
 
@@ -33,7 +33,7 @@
 
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
-        array_push( $eventTags, array( 'id' => $row[ 'id' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
+        array_push( $eventTags, array( 'id' => $row[ 'id' ], 'owner' => $row[ 'owner' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
                                 'type' => $row[ 'type' ]
         ) );
     }
