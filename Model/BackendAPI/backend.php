@@ -118,6 +118,66 @@
     {
         include 'removeUserEvent.php';
     }
+    elseif ( $result->command == 21 )
+    {
+        include 'updateUserPassword.php';
+    }
+    elseif ( $result->command == 22 )
+    {
+        include 'updateUserFirstname.php';
+    }
+    elseif ( $result->command == 23 )
+    {
+        include 'updateUserLastname.php';
+    }
+    elseif ( $result->command == 24 )
+    {
+        include 'updateUserEmail.php';
+    }
+    elseif ( $result->command == 25 )
+    {
+        include 'updateEventStartDateTime.php';
+    }
+    elseif ( $result->command == 26 )
+    {
+        include 'updateEventEndDateTime.php';
+    }
+    elseif ( $result->command == 27 )
+    {
+        include 'updateEventName.php';
+    }
+    elseif ( $result->command == 28 )
+    {
+        include 'updateEventLocation.php';
+    }
+    elseif ( $result->command == 29 )
+    {
+        include 'updateEventBio.php';
+    }
+    elseif ( $result->command == 30 )
+    {
+        include 'returnPastEvents.php';
+    }
+    elseif ( $result->command == 31 )
+    {
+        include 'returnFutureEvents.php';
+    }
+    elseif ( $result->command == 32 )
+    {
+        include 'returnEventInfo.php';
+    }
+    elseif ( $result->command == 33 )
+    {
+        include 'returnAllEvents.php';
+    }
+    elseif ( $result->command == 34 )
+    {
+        include 'returnUserFriend.php';
+    }
+    elseif ( $result->command == 35 )
+    {
+        include 'rejectFriendRequest.php';
+    }
     else
     {
         // Error 404
