@@ -1,5 +1,8 @@
 var hashTagHanlder = null;
 
+function hello(x){
+    console.log('hello'+x);
+}
 Date.prototype.toDateInputValue = (function() {
     var local = new Date(this);
     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -17,7 +20,7 @@ function initDashBoard(){
   document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
 
   try {
-    userInfo = JSON.parse(getUserInfo()).info[0];
+    userInfo = JSON.parse(getUserInfo()).info;
   } catch (e) {
     console.log('failed to get user info');
   }
@@ -70,7 +73,8 @@ function initCreateEvent(){
    view.style.visibility = "visible";
    clearTags();
    closeDashMenu();
-   hashTagHanlder = new HashTagHanlder();
+   // selectedContainer, nonSelectedContainer
+   hashTagHanlder = new HashTagHanlder('selected_tags','tag_selection');
    hashTagHanlder.displayHashTags();
 }
 

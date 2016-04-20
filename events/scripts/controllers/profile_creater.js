@@ -1,8 +1,8 @@
 //sign up
 var hashTagHanlder = null;
 
-function initHashTagHandler(){
-    hashTagHanlder = new HashTagHanlder();
+function initHashTagHandler(selectedContainer, nonSelectedContainer){
+    hashTagHanlder = new HashTagHanlder(selectedContainer, nonSelectedContainer);
     hashTagHanlder.displayHashTags();
 }
 

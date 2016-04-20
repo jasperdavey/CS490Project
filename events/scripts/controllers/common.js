@@ -77,7 +77,9 @@ function getFutureEvents(container){
     return response;
 }
 
-function HashTagHanlder(){
+function HashTagHanlder(selectedContainer, nonSelectedContainer){
+  var selectTagsContainer = document.getElementById(selectedContainer);
+  var nonSelectedTagsContainer = document.getElementById(nonSelectedContainer);
   var selectCount=0;
   var bio= null;
   var userTags = new Set([]);
@@ -99,7 +101,7 @@ function HashTagHanlder(){
 
   this.displayHashTags = function(){
     selectCount = 0;
-    var container = document.getElementById('tag_selection');
+    var container = nonSelectedTagsContainer;
     var tags = this.getTags();
     if(!tags){
         tags = [];
@@ -119,7 +121,7 @@ function HashTagHanlder(){
 
     function addHashTag(parent,tag){
     console.log('adding tag: '+tag.innerHTML);
-    var container = document.getElementById('selected_tags');
+    var container = selectTagsContainer;
     var tagName = tag.innerHTML;
     var newTag = document.createElement("button");
     newTag.style.width="110px";
@@ -160,9 +162,6 @@ function HashTagHanlder(){
     return tagArray;
   }
 
-  this.resetVars = function(){
-
-  }
 
 }
 
