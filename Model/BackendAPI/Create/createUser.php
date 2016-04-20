@@ -30,13 +30,11 @@
 
     $events = implode( ",", $result->events );
 
-    $sql = sprintf( "INSERT INTO Users ( email, password, username, firstname, lastname, bio, image, events, friends, pendingFriendRequests, createdEvents )
-            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
+    $sql = sprintf( "INSERT INTO Users ( email, password, username, firstname, lastname, bio, image )
+            VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s' )", mysql_real_escape_string( $result->email ),
             mysql_real_escape_string( $result->password ), mysql_real_escape_string( $result->username ),
             mysql_real_escape_string( $result->firstname ), mysql_real_escape_string( $result->lastname ),
-            mysql_real_escape_string( $result->bio ), mysql_real_escape_string( $defaultImage ),
-            mysql_real_escape_string( $events ), mysql_real_escape_string( {} ), mysql_real_escape_string( {} ),
-            mysql_real_escape_string( {} )
+            mysql_real_escape_string( $result->bio ), mysql_real_escape_string( $defaultImage )
      );
 
     if ( !mysql_query( $sql, $connection ) )
