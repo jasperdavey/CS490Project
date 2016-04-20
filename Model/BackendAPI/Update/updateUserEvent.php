@@ -35,7 +35,7 @@
         $status = 404;
         reportBack( $status );
     }
-    
+
     $attendees = [ ];
 
     $sql = sprintf( "SELECT * FROM Events WHERE id = '%s'", mysql_real_escape_string( $result->event ) );
@@ -58,7 +58,7 @@
 
     array_push( $attendees, $result->id );
 
-    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $attendees ) ),
+    $sql = sprintf( "UPDATE Events SET attendees = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $attendees ) ),
                      mysql_real_escape_string( $result->event )
     );
 

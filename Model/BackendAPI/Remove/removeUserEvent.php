@@ -72,7 +72,7 @@
         }
     }
 
-    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $newtemplist ) ),
+    $sql = sprintf( "UPDATE Events SET attendees = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $newtemplist ) ),
                      mysql_real_escape_string( $result->event )
     );
 

@@ -114,6 +114,10 @@
     {
         include 'updateUserUsername.php';
     }
+    elseif ( $result->command == 20 )
+    {
+        include 'removeUserEvent.php';
+    }
     else
     {
         // Error 404
