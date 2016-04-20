@@ -14,18 +14,7 @@ function showDateValue(date){
 function initDashBoard(){
   // get userInfo
   var userInfo = null;
-  // var events = null;
-  // var firstname = null;
-  // var lastname = null;
-  // var username = null;
-  // var bio = null;
-  // var image = null;
-  // var userEvents = null;
-  // var friends = null;
-  // var friendRequests = null;
-  // var userTags = null;
   document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
-
 
   try {
     userInfo = JSON.parse(getUserInfo()).info[0];
@@ -40,28 +29,20 @@ function initDashBoard(){
     events = [];
   }
 
-  //parse userInfo into diffent fields
-  if( userInfo != null ){
-   // firstname = userInfo.firstname;
-   // lastname = userInfo.lastname;
-   // bio = userInfo.bio;
-   // image = userInfo.image;
-   // userEvents = userInfo.events;
-   // friends = userInfo.friends;
-   // userTags = userInfo.tags;
- }else{
-     console.log("userInfo null");
- }
-
   // populate dom with fields
-  document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
-  document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
-  document.getElementById("profile_username").innerHTML = userInfo.username;
-  document.getElementById("profile_email").innerHTML = userInfo.email;
-  document.getElementById("profile_bio").innerHTML = userInfo.bio;
-  document.getElementById("profile_tags").innerHTML = userInfo.tags;
-  document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
+  if(userInfo != null){
+    document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+    document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+    document.getElementById("profile_username").innerHTML = userInfo.username;
+    document.getElementById("profile_email").innerHTML = userInfo.email;
+    document.getElementById("profile_bio").innerHTML = userInfo.bio;
+    document.getElementById("profile_tags").innerHTML = userInfo.tags;
+  }else{
+    console.log('unable to get user info');
+    document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
+  }
 
+  //check if google api is linked
   checkGoogleCalAuth();
 }
 
@@ -271,7 +252,7 @@ function listUpcomingEvents(date) {
         pre.innerHTML="";
       for (i = 0; i < events.length; i++) {
         var event = events[i];
-        console.log(event);
+        // console.log(event);
         var when = event.start.dateTime;
         if (!when) {
           when = event.start.date;
@@ -292,7 +273,7 @@ function listUpcomingEvents(date) {
  * @param {string} message Text to be placed in pre element.
  */
 function appendPre(message) {
-  console.log(message);
+  // console.log(message);
   var pre = document.getElementById('my_upcoming_events');
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);

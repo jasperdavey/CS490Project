@@ -12,12 +12,13 @@
 }
 
 .profile_container{
-  visibility: collapse;
+  visibility: visible;
   position: absolute;
   top: 100px;
   z-index: 1000000;
   width: inherit;
   height: inherit;
+  padding: 10px;
   background-color: white;
 }
 
@@ -59,12 +60,56 @@
   font-size: 14pt;
   margin: 0px;
 }
-.profile_container #profile_tags{
-  width: 90%;
+.profile_container #tags{
+  width: 100%;
   height: 100px;
   margin-left: auto;
   margin-right: auto;
   background-color: red;
+}
+
+.profile_container #my_tags{
+  display: inline-block;
+  width: 50%;
+  height: inherit;
+  background-color: blue;
+}
+
+.profile_container #all_tags_container{
+  float: right;
+  display: inline-block;
+  width: 50%;
+  height: inherit;
+  background-color: blue;
+}
+
+.profile_container #all_tags_display{
+  width: 100%;
+  height: 70%;
+  background-color: red;
+}
+
+.profile_container #tags_bar{
+  width: 100%;
+  height: 30%;
+  background-color: green;
+}
+
+.profile_container #tags_bar input{
+  display: inline-block;
+  padding-left: 20px;
+  height: 60%;
+  width: 250px;
+  line-height: inherit;
+  font-size: 16pt;
+}
+
+.profile_container #tags_bar button{
+  width: 100px;
+  height: 100%;
+  float: right;
+  margin-right: 10px;
+  display: inline-block;
 }
 
 .profile_container #bio{
@@ -73,4 +118,20 @@
     height: 120px;
     float: right;
     margin-right: 50px;
+}
+
+.profile_view_freinds_container{
+  width: 100%;
+  height: 200px;
+  margin-top: 25px;
+  background-color:  #000033;
+}
+
+.inner_header{
+  width: 100%;
+  height: 25px;
+  font-size: 16pt;
+  line-height: 25px;
+  color: white;
+  background-color: red;
 }

@@ -144,6 +144,7 @@ function getUserInfo($params){
         }
         $time = time();
         $date = date('Y-m-d H:i:s',$time);
+        fwrite($handle,"\n");
         fwrite($handle,$date."\n");
         fwrite($handle,$string."\n");
         fclose($handle);

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$debug = false;
+$debug = true;
 include_once 'functions.php';
 
 $command = null;
