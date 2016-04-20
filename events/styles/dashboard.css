@@ -334,7 +334,7 @@ button{
 }
 .sub_header #search_bar input {
     width: 300px;
-    height: 20px;
+    height: 30px;
     font-size: 12pt;
     display: inline-block;
 }

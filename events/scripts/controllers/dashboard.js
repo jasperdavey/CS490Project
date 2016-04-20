@@ -9,6 +9,16 @@ Date.prototype.toDateInputValue = (function() {
     return local.toJSON().slice(0,10);
 });
 
+
+var dashSearch = document.getElementById('search_bar');
+dashSearch.oninput= function(e){
+  if(e.target.value.length > 1){
+    doSearch('events_list_container');
+  }else{
+    getFutureEvents('events_list_container');
+  }
+}
+
 function showDateValue(date){
     console.log('date value: '+date.value);
     listUpcomingEvents(date.value);

@@ -211,7 +211,6 @@ function doSearch(container){
     formData.append('searchText',input);
     var response = makeRequest(formData);
     console.log(response);
-    input_field.value = "";
 
     //test
     try{

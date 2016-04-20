@@ -17,8 +17,8 @@
         <div id="username" class="dashboard_theme_username"></div>
         <img id="profile_header_image" class="profile_image" src="/~tr88/events/images/default_user.jpg" onclick="showProfileView()"></img>
         <div id="dashboard_menu_button" class="menu_button" onclick="showDashMenu()"></div>
-        <div id="search_bar"><input id="search_value" type="text" value="" placeholder="search"></input>
-        <button onclick="doSearch('events_list_container')">search</button></div>
+        <div id="search_bar">
+          <input id="search_value" type="search" value=""placeholder="search" ></input>
       </div>
       <div id="dashboard_menu" class="dashboard_menu">
           <ul>
@@ -30,7 +30,8 @@
 
       <div id="recommendEvents" class="events_container">
           <div id="events_bar" class="events_bar">
-              <button onclick="getRecommendedEvents()">Recommended</button><button>Friends</button><button onclick="getFutureEvents('events_list_container')">all</button>
+              <button onclick="getRecommendedEvents()">Recommended</button><button>Friends</button>
+              <button onclick="getFutureEvents('events_list_container')">all</button>
           </div>
             <div id="events_list_container" class="events_list_container">
                 <!--TODO create javascript to autopopulate-->
