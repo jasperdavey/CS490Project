@@ -20,6 +20,7 @@
     {
         $userFriends = explode( ",", $row[ 'friends' ] );
     }
+    
 
     foreach ( $userFriends as $singleFriend )
     {
