@@ -79,8 +79,7 @@
                                owner INT( 6 ) NOT NULL,
                                tag VARCHAR( 50 ) NOT NULL,
                                nice INT( 6 ) NOT NULL,
-                               type INT( 1 ) NOT NULL,
-                               CONSTRAINT
+                               type INT( 1 ) NOT NULL
     )";
 
     if ( !mysql_query( $sql, $connection ) )
