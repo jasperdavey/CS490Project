@@ -35,8 +35,8 @@
             mysql_real_escape_string( $result->password ), mysql_real_escape_string( $result->username ),
             mysql_real_escape_string( $result->firstname ), mysql_real_escape_string( $result->lastname ),
             mysql_real_escape_string( $result->bio ), mysql_real_escape_string( $defaultImage ),
-            mysql_real_escape_string( $events ), mysql_real_escape_string( "" ), mysql_real_escape_string( "" ),
-            mysql_real_escape_string( "" )
+            mysql_real_escape_string( $events ), mysql_real_escape_string( {} ), mysql_real_escape_string( {} ),
+            mysql_real_escape_string( {} )
      );
 
     if ( !mysql_query( $sql, $connection ) )
