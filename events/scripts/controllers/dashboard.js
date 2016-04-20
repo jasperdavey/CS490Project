@@ -21,6 +21,7 @@ function initDashBoard(){
 
   try {
     userInfo = JSON.parse(getUserInfo()).info;
+    USER_INFO = userInfo;
   } catch (e) {
     console.log('failed to get user info');
   }

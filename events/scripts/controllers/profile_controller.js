@@ -7,7 +7,15 @@ function closeProfileView( node ){
 
 function showProfileView(){
   document.getElementById('profile_container').style.visibility = 'visible';
+
+  //init HashTagHanlder
   var tagHandler = new HashTagHanlder('profile_selected_tags','profile_tags_selection');
+  if(USER_INFO != null){
+      var tags = USER_INFO.tags;
+      console.log('users tags:'+tags);
+      //load user tags into HashTagHanlder
+      tagHandler.loadUserTags(tags);
+  }
   tagHandler.displayHashTags();
 
   //hide dash menu if open close it'

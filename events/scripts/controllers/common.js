@@ -11,7 +11,10 @@ var SEARCH_ = 12;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 25;
 
+//global variables
 var USER_ID_ = null;
+var USER_INFO = null;
+
 
 //test data
 var test_event_future = '{"events":[{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"}]}';
@@ -78,10 +81,10 @@ function getFutureEvents(container){
 }
 
 function HashTagHanlder(selectedContainer, nonSelectedContainer){
-  var selectTagsContainer = document.getElementById(selectedContainer);
+  var selectedTagsContainer = document.getElementById(selectedContainer);
   var nonSelectedTagsContainer = document.getElementById(nonSelectedContainer);
+  var container = null;
   var selectCount=0;
-  var bio= null;
   var userTags = new Set([]);
   var tags = [];
 
@@ -97,16 +100,37 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
         console.log('failed to get tags');
     }
     return tags;
+    }
+
+  this.loadUserTags = function(tags){
+      for(var i=0; i < tags.length; i++){
+          console.log('adding'+tags[i].tag);
+          userTags.add(tags[i].tag);
+      }
+      console.log('userTags size: '+userTags.size)
   }
 
   this.displayHashTags = function(){
     selectCount = 0;
-    var container = nonSelectedTagsContainer;
+    container = nonSelectedTagsContainer;
     var tags = this.getTags();
-    if(!tags){
-        tags = [];
-    }
     var tag;
+    for(var i=0; i < tags.length; i++){
+        tag = document.createElement("button");
+        tag.style.width="110px";
+        tag.style.height="35px";
+        tag.style.float="left"
+        tag.style.fontSize="8pt";
+        tag.innerHTML = tags[i];
+        tag.onclick = function(){ addHashTag(container,this);};
+        container.appendChild(tag);
+    }
+
+    container = selectedTagsContainer;
+    var tags = this.getUserTags();
+    console.log('user tags length:'+tags.length);
+
+    tag = null;
     for(var i=0; i < tags.length; i++){
         tag = document.createElement("button");
         tag.style.width="110px";
@@ -121,7 +145,7 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 
     function addHashTag(parent,tag){
     console.log('adding tag: '+tag.innerHTML);
-    var container = selectTagsContainer;
+    var container = selectedTagsContainer;
     var tagName = tag.innerHTML;
     var newTag = document.createElement("button");
     newTag.style.width="110px";
@@ -161,7 +185,6 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     userTags.forEach( function(value,set){ tagArray.push(value)})
     return tagArray;
   }
-
 
 }
 
