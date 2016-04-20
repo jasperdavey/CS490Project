@@ -15,7 +15,7 @@
         $status = 404;
         reportBack( $status );
     }
-
+    /*
     while ( $row = mysql_fetch_assoc( $user ) )
     {
         $userEvents = explode( ",", $row[ 'events' ] );
