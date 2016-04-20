@@ -68,7 +68,7 @@
     {
         include 'returnUserInfo.php';
     }
-    // Add user to event
+    // Add user to event DONE
     elseif ( $result->command == 10 )
     {
         include 'updateUserEvents.php';

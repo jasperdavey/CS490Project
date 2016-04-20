@@ -1,7 +1,6 @@
 <?php
     // event, id
     $status = 200;
-    $templist = [ ];
     $userEvents = [ ];
 
     $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $result->id ) );
@@ -22,15 +21,9 @@
         $userEvents = explode( ",", $row[ 'events' ] );
     }
 
-    foreach ( $userEvents as $singleEvent )
-    {
-        if ( $singleEvent != $result->event )
-        {
-            array_push( $templist, $singleEvent );
-        }
-    }
+    array_push( $userEvents, $result->event );
 
-    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $templist ) ),
+    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $userEvents ) ),
                      mysql_real_escape_string( $result->id )
     );
 
@@ -44,7 +37,6 @@
     }
 
     $attendees = [ ];
-    $newtemplist = [ ];
 
     $sql = sprintf( "SELECT * FROM Events WHERE id = '%s'", mysql_real_escape_string( $result->event ) );
 
@@ -64,15 +56,9 @@
         $attendees = explode( ",", $row[ 'attendees' ] );
     }
 
-    foreach ( $attendees as $singleAttendee )
-    {
-        if ( $singleAttendee != $result->id )
-        {
-            array_push( $newtemplist, $singleAttendee );
-        }
-    }
+    array_push( $attendees, $result->id );
 
-    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $newtemplist ) ),
+    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $attendees ) ),
                      mysql_real_escape_string( $result->event )
     );
 
