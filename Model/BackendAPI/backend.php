@@ -110,6 +110,10 @@
     {
         include 'removeEventTag.php';
     }
+    elseif ( $result->command == 19 )
+    {
+        include 'updateUserUsername.php';
+    }
     else
     {
         // Error 404
