@@ -24,7 +24,6 @@
 
     foreach ( $userFriends as $singleFriend )
     {
-        echo $singleFriend;
         $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $singleFriend ) );
         $friend = mysql_query( $sql, $connection );
         if ( !$friend )
