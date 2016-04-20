@@ -21,10 +21,6 @@
         $userFriends = explode( ",", $row[ 'friends' ] );
     }
 
-    foreach ($userFriends as $test ) {
-        echo "$test\n";
-    }
-
     foreach ( $userFriends as $singleFriend )
     {
         $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $singleFriend ) );
