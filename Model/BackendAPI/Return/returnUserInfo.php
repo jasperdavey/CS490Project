@@ -40,7 +40,7 @@
 
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
-        array_push( $userTags, array( 'id' => $row[ 'id' ], 'owner' => $row[ 'onwer' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
+        array_push( $userTags, array( 'id' => $row[ 'id' ], 'owner' => $row[ 'owner' ], 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ],
                                 'type' => $row[ 'type' ]
         ) );
     }
