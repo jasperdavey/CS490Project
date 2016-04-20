@@ -71,7 +71,7 @@
     // Add user to event DONE
     elseif ( $result->command == 10 )
     {
-        include 'updateUserEvents.php';
+        include 'updateUserEvent.php';
     }
     // Return all tags ( Needs to be per populated )
     elseif ( $result->command == 11 )
