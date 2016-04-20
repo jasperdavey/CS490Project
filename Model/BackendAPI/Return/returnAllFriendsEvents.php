@@ -21,6 +21,8 @@
         array_push( $userFriends, explode( ",", $row[ 'friends' ] ) );
     }
 
+    echo $userFriends;
+
     foreach ( $userFriends as $singleFriend )
     {
         $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $singleFriend ) );
@@ -37,7 +39,6 @@
         while ( $row = mysql_fetch_assoc( $friend ) )
         {
             array_push( $userFriendsArray, explode( ",", $row[ 'events' ] ) );
-            echo $row[ 'events' ];
         }
 
     }
