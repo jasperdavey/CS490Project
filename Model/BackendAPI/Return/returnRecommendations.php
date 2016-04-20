@@ -25,7 +25,7 @@
 
     while ( $row = mysql_fetch_assoc( $tags ) )
     {
-        $tagsArray = array( 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ] );
+        array_push( $tagsArray, array( 'tag' => $row[ 'tag' ], 'nice' => $row[ 'nice' ] ) );
     }
 
     // Query User Events
