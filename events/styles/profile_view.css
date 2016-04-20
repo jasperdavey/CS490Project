@@ -65,14 +65,13 @@
   height: 100px;
   margin-left: auto;
   margin-right: auto;
-  background-color: red;
 }
 
 .profile_container #profile_selected_tags{
   display: inline-block;
-  width: 50%;
+  width: 49%;
   height: inherit;
-  background-color: white;
+  background-color: #000033;
 }
 
 .profile_container #all_tags_container{
@@ -80,19 +79,18 @@
   display: inline-block;
   width: 50%;
   height: inherit;
-  background-color: blue;
 }
 
 .profile_container #profile_tags_selection{
   width: 100%;
   height: 70%;
-  background-color: red;
+  background-color: #000033;
 }
 
 .profile_container #tags_bar{
   width: 100%;
   height: 30%;
-  background-color: green;
+  background-color: #000033;
 }
 
 .profile_container #tags_bar input{

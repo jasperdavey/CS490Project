@@ -115,6 +115,7 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     container = nonSelectedTagsContainer;
     var tags = this.getTags();
     var tag;
+
     for(var i=0; i < tags.length; i++){
         tag = document.createElement("button");
         tag.style.width="110px";
@@ -126,7 +127,7 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
         container.appendChild(tag);
     }
 
-    container = selectedTagsContainer;
+    var container = selectedTagsContainer;
     var tags = this.getUserTags();
     console.log('user tags length:'+tags.length);
 
@@ -145,7 +146,12 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 
     function addHashTag(parent,tag){
     console.log('adding tag: '+tag.innerHTML);
-    var container = selectedTagsContainer;
+    var container = null;
+    if( parent != selectedTagsContainer){
+        container = nonSelectedTagsContainer;
+    }else{
+        container = selectedTagsContainer;
+    }
     var tagName = tag.innerHTML;
     var newTag = document.createElement("button");
     newTag.style.width="110px";
@@ -156,7 +162,12 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     newTag.onclick = function(){ removeThySelf(container,newTag);};
     container.appendChild(newTag);
     userTags.add(tagName);
-    parent.removeChild(tag);
+    console.log('userTag Size: '+userTags.size);
+    if( parent != selectedTagsContainer){
+        selectedTagsContainer.removeChild(tag);
+    }else{
+        nonSelectedTagsContainer.removeChild(tag);
+    }
   }
 
 
