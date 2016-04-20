@@ -127,9 +127,30 @@
   background-color:  #000033;
 }
 
+.profile_view_freinds_container button{
+  margin-top: 5px;
+  display: inline-block;
+  height: 25px;
+  width: 200px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.profile_view_freinds_container input{
+  float: left;
+  margin-top: 3px;
+  display: inline-block;
+  height: 15px;
+  font-size: 12pt;
+  width: 200px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
 .inner_header{
   width: 100%;
-  height: 25px;
+  height: 35px;
   font-size: 16pt;
   line-height: 25px;
   color: white;

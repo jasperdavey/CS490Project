@@ -36,7 +36,7 @@ function initDashBoard(){
     document.getElementById("profile_username").innerHTML = userInfo.username;
     document.getElementById("profile_email").innerHTML = userInfo.email;
     document.getElementById("profile_bio").innerHTML = userInfo.bio;
-    document.getElementById("profile_tags").innerHTML = userInfo.tags;
+    console.log('user tags:'+userInfo.tags);
   }else{
     console.log('unable to get user info');
     document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
