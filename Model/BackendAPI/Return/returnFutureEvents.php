@@ -4,7 +4,7 @@
 
     $today = date("Y-m-d H:i:s");
     echo $today;
-    /*
+
     $sql = sprintf( "SELECT * FROM Events WHERE startDateTime >= '%s'", mysql_real_escape_string( $today ) );
 
     $allEvents = mysql_query( $sql, $connection );
@@ -33,6 +33,5 @@
 
         die( "$status_json" );
     }
-    */
 
  ?>
