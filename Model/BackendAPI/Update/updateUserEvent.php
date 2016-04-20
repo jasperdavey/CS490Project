@@ -35,7 +35,7 @@
         $status = 404;
         reportBack( $status );
     }
-
+    /*
     $attendees = [ ];
 
     $sql = sprintf( "SELECT * FROM Events WHERE id = '%s'", mysql_real_escape_string( $result->event ) );
@@ -70,7 +70,7 @@
         $status = 404;
         reportBack( $status );
     }
-
+    */
     reportBack( $status );
     function reportBack( $status )
     {

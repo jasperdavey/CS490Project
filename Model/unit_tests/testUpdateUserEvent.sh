@@ -7,3 +7,5 @@ if ! `echo "${result}" | grep -q "200"`; then
     echo "${result}"
     exit 1
 fi
+
+echo "${result}"
