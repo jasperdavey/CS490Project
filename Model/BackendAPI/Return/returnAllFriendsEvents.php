@@ -37,7 +37,7 @@
         while ( $row = mysql_fetch_assoc( $friend ) )
         {
             array_push( $userFriendsArray, explode( ",", $row[ 'events' ] ) );
-            echo "$row[ 'events' ]";
+            echo $row[ 'events' ];
         }
 
     }
