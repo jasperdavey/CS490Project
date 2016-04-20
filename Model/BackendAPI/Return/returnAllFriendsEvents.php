@@ -21,6 +21,9 @@
         array_push( $userFriends, explode( ",", $row[ 'friends' ] ) );
     }
 
+    foreach ($userFriends as $test ) {
+        echo "$test\n";
+    }
 
     foreach ( $userFriends as $singleFriend )
     {
