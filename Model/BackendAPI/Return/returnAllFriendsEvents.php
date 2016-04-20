@@ -18,7 +18,7 @@
 
     while ( $row = mysql_fetch_assoc( $user ) )
     {
-        array_push( $userFriends, explode( ",", $row[ 'friends' ] ) );
+        $userFriends = explode( ",", $row[ 'friends' ] );
     }
 
     foreach ($userFriends as $test ) {
