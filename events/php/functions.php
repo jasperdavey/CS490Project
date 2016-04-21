@@ -126,16 +126,8 @@ function getUserInfo($params){
   }
 }
 
-//get future events
-function getFutureEvents($params){
-    $response = makeRequest($params);
-    $jsonObject = json_decode($response,true);
-    $eventIDs = $jsonObject['info'];
-    $index = 0;
-    foreach( $eventIDs as $value){
-        $eventIDs[$index] = $value[0];
-        $index++;
-    }
+//get events by ID
+function getEvents( array $eventIDs){
     $events = array();
     $index = 0;
     foreach ($eventIDs as $value) {
@@ -148,17 +140,32 @@ function getFutureEvents($params){
             $index++;
             //add to json object to return
         }catch (Exception $e){
-            myLog("failed to get future events - parsing failed",false);
+            myLog("failed to get events - parsing failed",false);
         }
-        myLog("event id:".$value." - ".$response,false);
+        myLog("getting event id:".$value." - ".$response,false);
     }
 
     $jPacket = json_encode($events);
     $jPacket = '{"events":'.$jPacket.'}';
     myLog("json encoded events: ".$jPacket,false);
     return $jPacket;
-
 }
+
+//get future events
+function getFutureEvents($params){
+    $response = makeRequest($params);
+    $jsonObject = json_decode($response,true);
+    $eventIDs = $jsonObject['info'];
+    $index = 0;
+
+    foreach( $eventIDs as $value){
+        $eventIDs[$index] = $value[0];
+        $index++;
+    }
+    return getEvents($eventIDs);
+}
+
+
 
 
 // write debug output to file do not echo
