@@ -23,7 +23,13 @@
 
     array_push( $userEvents, $result->event );
 
-    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( ",", $userEvents ) ),
+    $userEvents = implode( ",", $userEvents );
+    if ( $userEvents[ 0 ] == "," )
+    {
+        $userEvents = substr( $userEvents, 1 );
+    }
+
+    $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( $userEvents ),
                      mysql_real_escape_string( $result->id )
     );
 
@@ -58,7 +64,13 @@
 
     array_push( $attendees, $result->id );
 
-    $sql = sprintf( "UPDATE Events SET attendees = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( ",", $attendees ) ),
+    $attendees = implode( ",", $attendees );
+    if ( $attendees[ 0 ] == "," )
+    {
+        $attendees = substr( $attendees, 1 );
+    }
+
+    $sql = sprintf( "UPDATE Events SET attendees = '%s' WHERE id = '%s'", mysql_real_escape_string( $attendees ),
                      mysql_real_escape_string( $result->event )
     );
 

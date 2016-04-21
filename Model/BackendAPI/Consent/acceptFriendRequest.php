@@ -43,8 +43,19 @@
     }
 
     // Update targetID
+    $friendlist = implode( ",", $friendlist );
+    if ( $friendlist[ 0 ] == "," )
+    {
+        $friendlist = substr( $friendlist, 1 );
+    }
+    $templist = implode( ",", $templist )
+    if ( $templist[ 0 ] == "," )
+    {
+        $templist = substr( $templist, 1 );
+    }
+
     $sql = sprintf( "UPDATE Users SET friends = '%s', pendingFriendRequests = '%s' WHERE id = '%s'",
-                     mysql_real_escape_string( implode( ",", $friendlist ) ), mysql_real_escape_string( implode( ",", $templist ) ),
+                     mysql_real_escape_string( $friendlist ), mysql_real_escape_string( $templist ),
                      mysql_real_escape_string( $result->targetID )
     );
 
@@ -81,8 +92,14 @@
     array_push( $initiatorIDFriendList, $result->targetID );
 
     // Update initiatorID
+    $initiatorIDFriendList = implode( ",", $initiatorIDFriendList );
+    if ( $initiatorIDFriendList[ 0 ] == "," )
+    {
+        $initiatorIDFriendList = substr( $initiatorIDFriendList, 1 );
+    }
+
     $sql = sprintf( "UPDATE Users SET friends = '%s' WHERE id = '%s'",
-                     mysql_real_escape_string( implode( ",", $initiatorIDFriendList ) ),
+                     mysql_real_escape_string( $initiatorIDFriendList ),
                      mysql_real_escape_string( $result->initiatorID )
     );
 

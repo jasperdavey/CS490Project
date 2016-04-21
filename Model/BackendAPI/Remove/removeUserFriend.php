@@ -29,7 +29,13 @@
         }
     }
 
-    $sql = sprintf( "UPDATE Users SET friends = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( ",", $templist ) ),
+    $templist = implode( ",", $templist );
+    if ( $templist[ 0 ] == "," )
+    {
+        $templist = substr( $templist, 1 );
+    }
+
+    $sql = sprintf( "UPDATE Users SET friends = '%s' WHERE id = '%s'", mysql_real_escape_string( $templist ),
                      mysql_real_escape_string( $result->initiatorID )
     );
 
@@ -71,7 +77,13 @@
         }
     }
 
-    $sql = sprintf( "UPDATE Users SET friends = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( ",", $newtemplist ) ),
+    $newtemplist = implode( ",", $newtemplist );
+    if ( $newtemplist[ 0 ] == "," )
+    {
+        $newtemplist = substr( $newtemplist, 1 );
+    }
+
+    $sql = sprintf( "UPDATE Users SET friends = '%s' WHERE id = '%s'", mysql_real_escape_string( $newtemplist ),
                      mysql_real_escape_string( $result->targetID )
     );
 

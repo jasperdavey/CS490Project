@@ -61,8 +61,13 @@
     }
 
     array_push( $eventsList, $id );
+    $eventsList = implode( ",", $eventsList );
+    if ( $eventsList[ 0 ] == "," )
+    {
+        $eventsList = substr( $eventsList, 1 );
+    }
 
-    $sql = sprintf( "UPDATE Users SET createdEvents = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( ",", $eventsList ) ),
+    $sql = sprintf( "UPDATE Users SET createdEvents = '%s' WHERE id = '%s'", mysql_real_escape_string( $eventsList ),
                      mysql_real_escape_string( $result->owner )
     );
 
