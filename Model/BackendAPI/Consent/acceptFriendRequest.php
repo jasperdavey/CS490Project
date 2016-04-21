@@ -48,7 +48,7 @@
     {
         $friendlist = substr( $friendlist, 1 );
     }
-    $templist = implode( ",", $templist )
+    $templist = implode( ",", $templist );
     if ( $templist[ 0 ] == "," )
     {
         $templist = substr( $templist, 1 );
