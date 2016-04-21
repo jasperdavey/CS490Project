@@ -45,7 +45,7 @@ function initDashBoard(){
   }
 
   try{
-    events = JSON.parse(getRecommendedEvents()).events;
+      getRecommendedEvents('events_list_container');
   }catch(e){
     console.log('failed to get recommended events');
     events = [];

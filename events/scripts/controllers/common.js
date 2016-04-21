@@ -92,11 +92,13 @@ function getFutureEvents(container){
 }
 
 function loadAllUsers(container){
-  var users = getAllUsers();
-  if( users.length > 0 ){
-    //load users
+    var container = document.getElementById(container);
+    container.innerHTML="";
+    var users = getAllUsers();
+    if( users.length > 0 ){
+        //load users
 
-  }
+    }
 }
 //get all users
 function getAllUsers(){
