@@ -62,7 +62,7 @@
 
     array_push( $eventsList, $id );
 
-    $sql = sprintf( "UPDATE Users SET createdEvents = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( $eventsList ) ),
+    $sql = sprintf( "UPDATE Users SET createdEvents = '%s' WHERE id = '%s'", mysql_real_escape_string( implode( ",", $eventsList ) ),
                      mysql_real_escape_string( $result->owner )
     );
 

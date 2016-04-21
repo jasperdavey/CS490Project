@@ -44,7 +44,7 @@
 
     // Update targetID
     $sql = sprintf( "UPDATE Users SET friends = '%s', pendingFriendRequests = '%s' WHERE id = '%s'",
-                     mysql_real_escape_string( implode( $friendlist ) ), mysql_real_escape_string( implode( $templist ) ),
+                     mysql_real_escape_string( implode( ",", $friendlist ) ), mysql_real_escape_string( implode( ",", $templist ) ),
                      mysql_real_escape_string( $result->targetID )
     );
 
@@ -82,7 +82,7 @@
 
     // Update initiatorID
     $sql = sprintf( "UPDATE Users SET friends = '%s' WHERE id = '%s'",
-                     mysql_real_escape_string( implode( $initiatorIDFriendList ) ),
+                     mysql_real_escape_string( implode( ",", $initiatorIDFriendList ) ),
                      mysql_real_escape_string( $result->initiatorID )
     );
 

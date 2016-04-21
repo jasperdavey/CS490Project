@@ -33,7 +33,7 @@
 
     // Update targetID
     $sql = sprintf( "UPDATE Users SET pendingFriendRequests = '%s' WHERE id = '%s'",
-                     mysql_real_escape_string( implode( $templist ) ),
+                     mysql_real_escape_string( implode( ",", $templist ) ),
                      mysql_real_escape_string( $result->targetID )
     );
 
