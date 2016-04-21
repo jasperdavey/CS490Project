@@ -99,6 +99,54 @@ function getFutureEvents(container){
     console.log("returned future events: "+events);
     showEvents(events,container);
 }
+
+//get friends
+function getAllFriends(container){
+  //check if info was saved
+  var userInfo = USER_INFO;
+  if( !userInfo.friends ){
+    var response = getUserInfo();
+    try {
+      userInfo = JSON.parse(response).info;
+      USER_INFO = userInfo;
+    } catch (e) {
+      console.log('failed to get user info');
+      console.log('get userInfo response: '+response)
+    }
+  }
+
+  //get friends
+  var friends = [1,2,10];
+  var jsonObject = null;
+  //break if no friends
+  if ( friends != "" && friends.length < 1 ) return;
+
+  var formData = new FormData();
+
+  try{
+    jsonObject = JSON.stringify({'ids':friends});
+    console.log('friends ids json object: '+jsonObject);
+
+  }catch(e){
+    console.log('failed to create json of friend ids\n'+e);
+  }
+
+  formData.append('command',10);
+  formData.append('user_ids',jsonObject);
+
+  var response = makeRequest(formData);
+  try{
+    friends = JSON.parse(response).users;
+  }catch(e){
+    console.log(e);
+  }
+  for(var i=0; i < friends.length; i++){
+    friends[i]=JSON.parse(friends[i]).info;
+  }
+
+  loadUsers(friends,'friends_view_container_body');
+}
+
 //load all users into view
 function loadUsers(users, container){
     var container = document.getElementById(container);

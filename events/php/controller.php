@@ -125,8 +125,11 @@ $params = buildParams();
         echo getRecommendedEvents($params);
         break;
 
-    case 9: // return all user info
-        getUserInfo($params);
+    case 9: // return userInfo
+        echo getThisUserInfo($params);
+        break;
+    case 10: //returns users info
+        echo getUsersInfo();
         break;
     case 11:
         myLog("case 11 - get all tags called,params: ".$params,false);

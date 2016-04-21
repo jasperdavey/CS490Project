@@ -126,13 +126,32 @@ function getAllEvents(){
 }
 
 
-function getUserInfo($params){
+function getThisUserInfo($params){
 
   if ( $_SESSION['id'] != null ){
     $response = makeRequest($params."&id=".$_SESSION['id']);
-    echo $response;
+    return $response;
   }else{
-    echo "can't get user info";
+    return "can't get this user info";
+  }
+}
+
+function getUsersInfo(){
+  if ( isset( $_POST['user_ids'])){
+    $users = json_decode($_POST['user_ids'],true);
+    $users = $users['ids'];
+    $index = 0;
+    foreach ($users as $id) {
+      $params='command=9&id='.$id;
+      $response = makeRequest($params);
+      $users[$index] = $response;
+      $index++;
+    }
+    $jPacket = json_encode($users);
+    $jPacket = '{"users":'.$jPacket.'}';
+    return $jPacket;
+  }else{
+    return '{"users":[]}';
   }
 }
 
