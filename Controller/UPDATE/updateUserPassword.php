@@ -1,12 +1,12 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: updateUserPassword.php		    	*
+FileName: updateUserPassword.php		    *
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
 
-//Input: id, bio
+//Input: id, password
 //Output: DB_results
 
 
