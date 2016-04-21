@@ -181,6 +181,8 @@ function getFutureEvents($params){
 // write debug output to file do not echo
       function myLog($string,$clear){
         global $debug;
+        global $linux;
+
         if($debug == false) return;
 
         $mode = 'a';
@@ -189,7 +191,6 @@ function getFutureEvents($params){
         }
 
         $handle = null;
-
         if($linux){
             $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt',$mode);
         }else{
