@@ -34,25 +34,18 @@
     }
     else
     {
-        if ( empty( $pendingFriendRequests ) )
+        array_push( $pendingFriendRequests, $result->initiatorID );
+
+        $pendingFriendRequests = implode( "," $pendingFriendRequests );
+        if ( $pendingFriendRequests[ 0 ] == "," )
         {
-            $pendingFriendRequests = $result->initiatorID;
-
-            $sql = sprintf( "UPDATE Users SET pendingFriendRequests = '%s'
-                            WHERE id = '%s'", mysql_real_escape_string( implode( $pendingFriendRequests ) ),
-                            mysql_real_escape_string( $result->targetID )
-            );
+            $pendingFriendRequests = substr( $pendingFriendRequests, 1 );
         }
-        else
-        {
-            array_push( $pendingFriendRequests, $result->initiatorID );
 
-            $sql = sprintf( "UPDATE Users SET pendingFriendRequests = '%s'
-                            WHERE id = '%s'", mysql_real_escape_string( implode( ",", $pendingFriendRequests ) ),
-                            mysql_real_escape_string( $result->targetID )
-            );
-
-        }
+        $sql = sprintf( "UPDATE Users SET pendingFriendRequests = '%s'
+                        WHERE id = '%s'", mysql_real_escape_string( $pendingFriendRequests ),
+                        mysql_real_escape_string( $result->targetID )
+        );
 
         if ( !mysql_query( $sql, $connection ) )
         {
