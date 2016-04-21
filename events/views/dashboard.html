@@ -145,38 +145,37 @@
         </div>
 
       </div>
-      <div id="people_view_container" class="profile_view_freinds_container">
+
+
+      <div id="people_view_container" class="profile_view_people_container">
         <div class="inner_header">
           <input id="people_search_input" type="search" placeholder="search"></input>
           <button>Friends</button>
-          <button onclick="loadAllUsers('people_view_container')">Everyone</button>
+          <button onclick="loadAllUsers('friends_view_container_body')">Everyone</button>
         </div>
-        <div class="people_view_container_body">
+        <div class="people_view_container_body" id="friends_view_container_body">
           <div class="other_user_view">
             <h1>username</h1>
             <h2>name</h2>
             <div id="other_user_img"></div>
           </div>
-
-
         </div>
+
       </div>
 
-      <div id="request_view_container" class="profile_view_request_container">
+      <div id="request_view_container" class="profile_view_people_container">
         <div class="inner_header">
           <button>My Requests</button>
           <button onclick="loadAllUsers('people_view_container')">Received Requests</button>
         </div>
-        <div id="request_view_container_body">
-          <div class="other_user_view">
+        <div class="people_view_container_body" id="request_view_container_body">
+          <!-- <div class="other_user_view">
             <h1>username</h1>
             <h2>name</h2>
             <div id="other_user_img"></div>
-          </div>
-
-
+          </div> -->
         </div>
-        </div>
+    </div>
   </div>
 
 

@@ -16,6 +16,7 @@ var FUTURE_EVENTS_ = 31;
 var USER_ID_ = null;
 var USER_INFO = null;
 
+var DEBUG_LOG = true;
 
 //test data
 var test_event_future = '{"events":[{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"}]}';
@@ -38,14 +39,23 @@ function makeRequest(params){
       XM.send(params);
     return response;
 }
+
+//debug log
+
+
 /*********************************getters*************************************/
 // get userinfo
 function getUserInfo(){
     var command = USER_INFO_;
     var formData = new FormData();
     formData.append('command',command);
-    var response = makeRequest( formData );
-    console.log(response);
+    try{
+      var response = makeRequest( formData );
+    }catch(e){
+      console.log(e);
+      console.log('response from getUserInfo: '+response);
+      return null;
+    }
     return response;
 }
 
@@ -58,11 +68,10 @@ function getRecommendedEvents(container){
     formData.append('command',command);
     var response = makeRequest(formData);
     var events = null;
-    console.log("recommended events: "+response);
     try{
         events = JSON.parse(response).events;
     }catch(e){
-        console.log('failed to parse recommended events:');
+        console.log('failed to parse recommended events:response '+response);
         console.log(e);
     }
     if( events.length > 0){
@@ -93,33 +102,47 @@ function getFutureEvents(container){
 
 function loadAllUsers(container){
     var container = document.getElementById(container);
+    var template = container.children[0].cloneNode(true);
     container.innerHTML="";
     var users = getAllUsers();
+    console.log(users);
+    var i = 0;
+    var children = null;
     if( users.length > 0 ){
-        //load users
-
+        for(i=0; i < users.length; i++){
+          var node = template.cloneNode(true);
+          // get children
+          children = node.children;
+          if( users[i].firstname && users[i].lastname){
+            children[0].innerHTML= users[i].firstname;
+            children[1].innerHTML= users[i].lastname;
+          }
+          node.id = 'user-'+users[i].id;
+          node.onclick = function(node){
+            console.log('clicked: '+node.target.id);
+          }
+          node.style.visibility='visible';
+          container.appendChild(node);
+      }
     }
 }
 //get all users
 function getAllUsers(){
-  console.log('getting all users');
   var formData = new FormData();
   formData.append('command',ALL_USERS_);
   var response = makeRequest(formData);
-  console.log(response);
+
   var users = null;
   try{
     users = JSON.parse(response).Users;
-    console.log('# of users:'+users.length);
     return users;
   }catch(e){
     console.log(e);
     console.log('failed to get all users');
-  }
-  finally{
     users = [];
     return users;
   }
+
 }
 
 function HashTagHanlder(selectedContainer, nonSelectedContainer){
@@ -136,20 +159,24 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     formData.append('command',command);
     var response = makeRequest(formData);
     try{
-        console.log(response);
         tags = JSON.parse(response).tags;
-    }catch(err){
+    }catch(e){
         console.log('failed to get tags');
+        console.log('response: '+response);
     }
     return tags;
     }
 
   this.loadUserTags = function(tags){
-      for(var i=0; i < tags.length; i++){
-          console.log('adding'+tags[i].tag);
-          userTags.add(tags[i].tag);
+      try{
+        for(var i=0; i < tags.length; i++){
+            userTags.add(tags[i].tag);
+        }
+      }catch(e){
+        console.log('failed to load user tags');
+        console.log(e);
       }
-      console.log('userTags size: '+userTags.size)
+
   }
 
   this.displayHashTags = function(){
@@ -171,7 +198,6 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 
     var container = selectedTagsContainer;
     var tags = this.getUserTags();
-    console.log('user tags length:'+tags.length);
 
     tag = null;
     for(var i=0; i < tags.length; i++){

@@ -192,9 +192,9 @@ function getFutureEvents($params){
 
         $handle = null;
         if($linux){
-            $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt',$mode);
+            $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.log',$mode);
         }else{
-            $handle = fopen('/Users/wrg/Sites/~tr88/events/test/php_log.txt',$mode);
+            $handle = fopen('/Users/wrg/Sites/~tr88/events/test/php_log.log',$mode);
         }
 
         if( !$handle ){

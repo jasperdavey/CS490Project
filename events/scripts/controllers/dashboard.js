@@ -36,12 +36,13 @@ function initDashBoard(){
   // get userInfo
   var userInfo = null;
   document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
-
+  var response = getUserInfo();
   try {
-    userInfo = JSON.parse(getUserInfo()).info;
+    userInfo = JSON.parse(response).info;
     USER_INFO = userInfo;
   } catch (e) {
     console.log('failed to get user info');
+    console.log('get userInfo response: '+response)
   }
 
   try{
@@ -58,10 +59,8 @@ function initDashBoard(){
     document.getElementById("profile_username").innerHTML = userInfo.username;
     document.getElementById("profile_email").innerHTML = userInfo.email;
     document.getElementById("profile_bio").innerHTML = userInfo.bio;
-    console.log('user tags:'+userInfo.tags);
   }else{
     console.log('unable to get user info');
-    document.getElementById("profile_header_image").style.backgroundImage='url(/~tr88/events/images/default_user.jpg)';
   }
 
   //check if google api is linked
