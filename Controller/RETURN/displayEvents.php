@@ -31,17 +31,35 @@ $db_table_events = mysql_query($sql,$connection);
 if (!$db_table_events){echo "DB Error: could not query the database"; exit;}
 
 while($row = mysql_fetch_assoc($db_table_events)){
-	$table_events['Events'][$row['id']]['name'] = $row['name'];
-	$table_events['Events'][$row['id']]['startDateTime'] = $row['startDateTime'];
-	$table_events['Events'][$row['id']]['endDateTime'] = $row['endDateTime'];
-	$table_events['Events'][$row['id']]['location']= $row['location'];
-	$table_events['Events'][$row['id']]['image']=$row['image'];
-	$table_events['Events'][$row['id']]['bio'] = $row['bio'];
-	$table_events['Events'][$row['id']]['owner']=$row['owner'];
+	$table_events['id']= $row['id'];
+	$table_events['name'] = $row['name'];
+	$table_events['startDateTime'] = $row['startDateTime'];
+	$table_events['endDateTime'] = $row['endDateTime'];
+	$table_events['location']= $row['location'];
+	$table_events['image']=$row['image'];
+	$table_events['bio'] = $row['bio'];
+	$table_events['owner']=$row['owner'];
+	$table_events['attendees']=$row['attendees'];
+	$table_events['tag']=getTags($connection, $row['id']);
+	if($table_events['tag'] == null){$table_events['tag']="";}
+	if($table_events['attendees'] == null){$table_events['attendees']="";}
+	
+	$response['Events'][]= $table_events;
 	
 }
 
-$response = json_encode($table_events);
+function getTags($connection,$id){
+	$sql = "SELECT * FROM Tags where owner = '".$id."';";
+	$db_table_events = mysql_query($sql,$connection);
+	if (!$db_table_events){echo "DB Error: could not query the database"; exit;}
+
+	while($row = mysql_fetch_assoc($db_table_events)){
+		$tags=explode(",",$row['tag']);
+		return $tags;
+	}
+}
+
+$response = json_encode($response);
 echo $response;
 
 ?>
