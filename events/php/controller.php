@@ -2,7 +2,7 @@
 session_start();
 
 $debug = true;
-$linux = false;
+$linux = true;
 
 include_once 'functions.php';
 
