@@ -190,6 +190,18 @@
     {
         include 'deleteEvent.php';
     }
+    elseif ( $result->command == 39 )
+    {
+        include 'updateComment.php';
+    }
+    elseif ( $result->command == 40 )
+    {
+        include 'returnComments.php';
+    }
+    elseif ( $result->command == 41 )
+    {
+        include 'deleteComment.php';
+    }
     else
     {
         // Error 404

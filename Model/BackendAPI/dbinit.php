@@ -62,7 +62,7 @@
 
     // create Comments table
     $sql = "CREATE TABLE Comments ( id INT( 6 ) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                                    user VARCHAR( 50 ) NOT NULL,
+                                    owner INT ( 6 ) NOT NULL,
                                     event INT ( 6 ) NOT NULL,
                                     datePosted DATE NOT NULL,
                                     comment VARCHAR( 10000 ) NOT NULL
