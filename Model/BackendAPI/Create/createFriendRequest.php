@@ -36,7 +36,7 @@
     {
         array_push( $pendingFriendRequests, $result->initiatorID );
 
-        $pendingFriendRequests = implode( "," $pendingFriendRequests );
+        $pendingFriendRequests = implode( ",", $pendingFriendRequests );
         if ( $pendingFriendRequests[ 0 ] == "," )
         {
             $pendingFriendRequests = substr( $pendingFriendRequests, 1 );
