@@ -1,44 +1,17 @@
 
-2016-04-21 06:55:02
+2016-04-21 08:22:30
 
 new log ---------------------------------
 
 
-2016-04-21 06:55:02
-case 31- get all future events,parms:command=31
+2016-04-21 08:22:30
+case 8-get recommended events, params:command=8
 
-2016-04-21 06:55:02
-curl request: url:https://web.njit.edu/~aml35/login/commandLine.php, params: command=31
+2016-04-21 08:22:30
+getting recommend events withd id: 3
 
-2016-04-21 06:55:02
-curl response: {"status":200,"info":[["1"],["2"],["3"]]}
+2016-04-21 08:22:30
+curl request: url:https://web.njit.edu/~aml35/login/commandLine.php, params: command=8&id=3
 
-2016-04-21 06:55:02
-curl request: url:https://web.njit.edu/~aml35/login/commandLine.php, params: command=32&id=1
-
-2016-04-21 06:55:02
-curl response: {"status":200,"info":{"id":"1","name":"ACM","owner":"1","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Event for CS students","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","attendees":"12","tags":[{"id":"1","owner":"1","tag":"#CS","nice":"3","type":"1"},{"id":"2","owner":"1","tag":"#ComputerScience","nice":"5","type":"1"},{"id":"3","owner":"1","tag":"test","nice":"7","type":"1"},{"id":"9","owner":"1","tag":"#Engineering","nice":"1","type":"1"}]}}
-
-2016-04-21 06:55:02
-event id:1 - {"status":200,"info":{"id":"1","name":"ACM","owner":"1","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Event for CS students","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","attendees":"12","tags":[{"id":"1","owner":"1","tag":"#CS","nice":"3","type":"1"},{"id":"2","owner":"1","tag":"#ComputerScience","nice":"5","type":"1"},{"id":"3","owner":"1","tag":"test","nice":"7","type":"1"},{"id":"9","owner":"1","tag":"#Engineering","nice":"1","type":"1"}]}}
-
-2016-04-21 06:55:02
-curl request: url:https://web.njit.edu/~aml35/login/commandLine.php, params: command=32&id=2
-
-2016-04-21 06:55:02
-curl response: {"status":200,"info":{"id":"2","name":"IEEE","owner":"2","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Event for EE students","startDateTime":"2016-05-02 15:00:00","endDateTime":"2016-05-02 16:30:00","location":"GITC 3000","attendees":null,"tags":[{"id":"4","owner":"2","tag":"#Electrical","nice":"2","type":"1"},{"id":"5","owner":"2","tag":"#Engineering","nice":"5","type":"1"},{"id":"6","owner":"2","tag":"#NJIT","nice":"7","type":"1"}]}}
-
-2016-04-21 06:55:02
-event id:2 - {"status":200,"info":{"id":"2","name":"IEEE","owner":"2","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Event for EE students","startDateTime":"2016-05-02 15:00:00","endDateTime":"2016-05-02 16:30:00","location":"GITC 3000","attendees":null,"tags":[{"id":"4","owner":"2","tag":"#Electrical","nice":"2","type":"1"},{"id":"5","owner":"2","tag":"#Engineering","nice":"5","type":"1"},{"id":"6","owner":"2","tag":"#NJIT","nice":"7","type":"1"}]}}
-
-2016-04-21 06:55:02
-curl request: url:https://web.njit.edu/~aml35/login/commandLine.php, params: command=32&id=3
-
-2016-04-21 06:55:03
-curl response: {"status":200,"info":{"id":"3","name":"ACM SIG ","owner":"1","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Game Development","startDateTime":"2016-04-22 04:00:00","endDateTime":"2016-04-22 06:00:00","location":"GITC 4400","attendees":null,"tags":[]}}
-
-2016-04-21 06:55:03
-event id:3 - {"status":200,"info":{"id":"3","name":"ACM SIG ","owner":"1","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Game Development","startDateTime":"2016-04-22 04:00:00","endDateTime":"2016-04-22 06:00:00","location":"GITC 4400","attendees":null,"tags":[]}}
-
-2016-04-21 06:55:03
-json encoded events: {"events":[{"id":"1","name":"ACM","owner":"1","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Event for CS students","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","attendees":"12","tags":[{"id":"1","owner":"1","tag":"#CS","nice":"3","type":"1"},{"id":"2","owner":"1","tag":"#ComputerScience","nice":"5","type":"1"},{"id":"3","owner":"1","tag":"test","nice":"7","type":"1"},{"id":"9","owner":"1","tag":"#Engineering","nice":"1","type":"1"}]},{"id":"2","name":"IEEE","owner":"2","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Event for EE students","startDateTime":"2016-05-02 15:00:00","endDateTime":"2016-05-02 16:30:00","location":"GITC 3000","attendees":null,"tags":[{"id":"4","owner":"2","tag":"#Electrical","nice":"2","type":"1"},{"id":"5","owner":"2","tag":"#Engineering","nice":"5","type":"1"},{"id":"6","owner":"2","tag":"#NJIT","nice":"7","type":"1"}]},{"id":"3","name":"ACM SIG ","owner":"1","image":"http:\/\/web.njit.edu\/~jmd57\/default.jpg","bio":"Game Development","startDateTime":"2016-04-22 04:00:00","endDateTime":"2016-04-22 06:00:00","location":"GITC 4400","attendees":null,"tags":[]}]}
+2016-04-21 08:22:30
+curl response: {"events":[1,2]}

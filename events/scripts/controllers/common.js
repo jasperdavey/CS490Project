@@ -77,9 +77,8 @@ function getFutureEvents(container){
     }catch(e){
         console.log('failed to get future events');
     }
-
+    console.log("returned future events: "+events);
     showEvents(events,container);
-    return response;
 }
 
 function loadAllUsers(container){

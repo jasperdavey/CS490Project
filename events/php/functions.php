@@ -126,7 +126,7 @@ function getUserInfo($params){
   }
 }
 
-//get events
+//get future events
 function getFutureEvents($params){
     $response = makeRequest($params);
     $jsonObject = json_decode($response,true);
@@ -156,6 +156,7 @@ function getFutureEvents($params){
     $jPacket = json_encode($events);
     $jPacket = '{"events":'.$jPacket.'}';
     myLog("json encoded events: ".$jPacket,false);
+    return $jPacket;
 
 }
 
