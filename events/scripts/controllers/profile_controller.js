@@ -3,6 +3,7 @@
 // close profile view
 function closeProfileView( node ){
   node.style.visibility="collapse";
+  document.getElementById('friends_view_container_body').innerHTML="";
 }
 
 function showProfileView(){

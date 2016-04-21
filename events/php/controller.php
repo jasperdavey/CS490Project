@@ -132,8 +132,8 @@ $params = buildParams();
         myLog("case 11 - get all tags called,params: ".$params,false);
         echo makeRequest($params);
         break;
-    case 12:
-        myLog("case 12 - makeing a search request: ".$params,false);
+    case 12: //search
+        myLog("case 12 - making a search request: ".$params,false);
         echo makeRequest($params);
         break;
     case 16:

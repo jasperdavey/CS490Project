@@ -99,30 +99,52 @@ function getFutureEvents(container){
     console.log("returned future events: "+events);
     showEvents(events,container);
 }
-
-function loadAllUsers(container){
+//load all users into view
+function loadUsers(users, container){
     var container = document.getElementById(container);
-    var template = container.children[0].cloneNode(true);
     container.innerHTML="";
-    var users = getAllUsers();
-    console.log(users);
+
+    if( users == null){
+      users = getAllUsers();
+    }
+
     var i = 0;
     var children = null;
+    var tempNode = null;
     if( users.length > 0 ){
         for(i=0; i < users.length; i++){
-          var node = template.cloneNode(true);
+          var node = document.createElement('div');
+          node.className='other_user_view';
           // get children
-          children = node.children;
+          if( !users[i].firstname && ! users[i].username ){
+            continue;
+          }
+
           if( users[i].firstname && users[i].lastname){
-            children[0].innerHTML= users[i].firstname;
-            children[1].innerHTML= users[i].lastname;
+            tempNode = document.createElement('h1');
+            tempNode.innerHTML=users[i].firstname;
+            node.appendChild(tempNode);
+            tempNode = document.createElement('h2');
+            tempNode.innerHTML=users[i].lastname;
+            node.appendChild(tempNode);
+          }else if( users[i].username){
+            tempNode = document.createElement('h1');
+            tempNode.innerHTML=users[i].username;
+            node.appendChild(tempNode);
+            tempNode = document.createElement('h2');
+            tempNode.innerHTML='    ';
+            node.appendChild(tempNode);
           }
-          node.id = 'user-'+users[i].id;
-          node.onclick = function(node){
-            console.log('clicked: '+node.target.id);
-          }
-          node.style.visibility='visible';
-          container.appendChild(node);
+
+            tempNode = document.createElement('div');
+            tempNode.id='other_user_img';
+            node.appendChild(tempNode);
+            node.id = 'user-'+users[i].id;
+            node.onclick = function(node){
+              console.log('clicked: '+node.target.id);
+            }
+            container.appendChild(node);
+
       }
     }
 }
@@ -269,33 +291,53 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 /******************************search functions ********************************/
 
 function doSearch(container){
-    console.log('container: '+container);
     var container = document.getElementById(container);
     var input_field = document.getElementById('search_value');
     var input = input_field.value;
-    console.log(input);
     var formData = new FormData();
     formData.append('command',SEARCH_);
     formData.append('searchType','events');
     formData.append('searchText',input);
     var response = makeRequest(formData);
-    console.log(response);
-    //test
-
+    var events = null;
     try{
       events = JSON.parse(response).results;
     }catch(e){
       console.log(e);
-      console.log('failed to get search results');
+      console.log('failed to get search results, response: '+response);
       return false;
     }
-    console.log('events length: '+events.length);
     if(events.length > 0){
       showEvents(events,container);
       return true;
     }else{
       return false;
     }
+}
+
+function findPeople(container){
+  var container = document.getElementById(container);
+  var input_field = document.getElementById('people_search_input');
+  var input = input_field.value;
+  var formData = new FormData();
+  formData.append('command',SEARCH_);
+  formData.append('searchType','users');
+  formData.append('searchText',input);
+  var response = makeRequest(formData);
+  var users = null;
+  try{
+    users = JSON.parse(response).results;
+  }catch(e){
+    console.log(e);
+    console.log('failed to get search results, response: '+response);
+    return false;
+  }
+  if(users.length > 0){
+    loadUsers(users,'friends_view_container_body');
+    return true;
+  }else{
+    return false;
+  }
 }
 
 /****************************** end search functions ********************************/

@@ -11,8 +11,7 @@ Date.prototype.toDateInputValue = (function() {
 });
 
 
-var dashSearch = document.getElementById('search_bar');
-dashSearch.oninput= function(e){
+var dashSearch = document.getElementById('search_bar').oninput = function(e){
   if(e.target.value.length > 1){
     eventViewChanged=doSearch('events_list_container');
   }else{
@@ -24,7 +23,14 @@ dashSearch.oninput= function(e){
 }
 
 var peopleSearch = document.getElementById('people_search_input').oninput = function(e){
-  console.log(e.target.value);
+  if(e.target.value.length > 1){
+    eventViewChanged=findPeople('friends_view_container_body');
+  }else{
+    if(eventViewChanged){
+      loadUsers(null,'friends_view_container_body');
+      eventViewChanged = false;
+    }
+  }
 }
 
 function showDateValue(date){
