@@ -2,6 +2,8 @@
 session_start();
 
 $debug = true;
+$linux = false;
+
 include_once 'functions.php';
 
 $command = null;
@@ -137,9 +139,9 @@ $params = buildParams();
         myLog("case 16 - making a search request: ".$params,false);
         echo makeRequest($params);
         break;
-    case 25:
-        myLog("case 25- get all future events,parms:".$params,false);
-        echo makeRequest($params);
+    case 31:
+        myLog("case 31- get all future events,parms:".$params,false);
+        echo getFutureEvents($params);
         break;
     case 'debug':
         echo "debug_php";

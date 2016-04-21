@@ -126,25 +126,62 @@ function getUserInfo($params){
   }
 }
 
-// // get all tags
-// function getTags(){
-//     $response =  makeRequest($params);
-//     echo $response;
-// }
+//get events
+function getFutureEvents($params){
+    $response = makeRequest($params);
+    $jsonObject = json_decode($response,true);
+    $eventIDs = $jsonObject['info'];
+    $index = 0;
+    foreach( $eventIDs as $value){
+        $eventIDs[$index] = $value[0];
+        $index++;
+    }
+    $events = array();
+    $index = 0;
+    foreach ($eventIDs as $value) {
+        $params = "command=32&id=".$value;
+        $response = makeRequest($params);
+        try{
+            $jsonObject = json_decode($response,true);
+            $event = $jsonObject['info'];
+            $events[$index] = $event;
+            $index++;
+            //add to json object to return
+        }catch (Exception $e){
+            myLog("failed to get future events - parsing failed",false);
+        }
+        myLog("event id:".$value." - ".$response,false);
+    }
+
+    $jPacket = json_encode($events);
+    $jPacket = '{"events":'.$jPacket.'}';
+    myLog("json encoded events: ".$jPacket,false);
+
+}
 
 
 // write debug output to file do not echo
       function myLog($string,$clear){
         global $debug;
         if($debug == false) return;
+
         $mode = 'a';
-        if(!$clear){
+        if($clear){
           $mode='w';
         }
-        $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt',$mode);
+
+        $handle = null;
+
+        if($linux){
+            $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.txt',$mode);
+        }else{
+            $handle = fopen('/Users/wrg/Sites/~tr88/events/test/php_log.txt',$mode);
+        }
+
         if( !$handle ){
           echo 'failed to open log for writing';
         }
+        date_default_timezone_set("America/New_York");
         $time = time();
         $date = date('Y-m-d H:i:s',$time);
         fwrite($handle,"\n");

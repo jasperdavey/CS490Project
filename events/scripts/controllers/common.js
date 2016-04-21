@@ -10,7 +10,7 @@ var TAGS_ = 11;
 var SEARCH_ = 12;
 var ALL_USERS_ = 16;
 var ALL_EVENTS_ = 24;
-var FUTURE_EVENTS_ = 25;
+var FUTURE_EVENTS_ = 31;
 
 //global variables
 var USER_ID_ = null;
