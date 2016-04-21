@@ -50,7 +50,8 @@
         $infoArray = array( 'id' => $row[ 'id' ], 'email' => $row[ 'email' ], 'username' => $row[ 'username' ],
                             'firstname' => $row[ 'firstname' ],
                             'lastname' => $row[ 'lastname' ], 'bio' => $row[ 'bio' ], 'image' => $row[ 'image' ],
-                            'events' => $row[ 'events' ], 'friends' => $row[ 'friends' ], 'tags' => $userTags
+                            'events' => $row[ 'events' ], 'friends' => $row[ 'friends' ], 'pendingFriendRequests' => $row[ 'pendingFriendRequests' ], 
+                            'tags' => $userTags
         );
     }
 
