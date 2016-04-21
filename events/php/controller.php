@@ -50,14 +50,15 @@ $params = buildParams();
         $_SESSION['password'] = $_POST['password'];
         echo 200;
         break;
-    case 1:
+    case 1: // sign up
 
         myLog("new user sign up,params: ".$params,false);
+
+        // organization
         if( isset($_SESSION['organization']) ){
             myLog("creating organization user",false);
             $params = $params.'&username='.$_SESSION['organization'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
             myLog("case 1-creating organization:\n".$params,false);
-            //TODO remove test case
             //parse json and store user id
             $response = makeRequest($params);
             $jsonObject = json_decode($response,true);
@@ -74,7 +75,7 @@ $params = buildParams();
 
             echo $response;
             break;
-        }else{
+        }else{ // single user
             myLog("creating single user",false);
             $params = $params.'&firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].
             '&username='.$_SESSION['username'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
@@ -121,7 +122,7 @@ $params = buildParams();
 
     case 8: // get recommended events
         myLog("case 8-get recommended events, params:".$params,false);
-        getRecommendedEvents($params);
+        echo getRecommendedEvents($params);
         break;
 
     case 9: // return all user info

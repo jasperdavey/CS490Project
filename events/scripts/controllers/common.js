@@ -50,14 +50,24 @@ function getUserInfo(){
 }
 
 // get recommended events
-function getRecommendedEvents(){
+function getRecommendedEvents(container){
+    var container = document.getElementById(container);
+
     var command = RECOMMENDED_EVENTS_;
     var formData = new FormData();
     formData.append('command',command);
     var response = makeRequest(formData);
+    var events = null;
     console.log("recommended events: "+response);
-    //populate div with events
-    return response;
+    try{
+        events = JSON.parse(response).events;
+    }catch(e){
+        console.log('failed to parse recommended events:');
+        console.log(e);
+    }
+    if( events.length > 0){
+        showEvents(events,container);
+    }
 }
 
 // get future events

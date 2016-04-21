@@ -105,9 +105,19 @@ function getRecommendedEvents($params){
     if($_SESSION['id'] != null ){
       myLog("getting recommend events withd id: ".$_SESSION['id'],false);
       $response = makeRequest($params."&id=".$_SESSION['id']);
-      echo $response;
+
+      //parse json
+      try{
+          $ids = json_decode($response,true);
+          $ids = $ids['events'];
+          return getEvents($ids);
+
+      }catch(Exception $e){
+          myLog('failed to parse recommended evennts returned'.$request,false);
+      }
+
     }else{
-      myLog("failed to get recommended events, params".$params,false);
+      myLog("failed to get recommended events,id unknown, params".$params,false);
     }
 }
 
