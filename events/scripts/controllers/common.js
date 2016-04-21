@@ -85,7 +85,8 @@ function getFutureEvents(container){
 function loadAllUsers(container){
   var users = getAllUsers();
   if( users.length > 0 ){
-    //load users 
+    //load users
+
   }
 }
 //get all users
@@ -243,18 +244,21 @@ function doSearch(container){
     var response = makeRequest(formData);
     console.log(response);
     //test
+
     try{
       events = JSON.parse(response).results;
-      if(events.length > 0){
-        showEvents(events,container);
-        return true;
-      }else{
-        return false;
-      }
-    }catch(E){
+    }catch(e){
+      console.log(e);
       console.log('failed to get search results');
+      return false;
     }
     console.log('events length: '+events.length);
+    if(events.length > 0){
+      showEvents(events,container);
+      return true;
+    }else{
+      return false;
+    }
 }
 
 /****************************** end search functions ********************************/

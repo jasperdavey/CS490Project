@@ -33,11 +33,14 @@ $params = buildParams();
     case 0.1: // create user
         myLog("case 0.1- create new user, params:".$params,false);
         $_SESSION['new_user'] = true;
+
         if( isset($_POST['firstname'],$_POST['lastname'],$_POST['username'])){
+          myLog("setting - firstname,lastname,username",false);
           $_SESSION['firstname'] = $_POST['firstname'];
           $_SESSION['lastname'] = $_POST['lastname'];
           $_SESSION['username'] = $_POST['username'];
         }
+
         if(isset($_POST['organization'])){
           $_SESSION['organization'] = $_POST['organization'];
         }
@@ -49,17 +52,44 @@ $params = buildParams();
 
         myLog("new user sign up,params: ".$params,false);
         if( isset($_SESSION['organization']) ){
+            myLog("creating organization user",false);
             $params = $params.'&username='.$_SESSION['organization'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
             myLog("case 1-creating organization:\n".$params,false);
             //TODO remove test case
-            echo makeRequest($params);
+            //parse json and store user id
+            $response = makeRequest($params);
+            $jsonObject = json_decode($response,true);
+
+            if( $jsonObject['status'] == 200 ){
+              $_SESSION['id'] = $jsonObject['id'];
+              $_SESSION['logged_in'] = true;
+            }else{
+              //kill session
+              session_unset();
+              session_destroy();
+              $_SESSION['logged_in']=false;
+            }
+
+            echo $response;
             break;
         }else{
+            myLog("creating single user",false);
             $params = $params.'&firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].
             '&username='.$_SESSION['username'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
             myLog("case 1-creating single user:\n".$params,false);
             //TODO remove test
-            echo makeRequest($params);
+            $response = makeRequest($params);
+            $jsonObject = json_decode($response,true);
+            if( $jsonObject['status'] == 200 ){
+              $_SESSION['id'] = $jsonObject['id'];
+              $_SESSION['logged_in'] = true;
+            }else{
+              //kill session
+              session_unset();
+              session_destroy();
+              $_SESSION['logged_in']=false;
+            }
+            echo $response;
             break;
         }
 

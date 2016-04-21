@@ -200,15 +200,22 @@ function setUserInfo(){
     formData.append('command',1);
     formData.append('user_info',userInfo)
     console.log(userInfo);
+
     var response = makeRequest(formData);
-    if( response == 200 ){
+    try{
+      response = JSON.parse(response);
+      console.log('create user response:'+response.status);
+
+    }catch(e){
+      console.log('failed to parse profile creating response');
+      console.log(e);
+      return 400;
+    }
+    if( response.status == 200 ){
       window.location.href=dashboard_page;
     }else{
-      console.log(response);
+      window.location.href=sign_up_page;
     }
-    // console.log('tags: '+JSON.parse(hashTags).tags);
-    // console.log('bio: '+JSON.parse(hashTags).bio);
-    // window.location.href=dashboard_page;
 }
 
 function replacer(){

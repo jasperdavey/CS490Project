@@ -64,6 +64,9 @@ function logOut(){
       $_SESSION['logged_in']=false;
       echo 200;
     }else{
+      session_unset();
+      session_destroy();
+      $_SESSION['logged_in']=false;
       echo 200;
     }
 }
