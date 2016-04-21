@@ -182,6 +182,14 @@
     {
         include 'removeUserFriend.php';
     }
+    elseif ( $result->command == 37 )
+    {
+        include 'deleteUser.php';
+    }
+    elseif ( $result->command == 38 )
+    {
+        include 'deleteEvent.php';
+    }
     else
     {
         // Error 404
