@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$debug = false;
+$debug = true;
 include_once 'functions.php';
 
 $command = null;
@@ -101,6 +101,10 @@ $params = buildParams();
         break;
     case 12:
         myLog("case 12 - makeing a search request: ".$params,false);
+        echo makeRequest($params);
+        break;
+    case 16:
+        myLog("case 16 - making a search request: ".$params,false);
         echo makeRequest($params);
         break;
     case 25:

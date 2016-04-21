@@ -1,4 +1,5 @@
 var hashTagHanlder = null;
+var eventViewChanged = false;
 
 function hello(x){
     console.log('hello'+x);
@@ -13,10 +14,17 @@ Date.prototype.toDateInputValue = (function() {
 var dashSearch = document.getElementById('search_bar');
 dashSearch.oninput= function(e){
   if(e.target.value.length > 1){
-    doSearch('events_list_container');
+    eventViewChanged=doSearch('events_list_container');
   }else{
-    getFutureEvents('events_list_container');
+    if(eventViewChanged){
+      getFutureEvents('events_list_container');
+      eventViewChanged = false;
+    }
   }
+}
+
+var peopleSearch = document.getElementById('people_search_input').oninput = function(e){
+  console.log(e.target.value);
 }
 
 function showDateValue(date){

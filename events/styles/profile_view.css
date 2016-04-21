@@ -14,10 +14,10 @@
 .profile_container{
   visibility: visible;
   position: absolute;
-  top: 100px;
+  top: 50px;
   z-index: 1000000;
   width: inherit;
-  height: inherit;
+  height: 800px;
   padding: 10px;
   background-color: white;
 }
@@ -120,8 +120,14 @@
 
 .profile_view_freinds_container{
   width: 100%;
-  height: 200px;
+  height: 250px;
   margin-top: 25px;
+  background-color:  #000033;
+}
+
+.profile_view_request_container{
+  width: 100%;
+  height: 250px;
   background-color:  #000033;
 }
 
@@ -145,7 +151,62 @@
   margin-right: 5px;
 }
 
+.people_view_container_body{
+  width: 100%;
+  height: 180x;
+  margin-top: 5px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: white;
+}
 
+#request_view_container_body{
+  width: 100%;
+  height: 180x;
+  margin-top: 5px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: white;
+}
+.people_view_container_body :first-child{
+  margin-left: 10px;
+}
+
+.other_user_view{
+  width: 160px;
+  height: 160px;
+  margin: 5px;
+  display: inline-block;
+  margin-right: 10px;
+  background-color: red;
+}
+
+.other_user_view h1{
+  text-align: center;
+  font-size: 14pt;
+  margin: 0;
+  color: white;
+}
+
+.other_user_view h2{
+  text-align: center;
+  font-size: 12pt;
+  margin: 0;
+  color: white;
+}
+
+.other_user_view #other_user_img{
+  width: 95px;
+  height: 95px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url('/~tr88/events/images/default_user.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+}
 .inner_header{
   width: 100%;
   height: 35px;
@@ -153,4 +214,23 @@
   line-height: 25px;
   color: white;
   background-color: red;
+}
+
+.inner_header :first-child{
+  margin-left: 10px;
+}
+
+.inner_header button{
+  width: 200px;
+  margin-top: 5px;
+  margin-right: 5px;
+  height: 75%;
+}
+
+.inner_header input{
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  margin-top: 5px;
+  height: 70%;
 }

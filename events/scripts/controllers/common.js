@@ -8,6 +8,7 @@ var RECOMMENDED_EVENTS_ = 8;
 var USER_INFO_ = 9;
 var TAGS_ = 11;
 var SEARCH_ = 12;
+var ALL_USERS_ = 16;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 25;
 
@@ -37,18 +38,18 @@ function makeRequest(params){
       XM.send(params);
     return response;
 }
-
-//get userinfo
+/*********************************getters*************************************/
+// get userinfo
 function getUserInfo(){
-  var command = USER_INFO_;
-  var formData = new FormData();
-  formData.append('command',command);
-  var response = makeRequest( formData );
-  console.log(response);
-  return response;
+    var command = USER_INFO_;
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest( formData );
+    console.log(response);
+    return response;
 }
 
-
+// get recommended events
 function getRecommendedEvents(){
     var command = RECOMMENDED_EVENTS_;
     var formData = new FormData();
@@ -59,6 +60,7 @@ function getRecommendedEvents(){
     return response;
 }
 
+// get future events
 function getFutureEvents(container){
     var container = document.getElementById(container);
 
@@ -78,6 +80,34 @@ function getFutureEvents(container){
 
     showEvents(events,container);
     return response;
+}
+
+function loadAllUsers(container){
+  var users = getAllUsers();
+  if( users.length > 0 ){
+    //load users 
+  }
+}
+//get all users
+function getAllUsers(){
+  console.log('getting all users');
+  var formData = new FormData();
+  formData.append('command',ALL_USERS_);
+  var response = makeRequest(formData);
+  console.log(response);
+  var users = null;
+  try{
+    users = JSON.parse(response).Users;
+    console.log('# of users:'+users.length);
+    return users;
+  }catch(e){
+    console.log(e);
+    console.log('failed to get all users');
+  }
+  finally{
+    users = [];
+    return users;
+  }
 }
 
 function HashTagHanlder(selectedContainer, nonSelectedContainer){
@@ -198,6 +228,7 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
   }
 
 }
+/******************************search functions ********************************/
 
 function doSearch(container){
     console.log('container: '+container);
@@ -211,18 +242,22 @@ function doSearch(container){
     formData.append('searchText',input);
     var response = makeRequest(formData);
     console.log(response);
-
     //test
     try{
       events = JSON.parse(response).results;
       if(events.length > 0){
         showEvents(events,container);
+        return true;
+      }else{
+        return false;
       }
     }catch(E){
       console.log('failed to get search results');
     }
     console.log('events length: '+events.length);
 }
+
+/****************************** end search functions ********************************/
 
 function loadFutureEvents(){
 
