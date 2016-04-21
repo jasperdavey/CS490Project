@@ -178,6 +178,10 @@
     {
         include 'rejectFriendRequest.php';
     }
+    elseif ( $result->command == 36 )
+    {
+        include 'removeUserFriend.php';
+    }
     else
     {
         // Error 404
