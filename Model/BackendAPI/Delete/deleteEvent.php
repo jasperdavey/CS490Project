@@ -75,7 +75,7 @@
     foreach ( $attendees as $singleAttendee )
     {
         $newtemplist = [ ];
-        $sql = sprintf( "SELECT * Users WHERE id = '%s'", mysql_real_escape_string( $singleAttendee ) );
+        $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $singleAttendee ) );
         $user = mysql_query( $sql, $connection );
 
         if ( !$user )
