@@ -115,10 +115,18 @@ function getAllFriends(container){
   }
 
   //get friends
-  var friends = userInfo.friends.split(',');
-  for(var i=0; i < friends.length; i++){
-    friends[i]=parseInt(friends[i]);
+  var friends = userInfo;
+  try{
+    friends = userInfo.friends.split(',');
+    for(var i=0; i < friends.length; i++){
+      friends[i]=parseInt(friends[i]);
+    }
+    USER_INFO.friends = friends;
+  }catch(e){
+    console.log(e);
+    friends = userInfo.friends;
   }
+
   var jsonObject = null;
   //break if no friends
   if ( friends != "" && friends.length < 1 ) return;
@@ -152,7 +160,8 @@ function getAllFriends(container){
 //load all users into view
 function loadUsers(users, container){
     var container = document.getElementById(container);
-    var friends = [1,3];
+    var friends = USER_INFO.friends;
+    console.log(friends.length);
     var fSet = new Set(friends);
     container.innerHTML="";
 
