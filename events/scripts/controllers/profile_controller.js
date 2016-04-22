@@ -215,7 +215,7 @@ function confirmEventReg(node,event_id){
   var yes;
   var name = node.children[0].innerHTML;
   if( confirm('register for '+node.children[0].innerHTML+' ?') == true ){
-      registerForEvent(event_id);
+      registerForEvent(event_id,node);
       return true;
   }else{
       return false;
@@ -237,17 +237,46 @@ function confirmEeventUnReg(node,event_id){
 }
 
 
-function registerForEvent(event_id){
+function makeGoogleEvent(summary,location, description,start, end){
+
+  var event = {
+    'summary': summary,
+    'location': location,
+    'description': description,
+    'start': {
+      'dateTime': start,
+      'timeZone': 'America/New_York'
+    },
+    'end': {
+      'dateTime': end,
+      'timeZone': 'America/New_York'
+    }
+  };
+
+  return event;
+
+}
+
+function registerForEvent(event_id,node){
   var formData = new FormData();
   formData.append('command',EVENT_REG_ADD_);
   formData.append('event',event_id);
   formData.append('id',USER_INFO.id);
-
+  node = node.children;
+  summary = node[0].innerHTML;
+  description = node[1].innerHTML;
+  start = (node[2].innerHTML).split(' ').join('T');
+  end = (node[3].innerHTML).split(' ').join('T');
+  event_location = node[4].innerHTML;
+  var event = makeGoogleEvent(summary,event_location,description,start,end);
   var response = makeRequest(formData);
   try{
     response = JSON.parse(response);
     if( response.status == 200 ){
       alert('registed for event!!');
+      if(LINKED_TO_GOOGLE){
+        insertEventIntoCalendar(event);
+      }
     }else{
       alert('failed to registed for event!!');
     }

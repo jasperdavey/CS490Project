@@ -13,6 +13,7 @@ function showEvents(events, container){
     var bio = null;
     var startDateTime = null;
     var endDateTime = null;
+    var location = null;
     for (var i=0; i < events.length; i++ ){
         //create event view
         // var e = template.cloneNode(true);
@@ -38,6 +39,12 @@ function showEvents(events, container){
         endDateTime.innerHTML=events[i].endDateTime;
 
         e.appendChild(endDateTime);
+
+        location = document.createElement('p');
+        location.innerHTML = events[i].location;
+
+        e.appendChild(location);
+
 
         // var childNodes = e.children;
         // childNodes[0].innerHTML=events[i].name;

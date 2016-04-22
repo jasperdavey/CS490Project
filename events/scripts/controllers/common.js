@@ -24,6 +24,7 @@ var EVENT_INFO_= 32;
 var REJECT_FRIEND_ = 35;
 var REMOVE_FRIEND_ = 36;
 var USERS_INFO_= 40;
+var LINKED_TO_GOOGLE = false;
 
 
 

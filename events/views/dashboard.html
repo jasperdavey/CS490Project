@@ -49,8 +49,16 @@
 
       <div id="my_upcoming_events_container"class="myCalendar">
           <input type='date' id="mycal_date_selector" value='' onchange="showDateValue(this)"></input>
-          <div id="my_upcoming_events" class=""></div>
-          <button>link google calendar</button>
+          <div id="my_upcoming_events" class="calendar_wrapper">
+              <div class="calendar_event">
+                <h1>Event Title</h1>
+                <h2>location: </h2>
+                <h2>start time</h2>
+                <h2>end time</h2>
+              </div>
+          </div>
+          </div>
+          <button id="link_google_calendar" onclick="checkGoogleCalAuth()">link google calendar</button>
       </div>
 
 
@@ -162,15 +170,15 @@
 
 
 <!-- scripts  -->
-<script src="https://apis.google.com/js/client.js?onload=checkAuth">
 <script src="/~tr88/events/scripts/controllers/googlecalendar.js"></script>
-<script src="/~tr88/events/scripts/controllers/login.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 <script src="/~tr88/events/scripts/controllers/common.js"></script>
+<script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
 <script src="/~tr88/events/scripts/controllers/getters.js"></script>
 <script src="/~tr88/events/scripts/controllers/setters.js"></script>
 <script src="/~tr88/events/scripts/controllers/search.js"></script>
 <script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
-<script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
+<script src="/~tr88/events/scripts/controllers/login.js"></script>
 
 <!-- end scripts -->
   </body>
