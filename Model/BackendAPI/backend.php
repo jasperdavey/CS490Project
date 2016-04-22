@@ -10,7 +10,7 @@
     $connection = mysql_connect( $serverName, $userName, $password );
     if ( !$connection )
     {
-        die(' Could not connect: ' . mysql_error( ) );
+        die( 'Could not connect: ' . mysql_error( ) );
     }
 
     // select database
@@ -22,6 +22,7 @@
     // get JSON from POST
     $json = $_POST[ 'json' ];
     $result = json_decode( $json );
+    echo $result;
 
     // Create User DONE
     if ( $result->command == 1 )
