@@ -13,24 +13,7 @@ Date:     April 10, 2016.					*
 $info['id'] = $_POST['id'];
 $info['event']= $_POST['event'];
 
-$response = array();
 
-
-if(!isset($info['id']) || empty($info['id'])){
-	$response['status'] = 404;
-	$response['message'] = "Error: user id empty.";
-	
-	$json = json_encode($response);
-	die($json);
-}
-elseif(!isset($info['event']) || empty($info['event'])){
-	$response['status'] = 404;
-	$response['message'] = "Error: event empty.";
-	
-	$json = json_encode($response);
-	die($json);
-}
-else{
 	
 	$data = json_encode($info);
 	
@@ -46,7 +29,6 @@ else{
 
 	$DB_results = curl_exec($ch);
 	curl_close($ch);
-}
 
 die($DB_results);
 ?>
