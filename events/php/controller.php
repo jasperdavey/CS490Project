@@ -162,6 +162,17 @@ $params = buildParams();
         echo getFutureEvents($params);
         break;
 
+    case 32: // get events info
+        myLog("case 32- get multiple events,parms:".$params,false);
+        if( isset($_POST['event_ids'])){
+          $events = json_decode($_POST['event_ids'],true);
+          $events = $events['ids'];
+          echo getEvents($events);
+        }else{
+          echo '{"events":[]}';
+        }
+        break;
+
     case 'debug':
         echo "debug_php";
         break;

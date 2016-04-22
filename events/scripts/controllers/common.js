@@ -19,6 +19,8 @@ var ACCEPT_REQUEST_= 15;
 var ALL_USERS_ = 16;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 31;
+var EVENT_INFO_= 32;
+
 
 //global variables
 var USER_ID_ = null;
@@ -107,14 +109,58 @@ function getFutureEvents(container){
     showEvents(events,container);
 }
 
+
+function getEvents( events ){
+  var formData = new FormData();
+  formData.append('command',EVENT_INFO_);
+  var jsonObject = JSON.stringify({"ids": events});
+  console.log("sending: "+jsonObject);
+  formData.append('event_ids',jsonObject);
+  var response = makeRequest(formData);
+  console.log(response);
+  var events = JSON.parse(response);
+  events = events.events;
+  var container = document.getElementById('events_list_container');
+  showEvents(events,container);
+}
+
 // get friends events
 function getFriendsEvents(container){
+
   var container = document.getElementById(container);
   var formData = new FormData();
   formData.append('command',FRIENDS_EVENTS_);
   formData.append('id',USER_INFO.id);
   var response = makeRequest(formData);
-  console.log(response);
+  //parse json {"status":200,"info":[["1","2"],[""],["1","7"]]}
+  var response = JSON.parse(response);
+
+  if(response.status != 200){
+    alert('failed to get friends recommended events');
+    return;
+  }
+
+  var set = new Set();
+  //parse [["1","2"],[""],["1","7"]]
+  var events = new Array();
+  var arr = response.info;
+  var count=0;
+  var n = 0;
+  for(var i=0; i < arr.length; i++){
+    for(var j=0; j< arr[i].length; j++){
+      n = parseInt(arr[i][j]);
+      if( !isNaN(n) && !set.has(n) ){
+        console.log(n);
+        events.push(n);
+        set.add(n);
+        count+=1;
+      }
+    }
+  }
+
+  //get all events
+  //temp static for testing -- till backend fix
+  getEvents([6,13,14]);
 
 }
 
@@ -476,15 +522,7 @@ function showEvents(events, container){
     template = template.cloneNode(true);
     container.innerHTML="";
     template.style.visibility='visible';
-    // var childNodes = template.children;
-    // childNodes[0].innerHTML=events[0].name;
-    // childNodes[1].innerHTML=events[0].bio;
-    // childNodes[2].children[0].innerHTML=events[0].startDateTime;
-    // childNodes[3].children[0].innerHTML=events[0].endDateTime;
-    //
-    // for( var i =0; i < childNodes.length; i++){
-    //     console.log(childNodes[i].id);
-    // }
+
     for (var i=0; i < events.length; i++ ){
         //create event view
         var e = template.cloneNode(true);

@@ -21,13 +21,16 @@ function showProfileView(){
   }else{
     console.log('failed to get user tags:response-'+response);
   }
+
+  if(  document.getElementById('dashboard_menu').style.visibility == 'visible'){
+    showDashMenu();
+  }
+  
   //load friends
   getAllFriends('friends_view_container_body');
   loadRecievedFR('request_view_container_body');
   //hide dash menu if open close it'
-  if(  document.getElementById('dashboard_menu').style.visibility == 'visible'){
-    showDashMenu();
-  }
+
 }
 
 /************************** manage friends ************************************/
