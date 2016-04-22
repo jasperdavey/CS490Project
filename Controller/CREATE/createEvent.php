@@ -15,6 +15,10 @@ $info['location']=$_POST['location'];
 $info['image']=$_POST['image'];
 $info['owner']=$_POST['owner'];
 
+$tags = $_POST['tags'];
+$tags = json_decode($tags, true);
+$info['tags']=$tags['tags'];
+
 //CHECKING FOR MISSING FIELDS
 if(empty($info['name'])){
 	$error['status'] = 404;
@@ -48,7 +52,6 @@ if(empty($info['owner'])){
 
 //Sending info to Jasper
 $data = json_encode($info);
-
 $J_url = "https://web.njit.edu/~jmd57/backend.php";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $J_url);
@@ -64,18 +67,6 @@ curl_close($ch);
 
 $json = json_decode($DB_results,true);
 
-if($json['status']==200){
-	$_SESSION['name']=$info['name'];
-	$_SESSION['bio']=$info['bio'];
-	$_SESSION['startDateTime']=$info['startDateTime'];
-	$_SESSION['endDateTime']=$info['endDateTime'];
-	$_SESSION['location']=$info['location'];
-	$_SESSION['image']=$info['image'];
-	$_SESSION['owner']=$info['owner'];
-	echo $json['status'];
-}else{
-	session_destroy();
-	echo $json['status'];
-}
+echo $json['status'];
 
 ?>
