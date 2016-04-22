@@ -106,7 +106,7 @@
             $newtemplist = substr( $newtemplist, 1 );
         }
 
-        $sql = sprintf( "UPDATE Users SET createdEvents = '%s' WHERE id = '%s'", mysql_real_escape_string( $newtemplist ),
+        $sql = sprintf( "UPDATE Users SET events = '%s' WHERE id = '%s'", mysql_real_escape_string( $newtemplist ),
                          mysql_real_escape_string( $singleAttendee )
         );
 
