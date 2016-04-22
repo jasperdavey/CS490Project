@@ -80,7 +80,7 @@ elseif($cmd==7){
 }  
 elseif($cmd==8){include 'recommendEvents.php';}		//DONE  
 elseif($cmd==9){include 'displayUserInfo.php';}		//DONE		
-elseif($cmd==10){include 'updateUserEvent.php';}		//to-do	
+elseif($cmd==10){include 'updateUserEvent.php';}	//DONE
 elseif($cmd==11){include 'displayTags.php';}		//DONE
 elseif($cmd==12){include 'search.php';}				//DONE   
 elseif($cmd==13){include 'displayAllFriendsEvents.php';}
@@ -109,10 +109,10 @@ elseif($cmd==15){
 	die($DB_results);
 } //done
 elseif($cmd==16){include 'returnUsers.php';}		//DONE
-elseif($cmd==17){include 'updateEventTag.php';}		//to do 
-elseif($cmd==18){include 'removeEventTag.php';}		//need testing
+elseif($cmd==17){include 'updateEventTag.php';}		//DONE
+elseif($cmd==18){include 'removeEventTag.php';}		//DONE
 elseif($cmd==19){include 'updateUserUsername.php';}		//DONE  19
-elseif($cmd==20){include 'removeUserEvent.php';}		//need testing
+elseif($cmd==20){include 'removeUserEvent.php';}		//done
 elseif($cmd==21){include 'updateUserPassword.php';}		//DONE
 elseif($cmd==22){include 'updateUserFirstname.php';}		//DONE  22
 elseif($cmd==23){include 'updateUserLastname.php';}		//DONE  23
