@@ -9,4 +9,10 @@ a list of all tags in the database;
 
 
 Bad design wastes our time, makes us feel incompetent, interferes with productivity—and, sometimes, really messes things up.
-David Pogue - Scientific American 
+David Pogue - Scientific American
+
+command ---
+
+7 createFriendRequest : @params(initiatorID,targetID)
+  acceptFriendRequest : @params(initiatorID,targetID)
+  rejectFriendRequest : @params(initiatorID,targetID)

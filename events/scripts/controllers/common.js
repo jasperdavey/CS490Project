@@ -19,7 +19,6 @@ var USER_INFO = null;
 var DEBUG_LOG = true;
 
 //test data
-var test_event_future = '{"events":[{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"},{"id":"5","name":"ACM","startDateTime":"2016-04-30 12:00:00","endDateTime":"2016-04-30 13:00:00","location":"GITC 2000","bio":"Event for CS students","owner":"1"}]}';
 
 function makeRequest(params){
     var XM = new XMLHttpRequest();
@@ -150,6 +149,11 @@ function getAllFriends(container){
 //load all users into view
 function loadUsers(users, container){
     var container = document.getElementById(container);
+    var friends = [1,3];
+    var fSet = new Set(friends);
+    // for(var i=0; i < friends.length;i++){
+    //   fSet.add(friends[i]);
+    // }
     container.innerHTML="";
 
     if( users == null){
@@ -188,14 +192,46 @@ function loadUsers(users, container){
             tempNode.id='other_user_img';
             node.appendChild(tempNode);
             node.id = 'user-'+users[i].id;
-            node.onclick = function(node){
-              console.log('clicked: '+node.target.id);
+
+            if( fSet.has( parseInt( users[i].id)) ){
+              node.onclick = function(){
+                if(confirmDeleteFriend(this)){
+                  console.log('deleting friend');
+                }
+              }
+          }else{
+            node.onclick = function(){
+              if(confirmAddFriend(this)){
+                console.log('sending friend request');
+              }
             }
+          }
             container.appendChild(node);
 
       }
     }
 }
+
+function confirmDeleteFriend(node){
+    var yes;
+    var name = node.innerHTML;
+    if( confirm('unfriend ' +node.children[0].innerHTML+' ?') == true ){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function confirmAddFriend(node){
+  var yes;
+  var name = node.innerHTML;
+  if( confirm('send friend request to '+node.children[0].innerHTML+' ?') == true ){
+      return true;
+  }else{
+      return false;
+  }
+}
+
 //get all users
 function getAllUsers(){
   var formData = new FormData();
@@ -251,6 +287,7 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 
   this.displayHashTags = function(){
     selectCount = 0;
+    if(nonSelectedContainer != null ){
     container = nonSelectedTagsContainer;
     var tags = this.getTags();
     var tag;
@@ -265,6 +302,7 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
         tag.onclick = function(){ addHashTag(container,this);};
         container.appendChild(tag);
     }
+  }
 
     var container = selectedTagsContainer;
     var tags = this.getUserTags();
@@ -277,7 +315,9 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
         tag.style.float="left"
         tag.style.fontSize="8pt";
         tag.innerHTML = tags[i];
-        tag.onclick = function(){ addHashTag(container,this);};
+        tag.onclick = function(){
+            removeThySelf(container,this);
+        };
         container.appendChild(tag);
     }
   }
@@ -310,8 +350,6 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 
 
   function removeThySelf(parent,child){
-      var selection_tags = document.getElementById("tag_selection");
-
       if(confirmDelete(child)){
           parent.removeChild(child);
           userTags.delete(child.innerHTML);

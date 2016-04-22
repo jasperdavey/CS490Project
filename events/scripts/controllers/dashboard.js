@@ -46,6 +46,7 @@ function initDashBoard(){
   try {
     userInfo = JSON.parse(response).info;
     USER_INFO = userInfo;
+    USER_ID = userInfo.id;
   } catch (e) {
     console.log('failed to get user info');
     console.log('get userInfo response: '+response)
@@ -135,7 +136,7 @@ function clearTags(){
 // create event
 function makeEvent(){
 
-    console.log('saving event...');
+    console.log('saving event    ...');
     var formData = new FormData();
 
     var name = document.forms['event_create_form']['name'].value;
@@ -146,21 +147,22 @@ function makeEvent(){
     var endDate = document.forms['event_create_form']['end_date'].value;
     var endTime = document.forms['event_create_form']['end_time'].value;
     var location = document.forms['event_create_form']['location'].value;
-    var command = 3;
 
     var upload = document.getElementById("upload_image");
     var file = null;
+
     if( 'files' in upload ){
-        file = upload.files[0];
-
-        // Create a new FormData object.
-        if( !file.type.match('image.*')){
-           return;
-         }
-
-        formData.append('image',file,file.name)
-        console.log('file name:'+file.name);
-        console.log('file type:'+file.type);
+          file = upload.files[0];
+          if(file != null){
+          console.log('what');
+          // Create a new FormData object.
+          if(!file.type.match('image.*')){
+            return;
+          }
+         formData.append('image',file,file.name)
+          console.log('file name:'+file.name);
+          console.log('file type:'+file.type);
+        }
     }else{
       console.log('file not detected');
     }
@@ -169,27 +171,18 @@ function makeEvent(){
     var tags = hashTagHanlder.getUserTags();
     var jsonTags = JSON.stringify({'tags': tags});
 
-    formData.append('command',command);
+    formData.append('command',3);
     formData.append('name',name);
     formData.append('bio',bio);
     formData.append('startDateTime',startDate+' '+startTime+':00');
     formData.append('endDateTime',endDate+'endTime'+':00');
     formData.append('location',location);
     formData.append('tags',jsonTags);
+    formData.append('owner',USER_ID);
 
-    // var params = "command="+command
-    //   +"&"+"name="+name
-    //   +"&"+"bio="+bio
-    //   +"&"+'startDateTime='+startDate+' '+startTime+':00'
-    //   +"&"+'endDateTime='+endDate+' '+endTime+':00'
-    //   +"&"+"location="+location
-    //   +"&"+"tags="+jsonTags
-
-    console.log(formData);
     cancelEventEntry();
     var response = makeRequest(formData);
     console.log("response: "+response);
-    //  return response;
 }
 
 /**

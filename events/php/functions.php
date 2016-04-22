@@ -94,9 +94,8 @@ function createUser($params){
     echo $response;
 }
 
-function createEvent(){
-    $info = file_get_contents('php://input');
-    $response = makeRequest($info);
+function createEvent($params){
+    $response = makeRequest($params);
     echo $response;
 }
 

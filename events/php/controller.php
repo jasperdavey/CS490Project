@@ -106,8 +106,7 @@ $params = buildParams();
         break;
 
     case 3: // create event
-        echo 'test';
-        // createEvent();
+        echo createEvent($params);
         break;
 
     case 4: // create comment

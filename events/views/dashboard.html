@@ -30,7 +30,8 @@
 
       <div id="recommendEvents" class="events_container">
           <div id="events_bar" class="events_bar">
-              <button onclick="getRecommendedEvents('events_list_container')">Recommended</button><button>Friends</button>
+              <button onclick="getRecommendedEvents('events_list_container')">Recommended</button>
+              <button onclick="getFriendsEvents('events_list_container')">Friends</button>
               <button onclick="getFutureEvents('events_list_container')">all</button>
           </div>
             <div id="events_list_container" class="events_list_container">
@@ -57,7 +58,9 @@
           <div id="my_upcoming_events" class=""></div>
           <button>link google calendar</button>
       </div>
-<!--fixed create event form, only displays when user wants to create an event -->
+
+
+<!--Event form creation ----------------------------------------------------------------->
       <div id="createEventForm" class="create_event_container">
         <div class="event_creation_form">
             <div id="form_container">
@@ -105,7 +108,7 @@
 
 
 
-    <!-- PROFILE CONTAINER -->
+    <!-- PROFILE CONTAINER -------------------------------------------------------------------------->
     <div id="profile_container" class="profile_container">
       <img id="profile_close_icon" class="profile_close_icon" src="/~tr88/events/images/x_icon_red.png"
            onclick="closeProfileView(this.parentNode)"></img>
@@ -122,9 +125,6 @@
               <tr>
                 <td id="email">email: <span id="profile_email"></span></td>
               </tr>
-              <tr>
-                <td id="password">password: update </td>
-              </tr>
             </table>
           </div>
           <div id="bio">
@@ -132,20 +132,10 @@
              <p id="profile_bio">null</p>
           </div>
       </div>
+      <div>My Tags: </div>
       <div id="tags">
-        <div id="profile_selected_tags">
-        </div>
-        <div id="all_tags_container">
-            <div id="profile_tags_selection"></div>
-            <div id="tags_bar">
-              <input type="text" placeholder="#tag"></input>
-              <button>create</button>
-            </div>
-
-        </div>
-
+        <div id="profile_selected_tags"></div>
       </div>
-
 
       <div id="people_view_container" class="profile_view_people_container">
         <div class="inner_header">
@@ -173,8 +163,10 @@
 
 
 
-<!-- end dashboard container   -->
+<!--------------------------------------------------------end dashboard container   -->
 </div>
+
+
 <!-- scripts  -->
 <script src="https://apis.google.com/js/client.js?onload=checkAuth">
 <script src="/~tr88/events/scripts/controllers/googlecalendar.js"></script>
