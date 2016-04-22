@@ -30,7 +30,7 @@ function showEvents(events, container){
         e.appendChild(name);
 
         bio =  document.createElement('p');
-        bio.innerHTML = events[0].bio;
+        bio.innerHTML = events[i].bio;
 
         e.appendChild(bio);
 
