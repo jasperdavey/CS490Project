@@ -47,7 +47,9 @@ function showEvents(events, container){
         e.id= events[i].id+'-'+container.id;
 
         e.onclick = function(){
-            checkGoogleCalAuth();
+            // checkGoogleCalAuth();
+            handleReg(this);
+            console.log(this.id);
         };
 
         container.appendChild(e);

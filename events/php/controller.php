@@ -133,13 +133,17 @@ $params = buildParams();
     case 9: // return single user info
         echo getThisUserInfo($params);
         break;
-    case 10: //returns multiple user info
-        echo getUsersInfo();
+
+    case 10:
+        myLog("case 10 - registering for event: ".$params,false);
+        echo makeRequest($params);
         break;
+        
     case 11: // get all tags
         myLog("case 11 - get all tags called,params: ".$params,false);
         echo makeRequest($params);
         break;
+
     case 12: //search
         myLog("case 12 - making a search request: ".$params,false);
         echo makeRequest($params);
@@ -171,6 +175,9 @@ $params = buildParams();
         }else{
           echo '{"events":[]}';
         }
+        break;
+   case 40: //returns multiple user info
+        echo getUsersInfo();
         break;
 
     case 'debug':

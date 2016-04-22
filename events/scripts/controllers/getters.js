@@ -116,7 +116,7 @@ function getFriendsEvents(container){
 
   //get all events
   //temp static for testing -- till backend fix
-  events = getEvents([6,13,14]);
+  events = getEvents(events);
   showEvents(events,container);
 }
 
@@ -162,7 +162,7 @@ function getAllFriends(container){
     console.log('failed to create json of friend ids\n'+e);
   }
 
-  formData.append('command',10);
+  formData.append('command',USERS_INFO_);
   formData.append('user_ids',jsonObject);
 
   var response = makeRequest(formData);

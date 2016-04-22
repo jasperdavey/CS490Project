@@ -11,7 +11,7 @@ var CREATE_EVENT_ = 3;
 var SEND_FRIEND_REQUEST_ = 7;
 var RECOMMENDED_EVENTS_ = 8;
 var USER_INFO_ = 9;
-var USERS_INFO_= 10;
+var EVENT_REG_ADD_ =10
 var TAGS_ = 11;
 var SEARCH_ = 12;
 var FRIENDS_EVENTS_ = 13;
@@ -20,6 +20,8 @@ var ALL_USERS_ = 16;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 31;
 var EVENT_INFO_= 32;
+var USERS_INFO_= 40;
+
 
 
 //global variables

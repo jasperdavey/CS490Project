@@ -25,7 +25,7 @@ function showProfileView(){
   if(  document.getElementById('dashboard_menu').style.visibility == 'visible'){
     showDashMenu();
   }
-  
+
   //load friends
   getAllFriends('friends_view_container_body');
   loadRecievedFR('request_view_container_body');
@@ -113,6 +113,25 @@ function loadRecievedFR(container){
 
 }
 
+/******************** events ***********************************************/
+
+function handleReg(node){
+  var id = parseInt(node.id.split('-')[0]);
+  var events = USER_INFO.createdEvents;
+  events = events.split(',');
+  for(var i=0; i < events.length; i++){
+    events[i]=parseInt(events[i]);
+  }
+  var set = new Set(events);
+  set.add(15);
+  if( set.has(id)){
+    alert('already signed up for this event');
+  }else{
+    console.log('need to sign up');
+    confirmEventReg(node,id);
+  }
+}
+
 function confirmDeleteFriend(node){
     var yes;
     var name = node.innerHTML;
@@ -141,4 +160,37 @@ function confirmAddFriend(node){
   }else{
       return false;
   }
+}
+
+function confirmEventReg(node,event_id){
+  var yes;
+  var name = node.children[0].innerHTML;
+  if( confirm('register for '+node.children[0].innerHTML+' ?') == true ){
+      registerForEvent(event_id);
+      return true;
+  }else{
+      return false;
+  }
+}
+
+
+function registerForEvent(event_id){
+  var formData = new FormData();
+  formData.append('command',EVENT_REG_ADD_);
+  formData.append('event',event_id);
+  formData.append('id',USER_INFO.id);
+
+  var response = makeRequest(formData);
+  try{
+    response = JSON.parse(response);
+    if( response.status == 200 ){
+      alert('registed for event!!');
+    }else{
+      alert('failed to registed for event!!');
+    }
+  }catch(e){
+    console.log('failed to parse json, register for event');
+    console.log(e);
+  }
+
 }
