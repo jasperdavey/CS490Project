@@ -1,8 +1,8 @@
 /*
-  author: Totaram Ramrattan
-  CS 490 Semseter Project EVENTS!
-  3/30/16
+** Totaram Ramrattan
+** CS 490 Project - Front END
 */
+
 
 var sign_in_page = "/~tr88/events/index.html";
 var sign_up_page = "/~tr88/events/views/signup.html";

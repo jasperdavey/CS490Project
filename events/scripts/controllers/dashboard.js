@@ -1,3 +1,8 @@
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
 var hashTagHanlder = null;
 var eventViewChanged = false;
 

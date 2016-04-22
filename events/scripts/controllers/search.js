@@ -1,3 +1,8 @@
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
 /******************************search functions ********************************/
 
 function doSearch(container){

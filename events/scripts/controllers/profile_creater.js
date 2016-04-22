@@ -1,4 +1,8 @@
-//sign up
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
 var hashTagHanlder = null;
 
 function initHashTagHandler(selectedContainer, nonSelectedContainer){

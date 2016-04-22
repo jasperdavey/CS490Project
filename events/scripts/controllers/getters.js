@@ -1,3 +1,8 @@
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
 /*********************************getters*************************************/
 // get userinfo
 function getUserInfo(){

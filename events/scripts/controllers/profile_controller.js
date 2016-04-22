@@ -1,3 +1,7 @@
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
 
 
 // close profile view
