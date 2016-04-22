@@ -1,12 +1,12 @@
 <?php
 /********MIDDLE END**************
 Project:  CS 490 - Group # 2    *
-FileName: displayUserInfo.php	*
+FileName: displayEventInfo.php	*
 By:       Angelica Llerena		*
 Date:     March 15, 2016.		*
 *********************************/
 
-//GETTING USER_ID 
+//GETTING EVENT_ID 
 $info['id'] =$_POST['id'];
 
 
