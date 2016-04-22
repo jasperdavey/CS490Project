@@ -12,6 +12,19 @@
         reportBack( $status );
     }
 
+    // Delete tags associated with user
+    $sql = sprintf( "DELETE FROM Tags WHERE owner = '%s' and type = '%s'", mysql_real_escape_string( $result->id ),
+                     mysql_real_escape_string( 0 )
+    );
+    if ( !mysql_query( $sql, $connection ) )
+    {
+        $message = 'Invalid query: ' . mysql_error( ) . "\n";
+        $message .= 'Whole query: ' . $sql;
+        print( $message );
+        $status = 404;
+        reportBack( $status );
+    }
+
     reportBack( $status );
     function reportBack( $status )
     {

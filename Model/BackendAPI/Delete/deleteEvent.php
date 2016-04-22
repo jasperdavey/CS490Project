@@ -120,9 +120,22 @@
         }
     }
 
+    // Remove tags associated with this event
+    $sql = sprintf( "DELETE FROM Tags WHERE owner = '%s' and type = '%s'", mysql_real_escape_string( $result->id ),
+                     mysql_real_escape_string( 1 )
+    );
+    if ( !mysql_query( $sql, $connection ) )
+    {
+        $message = 'Invalid query: ' . mysql_error( ) . "\n";
+        $message .= 'Whole query: ' . $sql;
+        print( $message );
+        $status = 404;
+        reportBack( $status );
+    }
+
 
     // Remove the event
-    $sql = sprintf( "DELETE From Events WHERE id = '%s'", mysql_real_escape_string( $result->id ) );
+    $sql = sprintf( "DELETE FROM Events WHERE id = '%s'", mysql_real_escape_string( $result->id ) );
     if ( !mysql_query( $sql, $connection ) )
     {
         $message = 'Invalid query: ' . mysql_error( ) . "\n";
