@@ -1,7 +1,7 @@
 <?php
 /********MIDDLE END**************************
 Project:  CS 490 - Group # 2    			*
-FileName: removeUserEvent.php		    	*
+FileName: updateUserEvent.php		    	*
 By:       Angelica Llerena					*
 Date:     April 10, 2016.					*
 *********************************************/
