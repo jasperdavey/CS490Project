@@ -51,7 +51,7 @@ $cmd = $info['command'];
 if ($cmd ==1){include 'signUP.php';}				//DONE
 elseif($cmd==2){include 'login.php';}				//DONE
 elseif($cmd==3){include 'createEvent.php';}			//DONE
-elseif($cmd==4){include 'createComment.php';}		//TO-DO....
+elseif($cmd==4){include 'createComment.php';}		//DONE
 elseif($cmd==5){include 'updateUserBio.php';}		//DONE  5
 elseif($cmd==6){include 'updateUserTag.php';}		//DONE	6
 elseif($cmd==7){
@@ -108,7 +108,7 @@ elseif($cmd==15){
 
 	die($DB_results);
 } //done
-elseif($cmd==16){include 'displayUsers.php';}		//DONE
+elseif($cmd==16){include 'returnUsers.php';}		//DONE
 elseif($cmd==17){include 'updateEventTag.php';}		//to do 
 elseif($cmd==18){include 'removeEventTag.php';}		//need testing
 elseif($cmd==19){include 'updateUserUsername.php';}		//DONE  19
@@ -125,7 +125,7 @@ elseif($cmd==29){include 'updateEventBio.php';}		//DONE
 elseif($cmd==30){include 'displayPastEvents.php';}
 elseif($cmd==31){include 'displayFutureEvents.php';}		//DONE
 elseif($cmd==32){include 'displayEventInfo.php';}
-elseif($cmd==33){include 'displayEvents.php';}		//DONE
+elseif($cmd==33){include 'returnEvents.php';}		//DONE
 elseif($cmd==34){include 'displayUserFriend.php';}		//DONE.....
 elseif($cmd==35){
 	//include 'rejectFriendRequest.php';
@@ -153,6 +153,9 @@ elseif($cmd==35){
 elseif($cmd==36){include 'removeUserFriend.php';}
 elseif($cmd==37){include 'deleteUser.php';}
 elseif($cmd==38){include 'deleteEvent.php';}
+elseif($cmd==39){include 'updateComment.php';}
+elseif($cmd==40){include 'displayComment.php';}
+elseif($cmd==41){include 'deleteComment.php';}
 else{echo"Error: 404 - Controler is not getting the command";}
 
 ?>
