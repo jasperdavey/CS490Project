@@ -35,23 +35,16 @@
               <button onclick="getFriendsEvents('events_list_container')">Friends</button>
               <button onclick="getFutureEvents('events_list_container')">all</button>
           </div>
-            <div id="events_list_container" class="events_list_container">
-                <!--TODO create javascript to autopopulate-->
-                <div id="event_0" class="event_list_view">
-                    <h1 id="event_title"></h1>
-                    <p id="event_description"></p>
-                    <h2 id="start_time_header">starts: <span id="event_startDateTime"></span></h2>
-                    <h2 id="end_time_header">ends: <span id="event_startDateTime"></span></h2>
-                </div>
-            </div>
+            <div id="events_list_container" class="events_list_container"></div>
       </div>
 
       <div id="myEvents" class="my_events_container">
         <div id="events_bar" class="events_bar">
-          <button onclick="populateWithMyEvents('myEvents')">My Events</button>
+          <button onclick="populateWithMyEvents('my_events_container')">My Events</button>
           <button onclick="populateWithGoingTo('myEvents')">Going</button>
           <button onclick="populateWithWentTo('myEvents')">Went</button>
         </div>
+        <div class="events_list_container" id="my_events_container"></div>
       </div>
 
       <div id="my_upcoming_events_container"class="myCalendar">
@@ -171,11 +164,12 @@
 <!-- scripts  -->
 <script src="https://apis.google.com/js/client.js?onload=checkAuth">
 <script src="/~tr88/events/scripts/controllers/googlecalendar.js"></script>
-<script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
-<script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
 <script src="/~tr88/events/scripts/controllers/login.js"></script>
 <script src="/~tr88/events/scripts/controllers/common.js"></script>
-
+<script src="/~tr88/events/scripts/controllers/getters.js"></script>
+<script src="/~tr88/events/scripts/controllers/setters.js"></script>
+<script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
+<script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
 
 <!-- end scripts -->
   </body>
