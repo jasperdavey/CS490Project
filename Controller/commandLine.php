@@ -10,7 +10,7 @@ Date:     March 15, 2016.		*
 1. SignUp.php
 2. login.php
 3. createEvent.php
-4. createComment.php   *****************************later
+4. createComment.php   
 5. updateUserBio.php
 6. updateUserTag.php
 7. createFriendRequest.php
