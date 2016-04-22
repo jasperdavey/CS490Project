@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     $status = 200;
     $userFriends = [ ];
     $userFriendsArray = [ ];
@@ -20,7 +21,7 @@
     {
         $userFriends = explode( ",", $row[ 'friends' ] );
     }
-    
+
 
     foreach ( $userFriends as $singleFriend )
     {

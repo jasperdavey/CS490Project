@@ -1,5 +1,5 @@
 <?php
-
+    // Author: Jasper Davey
     // Input initiatorID, targetID
     // This scripts assumes user in pendingFriendRequests
     $status = 200;

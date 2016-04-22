@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     // event, id
     $status = 200;
     $userEvents = [ ];

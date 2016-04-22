@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     $status = 200;
     $eventTags = [ ];
 

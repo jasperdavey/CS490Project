@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     // Input: none
     $status = 200;
     $userIDs = [ ];

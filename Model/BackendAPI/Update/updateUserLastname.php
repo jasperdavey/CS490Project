@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     // Input: lastname, id
     $status = 200;
 

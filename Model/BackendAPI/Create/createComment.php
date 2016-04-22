@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     $status = 200;
 
     $today = date( "Y-m-d H:i:s" );

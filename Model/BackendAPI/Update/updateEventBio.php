@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     $status = 200;
 
     $sql = sprintf( "UPDATE Events SET bio = '%s' WHERE id = '%s'", mysql_real_escape_string( $result->bio ),

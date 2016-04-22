@@ -1,4 +1,5 @@
 <?php
+    // Author: Jasper Davey
     $status = 200;
 
     $sql = sprintf( "DELETE FROM Tags WHERE owner = '%s' AND type = '%s' AND tag = '%s'", mysql_real_escape_string( $result->id ),

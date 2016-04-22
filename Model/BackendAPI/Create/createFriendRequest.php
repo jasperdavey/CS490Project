@@ -1,5 +1,5 @@
 <?php
-
+    // Author: Jasper Davey
     // Input: initiatorID, targetID
     // Output: 200 if successful, 304 if already added, 404 if error
     $status = 200;
