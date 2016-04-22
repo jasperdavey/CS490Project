@@ -22,7 +22,7 @@
     // get JSON from POST
     $json = $_POST[ 'json' ];
     $result = json_decode( $json );
-    //echo $result;
+    print_r( $result );
 
     // Create User DONE
     if ( $result->command == 1 )
