@@ -74,6 +74,7 @@
     // Remove event from ALL attendees
     foreach ( $attendees as $singleAttendee )
     {
+        echo "here";
         $newtemplist = [ ];
         $sql = sprintf( "SELECT * FROM Users WHERE id = '%s'", mysql_real_escape_string( $singleAttendee ) );
         $user = mysql_query( $sql, $connection );
