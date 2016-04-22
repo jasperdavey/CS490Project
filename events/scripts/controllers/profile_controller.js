@@ -117,19 +117,35 @@ function loadRecievedFR(container){
 
 function handleReg(node){
   var id = parseInt(node.id.split('-')[0]);
-  var events = USER_INFO.createdEvents;
+  var createdEvents = USER_INFO.createdEvents;
+  var attendingEvents = USER_INFO.events;
+
+  createdEvents = parseEventsString(createdEvents);
+  attendingEvents = parseEventsString(attendingEvents);
+
+  var createdSet = new Set(createdEvents);
+  var attendingSet = new Set(attendingEvents);
+
+  if( attendingSet.has(id)){
+    alert('already signed up for this event');
+    return;
+  }else if( createdSet.has(id)){
+    console.log('you created this');
+  }else{
+      console.log('need to sign up');
+      confirmEventReg(node,id);
+  }
+
+
+}
+
+function parseEventsString(events){
   events = events.split(',');
   for(var i=0; i < events.length; i++){
     events[i]=parseInt(events[i]);
   }
-  var set = new Set(events);
-  set.add(15);
-  if( set.has(id)){
-    alert('already signed up for this event');
-  }else{
-    console.log('need to sign up');
-    confirmEventReg(node,id);
-  }
+
+  return events;
 }
 
 function confirmDeleteFriend(node){
