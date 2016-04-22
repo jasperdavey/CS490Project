@@ -1,6 +1,6 @@
 <?php
     $status = 200;
-    $owner = "";
+    $owner = "null";
     $userCreatedEvents = [ ];
     $templist = [ ];
     $attendees = [ ];
