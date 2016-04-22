@@ -115,7 +115,10 @@ function getAllFriends(container){
   }
 
   //get friends
-  var friends = [1,2,10];
+  var friends = userInfo.friends.split(',');
+  for(var i=0; i < friends.length; i++){
+    friends[i]=parseInt(friends[i]);
+  }
   var jsonObject = null;
   //break if no friends
   if ( friends != "" && friends.length < 1 ) return;
@@ -125,7 +128,6 @@ function getAllFriends(container){
   try{
     jsonObject = JSON.stringify({'ids':friends});
     console.log('friends ids json object: '+jsonObject);
-
   }catch(e){
     console.log('failed to create json of friend ids\n'+e);
   }
@@ -137,6 +139,7 @@ function getAllFriends(container){
   try{
     friends = JSON.parse(response).users;
   }catch(e){
+    console.log(response);
     console.log(e);
   }
   for(var i=0; i < friends.length; i++){
@@ -151,9 +154,6 @@ function loadUsers(users, container){
     var container = document.getElementById(container);
     var friends = [1,3];
     var fSet = new Set(friends);
-    // for(var i=0; i < friends.length;i++){
-    //   fSet.add(friends[i]);
-    // }
     container.innerHTML="";
 
     if( users == null){
@@ -184,7 +184,7 @@ function loadUsers(users, container){
             tempNode.innerHTML=users[i].username;
             node.appendChild(tempNode);
             tempNode = document.createElement('h2');
-            tempNode.innerHTML='    ';
+            tempNode.innerHTML='Organization';
             node.appendChild(tempNode);
           }
 
@@ -240,7 +240,22 @@ function getAllUsers(){
 
   var users = null;
   try{
-    users = JSON.parse(response).Users;
+    users = JSON.parse(response).info;
+    for(var i=0; i < users.length;i++){
+      users[i] = parseInt(users[i][0]);
+    }
+
+    var formData = new FormData();
+    formData.append('command',10);
+    $jsonObject = JSON.stringify({"ids":users});
+    formData.append('user_ids',$jsonObject);
+    response = makeRequest(formData);
+    users = JSON.parse(response);
+    console.log(users.users);
+    users = users.users;
+    for(var i=0; i < users.length; i++){
+      users[i]=JSON.parse(users[i]).info;
+    }
     return users;
   }catch(e){
     console.log(e);

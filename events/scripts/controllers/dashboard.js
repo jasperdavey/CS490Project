@@ -38,6 +38,7 @@ function showDateValue(date){
     listUpcomingEvents(date.value);
 }
 
+/************************initDashBoard********************************/
 function initDashBoard(){
   // get userInfo
   var userInfo = null;
@@ -61,9 +62,17 @@ function initDashBoard(){
 
   // populate dom with fields
   if(userInfo != null){
-    document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
-    document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
-    document.getElementById("profile_username").innerHTML = userInfo.username;
+    if( userInfo.firstname && userInfo.lastname){
+      document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+      document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+      document.getElementById("profile_username").innerHTML = userInfo.username;
+    }else{
+      document.getElementById("username").innerHTML = userInfo.username;
+      document.getElementById("profile_name").innerHTML = userInfo.username;
+      document.getElementById("profile_username").innerHTML = userInfo.username;
+
+    }
+
     document.getElementById("profile_email").innerHTML = userInfo.email;
     document.getElementById("profile_bio").innerHTML = userInfo.bio;
   }else{
