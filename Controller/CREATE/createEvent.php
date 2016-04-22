@@ -17,7 +17,7 @@ $info['owner']=$_POST['owner'];
 
 $tags = $_POST['tags'];
 $tags = json_decode($tags, true);
-$info['tags']=$tags['tags'];
+$info['tags']=$tags;
 
 //CHECKING FOR MISSING FIELDS
 if(empty($info['name'])){
