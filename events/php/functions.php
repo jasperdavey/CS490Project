@@ -1,7 +1,7 @@
 <?php
-/* author: Totaram Ramrattan
-  CS490-104-Semester Project
-  2/25/16
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
 */
 
 //make request to middle

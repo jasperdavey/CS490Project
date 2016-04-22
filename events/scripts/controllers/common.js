@@ -1,13 +1,21 @@
-// HTTP request
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
 //commands
 
 var SIGNUP_ =1;
 var LOGIN_ = 2;
 var CREATE_EVENT_ = 3;
+var SEND_FRIEND_REQUEST_ = 7;
 var RECOMMENDED_EVENTS_ = 8;
 var USER_INFO_ = 9;
+var USERS_INFO_= 10;
 var TAGS_ = 11;
 var SEARCH_ = 12;
+var FRIENDS_EVENTS_ = 13;
+var ACCEPT_REQUEST_= 15;
 var ALL_USERS_ = 16;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 31;
@@ -18,7 +26,7 @@ var USER_INFO = null;
 
 var DEBUG_LOG = true;
 
-//test data
+/*************************************XMLHttpRequest****************************/
 
 function makeRequest(params){
     var XM = new XMLHttpRequest();
@@ -99,10 +107,22 @@ function getFutureEvents(container){
     showEvents(events,container);
 }
 
+// get friends events
+function getFriendsEvents(container){
+  var container = document.getElementById(container);
+  var formData = new FormData();
+  formData.append('command',FRIENDS_EVENTS_);
+  formData.append('id',USER_INFO.id);
+  var response = makeRequest(formData);
+  console.log(response);
+
+}
+
 //get friends
 function getAllFriends(container){
   //check if info was saved
   var userInfo = USER_INFO;
+  if (userInfo.friends == "") return;
   if( !userInfo.friends ){
     var response = getUserInfo();
     try {
@@ -159,6 +179,7 @@ function getAllFriends(container){
 
 //load all users into view
 function loadUsers(users, container){
+    var containerID = container;
     var container = document.getElementById(container);
     var friends = USER_INFO.friends;
     console.log(friends.length);
@@ -177,7 +198,7 @@ function loadUsers(users, container){
           var node = document.createElement('div');
           node.className='other_user_view';
           // get children
-          if( !users[i].firstname && ! users[i].username ){
+          if( !users[i].firstname && !users[i].username ){
             continue;
           }
 
@@ -202,18 +223,31 @@ function loadUsers(users, container){
             node.appendChild(tempNode);
             node.id = 'user-'+users[i].id;
 
-            if( fSet.has( parseInt( users[i].id)) ){
+          if( containerID != 'request_view_container_body'){
+              if( fSet.has( parseInt( users[i].id)) ){
+                node.onclick = function(){
+                  if(confirmDeleteFriend(this)){
+                    console.log('deleting friend');
+                  }
+                }
+            }else{
               node.onclick = function(){
-                if(confirmDeleteFriend(this)){
-                  console.log('deleting friend');
+                if(confirmAddFriend(this)){
+                  makeFriendRequest(this.id.split('-')[1]);
+                  console.log('sending friend request');
                 }
               }
-          }else{
+            }
+          }else{ // this is  a friend request
             node.onclick = function(){
-              if(confirmAddFriend(this)){
-                console.log('sending friend request');
+              if(confirmAcceptFriend(this)){
+                acceptFriendRequest(this.id.split('-')[1],this);
+                console.log('accepting friend request');
+              }else{
+
               }
             }
+
           }
             container.appendChild(node);
 
@@ -221,25 +255,6 @@ function loadUsers(users, container){
     }
 }
 
-function confirmDeleteFriend(node){
-    var yes;
-    var name = node.innerHTML;
-    if( confirm('unfriend ' +node.children[0].innerHTML+' ?') == true ){
-        return true;
-    }else{
-        return false;
-    }
-}
-
-function confirmAddFriend(node){
-  var yes;
-  var name = node.innerHTML;
-  if( confirm('send friend request to '+node.children[0].innerHTML+' ?') == true ){
-      return true;
-  }else{
-      return false;
-  }
-}
 
 //get all users
 function getAllUsers(){

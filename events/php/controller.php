@@ -1,4 +1,9 @@
 <?php
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
 session_start();
 
 $debug = true;
@@ -116,7 +121,8 @@ $params = buildParams();
         break;
     case 6: //upate user tag_selection
         break;
-    case 7: // update friends
+    case 7: // make friend request
+        echo makeRequest($params);
         break;
 
     case 8: // get recommended events
@@ -124,13 +130,13 @@ $params = buildParams();
         echo getRecommendedEvents($params);
         break;
 
-    case 9: // return userInfo
+    case 9: // return single user info
         echo getThisUserInfo($params);
         break;
-    case 10: //returns users info
+    case 10: //returns multiple user info
         echo getUsersInfo();
         break;
-    case 11:
+    case 11: // get all tags
         myLog("case 11 - get all tags called,params: ".$params,false);
         echo makeRequest($params);
         break;
@@ -138,17 +144,28 @@ $params = buildParams();
         myLog("case 12 - making a search request: ".$params,false);
         echo makeRequest($params);
         break;
-    case 16:
-        myLog("case 16 - making a search request: ".$params,false);
+    case 13: // get all friends events
+        myLog("case 13 - getting all friends events".$params,false);
         echo makeRequest($params);
         break;
-    case 31:
+    case 15: // accept friend request
+        echo makeRequest($params);
+        break;
+
+    case 16: // return all users
+        myLog("case 16 - getting all users request: ".$params,false);
+        echo makeRequest($params);
+        break;
+
+    case 31: // get all future events
         myLog("case 31- get all future events,parms:".$params,false);
         echo getFutureEvents($params);
         break;
+
     case 'debug':
         echo "debug_php";
         break;
+
     default:
         echo 'internal error: command not found';
         break;
