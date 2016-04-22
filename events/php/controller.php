@@ -138,7 +138,7 @@ $params = buildParams();
         myLog("case 10 - registering for event: ".$params,false);
         echo makeRequest($params);
         break;
-        
+
     case 11: // get all tags
         myLog("case 11 - get all tags called,params: ".$params,false);
         echo makeRequest($params);
@@ -161,6 +161,11 @@ $params = buildParams();
         echo makeRequest($params);
         break;
 
+    case 20:// unregisted for event
+        myLog("case 20 - unregister for event: ".$params,false);
+        echo makeRequest($params);
+        break;
+
     case 31: // get all future events
         myLog("case 31- get all future events,parms:".$params,false);
         echo getFutureEvents($params);
@@ -176,7 +181,17 @@ $params = buildParams();
           echo '{"events":[]}';
         }
         break;
-   case 40: //returns multiple user info
+
+    case 35: // reject friend requests
+      myLog("case 35- reject friend request,parms:".$params,false);
+      echo makeRequest($params);
+      break;
+
+    case 36: // remove friends
+        myLog("case 36- remove friend,parms:".$params,false);
+        echo makeRequest($params);
+        break;
+    case 40: //returns multiple user info
         echo getUsersInfo();
         break;
 

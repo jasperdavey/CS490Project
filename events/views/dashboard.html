@@ -24,7 +24,7 @@
       <div id="dashboard_menu" class="dashboard_menu">
           <ul>
             <li onclick="initCreateEvent()">Create Event</li>
-            <li onclick="showProfileView()">Edit Profile</li>
+            <li onclick="showProfileView()">Profile</li>
             <li onclick="signOut()">Sign out</li>
           <ul>
       </div>
@@ -41,8 +41,8 @@
       <div id="myEvents" class="my_events_container">
         <div id="events_bar" class="events_bar">
           <button onclick="populateWithMyEvents('my_events_container')">My Events</button>
-          <button onclick="populateWithGoingTo('myEvents')">Going</button>
-          <button onclick="populateWithWentTo('myEvents')">Went</button>
+          <button onclick="populateWithGoingTo('my_events_container')">Going</button>
+          <button onclick="populateWithWentTo('my_events_container')">Went</button>
         </div>
         <div class="events_list_container" id="my_events_container"></div>
       </div>

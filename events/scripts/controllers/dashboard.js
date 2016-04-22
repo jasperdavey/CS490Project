@@ -55,6 +55,7 @@ function initDashBoard(){
 
   try{
       getRecommendedEvents('events_list_container');
+      populateWithMyEvents('my_events_container');
   }catch(e){
     console.log('failed to get recommended events');
     events = [];

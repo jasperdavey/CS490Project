@@ -78,7 +78,7 @@ function loadUsers(users, container){
           var node = document.createElement('div');
           node.className='other_user_view';
           // get children
-          if( !users[i].firstname && !users[i].username ){
+          if( !users[i].username &&  !users[i].firstname){
             continue;
           }
 
@@ -124,7 +124,8 @@ function loadUsers(users, container){
                 acceptFriendRequest(this.id.split('-')[1],this);
                 console.log('accepting friend request');
               }else{
-
+                rejectFriendRequst(this.id.split('-')[1],this);
+                console.log('rejecting friend request');
               }
             }
 
@@ -138,6 +139,12 @@ function loadUsers(users, container){
 
 function populateWithMyEvents(container){
   var events = getMyEvents();
+  container = document.getElementById(container);
+  showEvents(events,container);
+}
+
+function populateWithGoingTo(container){
+  var events = getAttendingEvents();
   container = document.getElementById(container);
   showEvents(events,container);
 }

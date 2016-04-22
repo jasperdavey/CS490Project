@@ -58,10 +58,13 @@ function getFutureEvents(container){
 function getMyEvents(){
   //update user info function
   var events = USER_INFO.createdEvents;
-  events = events.split(',');
-  for(var i=0; i < events.length; i++){
-    events[i]=parseInt(events[i]);
-  }
+  events = parseEventsString(events);
+  return getEvents(events);
+}
+
+function getAttendingEvents(){
+  var events = USER_INFO.events;
+  events = parseEventsString(events);
   return getEvents(events);
 }
 
@@ -114,8 +117,6 @@ function getFriendsEvents(container){
     }
   }
 
-  //get all events
-  //temp static for testing -- till backend fix
   events = getEvents(events);
   showEvents(events,container);
 }
@@ -184,16 +185,16 @@ function getAllUsers(){
   var formData = new FormData();
   formData.append('command',ALL_USERS_);
   var response = makeRequest(formData);
-
   var users = null;
   try{
     users = JSON.parse(response).info;
+
     for(var i=0; i < users.length;i++){
       users[i] = parseInt(users[i][0]);
     }
 
     var formData = new FormData();
-    formData.append('command',10);
+    formData.append('command',USERS_INFO_);
     $jsonObject = JSON.stringify({"ids":users});
     formData.append('user_ids',$jsonObject);
     response = makeRequest(formData);

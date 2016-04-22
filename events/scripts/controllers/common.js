@@ -17,9 +17,12 @@ var SEARCH_ = 12;
 var FRIENDS_EVENTS_ = 13;
 var ACCEPT_REQUEST_= 15;
 var ALL_USERS_ = 16;
+var EVENT_REG_REMOVE_ = 20;
 var ALL_EVENTS_ = 24;
 var FUTURE_EVENTS_ = 31;
 var EVENT_INFO_= 32;
+var REJECT_FRIEND_ = 35;
+var REMOVE_FRIEND_ = 36;
 var USERS_INFO_= 40;
 
 
@@ -50,7 +53,6 @@ function makeRequest(params){
       XM.send(params);
     return response;
 }
-
 
 
 
@@ -175,5 +177,14 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     userTags.forEach( function(value,set){ tagArray.push(value)})
     return tagArray;
   }
+}
 
+
+function parseEventsString(events){
+  events = events.split(',');
+  for(var i=0; i < events.length; i++){
+    events[i]=parseInt(events[i]);
+  }
+
+  return events;
 }

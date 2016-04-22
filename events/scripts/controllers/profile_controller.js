@@ -108,8 +108,9 @@ function loadRecievedFR(container){
     console.log(response);
     console.log(e);
   }
-  console.log(users);
+
   loadUsers(users,container);
+
 
 }
 
@@ -127,7 +128,7 @@ function handleReg(node){
   var attendingSet = new Set(attendingEvents);
 
   if( attendingSet.has(id)){
-    alert('already signed up for this event');
+      confirmEeventUnReg(node,id);
     return;
   }else if( createdSet.has(id)){
     console.log('you created this');
@@ -139,23 +140,37 @@ function handleReg(node){
 
 }
 
-function parseEventsString(events){
-  events = events.split(',');
-  for(var i=0; i < events.length; i++){
-    events[i]=parseInt(events[i]);
-  }
-
-  return events;
-}
 
 function confirmDeleteFriend(node){
     var yes;
     var name = node.innerHTML;
+    var id = parseInt(node.id.split('-')[1]);
+    console.log(id);
     if( confirm('unfriend ' +node.children[0].innerHTML+' ?') == true ){
+        if(unFriend(id)){
+          var container = document.getElementById('friends_view_container_body');
+          container.removeChild(node);
+        }
         return true;
     }else{
         return false;
     }
+}
+
+function unFriend(id){
+  var formData = new FormData();
+  formData.append('command',REMOVE_FRIEND_);
+  formData.append('initiatorID',USER_INFO.id);
+  formData.append('targetID',id);
+  var response = makeRequest(formData);
+  response = JSON.parse(response);
+  if( response.status == 200 ){
+    alert('removed friend');
+    return true;
+  } else{
+    alert('failed to remove friend');
+    return false;
+  }
 }
 
 function confirmAcceptFriend(node){
@@ -165,6 +180,24 @@ function confirmAcceptFriend(node){
       return true;
   }else{
       return false;
+  }
+}
+
+function rejectFriendRequst(id,node){
+  var formData = new FormData();
+  formData.append('command',REJECT_FRIEND_);
+  formData.append('initiatorID',USER_INFO.id);
+  formData.append('targetID',id);
+  var response = makeRequest(formData);
+  response = JSON.parse(response);
+  if( response.status == 200 ){
+    alert('rejected friend request');
+    var container = document.getElementById('request_view_container_body');
+    container.removeChild(node);
+    return true;
+  } else{
+    alert('failed to reject friend request');
+    return false;
   }
 }
 
@@ -183,6 +216,20 @@ function confirmEventReg(node,event_id){
   var name = node.children[0].innerHTML;
   if( confirm('register for '+node.children[0].innerHTML+' ?') == true ){
       registerForEvent(event_id);
+      return true;
+  }else{
+      return false;
+  }
+}
+
+function confirmEeventUnReg(node,event_id){
+  var yes;
+  var name = node.children[0].innerHTML;
+  if( confirm('unregister for '+node.children[0].innerHTML+' ?') == true ){
+      if(unRegisterForEvent(event_id)){
+        var parent = document.getElementById('my_events_container');
+        parent.removeChild(node);
+      }
       return true;
   }else{
       return false;
@@ -208,5 +255,27 @@ function registerForEvent(event_id){
     console.log('failed to parse json, register for event');
     console.log(e);
   }
+}
 
+function unRegisterForEvent(event_id){
+  var formData = new FormData();
+  formData.append('command',EVENT_REG_REMOVE_);
+  formData.append('event',event_id);
+  formData.append('id',USER_INFO.id);
+
+  var response = makeRequest(formData);
+  try{
+    response = JSON.parse(response);
+    if( response.status == 200 ){
+      alert('unregisted for event!!');
+      return true;
+    }else{
+      alert('failed to unregisted for event!!');
+    }
+  }catch(e){
+    console.log('failed to parse json, unregister for event');
+    console.log(e);
+  }
+
+  return false;
 }
