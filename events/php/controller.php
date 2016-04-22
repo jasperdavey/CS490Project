@@ -6,7 +6,7 @@
 
 session_start();
 
-$debug = true;
+$debug = false;
 $linux = true;
 
 include_once 'functions.php';
