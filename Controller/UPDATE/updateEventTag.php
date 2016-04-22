@@ -13,24 +13,24 @@ Date:     April 10, 2016.					*
 $info['id'] = $_POST['id'];
 $info['tag']= $_POST['tag'];
 
-$response = array();
+// $response = array();
 
 
-if(!isset($info['id']) || empty($info['id'])){
-	$response['status'] = 404;
-	$response['message'] = "Error: tag id empty.";
+// if(!isset($info['id']) || empty($info['id'])){
+	// $response['status'] = 404;
+	// $response['message'] = "Error: tag id empty.";
 	
-	$json = json_encode($response);
-	die($json);
-}
-elseif(!isset($info['tag']) || empty($info['tag'])){
-	$response['status'] = 404;
-	$response['message'] = "Error: tag empty.";
+	// $json = json_encode($response);
+	// die($json);
+// }
+// elseif(!isset($info['tag']) || empty($info['tag'])){
+	// $response['status'] = 404;
+	// $response['message'] = "Error: tag empty.";
 	
-	$json = json_encode($response);
-	die($json);
-}
-else{
+	// $json = json_encode($response);
+	// die($json);
+// }
+// else{
 	
 	$data = json_encode($info);
 	
@@ -46,7 +46,7 @@ else{
 
 	$DB_results = curl_exec($ch);
 	curl_close($ch);
-}
+// }
 
 die($DB_results);
 ?>
