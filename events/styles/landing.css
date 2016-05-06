@@ -18,6 +18,15 @@ body{
   height: 768px;
 }
 
+#login_error_message{
+    width: 100%;
+    padding: 5px;
+    font-size: 14pt;
+    text-align: right;
+    visibility: collapse;
+    color: red;
+}
+
 input{
     width: 375px;
     display: block;

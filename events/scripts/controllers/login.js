@@ -42,12 +42,11 @@ function signIn() {
             console.log("mid-response: "+response);
         if( response == 200){
             console.log("successfullly logged in!");
+            hideLogInError();
             window.location.href=dashboard_page;
         }else{
             console.log("login fail: "+response);
-            if(window.location.href != sign_up_page){
-                window.location.href=sign_up_page;
-            }
+            showLogInError();
         }
     }
     else alert("please enter username & password!");
@@ -111,4 +110,14 @@ function changeSingUpForm(button){
     document.getElementById("indi_button").style.backgroundColor='grey';
   }
 
+}
+
+function showLogInError(){
+    message = document.getElementById('login_error_message');
+    message.style.visibility = 'visible';
+}
+
+function hideLogInError(){
+    message = document.getElementById('login_error_message');
+    message.style.visibility = 'collapse';
 }
