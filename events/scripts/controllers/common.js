@@ -100,10 +100,6 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
 
     for(var i=0; i < tags.length; i++){
         tag = document.createElement("button");
-        tag.style.width="110px";
-        tag.style.height="35px";
-        tag.style.float="left"
-        tag.style.fontSize="8pt";
         tag.innerHTML = tags[i];
         tag.onclick = function(){ addHashTag(container,this);};
         container.appendChild(tag);
@@ -116,10 +112,6 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     tag = null;
     for(var i=0; i < tags.length; i++){
         tag = document.createElement("button");
-        tag.style.width="110px";
-        tag.style.height="35px";
-        tag.style.float="left"
-        tag.style.fontSize="8pt";
         tag.innerHTML = tags[i];
         tag.onclick = function(){
             removeThySelf(container,this);
@@ -138,10 +130,6 @@ function HashTagHanlder(selectedContainer, nonSelectedContainer){
     }
     var tagName = tag.innerHTML;
     var newTag = document.createElement("button");
-    newTag.style.width="110px";
-    newTag.style.height="35px";
-    newTag.style.fontSize="8pt";
-    newTag.style.float="left"
     newTag.innerHTML = tagName;
     newTag.onclick = function(){ removeThySelf(container,newTag);};
     container.appendChild(newTag);

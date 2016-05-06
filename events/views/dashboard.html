@@ -84,10 +84,10 @@
                 <input  type="date" id="end_date" method="POST" name="end_date" value="" placeholder="date"></input>
                 <input type="time" id="end_time" name="end_time"></input>
                 <input  type="text" id="location" method="POST" name="location" value="" placeholder="location"></input>
-                <div id="image_upload_container">
+                <!-- <div id="image_upload_container">
                   <p id="image_label">image: </p>
                   <input  type="file" id="upload_image" name="upload_image" placeholder="image url"></input>
-                </div>
+                </div> -->
               </div>
             </form>
             <div class = "form_button_wrapper">
@@ -156,11 +156,10 @@
         </div>
 
       </div>
-
+      <br>
       <div id="request_view_container" class="profile_view_people_container">
         <div class="inner_header">
-          <button>My Requests</button>
-          <button onclick="loadAllUsers(null,'people_view_container')">Received Requests</button>
+          <button onclick="loadAllUsers(null,'people_view_container')">Requests</button>
         </div>
         <div class="people_view_container_body" id="request_view_container_body">
 

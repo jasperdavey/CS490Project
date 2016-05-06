@@ -5,8 +5,8 @@
 
 .profile_image{
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: white;
     background-image: 'url(/~tr88/events/images/default_user.jpg)';
     float: right;
@@ -19,55 +19,56 @@
   visibility: collapse;
   position: absolute;
   left: 0px;
-  top: 50px;
+  top: 0px;
   z-index: 1000000;
-  width: inherit;
-  height: 840px;
-  padding: 10px;
+  width: 630px;
+  height: 470px;
+  padding: 5px;
   background-color: white;
 }
 
 .profile_container #profile_close_icon{
   float: right;
+  width: 20px;
+  height: 20px;
   margin: 5px;
   cursor: pointer;
 }
 
 
 .profile_info_container{
-  margin-top: 45px;
   width: inherit;
-  height: 120px;
+  height: 60px;
   overflow: hidden;
 }
 
 .profile_info_container .user_info{
   display: inline-block;
-  width: 300px;
+  width: 150px;
   left: 120px;
   height: inherit;
 }
 .profile_image_full{
   margin: 10px;
-  width: 100px;
-  height: 100px;
+  width: 45px;
+  height: 44px;
 }
 
 .profile_info_container .user_info table{
-  padding: 5px;
+  padding-left:5px;
 }
 
 .profile_info_container .user_info table td{
-  font-size: 14pt;
+  font-size: 9pt;
 }
 
 .profile_container h1{
-  font-size: 14pt;
+  font-size: 9pt;
   margin: 0px;
 }
 .profile_container #tags{
   width: 100%;
-  height: 100px;
+  height: 45px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -79,6 +80,19 @@
 
 
 }
+
+.profile_container #profile_selected_tags button{
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  overflow: hidden;
+  padding: 2px;
+  line-height: 15px;
+  float: left;
+  font-size: 8pt;
+  margin-right: 2px;
+}
+
 
 .profile_container #all_tags_container{
   float: right;
@@ -93,7 +107,6 @@
   margin-right: 5px;
   border-width: 2px;
   border-style: solid;
-  border-color:  #000033;
 }
 
 .profile_container #tags_bar{
@@ -129,15 +142,14 @@
 
 .profile_view_people_container{
   width: 100%;
-  height: 250px;
-  margin-top: 25px;
-  background-color:  #000033;
+  height: 140px;
+  margin-top: 5px;
+  display: block;
 }
 
 .profile_view_request_container{
   width: 100%;
-  height: 240px;
-  background-color:  #000033;
+  height: 140px;
 }
 
 .profile_view_people_container button{
@@ -162,7 +174,7 @@
 
 .people_view_container_body{
   width: 100%;
-  height: 180px;
+  height: 125px;
   margin-top: 15px auto;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -177,17 +189,17 @@
 }
 /**************user view template *******************************************/
 .other_user_view{
-  min-width: 160px;
-  min-height: 160px;
+  width: 100px;
+  height: 100px;
   margin: 5px;
   display: inline-block;
   margin-right: 10px;
-  background-color: red;
+  background-color: #009688;
 }
 
 .other_user_view h1{
   text-align: center;
-  font-size: 14pt;
+  font-size: 10pt;
   margin: 0px;
   padding: 0px;
   color: white;
@@ -195,15 +207,15 @@
 
 .other_user_view h2{
   text-align: center;
-  font-size: 12pt;
+  font-size: 10pt;
   margin: 0px;
   padding: 0px;
   color: white;
 }
 
 .other_user_view #other_user_img{
-  width: 95px;
-  height: 95px;
+  width: 45px;
+  height: 45px;
   margin-left: auto;
   margin-right: auto;
   background-image: url('/~tr88/events/images/default_user.jpg');
@@ -213,11 +225,11 @@
 }
 .inner_header{
   width: 100%;
-  height: 35px;
+  height: 25px;
   font-size: 16pt;
   line-height: 25px;
   color: white;
-  background-color: red;
+  background-color: #009688;
 }
 
 .inner_header :first-child{
@@ -225,7 +237,7 @@
 }
 
 .inner_header button{
-  width: 200px;
+  width: 100px;
   margin-top: 5px;
   margin-right: 5px;
   height: 75%;
