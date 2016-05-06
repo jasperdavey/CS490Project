@@ -282,7 +282,6 @@ function registerForEvent(event_id,node){
   try{
     response = JSON.parse(response);
     if( response.status == 200 ){
-      alert('registed for event!!');
       if(LINKED_TO_GOOGLE){
         insertEventIntoCalendar(event);
       }
