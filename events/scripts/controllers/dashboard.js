@@ -153,33 +153,12 @@ function makeEvent(){
     var formData = new FormData();
 
     var name = document.forms['event_create_form']['name'].value;
-    var imageUrl = document.forms['event_create_form']['upload_image'].value;;
     var bio = document.forms['event_create_form']['bio'].value;
     var startDate = document.forms['event_create_form']['start_date'].value;
     var startTime = document.forms['event_create_form']['start_time'].value;
     var endDate = document.forms['event_create_form']['end_date'].value;
     var endTime = document.forms['event_create_form']['end_time'].value;
     var location = document.forms['event_create_form']['location'].value;
-
-    var upload = document.getElementById("upload_image");
-    var file = null;
-
-    if( 'files' in upload ){
-          file = upload.files[0];
-          if(file != null){
-          console.log('what');
-          // Create a new FormData object.
-          if(!file.type.match('image.*')){
-            return;
-          }
-         formData.append('image',file,file.name)
-          console.log('file name:'+file.name);
-          console.log('file type:'+file.type);
-        }
-    }else{
-      console.log('file not detected');
-    }
-
 
     var tags = hashTagHanlder.getUserTags();
     var jsonTags = JSON.stringify({'tags': tags});
