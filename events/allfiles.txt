@@ -1,0 +1,3463 @@
+<!doctype html>
+<!--
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EVENTS!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <script src="scripts/controllers/common.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body onload="isLoggedIn()">
+    <div id="cotainer" class="login_container">
+      <div id="events_logo" class="login_events_logo">EVENTS!</div>
+          <div id="login_box" class="login_box">
+
+                    <form id="login_form">
+                        <div id="input_area">
+                        <input  type="text" id="email" method="POST" name="email" value="" placeholder="email"></input>
+                        <input  type="password" id="password" name="pass" placeholder="password"></input>
+                        </div>
+                    </form>
+                    <button id="login_button" onClick="signIn()">Login</button>
+                 </div>
+            <div id="sign_up">
+                <a id="sign_up_link" onClick="loadSignUp()" >Join EVENTS! @ NJIT</a>
+            </div>
+            <div class="login_njit_logo">
+                <a href="http://www.njit.edu/">
+                    <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
+                </a>
+            </div>
+      </div>
+</body>
+
+</html>
+
+<!doctype html>
+<!--
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+-->
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/dashboard.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/profile_view.css">
+  </head>
+  <body onload="initDashBoard()">
+
+    <div id="dasboard_cotainer" class="dashboard_container">
+
+      <div id="dashboard_header">
+        <div id="dash_board_logo">EVENTS! @ NJIT</div>
+      </div>
+      <div class="sub_header">
+        <div id="username" class="dashboard_theme_username"></div>
+        <img id="profile_header_image" class="profile_image" src="/~tr88/events/images/default_user.jpg"
+              onclick="showProfileView()"></img>
+        <div id="dashboard_menu_button" class="menu_button" onclick="showDashMenu()"></div>
+        <div id="search_bar">
+          <input id="search_value" type="search" value=""placeholder="search" ></input>
+      </div>
+      <div id="dashboard_menu" class="dashboard_menu">
+          <ul>
+            <li onclick="initCreateEvent()">Create Event</li>
+            <li onclick="showProfileView()">Profile</li>
+            <li onclick="signOut()">Sign out</li>
+          <ul>
+      </div>
+
+      <div id="recommendEvents" class="events_container">
+          <div id="events_bar" class="events_bar">
+              <button onclick="getRecommendedEvents('events_list_container')">Recommended</button>
+              <button onclick="getFriendsEvents('events_list_container')">Friends</button>
+              <button onclick="getFutureEvents('events_list_container')">all</button>
+          </div>
+            <div id="events_list_container" class="events_list_container"></div>
+      </div>
+
+      <div id="myEvents" class="my_events_container">
+        <div id="events_bar" class="events_bar">
+          <button onclick="populateWithMyEvents('my_events_container')">My Events</button>
+          <button onclick="populateWithGoingTo('my_events_container')">Going</button>
+          <button onclick="populateWithWentTo('my_events_container')">Went</button>
+        </div>
+        <div class="events_list_container" id="my_events_container"></div>
+      </div>
+
+      <div id="my_upcoming_events_container"class="myCalendar">
+          <input type='date' id="mycal_date_selector" value='' onchange="showDateValue(this)"></input>
+          <div id="my_upcoming_events" class="calendar_wrapper">
+              <div class="calendar_event">
+                <h1>Event Title</h1>
+                <h2>location: </h2>
+                <h2>start time</h2>
+                <h2>end time</h2>
+              </div>
+          </div>
+          </div>
+          <button id="link_google_calendar" onclick="checkGoogleCalAuth()">link google calendar</button>
+      </div>
+
+
+<!--Event form creation ----------------------------------------------------------------->
+      <div id="createEventForm" class="create_event_container">
+        <div class="event_creation_form">
+            <div id="form_container">
+            <div id="event_creation_header">Event Creation Form</div>
+            <form id="event_create_form">
+              <div id="input_area">
+                <input  type="text" id="name" method="POST" name="name" value="" placeholder="event name"></input>
+                <textarea  type="text" id="bio" method="POST" name="bio" value="" placeholder="about event"></textarea>
+                <div id="event_creation_header">starts</div>
+                <input  type="date" id="start_date" method="POST" name="start_date" value="" placeholder="date"></input>
+                <input type="time" id="start_time" name="start_time"></input>
+                <div id="event_creation_header">ends</div>
+                <input  type="date" id="end_date" method="POST" name="end_date" value="" placeholder="date"></input>
+                <input type="time" id="end_time" name="end_time"></input>
+                <input  type="text" id="location" method="POST" name="location" value="" placeholder="location"></input>
+                <!-- <div id="image_upload_container">
+                  <p id="image_label">image: </p>
+                  <input  type="file" id="upload_image" name="upload_image" placeholder="image url"></input>
+                </div> -->
+              </div>
+            </form>
+            <div class = "form_button_wrapper">
+              <button id="close_event" class="form_buttons" style="float:left" onClick="cancelEventEntry(this)">cancel</button>
+              <button id="save_event" class="form_buttons" style="float:right" onClick="makeEvent()">create</button>
+            </div>
+        </div>
+
+          <div id="tags_container">
+              <div class="container_wrapper">
+                <div id="tag" class="profile_creater_container">
+                  <h1>Let's make finding EVENTS! EASY.</h1>
+                  <h2>Select some #tags that matches event type!</h2>
+                  <h4>selected tags: (at least 1)</h4>
+                  <div id="hashtags" class="hashtags">
+                  <div id="selected_tags" class="selected_tags"></div>
+                  <h4>tag selection:</h4>
+                  <div id="tag_selection" class="tag_selection"></div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- PROFILE CONTAINER -------------------------------------------------------------------------->
+    <div id="profile_container" class="profile_container">
+      <img id="profile_close_icon" class="profile_close_icon" src="/~tr88/events/images/x_icon_red.png"
+           onclick="closeProfileView(this.parentNode)"></img>
+      <div id="profile_info_contianer" class="profile_info_container">
+        <img  class="profile_image_full" src="/~tr88/events/images/default_user.jpg" ></img>
+        <div class="user_info">
+            <table>
+              <tr>
+                <td>name: <span id="profile_name"></span></div></td>
+              </tr>
+              <tr>
+                <td id="username">username: <span id="profile_username"></span></td>
+              </tr>
+              <tr>
+                <td id="email">email: <span id="profile_email"></span></td>
+              </tr>
+            </table>
+          </div>
+          <div id="bio">
+             <span>bio: </span><br>
+             <p id="profile_bio">null</p>
+          </div>
+      </div>
+      <div>My Tags: </div>
+      <div id="tags">
+        <div id="profile_selected_tags"></div>
+      </div>
+
+      <div id="people_view_container" class="profile_view_people_container">
+        <div class="inner_header">
+          <input id="people_search_input" type="search" placeholder="search"></input>
+          <button onclick="getAllFriends('friends_view_container_body')">Friends</button>
+          <button onclick="loadUsers(null,'friends_view_container_body')">Everyone</button>
+        </div>
+        <div class="people_view_container_body" id="friends_view_container_body">
+
+        </div>
+
+      </div>
+      <br>
+      <div id="request_view_container" class="profile_view_people_container">
+        <div class="inner_header">
+          <button onclick="loadAllUsers(null,'people_view_container')">Requests</button>
+        </div>
+        <div class="people_view_container_body" id="request_view_container_body">
+
+        </div>
+    </div>
+  </div>
+
+
+
+
+<!-- end dashboard container   -->
+</div>
+
+
+<!-- scripts  -->
+<script src="/~tr88/events/scripts/controllers/googlecalendar.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+<script src="/~tr88/events/scripts/controllers/common.js"></script>
+<script src="/~tr88/events/scripts/controllers/dashboard.js"></script>
+<script src="/~tr88/events/scripts/controllers/getters.js"></script>
+<script src="/~tr88/events/scripts/controllers/setters.js"></script>
+<script src="/~tr88/events/scripts/controllers/search.js"></script>
+<script src="/~tr88/events/scripts/controllers/profile_controller.js"></script>
+<script src="/~tr88/events/scripts/controllers/login.js"></script>
+
+<!-- end scripts -->
+  </body>
+
+</html>
+
+<!doctype html>
+<!--
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+-->
+<html>
+<head>
+    <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/tag_selection.css">
+    <script src="/~tr88/events/scripts/controllers/common.js"></script>
+    <script src="/~tr88/events/scripts/controllers/login.js"></script>
+    <script src="/~tr88/events/scripts/controllers/profile_creater.js"></script>
+</head>
+<body onload="initHashTagHandler('selected_tags','tag_selection')" >
+  <div class="container_wrapper">
+    <div id="tag" class="profile_creater_container">
+      <h1>Let's make finding EVENTS! EASY.</h1>
+      <h2>Create a short bio:</h2>
+      <textarea id="user_bio"></textarea>
+      <h2>Select some #tags that matches your interests</h2>
+      <h4>selected tags: (at least 1)</h4>
+      <div id="hashtags" class="hashtags">
+      <div id="selected_tags" class="selected_tags"></div>
+      <h4>tag selection:</h4>
+      <div class='custom_tag_container'>
+
+      </div>
+      <div id="tag_selection" class="tag_selection"></div>
+      <button onclick="setUserInfo()">DONE</button>
+      <button onclick="loadSignUp();">CANCEL</button>
+    </div>
+  </div>
+</body>
+</html>
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+.dashboard_container{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  height: 480px;
+  background-color: #32ab9f;
+}
+
+#dashboard_header{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background-color: #F16600;
+}
+
+.dashboard_theme_username{
+    position: absolute;
+    text-align: right;
+    right: 50px;
+    margin-right: 65px;
+    line-height: 45px;
+    font-size: 12pt;
+    width: 300px;
+    height: 30px;
+    color: white;
+}
+
+.dashboard_menu{
+  z-index: 1000;
+  visibility: collapse;
+  padding: 5px;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  line-height: 35px;
+  background-color: #32ab9f;
+}
+
+.dashboard_menu #close_menu{
+  right: 0;
+  color: white;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 26pt;
+  cursor: pointer;
+}
+
+.dashboard_menu ul{
+  height: auto;
+  margin-top: -10px;
+  position: relative;
+  padding: 0px;
+  background-color: inherit;
+}
+
+.dashboard_menu li{
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #005D53;
+  width: 100px;
+  height: inherit;
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  font-size: 10pt;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+#dash_board_logo{
+  position: absolute;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Gravitas One";
+  line-height: inherit;
+  font-size: 34px;
+  padding-left: 20px;
+  color: white;
+}
+
+.menu_button{
+    position: absolute;
+    top:10px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-image:url("/~tr88/events/images/menu_icon.png");
+}
+#NJIT_logo{
+    padding-top: 45px;
+    padding-left: 350px;
+    display: inline-block;
+}
+
+
+.events_container{
+  position: relative;;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 150px;
+  background-color: #ffffff;
+}
+
+
+.my_events_container{
+  display: inline-block;
+  position: relative;;
+  top: 5px;
+  margin-bottom: 20px;
+  width: 60%;
+  height: 158px;
+  background-color: white;
+}
+
+
+.myCalendar{
+  margin-top: 5px;
+  display: inline-block;
+  float: right;
+  width: 38%;
+  height: 158px;
+  background-color: white;
+}
+
+/* create event style */
+.create_event_container{
+  visibility: collapse;
+  z-index: 10000;
+  background-color: #009688;
+  position: absolute;
+  width: 100%;
+  height: 460px;
+}
+
+.create_event_container #form_container{
+    position: absolute;
+    left: 10px;
+    width: 50%;
+}
+
+.create_event_container #tags_container{
+    position: absolute;
+    right: 10px;
+    width: 40%;
+    height: 400px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.create_event_container #tags_container h1{
+  font-size: 16pt;
+}
+
+.create_event_container #tags_container h2{
+  font-size: 12pt;
+}
+
+
+.selected_tags{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+  width: inherit;
+  height: 80px;
+}
+
+.selected_tags button{
+  width: 110px;
+  height: 25px;
+  margin: 0px;
+  text-align: center;
+  line-height: 15px;
+  overflow: hidden;
+  font-size: 8pt;
+}
+
+.tag_selection{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: inherit;
+  height: 80px;
+}
+
+.tag_selection button{
+  width: 110px;
+  height: 25px;
+  margin: 0px;
+  text-align: center;
+  line-height: 15px;
+  overflow: hidden;
+  font-size: 8pt;
+}
+
+.create_event_container input{
+    width: 275px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 14pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.create_event_container #image_upload_container{
+  width: 100%;
+  height: 16px;
+}
+
+.create_event_container #upload_image{
+  margin-top: -35px;
+  width: 85%;
+  float: right;
+  height: 16px;
+  background-color: white;
+  font-size: 12pt;
+}
+
+.create_event_container #image_label{
+  width: 25%;
+  line-height: 16px;
+  font-size: 12pt;
+  color: white;
+  height: 16px;
+  float: left;
+}
+
+.create_event_container textarea{
+    width: 275px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 30px;
+    font-size: 12pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+.create_event_container #event_creation_header{
+    color: white;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16pt;
+    width: 275px;
+}
+
+.create_event_container #form_container button{
+  background-color: #F16600;
+  height: 40px;
+  width: 120px;
+}
+
+.event_date{
+    width: 175px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 45px;
+    font-size: 16pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+#upload_button{
+    margin-left: 70px;
+    width: 80px;
+    height: 20px;
+}
+
+.form_button_wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 250px;
+  height: 35px;
+}
+
+.events_list_container{
+
+    position: absolute;
+    margin-top: 5px;
+    width: 100%;
+    height: 130px;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.events_list_container :first-child{
+    margin-left: 10px;
+}
+
+.events_list_container :last-child{
+    margin-right: 10px;
+}
+.event_list_view{
+    display: inline-block;
+    margin-right: 5px;
+    width: 150px;
+    height: 110px;
+    visibility: visible;
+    color: #ffffff;
+    background-color: #009688;
+}
+
+.event_list_view h1{
+  font-size: 12pt;
+  font-weight: 300;
+  text-align: center;
+}
+
+.event_list_view p{
+  font-size: 8pt;
+  font-weight: normal;
+  text-align: center;
+}
+
+.events_bar{
+    width: 100%;
+    height: 30px;
+    border-bottom-width: thin;
+    border-bottom-color: red;
+    border-bottom-style: solid;
+}
+
+button{
+    cursor: pointer;
+}
+.events_bar button{
+    width: 100px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.events_bar :first-child{
+    margin-left: 5px;
+}
+
+.sub_header{
+    z-index: 1001;
+    position: absolute;
+    height: 45px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.sub_header #search_bar{
+    width: 50%;
+    height: inherit;
+    padding: 10px;
+    padding-left: 10px;
+}
+.sub_header #search_bar input {
+    width: 300px;
+    height: 30px;
+    font-size: 12pt;
+    display: inline-block;
+}
+
+.sub_header #search_bar button{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.myCalendar{
+  width: 38%;
+  background-color: white;
+  padding-bottom: 8px;
+}
+.myCalendar input{
+    width: 95%;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    margin-bottom: 0px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    color: grey;
+}
+
+.calendar_wrapper{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 80%;
+  white-space: nowrap;
+  overflow-y: scroll;
+}
+
+.calendar_event{
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #4d4dff;
+
+}
+
+.calendar_event h1{
+  color: white;
+  font-size: 8pt;
+  font-style:normal;
+}
+
+.calendar_event h2{
+  color: white;
+  font-size: 8pt;
+  font-style:normal;
+  font-weight: lighter;
+
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+body{
+    margin: 0;
+    background-color: #cceae7;
+    width: 100%;
+}
+
+.login_container{
+  position: relative;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 548px;
+  height: 768px;
+}
+
+input{
+    width: 375px;
+    display: block;
+    border: 1px solid #999;
+    padding: 5px;
+    height: 35px;
+    font-size: 24pt;
+    font-weight: 100;
+    font-family: "Gravitas One";
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    color: grey;
+}
+
+#input_area{
+    display: relative;
+    width: 375px;
+    margin: auto;
+}
+
+#login_button{
+    width: 175px;
+    display: block;
+    border: 1px solid #999;
+    height: 40px;
+    background-color:red;
+    color: white;
+    font-size: 16pt;
+    font-weight: bold;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;;
+}
+
+#sign_up{
+    width: 500px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    font-size: 16pt;
+    color: white;
+    font-family: "Gravitas One";
+
+}
+.login_box{
+    position: inherit;
+    width: 512px;
+    height: 284px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f1f1f1;
+    font-family: "Gravitas One";
+    font-size: 14px;
+    font-style: italic;
+    line-height: 24px;
+    font-weight: bold;
+    color: #09C;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #999;
+    border: inset 1px solid #333;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login_box form{
+  margin-top: 60px;
+}
+
+a{
+    text-decoration: none;
+    font-family: "Gravitas One";
+    color: white;
+}
+a:hover {
+    color: yellow;
+}
+
+.login_events_logo{
+  padding-left: 10px;
+   font-weight: 400;
+   font-style: normal;
+   font-family: "Gravitas One";
+   font-size: 64px;
+   color: red;
+}
+
+#sign_up_link:hover{
+  cursor: pointer;
+}
+
+.login_njit_logo{
+    width: 300px;
+    height: 100px;
+    padding-left: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form_buttons {
+	background-color:red;
+	text-indent:0px;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12pt;
+	font-weight:bold;
+	font-style:normal;
+	height:35px;
+	line-height:35px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+}.form_buttons:hover {
+	background-color:#fb9e25;
+}.form_buttons:active {
+	position:relative;
+	top:1px;
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+.profile_image{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    background-image: 'url(/~tr88/events/images/default_user.jpg)';
+    float: right;
+    margin-right: 65px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.profile_container{
+  visibility: collapse;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1000000;
+  width: 630px;
+  height: 470px;
+  padding: 5px;
+  background-color: white;
+}
+
+.profile_container #profile_close_icon{
+  float: right;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
+.profile_info_container{
+  width: inherit;
+  height: 60px;
+  overflow: hidden;
+}
+
+.profile_info_container .user_info{
+  display: inline-block;
+  width: 150px;
+  left: 120px;
+  height: inherit;
+}
+.profile_image_full{
+  margin: 10px;
+  width: 45px;
+  height: 44px;
+}
+
+.profile_info_container .user_info table{
+  padding-left:5px;
+}
+
+.profile_info_container .user_info table td{
+  font-size: 9pt;
+}
+
+.profile_container h1{
+  font-size: 9pt;
+  margin: 0px;
+}
+.profile_container #tags{
+  width: 100%;
+  height: 45px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile_container #profile_selected_tags{
+  display: inline-block;
+  width: 49%;
+  height: inherit;
+
+
+}
+
+.profile_container #profile_selected_tags button{
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  overflow: hidden;
+  padding: 2px;
+  line-height: 15px;
+  float: left;
+  font-size: 8pt;
+  margin-right: 2px;
+}
+
+
+.profile_container #all_tags_container{
+  float: right;
+  display: inline-block;
+  width: 50%;
+  height: inherit;
+}
+
+.profile_container #profile_tags_selection{
+  width: 100%;
+  height: 70%;
+  margin-right: 5px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.profile_container #tags_bar{
+  margin-top: 5px;
+  width: 100%;
+  height: 30%;
+
+}
+
+.profile_container #tags_bar input{
+  display: inline-block;
+  padding-left: 20px;
+  height: 60%;
+  width: 200px;
+  line-height: inherit;
+  font-size: 16pt;
+}
+
+.profile_container #tags_bar button{
+  width: 100px;
+  height: 100%;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.profile_container #bio{
+    padding: 10px;
+    width: 50%;
+    height: 120px;
+    float: right;
+    margin-right: 50px;
+}
+
+.profile_view_people_container{
+  width: 100%;
+  height: 140px;
+  margin-top: 5px;
+  display: block;
+}
+
+.profile_view_request_container{
+  width: 100%;
+  height: 140px;
+}
+
+.profile_view_people_container button{
+  margin-top: 10px;
+  display: inline-block;
+  height: 25px;
+  width: 200px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.profile_view_people_container input{
+  float: left;
+  margin-top: 3px;
+  display: inline-block;
+  height: 15px;
+  font-size: 12pt;
+  width: 200px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.people_view_container_body{
+  width: 100%;
+  height: 125px;
+  margin-top: 15px auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: white;
+}
+
+
+
+.people_view_container_body :first-child{
+  margin-left: 10px;
+}
+/**************user view template *******************************************/
+.other_user_view{
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #009688;
+}
+
+.other_user_view h1{
+  text-align: center;
+  font-size: 10pt;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+}
+
+.other_user_view h2{
+  text-align: center;
+  font-size: 10pt;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+}
+
+.other_user_view #other_user_img{
+  width: 45px;
+  height: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url('/~tr88/events/images/default_user.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+}
+.inner_header{
+  width: 100%;
+  height: 25px;
+  font-size: 16pt;
+  line-height: 25px;
+  color: white;
+  background-color: #009688;
+}
+
+.inner_header :first-child{
+  margin-left: 10px;
+}
+
+.inner_header button{
+  width: 100px;
+  margin-top: 5px;
+  margin-right: 5px;
+  height: 75%;
+}
+
+.inner_header input{
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  margin-top: 5px;
+  height: 70%;
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+div.sign_up_box{
+    width: 504px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f1f1f1;
+    font-family: "Gravitas One";
+    font-size: 14px;
+    font-style: italic;
+    line-height: 24px;
+    font-weight: bold;
+    color: #09C;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #999;
+    border: inset 1px solid #333;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.account_picker{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 350px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.account_picker :first-child {
+  background-color: red;
+
+}
+
+
+.account_picker button{
+  height: 35px;
+  width: 175px;
+  border: 1px solid #999;
+  background-color:grey;
+  font-size: 14pt;
+  font-weight: normal;
+  color: white;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+#join_button{
+    width: 175px;
+    display: block;
+    border: 1px solid #999;
+    height: 40px;
+    background-color:red;
+    font-size: 16pt;
+    font-weight: bold;
+    color: white;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.individual_sign_up_form{
+  width: inherit;
+  position: absolute;
+  visibility: visible;
+}
+
+.organization_sign_up_form{
+  width: inherit;
+  position: absolute;
+  visibility: collapse;
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+.container_wrapper{
+  width: 640px;
+  height: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.profile_creater_container{
+    position: absolute;
+    padding: 20px;
+    margin-top: 20px;
+    width: inherit;
+    background-color: white;
+    right: auto;
+    left: auto;
+}
+
+.profile_creater_container textarea{
+  line-height: 35px;
+  max-width: 512px;
+  max-height: 200px;
+  word-wrap: break-word;
+  height: 200px;
+  width: 100%;
+}
+
+
+.profile_creater_container button{
+  float: right;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+}
+.selected_tags{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  width: inherit;
+  height: 100px;
+}
+
+.hashtags{
+    width: inherit;
+}
+.tag_selection{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 512px;
+  height: 200px;
+}
+
+.tag_selection button{
+  float: left;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.custom_tag_container{
+    width: 100%;
+    height: 25px;
+}
+
+.custom_tag_container input{
+    float: left;
+    height: inherit;
+    width: 150px;
+    font-size: 12pt;
+    line-height: inherit;
+    padding: 0px;
+    padding-left: 5px;
+}
+
+.custom_tag_container button{
+    float: left;
+    margin-top: 0px;
+    padding: 5px;
+    height: inherit;
+    width: 80px;
+}
+
+<!doctype html>
+<html>
+<!--
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+-->
+  <head>
+    <title>Events! Sign Up</title>
+    <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/sign_up.css">
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <script src="/~tr88/events/scripts/controllers/common.js"></script>
+    <script src="/~tr88/events/scripts/controllers/login.js"></script>
+    <script src="/~tr88/events/scripts/controllers/profile_creater.js"></script>
+
+  </head>
+  <body onload="initSignUpFormHanlder()">
+    <div id="cotainer" class="login_container">
+
+      <a href="/~tr88/events/index.html" class="login_events_logo">EVENTS!</a>
+
+            <div id="sing_up_box" class="sign_up_box">
+                <div id="account_picker" class="account_picker">
+                  <button id="indi_button" onclick="changeSingUpForm(this)" >Individual</button><button id="org_button"
+                  onclick="changeSingUpForm(this)">Organization</button>
+                </div>
+                <div id="individual_sign_up_form" class="individual_sign_up_form">
+                <form id="sign_up_form_indi">
+                    <div id="input_area">
+                    <input  type="text" id="firstname" method="POST" name="firstname" value="" placeholder="first name"></input>
+                    <input  type="text" id="lastname" method="POST" name="lastname" value="" placeholder="last name"></input>
+                    <input  type="text" id="username" method="POST" name="username" value="" placeholder="username"></input>
+                    <input  type="text" id="email" method="POST" name="email" value="" placeholder="email"></input>
+                    <input  type="text" id="email_match" method="POST" name="email_match" value="" placeholder="verify email"></input>
+                    <input  type="password" id="password" name="password" placeholder="password"></input>
+                    <input  type="password" id="password_match" name="password_match" placeholder="verify password"></input>
+
+                    </div>
+                </form>
+                <button id="join_button" onClick="indiSignUp()">create</button>
+              </div>
+              <div id="organization_sign_up_form" class="organization_sign_up_form">
+              <form id="sign_up_form_org">
+                  <div id="input_area">
+                      <input  type="text" id="organization_name" method="POST" name="organization_name" value=""
+                      placeholder="organization name"></input>
+                      <input  type="text" id="org_email" method="POST" name="org_email" value="" placeholder="email"></input>
+                      <input  type="text" id="email_match" method="POST" name="email" value="" placeholder="verify email"></input>
+                      <input  type="password" id="org_password" name="org_password" placeholder="password"></input>
+                      <input  type="password" id="password_match" name="" placeholder="verify password"></input>
+                  </div>
+              </form>
+              <button id="join_button" onClick="orgSignUp()">create</button>
+            </div>
+              </div>
+      <div id="NJIT_logo" class="login_njit_logo">
+          <a href="http://www.njit.edu/">
+              <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
+          </a>
+      </div>
+  </div>
+
+</body>
+</html>
+
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+//commands
+
+var SIGNUP_ =1;
+var LOGIN_ = 2;
+var CREATE_EVENT_ = 3;
+var SEND_FRIEND_REQUEST_ = 7;
+var RECOMMENDED_EVENTS_ = 8;
+var USER_INFO_ = 9;
+var EVENT_REG_ADD_ =10
+var TAGS_ = 11;
+var SEARCH_ = 12;
+var FRIENDS_EVENTS_ = 13;
+var ACCEPT_REQUEST_= 15;
+var ALL_USERS_ = 16;
+var EVENT_REG_REMOVE_ = 20;
+var ALL_EVENTS_ = 24;
+var FUTURE_EVENTS_ = 31;
+var EVENT_INFO_= 32;
+var REJECT_FRIEND_ = 35;
+var REMOVE_FRIEND_ = 36;
+var USERS_INFO_= 40;
+var LINKED_TO_GOOGLE = false;
+
+
+
+//global variables
+var USER_ID_ = null;
+var USER_INFO = null;
+
+var DEBUG_LOG = true;
+
+/*************************************XMLHttpRequest****************************/
+
+function makeRequest(params){
+    var XM = new XMLHttpRequest();
+    var url = "/~tr88/events/php/controller.php";
+    var response;
+    XM.onreadystatechange=function(){
+        if (XM.readyState==4){
+            if (XM.status==200){
+                response = XM.responseText;
+            }
+            else{
+                alert("An error has occured making the request")
+            }
+        }
+    }
+      XM.open("POST",url,false);
+      XM.send(params);
+    return response;
+}
+
+
+
+function HashTagHanlder(selectedContainer, nonSelectedContainer){
+  var selectedTagsContainer = document.getElementById(selectedContainer);
+  var nonSelectedTagsContainer = document.getElementById(nonSelectedContainer);
+  var container = null;
+  var selectCount=0;
+  var userTags = new Set([]);
+  var tags = [];
+
+  this.getTags = function(){
+    var command = TAGS_;
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest(formData);
+    try{
+        tags = JSON.parse(response).tags;
+    }catch(e){
+        console.log('failed to get tags');
+        console.log('response: '+response);
+    }
+    return tags;
+    }
+
+  this.loadUserTags = function(tags){
+      try{
+        for(var i=0; i < tags.length; i++){
+            userTags.add(tags[i].tag);
+        }
+      }catch(e){
+        console.log('failed to load user tags');
+        console.log(e);
+      }
+
+  }
+
+  this.displayHashTags = function(){
+    selectCount = 0;
+    if(nonSelectedContainer != null ){
+    container = nonSelectedTagsContainer;
+    var tags = this.getTags();
+    var tag;
+
+    for(var i=0; i < tags.length; i++){
+        tag = document.createElement("button");
+        tag.innerHTML = tags[i];
+        tag.onclick = function(){ addHashTag(container,this);};
+        container.appendChild(tag);
+    }
+  }
+
+    var container = selectedTagsContainer;
+    var tags = this.getUserTags();
+
+    tag = null;
+    for(var i=0; i < tags.length; i++){
+        tag = document.createElement("button");
+        tag.innerHTML = tags[i];
+        tag.onclick = function(){
+            removeThySelf(container,this);
+        };
+        container.appendChild(tag);
+    }
+  }
+
+    function addHashTag(parent,tag){
+    console.log('adding tag: '+tag.innerHTML);
+    var container = null;
+    if( parent != selectedTagsContainer){
+        container = nonSelectedTagsContainer;
+    }else{
+        container = selectedTagsContainer;
+    }
+    var tagName = tag.innerHTML;
+    var newTag = document.createElement("button");
+    newTag.innerHTML = tagName;
+    newTag.onclick = function(){ removeThySelf(container,newTag);};
+    container.appendChild(newTag);
+    userTags.add(tagName);
+    console.log('userTag Size: '+userTags.size);
+    if( parent != selectedTagsContainer){
+        selectedTagsContainer.removeChild(tag);
+    }else{
+        nonSelectedTagsContainer.removeChild(tag);
+    }
+  }
+
+
+  function removeThySelf(parent,child){
+      if(confirmDelete(child)){
+          parent.removeChild(child);
+          userTags.delete(child.innerHTML);
+          console.log(userTags.size);
+      }
+  }
+
+  function confirmDelete(node){
+      var yes;
+      var tag = node.innerHTML;
+      if( confirm('remove ' +tag+' ?') == true ){
+          return true;
+      }else{
+          return false;
+      }
+  }
+
+  this.getUserTags = function(){
+    var tagArray = [];
+    userTags.forEach( function(value,set){ tagArray.push(value)})
+    return tagArray;
+  }
+}
+
+
+function parseEventsString(events){
+  events = events.split(',');
+  for(var i=0; i < events.length; i++){
+    events[i]=parseInt(events[i]);
+  }
+
+  return events;
+}
+
+/*
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+/*********************************getters*************************************/
+// get userinfo
+function getUserInfo(){
+    var command = USER_INFO_;
+    var formData = new FormData();
+    formData.append('command',command);
+    try{
+      var response = makeRequest( formData );
+    }catch(e){
+      console.log(e);
+      console.log('response from getUserInfo: '+response);
+      return null;
+    }
+    return response;
+}
+
+// get recommended events
+function getRecommendedEvents(container){
+    var container = document.getElementById(container);
+
+    var command = RECOMMENDED_EVENTS_;
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest(formData);
+    var events = null;
+    try{
+        events = JSON.parse(response).events;
+    }catch(e){
+        console.log('failed to parse recommended events:response '+response);
+        console.log(e);
+    }
+    if( events.length > 0){
+        showEvents(events,container);
+    }
+}
+
+// get future events
+function getFutureEvents(container){
+    var container = document.getElementById(container);
+
+    var command = FUTURE_EVENTS_;
+    var formData = new FormData();
+    formData.append('command',command);
+    var response = makeRequest(formData);
+    console.log("future events: "+response);
+    //display events
+    var events = null;
+    try{
+        events = JSON.parse(response);
+        events = events.events;
+    }catch(e){
+        console.log('failed to get future events');
+    }
+    console.log("returned future events: "+events);
+    showEvents(events,container);
+}
+
+function getMyEvents(){
+  //update user info function
+  var events = USER_INFO.createdEvents;
+  events = parseEventsString(events);
+  return getEvents(events);
+}
+
+function getAttendingEvents(){
+  var events = USER_INFO.events;
+  events = parseEventsString(events);
+  return getEvents(events);
+}
+
+
+function getEvents( events ){
+  var formData = new FormData();
+  formData.append('command',EVENT_INFO_);
+  var jsonObject = JSON.stringify({"ids": events});
+  console.log("sending: "+jsonObject);
+  formData.append('event_ids',jsonObject);
+  var response = makeRequest(formData);
+  var events = JSON.parse(response);
+  events = events.events;
+  // var container = document.getElementById('events_list_container');
+  // showEvents(events,container);
+  return events;
+}
+
+// get friends events
+function getFriendsEvents(container){
+
+  var container = document.getElementById(container);
+  var formData = new FormData();
+  formData.append('command',FRIENDS_EVENTS_);
+  formData.append('id',USER_INFO.id);
+  var response = makeRequest(formData);
+  //parse json {"status":200,"info":[["1","2"],[""],["1","7"]]}
+  var response = JSON.parse(response);
+
+  if(response.status != 200){
+    alert('failed to get friends recommended events');
+    return;
+  }
+
+  var set = new Set();
+  //parse [["1","2"],[""],["1","7"]]
+  var events = new Array();
+  var arr = response.info;
+  var count=0;
+  var n = 0;
+  for(var i=0; i < arr.length; i++){
+    for(var j=0; j< arr[i].length; j++){
+      n = parseInt(arr[i][j]);
+      if( !isNaN(n) && !set.has(n) ){
+        console.log(n);
+        events.push(n);
+        set.add(n);
+        count+=1;
+      }
+    }
+  }
+
+  events = getEvents(events);
+  showEvents(events,container);
+}
+
+//get friends
+function getAllFriends(container){
+  //check if info was saved
+  var userInfo = USER_INFO;
+  if (userInfo.friends == "") return;
+  if( !userInfo.friends ){
+    var response = getUserInfo();
+    try {
+      userInfo = JSON.parse(response).info;
+      USER_INFO = userInfo;
+    } catch (e) {
+      console.log('failed to get user info');
+      console.log('get userInfo response: '+response)
+    }
+  }
+
+  //get friends
+  var friends = userInfo;
+  try{
+    friends = userInfo.friends.split(',');
+    for(var i=0; i < friends.length; i++){
+      friends[i]=parseInt(friends[i]);
+    }
+    USER_INFO.friends = friends;
+  }catch(e){
+    console.log(e);
+    friends = userInfo.friends;
+  }
+
+  var jsonObject = null;
+  //break if no friends
+  if ( friends != "" && friends.length < 1 ) return;
+
+  var formData = new FormData();
+
+  try{
+    jsonObject = JSON.stringify({'ids':friends});
+    console.log('friends ids json object: '+jsonObject);
+  }catch(e){
+    console.log('failed to create json of friend ids\n'+e);
+  }
+
+  formData.append('command',USERS_INFO_);
+  formData.append('user_ids',jsonObject);
+
+  var response = makeRequest(formData);
+  try{
+    friends = JSON.parse(response).users;
+  }catch(e){
+    console.log(response);
+    console.log(e);
+  }
+  for(var i=0; i < friends.length; i++){
+    friends[i]=JSON.parse(friends[i]).info;
+  }
+
+  loadUsers(friends,'friends_view_container_body');
+}
+
+//get all users
+function getAllUsers(){
+  var formData = new FormData();
+  formData.append('command',ALL_USERS_);
+  var response = makeRequest(formData);
+  var users = null;
+  try{
+    users = JSON.parse(response).info;
+
+    for(var i=0; i < users.length;i++){
+      users[i] = parseInt(users[i][0]);
+    }
+
+    var formData = new FormData();
+    formData.append('command',USERS_INFO_);
+    $jsonObject = JSON.stringify({"ids":users});
+    formData.append('user_ids',$jsonObject);
+    response = makeRequest(formData);
+    users = JSON.parse(response);
+    console.log(users.users);
+    users = users.users;
+    for(var i=0; i < users.length; i++){
+      users[i]=JSON.parse(users[i]).info;
+    }
+    return users;
+  }catch(e){
+    console.log(e);
+    console.log('failed to get all users');
+    users = [];
+    return users;
+  }
+
+}
+
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+var hashTagHanlder = null;
+var eventViewChanged = false;
+
+function hello(x){
+    console.log('hello'+x);
+}
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+
+var dashSearch = document.getElementById('search_bar').oninput = function(e){
+  if(e.target.value.length > 1){
+    eventViewChanged=doSearch('events_list_container');
+  }else{
+    if(eventViewChanged){
+      getFutureEvents('events_list_container');
+      eventViewChanged = false;
+    }
+  }
+}
+
+var peopleSearch = document.getElementById('people_search_input').oninput = function(e){
+  if(e.target.value.length > 1){
+    eventViewChanged=findPeople('friends_view_container_body');
+  }else{
+    if(eventViewChanged){
+      loadUsers(null,'friends_view_container_body');
+      eventViewChanged = false;
+    }
+  }
+}
+
+function showDateValue(date){
+    console.log('date value: '+date.value);
+    listUpcomingEvents(date.value);
+}
+
+/************************initDashBoard********************************/
+function initDashBoard(){
+  // get userInfo
+  var userInfo = null;
+  document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
+  var response = getUserInfo();
+  try {
+    userInfo = JSON.parse(response).info;
+    USER_INFO = userInfo;
+    USER_ID = userInfo.id;
+  } catch (e) {
+    console.log('failed to get user info');
+    console.log('get userInfo response: '+response)
+  }
+
+  try{
+      getRecommendedEvents('events_list_container');
+      populateWithMyEvents('my_events_container');
+  }catch(e){
+    console.log('failed to get recommended events');
+    events = [];
+  }
+
+  // populate dom with fields
+  if(userInfo != null){
+    if( userInfo.firstname && userInfo.lastname){
+      document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+      document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+      document.getElementById("profile_username").innerHTML = userInfo.username;
+    }else{
+      document.getElementById("username").innerHTML = userInfo.username;
+      document.getElementById("profile_name").innerHTML = userInfo.username;
+      document.getElementById("profile_username").innerHTML = userInfo.username;
+
+    }
+
+    document.getElementById("profile_email").innerHTML = userInfo.email;
+    document.getElementById("profile_bio").innerHTML = userInfo.bio;
+  }else{
+    console.log('unable to get user info');
+  }
+
+  checkGoogleCalAuth();
+}
+
+
+function showDashMenu(){
+
+    var x = document.getElementById('dashboard_menu');
+    var y = document.getElementById('dashboard_menu_button');
+
+    if(x.style.visibility == 'visible'){
+      y.style.backgroundImage='url(/~tr88/events/images/menu_icon.png)';
+      x.style.visibility="collapse";
+    }else{
+      y.style.backgroundImage='url(/~tr88/events/images/x_icon.png)'
+      x.style.visibility="visible";
+    }
+}
+
+function closeDashMenu(){
+    showDashMenu();
+}
+
+function initCreateEvent(){
+   var view = document.getElementById("createEventForm");
+   view.style.visibility = "visible";
+   clearTags();
+   closeDashMenu();
+   // selectedContainer, nonSelectedContainer
+   hashTagHanlder = new HashTagHanlder('selected_tags','tag_selection');
+   hashTagHanlder.displayHashTags();
+}
+
+function cancelEventEntry(){
+   var view = document.getElementById("createEventForm");
+   view.style.visibility = "collapse";
+}
+
+function saveEvent(){
+  var view = document.getElementById("createEventForm");
+  view.style.visibility = "collapse";
+  // var response = makeEvent();
+  if( response == 200 ){
+      alert("event created!")
+      cancelEventEntry();
+  }else{
+    alert("failed to created event!")
+  }
+}
+
+// clear all tags from previous instance of create event
+function clearTags(){
+  var selectedContainer = document.getElementById("selected_tags");
+  var selectionContainer = document.getElementById("tag_selection");
+  while (selectionContainer.hasChildNodes()) {
+    selectionContainer.removeChild(selectionContainer.lastChild);
+  }
+  while (selectedContainer.hasChildNodes()) {
+    selectedContainer.removeChild(selectedContainer.lastChild);
+  }
+}
+
+
+// create event
+function makeEvent(){
+
+    console.log('saving event    ...');
+    var formData = new FormData();
+
+    var name = document.forms['event_create_form']['name'].value;
+    var imageUrl = document.forms['event_create_form']['upload_image'].value;;
+    var bio = document.forms['event_create_form']['bio'].value;
+    var startDate = document.forms['event_create_form']['start_date'].value;
+    var startTime = document.forms['event_create_form']['start_time'].value;
+    var endDate = document.forms['event_create_form']['end_date'].value;
+    var endTime = document.forms['event_create_form']['end_time'].value;
+    var location = document.forms['event_create_form']['location'].value;
+
+    var upload = document.getElementById("upload_image");
+    var file = null;
+
+    if( 'files' in upload ){
+          file = upload.files[0];
+          if(file != null){
+          console.log('what');
+          // Create a new FormData object.
+          if(!file.type.match('image.*')){
+            return;
+          }
+         formData.append('image',file,file.name)
+          console.log('file name:'+file.name);
+          console.log('file type:'+file.type);
+        }
+    }else{
+      console.log('file not detected');
+    }
+
+
+    var tags = hashTagHanlder.getUserTags();
+    var jsonTags = JSON.stringify({'tags': tags});
+
+    formData.append('command',3);
+    formData.append('name',name);
+    formData.append('bio',bio);
+    formData.append('startDateTime',startDate+' '+startTime+':00');
+    formData.append('endDateTime',endDate+'endTime'+':00');
+    formData.append('location',location);
+    formData.append('tags',jsonTags);
+    formData.append('owner',USER_ID);
+
+    cancelEventEntry();
+    var response = makeRequest(formData);
+    console.log("response: "+response);
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+
+/**
+** GOOGLE CALENDAR API
+**/
+// Your Client ID can be retrieved from your project in the Google
+// Developer Console, https://console.developers.google.com
+var CLIENT_ID = '455038112884-5krp8paqma8knqlp7e7i4avdh7vf8qb9.apps.googleusercontent.com';
+
+var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+/**
+ * Check if current user has authorized this application.
+ */
+function checkGoogleCalAuth() {
+  gapi.auth.authorize(
+    {
+      'client_id': CLIENT_ID,
+      'scope': SCOPES.join(' '),
+      'immediate': true
+    }, handleAuthResult);
+}
+
+/**
+ * Handle response from authorization server.
+ *
+ * @param {Object} authResult Authorization result.
+ */
+function handleAuthResult(authResult) {
+  if (authResult && !authResult.error) {
+    // Hide auth UI, then load client library.
+    console.log('GOOGLE CALENDAR API: aurthorized');
+    LINKED_TO_GOOGLE = true;
+    loadCalendarApi();
+  } else {
+    // Show auth UI, allowing the user to initiate authorization by
+    // clicking authorize button.
+    console.log('GOOGLE CALENDAR API: not aurthorized');
+    handleAuth();
+  }
+}
+
+/**
+ * Initiate auth flow in response to user clicking authorize button.
+ *
+ * @param {Event} event Button click event.
+ */
+function handleAuth() {
+  gapi.auth.authorize(
+    {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+    handleAuthResult);
+  return false;
+}
+
+/**
+ * Load Google Calendar client library. List upcoming events
+ * once client library is loaded.
+ */
+function loadCalendarApi() {
+  var button = document.getElementById('link_google_calendar');
+  button.style.visibility = 'collapse';
+  gapi.client.load('calendar', 'v3', listUpcomingEvents);
+}
+
+/**
+ * Print the summary and start datetime/date of the next ten events in
+ * the authorized user's calendar. If no events are found an
+ * appropriate message is printed.
+ */
+function listUpcomingEvents(date) {
+  if(date == null){
+      date = (new Date().toISOString());
+
+  }else{
+      date = (new Date(date.split('-').join(',')).toISOString());
+  }
+
+  console.log(date);
+  var request = gapi.client.calendar.events.list({
+    'calendarId': 'primary',
+    'timeMin': date,
+    'showDeleted': false,
+    'singleEvents': true,
+    'maxResults': 10,
+    'orderBy': 'startTime'
+  });
+
+  request.execute(function(resp) {
+    var events = resp.items;
+
+    if (events.length > 0) {
+        var pre = document.getElementById('my_upcoming_events');
+        pre.innerHTML="";
+        var title= null;
+        var location = null;
+        var startTime = null;
+        var endTime= null;
+      for (i = 0; i < events.length; i++) {
+        var event = events[i];
+        var when = event.start.dateTime;
+        if (!when) {
+          when = event.start.date;
+        }
+        var end = event.end.dateTime;
+        if( !end ){
+          end = event.end.date;
+        }
+        var node = document.createElement('div');
+        node.className = 'calendar_event';
+        title = document.createElement('h1');
+        title.innerHTML =event.summary;
+        node.appendChild(title);
+        location = document.createElement('h2');
+        location.innerHTML = 'location: '+event.location;
+        node.appendChild(location);
+        startTime = document.createElement('h2');
+        startTime.innerHTML = 'starts: '+when;
+        node.appendChild(startTime);
+        endTime = document.createElement('h2');
+        endTime.innerHTML = 'ends: '+end;
+        node.appendChild(endTime);
+
+        appendPre(node);
+
+      }
+
+    } else {
+    }
+
+  });
+}
+
+/**
+ * Append a pre element to the body containing the given message
+ * as its text node.
+ *
+ * @param {string} message Text to be placed in pre element.
+ */
+function appendPre( node ) {
+  var pre = document.getElementById('my_upcoming_events');
+  pre.appendChild(node);
+}
+
+/*
+*
+* insert event into google calendar
+*/
+
+// Uses the JavaScript client library.
+
+// Refer to the JavaScript quickstart on how to setup the environment:
+// https://developers.google.com/google-apps/calendar/quickstart/js
+// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
+// stored credentials.
+
+
+
+function insertEventIntoCalendar( event ){
+  // prompt for approval
+  var request = gapi.client.calendar.events.insert({
+    'calendarId': 'primary',
+    'resource': event
+  });
+
+  request.execute(function(event) {
+     alert( 'insert event into google calendar!!');
+  });
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+
+var sign_in_page = "/~tr88/events/index.html";
+var sign_up_page = "/~tr88/events/views/signup.html";
+var profile_creation = "/~tr88/events/views/profile_creation.html";
+var dashboard_page = "/~tr88/events/views/dashboard.html";
+
+var SIGN_OUT_ = -1;
+var IS_LOGGED_IN_ = 0;
+var SIGNUP_ = 1;
+var LOGIN_ = 2;
+//codes
+
+var success = 200;
+var fail = 404;
+
+function resetFields(){
+    document.forms["login_form"]["email"].value = "" ;
+    document.forms["login_form"]["password"].value = "" ;
+}
+
+
+// user login script
+function signIn() {
+    var email = document.forms["login_form"]["email"].value;
+    var password = document.forms["login_form"]["password"].value;
+    var response;
+    var command = LOGIN_;
+    var params = "command="+command+ "&email="+email + "&password="+password;
+    var formData = new FormData;
+    formData.append('command',command);
+    formData.append('email',email);
+    formData.append('password',password);
+
+    if ( (email.length > 0) &&  (password.length > 0) ){
+        resetFields();
+        var response = makeRequest(formData);
+            console.log("mid-response: "+response);
+        if( response == 200){
+            console.log("successfullly logged in!");
+            window.location.href=dashboard_page;
+        }else{
+            console.log("login fail: "+response);
+            if(window.location.href != sign_up_page){
+                window.location.href=sign_up_page;
+            }
+        }
+    }
+    else alert("please enter username & password!");
+}
+
+//login check
+function isLoggedIn(){
+  var command = IS_LOGGED_IN_;
+  var params = 'command=' + command;
+  var response = makeRequest(params);
+  if(response == 200 ){
+    console.log("your alreaday logged in..");
+    if(window.location.pathname == dashboard_page){
+      console.log("init dashboard");
+      initDashBoard();
+    }
+  }else{
+    console.log("need to log in");
+    pathname = window.location.pathname;
+    if( pathname != sign_in_page){
+        window.location.href=sign_in_page;
+    }
+  }
+}
+
+
+
+function signOut(){
+  var command = SIGN_OUT_;
+  var formData = new FormData();
+  formData.append('command',SIGN_OUT_);
+  var response = makeRequest(formData);
+  console.log('signout response: '+response);
+  if( response == 200){
+    window.location.href=sign_in_page;
+  }else{
+    alert('failed to log out');
+  }
+
+}
+
+//load signup
+function loadSignUp(){
+  window.location.href=sign_up_page;
+}
+
+//group selection handler
+function changeSingUpForm(button){
+  var userType = button.innerHTML;
+  var individualSignUpForm = document.getElementById("individual_sign_up_form");
+  var organizationSignUpForm = document.getElementById("organization_sign_up_form");
+  if( userType == 'Individual'){
+      organizationSignUpForm.style.visibility = 'collapse';
+      button.style.backgroundColor='red';
+      individualSignUpForm.style.visibility = 'visible';
+      document.getElementById("org_button").style='grey';
+  }else{
+    organizationSignUpForm.style.visibility = 'visible';
+    button.style.backgroundColor='red';
+    individualSignUpForm.style.visibility = 'collapse';
+    document.getElementById("indi_button").style.backgroundColor='grey';
+  }
+
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+
+// close profile view
+function closeProfileView( node ){
+  node.style.visibility="collapse";
+  document.getElementById('friends_view_container_body').innerHTML="";
+}
+
+function showProfileView(){
+  document.getElementById('profile_container').style.visibility = 'visible';
+
+  //init HashTagHanlder
+  var tagHandler = new HashTagHanlder('profile_selected_tags',null);
+  if(USER_INFO != null){
+      var tags = USER_INFO.tags;
+      document.getElementById('profile_selected_tags').innerHTML="";
+
+      //load user tags into HashTagHanlder
+      tagHandler.loadUserTags(tags);
+      tagHandler.displayHashTags();
+  }else{
+    console.log('failed to get user tags:response-'+response);
+  }
+
+  if(  document.getElementById('dashboard_menu').style.visibility == 'visible'){
+    showDashMenu();
+  }
+
+  //load friends
+  getAllFriends('friends_view_container_body');
+  loadRecievedFR('request_view_container_body');
+  //hide dash menu if open close it'
+
+}
+
+/************************** manage friends ************************************/
+
+function makeFriendRequest(targetID){
+  var formData = new FormData();
+  formData.append('command',SEND_FRIEND_REQUEST_);
+  formData.append('initiatorID',USER_INFO.id);
+  formData.append('targetID',targetID);
+
+  try{
+      var response = makeRequest(formData);
+      response = JSON.parse(response);
+      status = response.status;
+      if(status == 200 ){
+        alert('friend request sent');
+      }else{
+        alert('failed to initiate friend request');
+      }
+  }catch(e){
+    console.log('friend request failed');
+    console.log(e);
+  }
+
+}
+
+function acceptFriendRequest(initiatorID,node){
+  console.log('accepting friend request, id:'+initiatorID);
+  var formData = new FormData();
+  formData.append('command',ACCEPT_REQUEST_);
+  formData.append('initiatorID',USER_INFO.id);
+  formData.append('targetID',initiatorID);
+
+  try{
+      var response = makeRequest(formData);
+      response = JSON.parse(response);
+      var  status = response.status;
+      if(status == 200 ){
+        alert('friend added');
+      }else{
+        alert('failed to confirm request');
+      }
+  }catch(e){
+    console.log('friend request failed');
+    console.log(e);
+  }finally{
+    var container = document.getElementById('request_view_container_body');
+    container.removeChild(node);
+
+  }
+
+}
+
+function loadRecievedFR(container){
+  var requests = USER_INFO.pendingFriendRequests;
+  var response = null;
+  var users = null;
+  requests = requests.split(',');
+  for(var i=0; i < requests.length; i++){
+    requests[i]=parseInt(requests[i]);
+  }
+  var formData = new FormData();
+  formData.append('command',USERS_INFO_);
+  try{
+    var jsonObject = JSON.stringify({"ids":requests});
+    formData.append('user_ids', jsonObject);
+    var response = makeRequest(formData);
+    response = JSON.parse(response);
+    users = response.users;
+    for(var i=0; i < users.length; i++){
+      users[i]=JSON.parse(users[i]).info;
+    }
+  }catch(e){
+    console.log('failed to parse friend requests');
+    console.log(response);
+    console.log(e);
+  }
+
+  loadUsers(users,container);
+
+
+}
+
+/******************** events ***********************************************/
+
+function handleReg(node){
+  var id = parseInt(node.id.split('-')[0]);
+  var createdEvents = USER_INFO.createdEvents;
+  var attendingEvents = USER_INFO.events;
+
+  createdEvents = parseEventsString(createdEvents);
+  attendingEvents = parseEventsString(attendingEvents);
+
+  var createdSet = new Set(createdEvents);
+  var attendingSet = new Set(attendingEvents);
+
+  if( attendingSet.has(id)){
+      confirmEeventUnReg(node,id);
+    return;
+  }else if( createdSet.has(id)){
+    console.log('you created this');
+  }else{
+      console.log('need to sign up');
+      confirmEventReg(node,id);
+  }
+
+
+}
+
+
+function confirmDeleteFriend(node){
+    var yes;
+    var name = node.innerHTML;
+    var id = parseInt(node.id.split('-')[1]);
+    console.log(id);
+    if( confirm('unfriend ' +node.children[0].innerHTML+' ?') == true ){
+        if(unFriend(id)){
+          var container = document.getElementById('friends_view_container_body');
+          container.removeChild(node);
+        }
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function unFriend(id){
+  var formData = new FormData();
+  formData.append('command',REMOVE_FRIEND_);
+  formData.append('initiatorID',USER_INFO.id);
+  formData.append('targetID',id);
+  var response = makeRequest(formData);
+  response = JSON.parse(response);
+  if( response.status == 200 ){
+    alert('removed friend');
+    return true;
+  } else{
+    alert('failed to remove friend');
+    return false;
+  }
+}
+
+function confirmAcceptFriend(node){
+  var yes;
+  var name = node.innerHTML;
+  if( confirm('accept friend request from '+node.children[0].innerHTML+' ?') == true ){
+      return true;
+  }else{
+      return false;
+  }
+}
+
+function rejectFriendRequst(id,node){
+  var formData = new FormData();
+  formData.append('command',REJECT_FRIEND_);
+  formData.append('initiatorID',USER_INFO.id);
+  formData.append('targetID',id);
+  var response = makeRequest(formData);
+  response = JSON.parse(response);
+  if( response.status == 200 ){
+    alert('rejected friend request');
+    var container = document.getElementById('request_view_container_body');
+    container.removeChild(node);
+    return true;
+  } else{
+    alert('failed to reject friend request');
+    return false;
+  }
+}
+
+function confirmAddFriend(node){
+  var yes;
+  var name = node.innerHTML;
+  if( confirm('send friend request to '+node.children[0].innerHTML+' ?') == true ){
+      return true;
+  }else{
+      return false;
+  }
+}
+
+function confirmEventReg(node,event_id){
+  var yes;
+  var name = node.children[0].innerHTML;
+  if( confirm('register for '+node.children[0].innerHTML+' ?') == true ){
+      registerForEvent(event_id,node);
+      return true;
+  }else{
+      return false;
+  }
+}
+
+function confirmEeventUnReg(node,event_id){
+  var yes;
+  var name = node.children[0].innerHTML;
+  if( confirm('unregister for '+node.children[0].innerHTML+' ?') == true ){
+      if(unRegisterForEvent(event_id)){
+        var parent = document.getElementById('my_events_container');
+        parent.removeChild(node);
+      }
+      return true;
+  }else{
+      return false;
+  }
+}
+
+
+function makeGoogleEvent(summary,location, description,start, end){
+
+  var event = {
+    'summary': summary,
+    'location': location,
+    'description': description,
+    'start': {
+      'dateTime': start,
+      'timeZone': 'America/New_York'
+    },
+    'end': {
+      'dateTime': end,
+      'timeZone': 'America/New_York'
+    }
+  };
+
+  return event;
+
+}
+
+function registerForEvent(event_id,node){
+  var formData = new FormData();
+  formData.append('command',EVENT_REG_ADD_);
+  formData.append('event',event_id);
+  formData.append('id',USER_INFO.id);
+  node = node.children;
+  summary = node[0].innerHTML;
+  description = node[1].innerHTML;
+  start = (node[2].innerHTML).split(' ').join('T');
+  end = (node[3].innerHTML).split(' ').join('T');
+  event_location = node[4].innerHTML;
+  var event = makeGoogleEvent(summary,event_location,description,start,end);
+  var response = makeRequest(formData);
+  try{
+    response = JSON.parse(response);
+    if( response.status == 200 ){
+      alert('registed for event!!');
+      if(LINKED_TO_GOOGLE){
+        insertEventIntoCalendar(event);
+      }
+    }else{
+      alert('failed to registed for event!!');
+    }
+  }catch(e){
+    console.log('failed to parse json, register for event');
+    console.log(e);
+  }
+}
+
+function unRegisterForEvent(event_id){
+  var formData = new FormData();
+  formData.append('command',EVENT_REG_REMOVE_);
+  formData.append('event',event_id);
+  formData.append('id',USER_INFO.id);
+
+  var response = makeRequest(formData);
+  try{
+    response = JSON.parse(response);
+    if( response.status == 200 ){
+      alert('unregisted for event!!');
+      return true;
+    }else{
+      alert('failed to unregisted for event!!');
+    }
+  }catch(e){
+    console.log('failed to parse json, unregister for event');
+    console.log(e);
+  }
+
+  return false;
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+var hashTagHanlder = null;
+
+function initHashTagHandler(selectedContainer, nonSelectedContainer){
+    hashTagHanlder = new HashTagHanlder(selectedContainer, nonSelectedContainer);
+    hashTagHanlder.displayHashTags();
+}
+
+function initSignUpFormHanlder(){
+  var email = null;
+  var password = null;
+  var alpa = /(^[a-zA-Z]{2,})$/;
+  var noSpecialChar = new RegExp("^[a-zA-Z][a-zA-Z_.0-9]+$");
+  var minLength = /[a-zA-Z0-9~!@#$%^&*()+=-]{6,}/;
+  var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  var valid = false;
+  document.getElementById('sign_up_form_indi').oninput = function( form ){
+      var e =  form.srcElement;
+      var id = form.srcElement.id;
+      validateForm(e,id);
+  }
+
+    document.getElementById('sign_up_form_org').oninput = function( form ){
+        var e =  form.srcElement;
+        var id = form.srcElement.id;
+        validateForm(e,id);
+      }
+
+    function validateForm(e, id){
+      switch (id) {
+        case 'lastname':
+        case 'firstname':
+        case 'organization_name':
+          valid = alpa.test(e.value);
+          if( !valid ){
+            e.style.backgroundColor ='red';
+          }else{
+            e.style.backgroundColor ='green';
+            e.style.color = 'white';
+          }
+          console.log(valid);
+          break;
+        case 'username':
+        valid = noSpecialChar.test(e.value);
+        if( !valid ){
+          e.style.backgroundColor ='red';
+        }else{
+          e.style.backgroundColor ='green';
+          e.style.color = 'white';
+        }
+          break;
+        case 'email':
+        case 'org_email':
+        valid = emailRegEx.test(e.value);
+        if( !valid ){
+          e.style.backgroundColor ='red';
+        }else{
+          e.style.backgroundColor ='green';
+          e.style.color = 'white';
+          email = e.value;
+        }
+        break;
+        case 'email_match':
+        email = document.getElementById('email').value;
+        if(!email){
+          email = document.getElementById('org_email').value;
+        }
+         if ( email != e.value){
+           e.style.backgroundColor ='red';
+         }else{
+           e.style.backgroundColor ='green';
+           e.style.color = 'white';
+         }
+         break;
+         case 'password':
+         case 'org_password':
+         valid = minLength.test(e.value);
+         if ( !valid ){
+           e.style.backgroundColor ='red';
+         }else{
+           e.style.backgroundColor ='green';
+           e.style.color = 'white';
+         }
+         break;
+        case 'password_match':
+        password = document.getElementById('password').value;
+        if (!password){
+          password = document.getElementById('org_password').value;
+        }
+        if ( password != e.value){
+          e.style.backgroundColor ='red';
+        }else{
+          e.style.backgroundColor ='green';
+          e.style.color = 'white';
+        }
+        break;
+        default:
+      }
+    }
+}
+
+function indiSignUp(){
+    console.log('signing up');
+    var command = 0.1;
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
+    var firstname = document.forms['sign_up_form_indi']['firstname'].value;
+    var lastname = document.forms['sign_up_form_indi']['lastname'].value;
+    var username = document.forms['sign_up_form_indi']['username'].value;
+    var email = document.forms['sign_up_form_indi']['email'].value;
+    var password = document.forms['sign_up_form_indi']['password'].value;
+
+    //form verification
+    if( !( firstname && lastname && username && email && password ) ){
+        alert('please fill in all fields');
+        return;
+    }
+
+    document.forms['sign_up_form_indi'].reset();
+
+    var formData = new FormData();
+
+    formData.append('command',command);
+    formData.append('firstname',firstname);
+    formData.append('lastname',lastname);
+    formData.append('username',username);
+    formData.append('email',email);
+    formData.append('password',password);
+
+    var response = makeRequest(formData);
+    console.log("response: "+response);
+
+    if( response == 200 ){
+      window.location.href='/~tr88/events/views/profile_creation.html';
+    }else{
+      console.log('failed to save info');
+    }
+}
+
+//sign up
+function orgSignUp(){
+    console.log('signing up');
+    var command = 0.1;
+    var redirect_url = "/~tr88/events/views/tag_selection.html";
+    var organization = document.forms['sign_up_form_org']['organization_name'].value;
+    var email = document.forms['sign_up_form_org']['org_email'].value;
+    var password = document.forms['sign_up_form_org']['org_password'].value;
+
+    //form verification
+    if( !( organization && email && password) ){
+        alert('please fill in all fields');
+        return;
+    }
+
+    document.forms['sign_up_form_org'].reset();
+
+    var formData = new FormData();
+    formData.append('command',command);
+    formData.append('organization',organization);
+    formData.append('email',email);
+    formData.append('password',password);
+
+    var response = makeRequest(formData);
+    console.log("response: "+response);
+
+    if(response == 200 ){
+      window.location.href=profile_creation;
+    }else{
+      alert("failed to save info");
+    }
+}
+
+
+
+
+function confirmUserBio(node){
+    if( confirm('leave bio empty?') == true ){
+        return true;
+    }else{
+        return false;
+    }
+}
+//TODO
+//creat new user
+function setUserInfo(){
+    var userBio = document.getElementById('user_bio').value;
+    var userTags = hashTagHanlder.getUserTags();
+
+    if( userTags.size <= 0){
+        alert("please select atleast 1 tag");
+        return;
+    }
+    if(userBio.length <= 0 ){
+        if( !confirmUserBio()){
+            return;
+        }
+    }
+    var userInfo = JSON.stringify({'tags':Array.from(userTags),'bio':userBio});
+    var formData = new FormData();
+    formData.append('command',1);
+    formData.append('user_info',userInfo)
+    console.log(userInfo);
+
+    var response = makeRequest(formData);
+    try{
+      response = JSON.parse(response);
+      console.log('create user response:'+response.status);
+
+    }catch(e){
+      console.log('failed to parse profile creating response');
+      console.log(e);
+      return 400;
+    }
+    if( response.status == 200 ){
+      window.location.href=dashboard_page;
+    }else{
+      window.location.href=sign_up_page;
+    }
+}
+
+function replacer(){
+    tags = userTags.entries();
+    values='';
+    for (i=0; i < tags.size; i++){
+        tags+=values[i];
+        if( i < tags.size -1 ){
+            tags+=' ,';
+        }
+    }
+    return values;
+}
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+/******************************search functions ********************************/
+
+function doSearch(container){
+    var container = document.getElementById(container);
+    var input_field = document.getElementById('search_value');
+    var input = input_field.value;
+    var formData = new FormData();
+    formData.append('command',SEARCH_);
+    formData.append('searchType','events');
+    formData.append('searchText',input);
+    var response = makeRequest(formData);
+    var events = null;
+    try{
+      events = JSON.parse(response).results;
+    }catch(e){
+      console.log(e);
+      console.log('failed to get search results, response: '+response);
+      return false;
+    }
+    if(events.length > 0){
+      showEvents(events,container);
+      return true;
+    }else{
+      return false;
+    }
+}
+
+function findPeople(container){
+  var container = document.getElementById(container);
+  var input_field = document.getElementById('people_search_input');
+  var input = input_field.value;
+  var formData = new FormData();
+  formData.append('command',SEARCH_);
+  formData.append('searchType','users');
+  formData.append('searchText',input);
+  var response = makeRequest(formData);
+  var users = null;
+  try{
+    users = JSON.parse(response).results;
+  }catch(e){
+    console.log(e);
+    console.log('failed to get search results, response: '+response);
+    return false;
+  }
+  if(users.length > 0){
+    loadUsers(users,'friends_view_container_body');
+    return true;
+  }else{
+    return false;
+  }
+}
+
+/****************************** end search functions ********************************/
+
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+
+/**************************SETTERS***************************/
+
+
+function showEvents(events, container){
+    var template = document.getElementById("event_0");
+    // template = template.cloneNode(true);
+    container.innerHTML="";
+    // template.style.visibility='visible';
+    var e = null;
+    var name = null;
+    var bio = null;
+    var startDateTime = null;
+    var endDateTime = null;
+    var location = null;
+    for (var i=0; i < events.length; i++ ){
+        //create event view
+        // var e = template.cloneNode(true);
+        e = document.createElement('div');
+        e.className = 'event_list_view';
+
+        name = document.createElement('h1');
+        name.innerHTML = events[i].name;
+
+        e.appendChild(name);
+
+        bio =  document.createElement('p');
+        bio.innerHTML = events[i].bio;
+
+        e.appendChild(bio);
+
+        startDateTime = document.createElement('h1');
+        startDateTime.innerHTML = events[i].startDateTime;
+
+        e.appendChild(startDateTime);
+
+        endDateTime = document.createElement('h1');
+        endDateTime.innerHTML=events[i].endDateTime;
+
+        e.appendChild(endDateTime);
+
+        location = document.createElement('p');
+        location.innerHTML = events[i].location;
+
+        e.appendChild(location);
+
+        e.id= events[i].id+'-'+container.id;
+
+        e.onclick = function(){
+            // checkGoogleCalAuth();
+            handleReg(this);
+            console.log(this.id);
+        };
+
+        container.appendChild(e);
+    }
+}
+
+
+//load all users into view
+function loadUsers(users, container){
+    var containerID = container;
+    var container = document.getElementById(container);
+    var friends = USER_INFO.friends;
+    console.log(friends.length);
+    var fSet = new Set(friends);
+    container.innerHTML="";
+
+    if( users == null){
+      users = getAllUsers();
+    }
+
+    var i = 0;
+    var children = null;
+    var tempNode = null;
+    if( users.length > 0 ){
+        for(i=0; i < users.length; i++){
+          var node = document.createElement('div');
+          node.className='other_user_view';
+          // get children
+          if( !users[i].username &&  !users[i].firstname){
+            continue;
+          }
+
+          if( users[i].firstname && users[i].lastname){
+            tempNode = document.createElement('h1');
+            tempNode.innerHTML=users[i].firstname;
+            node.appendChild(tempNode);
+            tempNode = document.createElement('h2');
+            tempNode.innerHTML=users[i].lastname;
+            node.appendChild(tempNode);
+          }else if( users[i].username){
+            tempNode = document.createElement('h1');
+            tempNode.innerHTML=users[i].username;
+            node.appendChild(tempNode);
+            tempNode = document.createElement('h2');
+            tempNode.innerHTML='Organization';
+            node.appendChild(tempNode);
+          }
+
+            tempNode = document.createElement('div');
+            tempNode.id='other_user_img';
+            node.appendChild(tempNode);
+            node.id = 'user-'+users[i].id;
+
+          if( containerID != 'request_view_container_body'){
+              if( fSet.has( parseInt( users[i].id)) ){
+                node.onclick = function(){
+                  if(confirmDeleteFriend(this)){
+                    console.log('deleting friend');
+                  }
+                }
+            }else{
+              node.onclick = function(){
+                if(confirmAddFriend(this)){
+                  makeFriendRequest(this.id.split('-')[1]);
+                  console.log('sending friend request');
+                }
+              }
+            }
+          }else{ // this is  a friend request
+            node.onclick = function(){
+              if(confirmAcceptFriend(this)){
+                acceptFriendRequest(this.id.split('-')[1],this);
+                console.log('accepting friend request');
+              }else{
+                rejectFriendRequst(this.id.split('-')[1],this);
+                console.log('rejecting friend request');
+              }
+            }
+
+          }
+            container.appendChild(node);
+
+      }
+    }
+}
+
+
+function populateWithMyEvents(container){
+  var events = getMyEvents();
+  container = document.getElementById(container);
+  showEvents(events,container);
+}
+
+function populateWithGoingTo(container){
+  var events = getAttendingEvents();
+  container = document.getElementById(container);
+  showEvents(events,container);
+}
+
+<?php
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+session_start();
+
+$debug = false;
+$linux = true;
+
+include_once 'functions.php';
+
+$command = null;
+
+if( isset($_POST['command'])){
+    $command = $_POST['command'];
+}else{
+  echo "no command give : ending...";
+  return;
+}
+
+myLog("\nnew log ---------------------------------\n",true);
+$params = buildParams();
+//set up testing output file
+//clear log file
+
+  switch ( $command ) {
+
+    case -1:
+        myLog("case -1: logOut():params: ".$params,false);
+        logOut();
+          break;
+
+    case 0:
+        myLog("login check called: ",true);
+        loggedInCheck();
+        break;
+
+    case 0.1: // create user
+        myLog("case 0.1- create new user, params:".$params,false);
+        $_SESSION['new_user'] = true;
+
+        if( isset($_POST['firstname'],$_POST['lastname'],$_POST['username'])){
+          myLog("setting - firstname,lastname,username",false);
+          $_SESSION['firstname'] = $_POST['firstname'];
+          $_SESSION['lastname'] = $_POST['lastname'];
+          $_SESSION['username'] = $_POST['username'];
+        }
+
+        if(isset($_POST['organization'])){
+          $_SESSION['organization'] = $_POST['organization'];
+        }
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = $_POST['password'];
+        echo 200;
+        break;
+    case 1: // sign up
+
+        myLog("new user sign up,params: ".$params,false);
+
+        // organization
+        if( isset($_SESSION['organization']) ){
+            myLog("creating organization user",false);
+            $params = $params.'&username='.$_SESSION['organization'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
+            myLog("case 1-creating organization:\n".$params,false);
+            //parse json and store user id
+            $response = makeRequest($params);
+            $jsonObject = json_decode($response,true);
+
+            if( $jsonObject['status'] == 200 ){
+              $_SESSION['id'] = $jsonObject['id'];
+              $_SESSION['logged_in'] = true;
+            }else{
+              //kill session
+              session_unset();
+              session_destroy();
+              $_SESSION['logged_in']=false;
+            }
+
+            echo $response;
+            break;
+        }else{ // single user
+            myLog("creating single user",false);
+            $params = $params.'&firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].
+            '&username='.$_SESSION['username'].'&email='.$_SESSION['email'].'&password='.$_SESSION['password'];
+            myLog("case 1-creating single user:\n".$params,false);
+            //TODO remove test
+            $response = makeRequest($params);
+            $jsonObject = json_decode($response,true);
+            if( $jsonObject['status'] == 200 ){
+              $_SESSION['id'] = $jsonObject['id'];
+              $_SESSION['logged_in'] = true;
+            }else{
+              //kill session
+              session_unset();
+              session_destroy();
+              $_SESSION['logged_in']=false;
+            }
+            echo $response;
+            break;
+        }
+
+        break;
+
+    case 2: // login
+        myLog("case 2 -executing login(), params: ".$params,false);
+        if(isset($_POST['email'],$_POST['password'])){
+            login($params);
+        }
+        break;
+
+    case 3: // create event
+        echo createEvent($params);
+        break;
+
+    case 4: // create comment
+        break;
+
+    case 5: // update user bio
+        break;
+    case 6: //upate user tag_selection
+        break;
+    case 7: // make friend request
+        echo makeRequest($params);
+        break;
+
+    case 8: // get recommended events
+        myLog("case 8-get recommended events, params:".$params,false);
+        echo getRecommendedEvents($params);
+        break;
+
+    case 9: // return single user info
+        echo getThisUserInfo($params);
+        break;
+
+    case 10:
+        myLog("case 10 - registering for event: ".$params,false);
+        echo makeRequest($params);
+        break;
+
+    case 11: // get all tags
+        myLog("case 11 - get all tags called,params: ".$params,false);
+        echo makeRequest($params);
+        break;
+
+    case 12: //search
+        myLog("case 12 - making a search request: ".$params,false);
+        echo makeRequest($params);
+        break;
+    case 13: // get all friends events
+        myLog("case 13 - getting all friends events".$params,false);
+        echo makeRequest($params);
+        break;
+    case 15: // accept friend request
+        echo makeRequest($params);
+        break;
+
+    case 16: // return all users
+        myLog("case 16 - getting all users request: ".$params,false);
+        echo makeRequest($params);
+        break;
+
+    case 20:// unregisted for event
+        myLog("case 20 - unregister for event: ".$params,false);
+        echo makeRequest($params);
+        break;
+
+    case 31: // get all future events
+        myLog("case 31- get all future events,parms:".$params,false);
+        echo getFutureEvents($params);
+        break;
+
+    case 32: // get events info
+        myLog("case 32- get multiple events,parms:".$params,false);
+        if( isset($_POST['event_ids'])){
+          $events = json_decode($_POST['event_ids'],true);
+          $events = $events['ids'];
+          echo getEvents($events);
+        }else{
+          echo '{"events":[]}';
+        }
+        break;
+
+    case 35: // reject friend requests
+      myLog("case 35- reject friend request,parms:".$params,false);
+      echo makeRequest($params);
+      break;
+
+    case 36: // remove friends
+        myLog("case 36- remove friend,parms:".$params,false);
+        echo makeRequest($params);
+        break;
+    case 40: //returns multiple user info
+        echo getUsersInfo();
+        break;
+
+    case 'debug':
+        echo "debug_php";
+        break;
+
+    default:
+        echo 'internal error: command not found';
+        break;
+
+      }
+?>
+
+<?php
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+//make request to middle
+function makeRequest($params){
+  //angelica's
+  $url = "https://web.njit.edu/~aml35/login/commandLine.php";
+  $ch = curl_init($url);
+  $headers = curl_getinfo($ch);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  myLog("curl request: url:".$url.", params: ".$params,false);
+  $result = curl_exec($ch);
+  curl_close($ch);
+  myLog("curl response: ".$result,false);
+  return $result;
+
+}
+
+function buildParams(){
+    $params= '';
+    $size = count($_POST);
+    $tracker = 0;
+    foreach ($_POST as $key => $value){
+        $params = $params.$key.'='.$value;
+        if( $tracker < $size-1){
+            $params = $params.'&';
+        }
+        $tracker+=1;
+    }
+    return $params;
+}
+
+function login($params){
+    $response = makeRequest($params);
+    $jsonObject = json_decode($response,true);
+    $status = $jsonObject["status"];
+    if( $status == 200 ){
+        $_SESSION['logged_in']=true;
+        $_SESSION['id']=$jsonObject['id'];
+    }else{
+        $_SESSION['logged_in']=false;
+        $_SESSION['id']=null;
+    }
+    myLog("login response: ".$response,false);
+    echo $status;
+}
+
+function logOut(){
+
+    if( $_SESSION['logged_in']== true){
+      session_unset();
+      session_destroy();
+      $_SESSION['logged_in']=false;
+      echo 200;
+    }else{
+      session_unset();
+      session_destroy();
+      $_SESSION['logged_in']=false;
+      echo 200;
+    }
+}
+
+
+function loggedInCheck(){
+
+    if($_SESSION['logged_in'] == true ){
+        echo '200';
+    }else{
+        echo '404';
+    }
+
+    // //TODO set back to check
+    // echo '200';
+}
+
+function createUser($params){
+    $response = makeRequest($params);
+    $data = json_decode($response,true);
+    if( $data['status'] == 200 ){
+      $_SESSION['id']=$data['id'];
+      $_SESSION['logged_in'] = true;
+    }
+    echo $response;
+}
+
+function createEvent($params){
+    $response = makeRequest($params);
+    echo $response;
+}
+
+
+function getRecommendedEvents($params){
+    if($_SESSION['id'] != null ){
+      myLog("getting recommend events withd id: ".$_SESSION['id'],false);
+      $response = makeRequest($params."&id=".$_SESSION['id']);
+
+      //parse json
+      try{
+          $ids = json_decode($response,true);
+          $ids = $ids['events'];
+          return getEvents($ids);
+
+      }catch(Exception $e){
+          myLog('failed to parse recommended evennts returned'.$request,false);
+      }
+
+    }else{
+      myLog("failed to get recommended events,id unknown, params".$params,false);
+    }
+}
+
+function getAllEvents(){
+
+}
+
+
+function getThisUserInfo($params){
+
+  if ( $_SESSION['id'] != null ){
+    $response = makeRequest($params."&id=".$_SESSION['id']);
+    return $response;
+  }else{
+    return "can't get this user info";
+  }
+}
+
+function getUsersInfo(){
+  if ( isset( $_POST['user_ids'])){
+    $users = json_decode($_POST['user_ids'],true);
+    $users = $users['ids'];
+    $index = 0;
+    foreach ($users as $id) {
+      $params='command=9&id='.$id;
+      $response = makeRequest($params);
+      $users[$index] = $response;
+      $index++;
+    }
+    $jPacket = json_encode($users);
+    $jPacket = '{"users":'.$jPacket.'}';
+    return $jPacket;
+  }else{
+    return '{"users":[]}';
+  }
+}
+
+//get events by ID
+function getEvents( array $eventIDs){
+    $events = array();
+    $index = 0;
+    foreach ($eventIDs as $value) {
+        $params = "command=32&id=".$value;
+        $response = makeRequest($params);
+        try{
+            $jsonObject = json_decode($response,true);
+            $event = $jsonObject['info'];
+            $events[$index] = $event;
+            $index++;
+            //add to json object to return
+        }catch (Exception $e){
+            myLog("failed to get events - parsing failed",false);
+        }
+        myLog("getting event id:".$value." - ".$response,false);
+    }
+
+    $jPacket = json_encode($events);
+    $jPacket = '{"events":'.$jPacket.'}';
+    myLog("json encoded events: ".$jPacket,false);
+    return $jPacket;
+}
+
+//get future events
+function getFutureEvents($params){
+    $response = makeRequest($params);
+    $jsonObject = json_decode($response,true);
+    $eventIDs = $jsonObject['info'];
+    $index = 0;
+
+    foreach( $eventIDs as $value){
+        $eventIDs[$index] = $value[0];
+        $index++;
+    }
+    return getEvents($eventIDs);
+}
+
+
+
+
+// write debug output to file do not echo
+      function myLog($string,$clear){
+        global $debug;
+        global $linux;
+
+        if($debug == false) return;
+
+        $mode = 'a';
+        if($clear){
+          $mode='w';
+        }
+
+        $handle = null;
+        if($linux){
+            $handle = fopen('/home/wrg/www/~tr88/events/test/php_log.log',$mode);
+        }else{
+            $handle = fopen('/Users/wrg/Sites/~tr88/events/test/php_log.log',$mode);
+        }
+
+        if( !$handle ){
+          echo 'failed to open log for writing';
+        }
+        date_default_timezone_set("America/New_York");
+        $time = time();
+        $date = date('Y-m-d H:i:s',$time);
+        fwrite($handle,"\n");
+        fwrite($handle,$date."\n");
+        fwrite($handle,$string."\n");
+        fclose($handle);
+      }
+
+
+?>
+
+
+

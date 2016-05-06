@@ -9,11 +9,6 @@ function makeRequest($params){
   //angelica's
   $url = "https://web.njit.edu/~aml35/login/commandLine.php";
   $ch = curl_init($url);
-  //jasper api
-  // $ch = curl_init("https://web.njit.edu/~jmd57/backend.php");
-  //local test
-  // $ch = curl_init("https://web.njit.edu/~tr88/php/test.php");
-  // $ch = curl_init("localhost/events/php/server_test.php");
   $headers = curl_getinfo($ch);
   curl_setopt($ch, CURLOPT_POST, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
