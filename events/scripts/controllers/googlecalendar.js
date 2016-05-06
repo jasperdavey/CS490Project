@@ -166,7 +166,5 @@ function insertEventIntoCalendar( event ){
     'resource': event
   });
 
-  request.execute(function(event) {
-     alert( 'insert event into google calendar!!');
-  });
+  request.execute(function(event) {});
 }

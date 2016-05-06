@@ -15,7 +15,9 @@
   <body onload="initDashBoard()">
 
     <div id="dasboard_cotainer" class="dashboard_container">
-
+    <div id="spinner" class="spinner_container">
+        <img src='/~tr88/events/images/loading.gif'/>
+    </div>
       <div id="dashboard_header">
         <div id="dash_board_logo">EVENTS! @ NJIT</div>
       </div>
@@ -48,7 +50,6 @@
         <div id="events_bar" class="events_bar">
           <button onclick="populateWithMyEvents('my_events_container')">My Events</button>
           <button onclick="populateWithGoingTo('my_events_container')">Going</button>
-          <button onclick="populateWithWentTo('my_events_container')">Went</button>
         </div>
         <div class="events_list_container" id="my_events_container"></div>
       </div>
@@ -166,9 +167,6 @@
         </div>
     </div>
   </div>
-
-
-
 
 <!-- end dashboard container   -->
 </div>

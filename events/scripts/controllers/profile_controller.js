@@ -27,12 +27,14 @@ function showProfileView(){
   }
 
   if(  document.getElementById('dashboard_menu').style.visibility == 'visible'){
+    initDashBoard();
     showDashMenu();
   }
 
   //load friends
   getAllFriends('friends_view_container_body');
   loadRecievedFR('request_view_container_body');
+  initDashBoard();
   //hide dash menu if open close it'
 
 }
@@ -82,8 +84,9 @@ function acceptFriendRequest(initiatorID,node){
     console.log(e);
   }finally{
     var container = document.getElementById('request_view_container_body');
+    initDashBoard();
     container.removeChild(node);
-
+    getAllFriends('friends_view_container_body');
   }
 
 }
@@ -220,6 +223,7 @@ function confirmEventReg(node,event_id){
   var name = node.children[0].innerHTML;
   if( confirm('register for '+node.children[0].innerHTML+' ?') == true ){
       registerForEvent(event_id,node);
+      initDashBoard();
       return true;
   }else{
       return false;
@@ -234,6 +238,7 @@ function confirmEeventUnReg(node,event_id){
         var parent = document.getElementById('my_events_container');
         parent.removeChild(node);
       }
+      initDashBoard();
       return true;
   }else{
       return false;
@@ -300,7 +305,6 @@ function unRegisterForEvent(event_id){
   try{
     response = JSON.parse(response);
     if( response.status == 200 ){
-      alert('unregisted for event!!');
       return true;
     }else{
       alert('failed to unregisted for event!!');

@@ -6,9 +6,6 @@
 var hashTagHanlder = null;
 var eventViewChanged = false;
 
-function hello(x){
-    console.log('hello'+x);
-}
 Date.prototype.toDateInputValue = (function() {
     var local = new Date(this);
     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -48,6 +45,7 @@ function initDashBoard(){
   // get userInfo
   var userInfo = null;
   document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
+  loadSpinner();
   var response = getUserInfo();
   try {
     userInfo = JSON.parse(response).info;
@@ -84,7 +82,7 @@ function initDashBoard(){
   }else{
     console.log('unable to get user info');
   }
-
+  hideSpinner();
   checkGoogleCalAuth();
 }
 
@@ -120,6 +118,7 @@ function initCreateEvent(){
 function cancelEventEntry(){
    var view = document.getElementById("createEventForm");
    view.style.visibility = "collapse";
+   initDashBoard();
 }
 
 function saveEvent(){
@@ -127,8 +126,8 @@ function saveEvent(){
   view.style.visibility = "collapse";
   // var response = makeEvent();
   if( response == 200 ){
-      alert("event created!")
       cancelEventEntry();
+      initDashBoard();
   }else{
     alert("failed to created event!")
   }

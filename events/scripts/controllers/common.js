@@ -177,3 +177,17 @@ function parseEventsString(events){
 
   return events;
 }
+
+function loadSpinner(){
+    spinner = document.getElementById('spinner');
+    spinner.style.visibility = 'visible';
+    console.log(spinner.style.visibility);
+
+}
+
+function hideSpinner(){
+    spinner = document.getElementById('spinner');
+    spinner.style.visibility = 'collapse';
+    console.log(spinner.style.visibility);
+
+}
