@@ -37,8 +37,8 @@
   padding: 5px;
   position: absolute;
   right: 0px;
-  width: 200px;
-  line-height: 45px;
+  width: 100px;
+  line-height: 35px;
   background-color: #32ab9f;
 }
 
@@ -66,12 +66,12 @@
   list-style-type: none;
   overflow: hidden;
   background-color: #005D53;
-  width: 200px;
+  width: 100px;
   height: inherit;
   color: white;
-  line-height: 35px;
+  line-height: 30px;
   text-align: center;
-  font-size: 16pt;
+  font-size: 10pt;
   margin-top: 0px;
   margin-bottom: 5px;
   cursor: pointer;
@@ -90,10 +90,10 @@
 
 .menu_button{
     position: absolute;
-    top:5px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
+    top:10px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     background-size:contain;
     background-repeat: no-repeat;
@@ -111,7 +111,7 @@
   margin-bottom: 20px;
   width: 100%;
   height: 150px;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 
@@ -281,7 +281,7 @@
     position: absolute;
     margin-top: 5px;
     width: 100%;
-    height: 100px;
+    height: 130px;
     white-space: nowrap;
     overflow-x: scroll;
 }
@@ -296,16 +296,16 @@
 .event_list_view{
     display: inline-block;
     margin-right: 5px;
-    width: 120px;
-    height: 200px;
+    width: 150px;
+    height: 110px;
     visibility: visible;
-    color: white;
+    color: #ffffff;
     background-color: #009688;
 }
 
 .event_list_view h1{
-  font-size: 8pt;
-  font-weight: bold;
+  font-size: 12pt;
+  font-weight: 300;
   text-align: center;
 }
 
@@ -340,6 +340,7 @@ button{
     z-index: 1001;
     position: absolute;
     height: 45px;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -347,7 +348,7 @@ button{
     width: 50%;
     height: inherit;
     padding: 10px;
-    padding-left: 0px;
+    padding-left: 10px;
 }
 .sub_header #search_bar input {
     width: 300px;
@@ -362,13 +363,19 @@ button{
     cursor: pointer;
 }
 
+.myCalendar{
+  width: 38%;
+  background-color: white;
+  padding-bottom: 8px;
+}
 .myCalendar input{
     width: 95%;
     display: block;
     border: 1px solid #999;
     padding: 5px;
-    height: 30px;
-    line-height: 30px;
+    margin-bottom: 0px;
+    height: 20px;
+    line-height: 20px;
     font-size: 16pt;
     font-weight: 100;
     font-family: "Gravitas One";
@@ -379,8 +386,10 @@ button{
 }
 
 .calendar_wrapper{
+  position: relative;
+  display: inline-block;
   width: 100%;
-  height: 60%;
+  height: 80%;
   white-space: nowrap;
   overflow-y: scroll;
 }
@@ -390,6 +399,7 @@ button{
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5px;
+  padding: 5px;
   background-color: #4d4dff;
 
 }
@@ -397,9 +407,13 @@ button{
 .calendar_event h1{
   color: white;
   font-size: 8pt;
+  font-style:normal;
 }
 
 .calendar_event h2{
   color: white;
   font-size: 8pt;
+  font-style:normal;
+  font-weight: lighter;
+
 }
