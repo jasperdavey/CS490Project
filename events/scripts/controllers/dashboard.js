@@ -118,7 +118,9 @@ function initCreateEvent(){
 function cancelEventEntry(){
    var view = document.getElementById("createEventForm");
    view.style.visibility = "collapse";
-   initDashBoard();
+   setTimeout(function(){
+       initDashBoard();
+   },3000);
 }
 
 function saveEvent(){
@@ -126,8 +128,7 @@ function saveEvent(){
   view.style.visibility = "collapse";
   // var response = makeEvent();
   if( response == 200 ){
-      cancelEventEntry();
-      initDashBoard();
+      setTimeout(cancelEventEntry(),500);
   }else{
     alert("failed to created event!")
   }
