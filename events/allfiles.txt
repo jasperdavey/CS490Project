@@ -30,6 +30,7 @@
                         </div>
                     </form>
                     <button id="login_button" onClick="signIn()">Login</button>
+                    <div id='login_error_message'>Incorrect user name or password!!</div>
                  </div>
             <div id="sign_up">
                 <a id="sign_up_link" onClick="loadSignUp()" >Join EVENTS! @ NJIT</a>
@@ -61,7 +62,9 @@
   <body onload="initDashBoard()">
 
     <div id="dasboard_cotainer" class="dashboard_container">
-
+    <div id="spinner" class="spinner_container">
+        <img src='/~tr88/events/images/loading.gif'/>
+    </div>
       <div id="dashboard_header">
         <div id="dash_board_logo">EVENTS! @ NJIT</div>
       </div>
@@ -94,7 +97,6 @@
         <div id="events_bar" class="events_bar">
           <button onclick="populateWithMyEvents('my_events_container')">My Events</button>
           <button onclick="populateWithGoingTo('my_events_container')">Going</button>
-          <button onclick="populateWithWentTo('my_events_container')">Went</button>
         </div>
         <div class="events_list_container" id="my_events_container"></div>
       </div>
@@ -213,9 +215,6 @@
     </div>
   </div>
 
-
-
-
 <!-- end dashboard container   -->
 </div>
 
@@ -235,7 +234,6 @@
   </body>
 
 </html>
-
 <!doctype html>
 <!--
 /*
@@ -272,7 +270,72 @@
   </div>
 </body>
 </html>
+<!doctype html>
+<html>
+<!--
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+-->
+  <head>
+    <title>Events! Sign Up</title>
+    <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
+    <link rel="stylesheet" href="/~tr88/events/styles/sign_up.css">
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <script src="/~tr88/events/scripts/controllers/common.js"></script>
+    <script src="/~tr88/events/scripts/controllers/login.js"></script>
+    <script src="/~tr88/events/scripts/controllers/profile_creater.js"></script>
 
+  </head>
+  <body onload="initSignUpFormHanlder()">
+    <div id="cotainer" class="login_container">
+
+      <a href="/~tr88/events/index.html" class="login_events_logo">EVENTS!</a>
+
+            <div id="sing_up_box" class="sign_up_box">
+                <div id="account_picker" class="account_picker">
+                  <button id="indi_button" onclick="changeSingUpForm(this)" >Individual</button><button id="org_button"
+                  onclick="changeSingUpForm(this)">Organization</button>
+                </div>
+                <div id="individual_sign_up_form" class="individual_sign_up_form">
+                <form id="sign_up_form_indi">
+                    <div id="input_area">
+                    <input  type="text" id="firstname" method="POST" name="firstname" value="" placeholder="first name"></input>
+                    <input  type="text" id="lastname" method="POST" name="lastname" value="" placeholder="last name"></input>
+                    <input  type="text" id="username" method="POST" name="username" value="" placeholder="username"></input>
+                    <input  type="text" id="email" method="POST" name="email" value="" placeholder="email"></input>
+                    <input  type="text" id="email_match" method="POST" name="email_match" value="" placeholder="verify email"></input>
+                    <input  type="password" id="password" name="password" placeholder="password"></input>
+                    <input  type="password" id="password_match" name="password_match" placeholder="verify password"></input>
+
+                    </div>
+                </form>
+                <button id="join_button" onClick="indiSignUp()">create</button>
+              </div>
+              <div id="organization_sign_up_form" class="organization_sign_up_form">
+              <form id="sign_up_form_org">
+                  <div id="input_area">
+                      <input  type="text" id="organization_name" method="POST" name="organization_name" value=""
+                      placeholder="organization name"></input>
+                      <input  type="text" id="org_email" method="POST" name="org_email" value="" placeholder="email"></input>
+                      <input  type="text" id="email_match" method="POST" name="email" value="" placeholder="verify email"></input>
+                      <input  type="password" id="org_password" name="org_password" placeholder="password"></input>
+                      <input  type="password" id="password_match" name="" placeholder="verify password"></input>
+                  </div>
+              </form>
+              <button id="join_button" onClick="orgSignUp()">create</button>
+            </div>
+              </div>
+      <div id="NJIT_logo" class="login_njit_logo">
+          <a href="http://www.njit.edu/">
+              <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
+          </a>
+      </div>
+  </div>
+
+</body>
+</html>
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -287,10 +350,24 @@
   background-color: #32ab9f;
 }
 
+.spinner_container{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: 217px;
+    left:297px;
+    z-index: 999999999999;
+    visibility: hidden;
+}
+
+.spinner_container img{
+    width: 45px;
+    height: 45px;
+}
 #dashboard_header{
     width: 100%;
-    height: 45px;
-    line-height: 45px;
+    height: 46px;
+    line-height: 46px;
     background-color: #F16600;
 }
 
@@ -609,13 +686,13 @@
 }
 
 .event_list_view h1{
-  font-size: 12pt;
+  font-size: 9pt;
   font-weight: 300;
   text-align: center;
 }
 
 .event_list_view p{
-  font-size: 8pt;
+  font-size: 7pt;
   font-weight: normal;
   text-align: center;
 }
@@ -671,7 +748,7 @@ button{
 .myCalendar{
   width: 38%;
   background-color: white;
-  padding-bottom: 8px;
+  padding-bottom: 0px;
 }
 .myCalendar input{
     width: 95%;
@@ -694,7 +771,7 @@ button{
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 80%;
+  height: 75%;
   white-space: nowrap;
   overflow-y: scroll;
 }
@@ -722,7 +799,6 @@ button{
   font-weight: lighter;
 
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -741,6 +817,15 @@ body{
   margin-right: auto;
   width: 548px;
   height: 768px;
+}
+
+#login_error_message{
+    width: 100%;
+    padding: 5px;
+    font-size: 14pt;
+    text-align: right;
+    visibility: collapse;
+    color: red;
 }
 
 input{
@@ -870,7 +955,6 @@ a:hover {
 	position:relative;
 	top:1px;
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -1123,7 +1207,6 @@ a:hover {
   margin-top: 5px;
   height: 70%;
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -1208,7 +1291,6 @@ div.sign_up_box{
   position: absolute;
   visibility: collapse;
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -1298,75 +1380,6 @@ div.sign_up_box{
     height: inherit;
     width: 80px;
 }
-
-<!doctype html>
-<html>
-<!--
-/*
-** Totaram Ramrattan
-** CS 490 Project - Front END
-*/
--->
-  <head>
-    <title>Events! Sign Up</title>
-    <link rel="stylesheet" href="/~tr88/events/styles/landing.css">
-    <link rel="stylesheet" href="/~tr88/events/styles/sign_up.css">
-    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-    <script src="/~tr88/events/scripts/controllers/common.js"></script>
-    <script src="/~tr88/events/scripts/controllers/login.js"></script>
-    <script src="/~tr88/events/scripts/controllers/profile_creater.js"></script>
-
-  </head>
-  <body onload="initSignUpFormHanlder()">
-    <div id="cotainer" class="login_container">
-
-      <a href="/~tr88/events/index.html" class="login_events_logo">EVENTS!</a>
-
-            <div id="sing_up_box" class="sign_up_box">
-                <div id="account_picker" class="account_picker">
-                  <button id="indi_button" onclick="changeSingUpForm(this)" >Individual</button><button id="org_button"
-                  onclick="changeSingUpForm(this)">Organization</button>
-                </div>
-                <div id="individual_sign_up_form" class="individual_sign_up_form">
-                <form id="sign_up_form_indi">
-                    <div id="input_area">
-                    <input  type="text" id="firstname" method="POST" name="firstname" value="" placeholder="first name"></input>
-                    <input  type="text" id="lastname" method="POST" name="lastname" value="" placeholder="last name"></input>
-                    <input  type="text" id="username" method="POST" name="username" value="" placeholder="username"></input>
-                    <input  type="text" id="email" method="POST" name="email" value="" placeholder="email"></input>
-                    <input  type="text" id="email_match" method="POST" name="email_match" value="" placeholder="verify email"></input>
-                    <input  type="password" id="password" name="password" placeholder="password"></input>
-                    <input  type="password" id="password_match" name="password_match" placeholder="verify password"></input>
-
-                    </div>
-                </form>
-                <button id="join_button" onClick="indiSignUp()">create</button>
-              </div>
-              <div id="organization_sign_up_form" class="organization_sign_up_form">
-              <form id="sign_up_form_org">
-                  <div id="input_area">
-                      <input  type="text" id="organization_name" method="POST" name="organization_name" value=""
-                      placeholder="organization name"></input>
-                      <input  type="text" id="org_email" method="POST" name="org_email" value="" placeholder="email"></input>
-                      <input  type="text" id="email_match" method="POST" name="email" value="" placeholder="verify email"></input>
-                      <input  type="password" id="org_password" name="org_password" placeholder="password"></input>
-                      <input  type="password" id="password_match" name="" placeholder="verify password"></input>
-                  </div>
-              </form>
-              <button id="join_button" onClick="orgSignUp()">create</button>
-            </div>
-              </div>
-      <div id="NJIT_logo" class="login_njit_logo">
-          <a href="http://www.njit.edu/">
-              <img src="http://www.njit.edu/corporate/uicomponents/images/logo.png" alt="NJIT LOGO"></img>
-          </a>
-      </div>
-  </div>
-
-</body>
-</html>
-
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -1547,8 +1560,198 @@ function parseEventsString(events){
   return events;
 }
 
-/*
+function loadSpinner(){
+    spinner = document.getElementById('spinner');
+    spinner.style.visibility = 'visible';
+    console.log(spinner.style.visibility);
 
+}
+
+function hideSpinner(){
+    spinner = document.getElementById('spinner');
+    spinner.style.visibility = 'collapse';
+    console.log(spinner.style.visibility);
+
+}
+/*
+** Totaram Ramrattan
+** CS 490 Project - Front END
+*/
+
+var hashTagHanlder = null;
+var eventViewChanged = false;
+
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+
+var dashSearch = document.getElementById('search_bar').oninput = function(e){
+  if(e.target.value.length > 1){
+    eventViewChanged=doSearch('events_list_container');
+  }else{
+    if(eventViewChanged){
+      getFutureEvents('events_list_container');
+      eventViewChanged = false;
+    }
+  }
+}
+
+var peopleSearch = document.getElementById('people_search_input').oninput = function(e){
+  if(e.target.value.length > 1){
+    eventViewChanged=findPeople('friends_view_container_body');
+  }else{
+    if(eventViewChanged){
+      loadUsers(null,'friends_view_container_body');
+      eventViewChanged = false;
+    }
+  }
+}
+
+function showDateValue(date){
+    console.log('date value: '+date.value);
+    listUpcomingEvents(date.value);
+}
+
+/************************initDashBoard********************************/
+function initDashBoard(){
+  // get userInfo
+  var userInfo = null;
+  document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
+  loadSpinner();
+  var response = getUserInfo();
+  try {
+    userInfo = JSON.parse(response).info;
+    USER_INFO = userInfo;
+    USER_ID = userInfo.id;
+  } catch (e) {
+    console.log('failed to get user info');
+    console.log('get userInfo response: '+response)
+  }
+
+  try{
+      getRecommendedEvents('events_list_container');
+      populateWithMyEvents('my_events_container');
+  }catch(e){
+    console.log('failed to get recommended events');
+    events = [];
+  }
+
+  // populate dom with fields
+  if(userInfo != null){
+    if( userInfo.firstname && userInfo.lastname){
+      document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+      document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
+      document.getElementById("profile_username").innerHTML = userInfo.username;
+    }else{
+      document.getElementById("username").innerHTML = userInfo.username;
+      document.getElementById("profile_name").innerHTML = userInfo.username;
+      document.getElementById("profile_username").innerHTML = userInfo.username;
+
+    }
+
+    document.getElementById("profile_email").innerHTML = userInfo.email;
+    document.getElementById("profile_bio").innerHTML = userInfo.bio;
+  }else{
+    console.log('unable to get user info');
+  }
+  hideSpinner();
+  checkGoogleCalAuth();
+}
+
+
+function showDashMenu(){
+
+    var x = document.getElementById('dashboard_menu');
+    var y = document.getElementById('dashboard_menu_button');
+
+    if(x.style.visibility == 'visible'){
+      y.style.backgroundImage='url(/~tr88/events/images/menu_icon.png)';
+      x.style.visibility="collapse";
+    }else{
+      y.style.backgroundImage='url(/~tr88/events/images/x_icon.png)'
+      x.style.visibility="visible";
+    }
+}
+
+function closeDashMenu(){
+    showDashMenu();
+}
+
+function initCreateEvent(){
+   var view = document.getElementById("createEventForm");
+   view.style.visibility = "visible";
+   clearTags();
+   closeDashMenu();
+   // selectedContainer, nonSelectedContainer
+   hashTagHanlder = new HashTagHanlder('selected_tags','tag_selection');
+   hashTagHanlder.displayHashTags();
+}
+
+function cancelEventEntry(){
+   var view = document.getElementById("createEventForm");
+   view.style.visibility = "collapse";
+   setTimeout(function(){
+       initDashBoard();
+   },3000);
+}
+
+function saveEvent(){
+  var view = document.getElementById("createEventForm");
+  view.style.visibility = "collapse";
+  // var response = makeEvent();
+  if( response == 200 ){
+      setTimeout(cancelEventEntry(),500);
+  }else{
+    alert("failed to created event!")
+  }
+}
+
+// clear all tags from previous instance of create event
+function clearTags(){
+  var selectedContainer = document.getElementById("selected_tags");
+  var selectionContainer = document.getElementById("tag_selection");
+  while (selectionContainer.hasChildNodes()) {
+    selectionContainer.removeChild(selectionContainer.lastChild);
+  }
+  while (selectedContainer.hasChildNodes()) {
+    selectedContainer.removeChild(selectedContainer.lastChild);
+  }
+}
+
+
+// create event
+function makeEvent(){
+
+    console.log('saving event    ...');
+    var formData = new FormData();
+
+    var name = document.forms['event_create_form']['name'].value;
+    var bio = document.forms['event_create_form']['bio'].value;
+    var startDate = document.forms['event_create_form']['start_date'].value;
+    var startTime = document.forms['event_create_form']['start_time'].value;
+    var endDate = document.forms['event_create_form']['end_date'].value;
+    var endTime = document.forms['event_create_form']['end_time'].value;
+    var location = document.forms['event_create_form']['location'].value;
+
+    var tags = hashTagHanlder.getUserTags();
+    var jsonTags = JSON.stringify({'tags': tags});
+
+    formData.append('command',3);
+    formData.append('name',name);
+    formData.append('bio',bio);
+    formData.append('startDateTime',startDate+' '+startTime+':00');
+    formData.append('endDateTime',endDate+'endTime'+':00');
+    formData.append('location',location);
+    formData.append('tags',jsonTags);
+    formData.append('owner',USER_ID);
+
+    cancelEventEntry();
+    var response = makeRequest(formData);
+    console.log("response: "+response);
+}
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -1769,207 +1972,6 @@ function getAllUsers(){
   }
 
 }
-
-** Totaram Ramrattan
-** CS 490 Project - Front END
-*/
-
-var hashTagHanlder = null;
-var eventViewChanged = false;
-
-function hello(x){
-    console.log('hello'+x);
-}
-Date.prototype.toDateInputValue = (function() {
-    var local = new Date(this);
-    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    return local.toJSON().slice(0,10);
-});
-
-
-var dashSearch = document.getElementById('search_bar').oninput = function(e){
-  if(e.target.value.length > 1){
-    eventViewChanged=doSearch('events_list_container');
-  }else{
-    if(eventViewChanged){
-      getFutureEvents('events_list_container');
-      eventViewChanged = false;
-    }
-  }
-}
-
-var peopleSearch = document.getElementById('people_search_input').oninput = function(e){
-  if(e.target.value.length > 1){
-    eventViewChanged=findPeople('friends_view_container_body');
-  }else{
-    if(eventViewChanged){
-      loadUsers(null,'friends_view_container_body');
-      eventViewChanged = false;
-    }
-  }
-}
-
-function showDateValue(date){
-    console.log('date value: '+date.value);
-    listUpcomingEvents(date.value);
-}
-
-/************************initDashBoard********************************/
-function initDashBoard(){
-  // get userInfo
-  var userInfo = null;
-  document.getElementById('mycal_date_selector').value = new Date().toDateInputValue();
-  var response = getUserInfo();
-  try {
-    userInfo = JSON.parse(response).info;
-    USER_INFO = userInfo;
-    USER_ID = userInfo.id;
-  } catch (e) {
-    console.log('failed to get user info');
-    console.log('get userInfo response: '+response)
-  }
-
-  try{
-      getRecommendedEvents('events_list_container');
-      populateWithMyEvents('my_events_container');
-  }catch(e){
-    console.log('failed to get recommended events');
-    events = [];
-  }
-
-  // populate dom with fields
-  if(userInfo != null){
-    if( userInfo.firstname && userInfo.lastname){
-      document.getElementById("username").innerHTML = userInfo.firstname+" "+userInfo.lastname;
-      document.getElementById("profile_name").innerHTML = userInfo.firstname+" "+userInfo.lastname;
-      document.getElementById("profile_username").innerHTML = userInfo.username;
-    }else{
-      document.getElementById("username").innerHTML = userInfo.username;
-      document.getElementById("profile_name").innerHTML = userInfo.username;
-      document.getElementById("profile_username").innerHTML = userInfo.username;
-
-    }
-
-    document.getElementById("profile_email").innerHTML = userInfo.email;
-    document.getElementById("profile_bio").innerHTML = userInfo.bio;
-  }else{
-    console.log('unable to get user info');
-  }
-
-  checkGoogleCalAuth();
-}
-
-
-function showDashMenu(){
-
-    var x = document.getElementById('dashboard_menu');
-    var y = document.getElementById('dashboard_menu_button');
-
-    if(x.style.visibility == 'visible'){
-      y.style.backgroundImage='url(/~tr88/events/images/menu_icon.png)';
-      x.style.visibility="collapse";
-    }else{
-      y.style.backgroundImage='url(/~tr88/events/images/x_icon.png)'
-      x.style.visibility="visible";
-    }
-}
-
-function closeDashMenu(){
-    showDashMenu();
-}
-
-function initCreateEvent(){
-   var view = document.getElementById("createEventForm");
-   view.style.visibility = "visible";
-   clearTags();
-   closeDashMenu();
-   // selectedContainer, nonSelectedContainer
-   hashTagHanlder = new HashTagHanlder('selected_tags','tag_selection');
-   hashTagHanlder.displayHashTags();
-}
-
-function cancelEventEntry(){
-   var view = document.getElementById("createEventForm");
-   view.style.visibility = "collapse";
-}
-
-function saveEvent(){
-  var view = document.getElementById("createEventForm");
-  view.style.visibility = "collapse";
-  // var response = makeEvent();
-  if( response == 200 ){
-      alert("event created!")
-      cancelEventEntry();
-  }else{
-    alert("failed to created event!")
-  }
-}
-
-// clear all tags from previous instance of create event
-function clearTags(){
-  var selectedContainer = document.getElementById("selected_tags");
-  var selectionContainer = document.getElementById("tag_selection");
-  while (selectionContainer.hasChildNodes()) {
-    selectionContainer.removeChild(selectionContainer.lastChild);
-  }
-  while (selectedContainer.hasChildNodes()) {
-    selectedContainer.removeChild(selectedContainer.lastChild);
-  }
-}
-
-
-// create event
-function makeEvent(){
-
-    console.log('saving event    ...');
-    var formData = new FormData();
-
-    var name = document.forms['event_create_form']['name'].value;
-    var imageUrl = document.forms['event_create_form']['upload_image'].value;;
-    var bio = document.forms['event_create_form']['bio'].value;
-    var startDate = document.forms['event_create_form']['start_date'].value;
-    var startTime = document.forms['event_create_form']['start_time'].value;
-    var endDate = document.forms['event_create_form']['end_date'].value;
-    var endTime = document.forms['event_create_form']['end_time'].value;
-    var location = document.forms['event_create_form']['location'].value;
-
-    var upload = document.getElementById("upload_image");
-    var file = null;
-
-    if( 'files' in upload ){
-          file = upload.files[0];
-          if(file != null){
-          console.log('what');
-          // Create a new FormData object.
-          if(!file.type.match('image.*')){
-            return;
-          }
-         formData.append('image',file,file.name)
-          console.log('file name:'+file.name);
-          console.log('file type:'+file.type);
-        }
-    }else{
-      console.log('file not detected');
-    }
-
-
-    var tags = hashTagHanlder.getUserTags();
-    var jsonTags = JSON.stringify({'tags': tags});
-
-    formData.append('command',3);
-    formData.append('name',name);
-    formData.append('bio',bio);
-    formData.append('startDateTime',startDate+' '+startTime+':00');
-    formData.append('endDateTime',endDate+'endTime'+':00');
-    formData.append('location',location);
-    formData.append('tags',jsonTags);
-    formData.append('owner',USER_ID);
-
-    cancelEventEntry();
-    var response = makeRequest(formData);
-    console.log("response: "+response);
-}
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -2138,11 +2140,8 @@ function insertEventIntoCalendar( event ){
     'resource': event
   });
 
-  request.execute(function(event) {
-     alert( 'insert event into google calendar!!');
-  });
+  request.execute(function(event) {});
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -2187,12 +2186,11 @@ function signIn() {
             console.log("mid-response: "+response);
         if( response == 200){
             console.log("successfullly logged in!");
+            hideLogInError();
             window.location.href=dashboard_page;
         }else{
             console.log("login fail: "+response);
-            if(window.location.href != sign_up_page){
-                window.location.href=sign_up_page;
-            }
+            showLogInError();
         }
     }
     else alert("please enter username & password!");
@@ -2258,6 +2256,15 @@ function changeSingUpForm(button){
 
 }
 
+function showLogInError(){
+    message = document.getElementById('login_error_message');
+    message.style.visibility = 'visible';
+}
+
+function hideLogInError(){
+    message = document.getElementById('login_error_message');
+    message.style.visibility = 'collapse';
+}
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -2287,12 +2294,14 @@ function showProfileView(){
   }
 
   if(  document.getElementById('dashboard_menu').style.visibility == 'visible'){
+    initDashBoard();
     showDashMenu();
   }
 
   //load friends
   getAllFriends('friends_view_container_body');
   loadRecievedFR('request_view_container_body');
+  initDashBoard();
   //hide dash menu if open close it'
 
 }
@@ -2342,8 +2351,9 @@ function acceptFriendRequest(initiatorID,node){
     console.log(e);
   }finally{
     var container = document.getElementById('request_view_container_body');
+    initDashBoard();
     container.removeChild(node);
-
+    getAllFriends('friends_view_container_body');
   }
 
 }
@@ -2480,6 +2490,7 @@ function confirmEventReg(node,event_id){
   var name = node.children[0].innerHTML;
   if( confirm('register for '+node.children[0].innerHTML+' ?') == true ){
       registerForEvent(event_id,node);
+      initDashBoard();
       return true;
   }else{
       return false;
@@ -2494,6 +2505,7 @@ function confirmEeventUnReg(node,event_id){
         var parent = document.getElementById('my_events_container');
         parent.removeChild(node);
       }
+      initDashBoard();
       return true;
   }else{
       return false;
@@ -2537,7 +2549,6 @@ function registerForEvent(event_id,node){
   try{
     response = JSON.parse(response);
     if( response.status == 200 ){
-      alert('registed for event!!');
       if(LINKED_TO_GOOGLE){
         insertEventIntoCalendar(event);
       }
@@ -2560,7 +2571,6 @@ function unRegisterForEvent(event_id){
   try{
     response = JSON.parse(response);
     if( response.status == 200 ){
-      alert('unregisted for event!!');
       return true;
     }else{
       alert('failed to unregisted for event!!');
@@ -2572,7 +2582,6 @@ function unRegisterForEvent(event_id){
 
   return false;
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -2808,7 +2817,6 @@ function replacer(){
     }
     return values;
 }
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -2867,7 +2875,6 @@ function findPeople(container){
 }
 
 /****************************** end search functions ********************************/
-
 /*
 ** Totaram Ramrattan
 ** CS 490 Project - Front END
@@ -2919,6 +2926,12 @@ function showEvents(events, container){
 
         e.appendChild(location);
 
+
+        // var childNodes = e.children;
+        // childNodes[0].innerHTML=events[i].name;
+        // childNodes[1].innerHTML=events[i].bio;
+        // childNodes[2].children[0].innerHTML=events[i].startDateTime;
+        // childNodes[3].children[0].innerHTML=events[i].endDateTime;
         e.id= events[i].id+'-'+container.id;
 
         e.onclick = function(){
@@ -3023,7 +3036,6 @@ function populateWithGoingTo(container){
   container = document.getElementById(container);
   showEvents(events,container);
 }
-
 <?php
 /*
 ** Totaram Ramrattan
@@ -3231,7 +3243,6 @@ $params = buildParams();
 
       }
 ?>
-
 <?php
 /*
 ** Totaram Ramrattan
@@ -3458,6 +3469,3 @@ function getFutureEvents($params){
 
 
 ?>
-
-
-
